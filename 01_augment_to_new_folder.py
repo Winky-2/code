@@ -57,8 +57,8 @@ random.seed(RANDOM_SEED)
 TRANSFORM = A.Compose(
     [
         A.Rotate(limit=15, border_mode=cv2.BORDER_CONSTANT, fill=0, p=0.9),
-        A.Affine(translate_percent=0.05, scale=(0.95, 1.05), rotate=0, p=0.5),git branch -M main
-        A.GaussNoise(p=0.2),
+        A.Affine(translate_percent=0.05, scale=(0.95, 1.05), rotate=0, p=0.5),
+        A.RandomBrightnessContrast(brightness_limit=0.15, contrast_limit=0.15, p=0.5),
     ],
     keypoint_params=A.KeypointParams(format="xy", remove_invisible=False),
     bbox_params=A.BboxParams(format="yolo", label_fields=["class_labels"]),
