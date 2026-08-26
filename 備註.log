@@ -1,5 +1,19 @@
-01.py
-02_v4.py    yolo_pixel_predictions.xlsx    
+b系列是5-fold版本
+
+01.py       是直接做資料增強並輸出到新資料夾
+01b.py      將資料分成五折再增強
+
+02_v4.py    yolo_pixel_predictions.xlsx   
+02b.py      yolo像素預測_5fold.xlsx 會跑5次
+02b_v2.py   每一折結束會將結果輸出成csv檔
+
 03.py       根管填充物像素長度_已配對.xlsx
-1_v2.m      預測結果與評估指標_train80_test20_像素轉mm.xlsx
-2.m
+03b.py      根管填充物像素長度_已配對_5fold.xlsx
+
+A_v2.m      預測結果與評估指標_train80_test20_像素轉mm.xlsx
+A2.m           
+
+B.m         
+B2.m        
+
+computeMetrics.m 公式集
