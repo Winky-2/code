@@ -1,0 +1,16 @@
+train: ../train/images
+val: ../valid/images
+test: ../test/images
+
+kpt_shape: [2, 3]
+flip_idx: [0, 1]
+
+nc: 1
+names: ['Tooth']
+
+roboflow:
+  workspace: s-workspace-33247
+  project: tooth-uq5hd
+  version: 7
+  license: CC BY 4.0
+  url: https://universe.roboflow.com/s-workspace-33247/tooth-uq5hd/dataset/7
