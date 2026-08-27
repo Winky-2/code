@@ -8,6 +8,6 @@ names: ['tooth']
 roboflow:
   workspace: s-workspace-33247
   project: identify-teeth-svekg
-  version: 1
+  version: 2
   license: CC BY 4.0
-  url: https://universe.roboflow.com/s-workspace-33247/identify-teeth-svekg/dataset/1
+  url: https://universe.roboflow.com/s-workspace-33247/identify-teeth-svekg/dataset/2

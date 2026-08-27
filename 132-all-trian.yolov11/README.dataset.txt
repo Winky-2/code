@@ -1,4 +1,4 @@
-# Identify teeth > 165-trian
+# Identify teeth > 132train
 https://universe.roboflow.com/s-workspace-33247/identify-teeth-svekg
 
 Provided by a Roboflow user
