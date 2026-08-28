@@ -15,13 +15,21 @@ computeMetrics.m    A.m 和 B.m會用到的公式集
 
 新方案：先訓練一個【裁切牙齒照片】的yolov11模型，再用裁切好的牙齒照片去訓練【判斷AB點並計算像素長度】的模型，最後用ANN模型去學習【像素長轉換mm】。
 
-00.py       因為train data可能來自Data_first 和 Data_second，所以檔案名稱可能會有重複，要先重新編號避免 01c.py 因檔名重複直接跳過
+1a.py       因為train data可能來自Data_first 和 Data_second，所以檔案名稱可能會有重複，要先重新編號避免 01c.py 因檔名重複直接跳過
             會輸出【rename_train_yolov11】資料夾及【merge_rename_對照表.csv】
 
-01.py       拿【rename_train_yolov11】資料夾，做一次train-85%(113)/valid-15%(19)切分輸出到【train-valid_teeth_yolov11】資料夾(包含訓練權重)，
+1b.py       拿【rename_train_yolov11】資料夾，做一次train-80%(106)/valid-20%(26)切分輸出到【train-valid_teeth_yolov11】資料夾(包含訓練權重)，
             裁切完33張test，輸出到【cropped_test_teeth】資料夾及【33張test裁切結果.xlsx】。
 
             要 8:2 還是 85:15 要改這行 VAL_RATIO = 0.2 
 
-01.5.py     把 01.py 輸出的圖片【等比例+補黑邊】resize成640x640，輸出到【resized_test_teeth】資料夾
-            
+1c.py       把 01.py 輸出的圖片【等比例+補黑邊】resize成640x640，輸出到【resized_test_teeth】資料夾
+
+
+2a.py       先將 Data_first 和 Data_second 的圖片重新編號，輸出【new_data_for_label】資料夾及【原圖重新編號對照表.csv】。
+            拿上一個模型訓練好的最佳權重去裁 Data_first 和 Data_second 的牙齒，輸出【new_data_for_label】資料夾、【二階訓練集裁切結果.xlsx】並重新編號，
+            再傳到roboflow進行【pose標註】，並【等比例+補黑邊】resize成640x640，輸出【132-train-second-model.yolov8】資料夾。
+
+2b.py       拿標註好的資料【132-train-second-model.yolov8】，訓練【判斷AB點】的模型，train-80%(106)/valid-20%(26)切分輸出到【yolo11_pose_run】資料夾(包含訓練權重)
+
+2c.py       拿 2b.py 訓練好的模型，去對測試集預測keypoint，並計算像素長度(用畢氏定理)。
