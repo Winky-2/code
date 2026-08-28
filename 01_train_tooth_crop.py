@@ -73,7 +73,7 @@ RANDOM_SEED = 42
 EXPECTED_TOTAL_IMAGES = 132                               # 只是防呆用的期望值，兜不起來只印警告
 
 CONF_THRESHOLD = 0.15
-CROP_PADDING_RATIO = 0.15
+CROP_PADDING_RATIO = 0.01
 IOU_MATCH_THRESHOLD = 0.3
 
 random.seed(RANDOM_SEED)
