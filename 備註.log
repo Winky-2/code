@@ -27,3 +27,5 @@ computeMetrics.m 公式集
 
 01c.py      拿【rename_train_yolov11】資料夾，做一次train-85%(113)/valid-15%(19)切分輸出到【train-valid_teeth_yolov11】資料夾(包含訓練權重)，
             裁切完33張test，輸出到【cropped_test_teeth】資料夾及【33張test裁切結果.xlsx】。
+
+            要 8:2 還是 85:15 要改這行 VAL_RATIO = 0.2 
