@@ -1,29 +1,22 @@
-b系列是5-fold版本
-
+舊檔案：b系列、A2、B2是5-fold版本
 01.py       是直接做資料增強並輸出到新資料夾
 01b.py      將資料分成五折再增強
-
 02_v4.py    yolo_pixel_predictions.xlsx   
 02b.py      yolo像素預測_5fold.xlsx 會跑5次
 02b_v2.py   每一折結束會將結果輸出成csv檔
-
 03.py       根管填充物像素長度_已配對.xlsx
 03b.py      根管填充物像素長度_已配對_5fold.xlsx
-
 A_v2.m      預測結果與評估指標_train80_test20_像素轉mm.xlsx
 A2.m           
-
 B.m         
 B2.m        
-
-computeMetrics.m 公式集
-
+computeMetrics.m    A.m 和 B.m會用到的公式集
 ==================================================================
 
 新方案：先訓練一個【裁切牙齒照片】的yolov11模型，再用裁切好的牙齒照片去訓練【判斷AB點並計算像素長度】的模型，最後用ANN模型去學習【像素長轉換mm】。
 
 00.py       因為train data可能來自Data_first 和 Data_second，所以檔案名稱可能會有重複，要先重新編號避免 01c.py 因檔名重複直接跳過
-            會輸出 【rename_train_yolov11】資料夾及【merge_rename_對照表.csv】
+            會輸出【rename_train_yolov11】資料夾及【merge_rename_對照表.csv】
 
 01c.py      拿【rename_train_yolov11】資料夾，做一次train-85%(113)/valid-15%(19)切分輸出到【train-valid_teeth_yolov11】資料夾(包含訓練權重)，
             裁切完33張test，輸出到【cropped_test_teeth】資料夾及【33張test裁切結果.xlsx】。
