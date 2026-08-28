@@ -52,8 +52,8 @@ import cv2
 import pandas as pd
 
 # ---------------- 設定區 ----------------
-CROPPED_INPUT_DIR = "cropped_test_teeth"          # 👈 01c輸出的裁切圖片資料夾
-RESIZED_OUTPUT_DIR = "resized_test_teeth"         # 統一尺寸後的圖片輸出處
+CROPPED_INPUT_DIR = "cropped_test_teeth_85-15"          # 👈 01c輸出的裁切圖片資料夾
+RESIZED_OUTPUT_DIR = "resized_test_teeth_85-15"         # 統一尺寸後的圖片輸出處
 TARGET_SIZE = 640                                 # 統一輸出成 TARGET_SIZE x TARGET_SIZE (正方形)
 
 # 補邊時，短邊不足的部分要往哪裡補：
@@ -65,9 +65,9 @@ PAD_MODE = "center"
 PAD_COLOR = (0, 0, 0)
 
 # 如果01c有輸出裁切manifest，這裡會自動讀進來合併，設None則跳過合併
-PREVIOUS_CROP_MANIFEST_XLSX = "33張test裁切結果.xlsx"
+PREVIOUS_CROP_MANIFEST_XLSX = "33張test裁切結果_85-15.xlsx"
 
-RESIZE_MANIFEST_XLSX = "33張resize結果.xlsx"
+RESIZE_MANIFEST_XLSX = "33張resize結果_85-15.xlsx"
 
 IMAGE_EXTENSIONS = {".jpg", ".jpeg", ".png"}
 

@@ -18,7 +18,10 @@ computeMetrics.m    A.m 和 B.m會用到的公式集
 00.py       因為train data可能來自Data_first 和 Data_second，所以檔案名稱可能會有重複，要先重新編號避免 01c.py 因檔名重複直接跳過
             會輸出【rename_train_yolov11】資料夾及【merge_rename_對照表.csv】
 
-01c.py      拿【rename_train_yolov11】資料夾，做一次train-85%(113)/valid-15%(19)切分輸出到【train-valid_teeth_yolov11】資料夾(包含訓練權重)，
+01.py       拿【rename_train_yolov11】資料夾，做一次train-85%(113)/valid-15%(19)切分輸出到【train-valid_teeth_yolov11】資料夾(包含訓練權重)，
             裁切完33張test，輸出到【cropped_test_teeth】資料夾及【33張test裁切結果.xlsx】。
 
             要 8:2 還是 85:15 要改這行 VAL_RATIO = 0.2 
+
+01.5.py     把 01.py 輸出的圖片【等比例+補黑邊】resize成640x640，輸出到【resized_test_teeth】資料夾
+            
