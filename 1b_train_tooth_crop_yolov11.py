@@ -61,8 +61,8 @@ ALL_TEETH_EXPORT_DIR = "rename_train_yolov11"                # 👈 Roboflow「�
 TARGET_TOOTH_TEST_DIR = "33-all-test.yolov8/test"            # 👈 33張加星號test圖所在資料夾(images/+labels/)
 
 WORK_DIR = "train-valid_teeth_yolov11"                        # 訓練用資料/權重輸出的工作資料夾
-CROPPED_OUTPUT_DIR = "cropped_test_teeth"          # 裁切後圖片輸出處，之後餵給pose模型用
-CROP_MANIFEST_XLSX = "33張test裁切結果.xlsx"
+CROPPED_OUTPUT_DIR = "cropped_test_teeth_yolov11"          # 裁切後圖片輸出處，之後餵給pose模型用
+CROP_MANIFEST_XLSX = "33張test裁切結果_yolov11.xlsx"
 
 BASE_MODEL = "yolo11n.pt"                                 # YOLOv11 detection base model
 EPOCHS = 150

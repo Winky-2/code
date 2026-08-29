@@ -56,9 +56,9 @@ NEW_DATASET_DIRS = [
     "Data_second",
 ]
 
-OUTPUT_CROPPED_DIR = "new_data_for_label"          # 裁切後輸出，之後拿去標註A/B點
-MANIFEST_XLSX = "二階訓練集裁切結果.xlsx"
-RENUMBER_MAPPING_CSV = "原圖重新編號對照表.csv"    # 原圖(來源資料夾+原始檔名) -> 新編號 的對照表
+OUTPUT_CROPPED_DIR = "new_data_for_label_yolov11"          # 裁切後輸出，之後拿去標註A/B點
+MANIFEST_XLSX = "二階訓練集裁切結果_yolov11.xlsx"
+RENUMBER_MAPPING_CSV = "原圖重新編號對照表_yolov11.csv"    # 原圖(來源資料夾+原始檔名) -> 新編號 的對照表
 NUM_DIGITS = 4                                     # 新編號補零位數，0001、0002...
 
 IMG_SIZE = 640
