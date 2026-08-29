@@ -11,6 +11,6 @@ names: ['teeth']
 roboflow:
   workspace: s-workspace-33247
   project: train-pose-fnlg2
-  version: 2
+  version: 3
   license: CC BY 4.0
-  url: https://universe.roboflow.com/s-workspace-33247/train-pose-fnlg2/dataset/2
+  url: https://universe.roboflow.com/s-workspace-33247/train-pose-fnlg2/dataset/3
