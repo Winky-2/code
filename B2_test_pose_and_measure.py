@@ -63,9 +63,9 @@ IMAGE_DIR = "33-all-test.yolov8/test/images"
 GT_LABEL_DIR = "33-all-test.yolov8/test/labels"
 GT_IMAGE_DIR = "33-all-test.yolov8/test/images"
 
-OUTPUT_XLSX = "yolo像素預測.xlsx"
-RAW_KEYPOINT_CSV = "yolo關鍵點原始座標.csv"
-VIS_DIR = "pose_預測視覺化"
+OUTPUT_XLSX = "yolo像素預測_11.xlsx"
+RAW_KEYPOINT_CSV = "yolo關鍵點原始座標_11.csv"
+VIS_DIR = "pose_預測視覺化_11"  # 推論結果視覺化輸出資料夾
 SAVE_VISUALIZATION = True
 
 IMG_SIZE = 640               # 👈 要跟2b_..._fullimage.py訓練時的IMG_SIZE一致

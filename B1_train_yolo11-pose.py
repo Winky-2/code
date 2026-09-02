@@ -29,16 +29,6 @@ keypoint」這種語意——模型架構上，keypoint head是共用的，對�
       或另外訓練一個「這是不是目標牙」的分類器)。這是單一class設計
       比兩個class設計多欠的一筆帳，先讓你們知道，之後上線前要補。
 
-*** 跟兩階段版collect_pose_dataset()的差異(全片模式共通差異，非本次修改重點) ***
-兩階段版讀的是「裁切後的單顆牙圖片」，這支讀的是「完整X光片」，
-一張圖對應一個labels檔(裡面可能有多行/多顆牙)。
-
-*** 不再需要的東西(相較兩階段版) ***
-- 1c_resize_cropped_teeth_yolov11.py(手動letterbox+scale/pad manifest)：
-  不需要了，model.predict()回傳的座標已經是換算回原圖像素空間的結果。
-- 2a_crop_for_pose_labeling.py(先裁切成單顆牙圖片再標註)：
-  不需要了，現在直接在完整X光片上標註。
-
 *** 標註格式需求 ***
 POSE_DATA_DIR 底下需要是Roboflow匯出的YOLO-pose格式(完整X光片)：
   - images/、labels/(或train/valid/test三個子資料夾各自有images/、labels/)
