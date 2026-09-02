@@ -13,7 +13,7 @@ cache: false
 device: ''
 workers: 8
 project: yolo11_pose_run
-name: ab_keypoint_pose
+name: ab_keypoint_pose_fullimage
 exist_ok: false
 pretrained: true
 cls_remap: true
@@ -112,4 +112,4 @@ auto_augment: randaugment
 erasing: 0.4
 cfg: null
 tracker: tracktrack.yaml
-save_dir: C:\Users\user\Desktop\小專題\code\runs\pose\yolo11_pose_run\ab_keypoint_pose
+save_dir: C:\Users\user\Desktop\小專題\code\runs\pose\yolo11_pose_run\ab_keypoint_pose_fullimage
