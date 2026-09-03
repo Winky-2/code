@@ -112,4 +112,8 @@ auto_augment: randaugment
 erasing: 0.4
 cfg: null
 tracker: tracktrack.yaml
+<<<<<<< HEAD
 save_dir: C:\Users\user\Desktop\小專題\code\runs\pose\yolo26_pose_run\ab_keypoint_pose
+=======
+save_dir: C:\Users\USER\Desktop\論文\code\runs\pose\yolo26_pose_run\ab_keypoint_pose
+>>>>>>> 518987188fa8aa5807e6ab912317b23a221ea8bf

@@ -4,6 +4,10 @@ kpt_shape:
 names:
 - tooth
 nc: 1
+<<<<<<< HEAD
 path: C:\Users\user\Desktop\小專題\code\yolo26_pose_run\data
+=======
+path: C:\Users\USER\Desktop\論文\code\yolo26_pose_run\data
+>>>>>>> 518987188fa8aa5807e6ab912317b23a221ea8bf
 train: train/images
 val: val/images
