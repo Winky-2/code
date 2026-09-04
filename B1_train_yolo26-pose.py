@@ -77,7 +77,7 @@ CONF_THRESHOLD = 0.15                         # 之後拿這個模型做推論�
 PATIENCE = 0           # early stopping耐心值，0代表關閉
 LR0 = 0.001             # 初始學習率調低，避免小資料集訓練發散
 AMP = False             # 關閉混合精度，排除AMP造成NaN導致fitness collapse的可能性
-BATCH = 8               # 資料量小，batch別開太大
+BATCH = 4               # 資料量小，batch別開太大
 
 random.seed(RANDOM_SEED)
 
