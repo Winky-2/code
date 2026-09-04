@@ -1,6 +1,4 @@
 """
-2b_train_yolo_pose.py
-============================
 對應新流程圖階段：（單階段版）直接在「完整X光片」上同時訓練
 YOLO11-pose，一次輸出「每顆牙的bbox」+「A(切端)/B(根尖)關鍵點」，
 取代原本 stage1(全牙齒偵測+裁切) + stage2(單顆牙pose) 的兩階段設計。
@@ -53,7 +51,7 @@ from ultralytics import YOLO
 
 # ---------------- 設定區 ----------------
 POSE_DATA_DIR = "132-train-second-model_v2"    # 👈 Roboflow匯出：完整X光片，單一class + keypoint visibility標目標牙
-WORK_DIR = "yolo26_pose_run"              # 訓練用資料/權重輸出的工作資料夾
+WORK_DIR = "yolo26_pose_run-batch4"              # 訓練用資料/權重輸出的工作資料夾
 
 BASE_MODEL = "yolo26n-pose.pt"
 EPOCHS = 150
@@ -77,7 +75,7 @@ CONF_THRESHOLD = 0.15                         # 之後拿這個模型做推論�
 PATIENCE = 0           # early stopping耐心值，0代表關閉
 LR0 = 0.001             # 初始學習率調低，避免小資料集訓練發散
 AMP = False             # 關閉混合精度，排除AMP造成NaN導致fitness collapse的可能性
-BATCH = 8               # 資料量小，batch別開太大
+BATCH = 4               # 資料量小，batch別開太大
 
 random.seed(RANDOM_SEED)
 
