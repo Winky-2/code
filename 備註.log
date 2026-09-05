@@ -33,9 +33,13 @@ computeMetrics.m    A.m 和 B.m會用到的公式集
 =============================================================================================================================================================
 新方案：直接訓練一個模型去做【判斷牙齒BBox & AB點並計算像素長度】的模型，最後用ANN模型去學習【像素長轉換mm】。
 
+【data_first_enhanced】、【data_second_enhanced】、【data_test_enhanced】都是先做CLAHE前處理還沒進roboflow標註的資料夾。
+【132-train-second-model_enhanced】、【33-all-test_enhanced】是做完前處理也標註完的。
+
 A1.py       把train/test資料全部先做資料增強，然後再去roboflow標註【BBox & pose】。
 
 B1.py       拿【132-train-second-model_v2】資料夾當train，訓練【判斷牙齒BBox & AB點】的模型
+            v2是新增了算train data的bbox總和，老師要看。輸出在【yolo11_pose_run-batch4_重新標註-2】資料夾裡的【訓練摘要.xlsx】。
 
 B2.py       拿 B1.py 訓練好的最佳權重對【33-all-test.yolov8】資料夾做訓練，會輸出【yolo像素預測.xlsx】、【yolo關鍵點原始座標.csv】、【pose_預測視覺化】
 
