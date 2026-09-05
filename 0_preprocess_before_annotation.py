@@ -44,8 +44,8 @@ import pandas as pd
 from image_enhance import enhance_image, CLAHE_CLIP_LIMIT, CLAHE_TILE_GRID_SIZE
 
 # ---------------- 設定區 ----------------
-INPUT_DIR = "Data_second"       # 👈 原始、尚未標註的X光片資料夾
-OUTPUT_DIR = "raw_xrays_enhanced_1"   # 👈 增強後、要拿去Roboflow標註的輸出資料夾
+INPUT_DIR = "Data_test"       # 👈 原始、尚未標註的X光片資料夾
+OUTPUT_DIR = "raw_xrays_enhanced_test"   # 👈 增強後、要拿去Roboflow標註的輸出資料夾
 
 # 沿用 image_enhance.py 裡的預設值，確保跟B1/B2未來會用的是同一組參數。
 # 如果你已經用 image_enhance.py 的預覽小工具比較過、決定了不同的
