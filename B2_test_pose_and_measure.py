@@ -52,20 +52,20 @@ from PIL import Image
 from ultralytics import YOLO
 
 # ---------------- 設定區 ----------------
-POSE_WEIGHTS = "yolo11_pose_run-batch4/weights_ready.pt"   # 👈 2b_..._fullimage.py訓練完成的權重
+POSE_WEIGHTS = "yolo11_pose_run-batch4_重新標註/weights_ready.pt"   # 👈 2b_..._fullimage.py訓練完成的權重
 
 # 要跑推論的圖片資料夾：完整X光片test圖(不是裁切/letterbox後的圖)，
 # 通常就跟GT_IMAGE_DIR是同一份
-IMAGE_DIR = "33-all-test.yolov8/test/images"
+IMAGE_DIR = "33-all-test_enhanced/test/images"
 
 # 舊標註(ground truth)：這支必須要有，因為要靠它的bbox做IoU比對來認牙，
 # 不是只拿來算誤差而已，所以跟兩階段版不同，這裡不支援設成None
-GT_LABEL_DIR = "33-all-test.yolov8/test/labels"
-GT_IMAGE_DIR = "33-all-test.yolov8/test/images"
+GT_LABEL_DIR = "33-all-test_enhanced/test/labels"
+GT_IMAGE_DIR = "33-all-test_enhanced/test/images"
 
-OUTPUT_XLSX = "yolo像素預測_11_batch4_2.xlsx"
-RAW_KEYPOINT_CSV = "yolo關鍵點原始座標_11_batch4_2.csv"
-VIS_DIR = "pose_預測視覺化_11_batch4_2"  # 推論結果視覺化輸出資料夾
+OUTPUT_XLSX = "yolo像素預測_11_batch4_重新標註.xlsx"
+RAW_KEYPOINT_CSV = "yolo關鍵點原始座標_11_batch4_重新標註.csv"
+VIS_DIR = "pose_預測視覺化_11_batch4_重新標註"  # 推論結果視覺化輸出資料夾
 SAVE_VISUALIZATION = True
 
 IMG_SIZE = 640               # 👈 要跟2b_..._fullimage.py訓練時的IMG_SIZE一致

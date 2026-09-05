@@ -50,8 +50,8 @@ import yaml
 from ultralytics import YOLO
 
 # ---------------- 設定區 ----------------
-POSE_DATA_DIR = "132-train-second-model_v2"    # 👈 Roboflow匯出：完整X光片，單一class + keypoint visibility標目標牙
-WORK_DIR = "yolo11_pose_run-batch4"              # 訓練用資料/權重輸出的工作資料夾
+POSE_DATA_DIR = "132-train-second-model_enhanced"    # 👈 Roboflow匯出：完整X光片，單一class + keypoint visibility標目標牙
+WORK_DIR = "yolo11_pose_run-batch4_重新標註"              # 訓練用資料/權重輸出的工作資料夾
 
 BASE_MODEL = "yolo11n-pose.pt"
 EPOCHS = 150

@@ -39,7 +39,9 @@ B1.py       拿【132-train-second-model_v2】資料夾當train，訓練【判�
 
 B2.py       拿 B1.py 訓練好的最佳權重對【33-all-test.yolov8】資料夾做訓練，會輸出【yolo像素預測.xlsx】、【yolo關鍵點原始座標.csv】、【pose_預測視覺化】
 
-有標記「未增強」的是將B1訓練時的一些資料增強參數拿掉的結果，「_前處理」的是在訓練前先將圖片進行CLAHE做對比增強讓圖片更清晰的結果，引用 image_enhance.py 裡的函數。
+    「未增強」的是將B1訓練時的一些資料增強參數拿掉的結果。
+    「_前處理」的是在標註後先將圖片進行CLAHE做對比增強讓圖片更清晰的結果，引用 image_enhance.py 裡的函數。
+    「_重新標註」的是先做前處理讓圖片便清晰再重新標註的結果。
 
 C1.m        訓練ANN+算RMSE、MAE、R Square、Bias
 
