@@ -50,8 +50,8 @@ import yaml
 from ultralytics import YOLO
 
 # ---------------- 設定區 ----------------
-POSE_DATA_DIR = "132-train-second-model_enhanced"    # 👈 Roboflow匯出：完整X光片，單一class + keypoint visibility標目標牙
-WORK_DIR = "yolo11_pose_run-batch4_重新標註"              # 訓練用資料/權重輸出的工作資料夾
+POSE_DATA_DIR = "132-train-second-model_enhanced1280"    # 👈 Roboflow匯出：完整X光片，單一class + keypoint visibility標目標牙
+WORK_DIR = "yolo11_pose_run-batch4_重新標註1280"              # 訓練用資料/權重輸出的工作資料夾
 
 BASE_MODEL = "yolo11n-pose.pt"
 EPOCHS = 150
@@ -60,7 +60,7 @@ EPOCHS = 150
 #    會被壓縮到很小，關鍵點定位精度可能明顯下降。建議先確認你們X光片
 #    的原始解析度，抓一個能讓目標牙細節不至於糊掉的imgsz(常見會抓
 #    960或1280)，這裡先預設1280，訓練前務必依實際情況調整。
-IMG_SIZE = 640
+IMG_SIZE = 1280
 
 VAL_RATIO = 0.2                               # 一般train/val切分比例(不是5-fold)，比照stage1的做法
 CLASS_NAMES = ["tooth"]                       # 單一class，目標牙/一般牙靠keypoint visibility區分
