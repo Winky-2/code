@@ -54,7 +54,7 @@ from ultralytics import YOLO
 from image_enhance import enhance_image  # 跟B1共用同一份CLAHE增強邏輯，train/test參數保證一致
 
 # ---------------- 設定區 ----------------
-POSE_WEIGHTS = "yolo11_pose_run/weights_ready.pt"   # 👈 2b_..._fullimage.py訓練完成的權重
+POSE_WEIGHTS = "yolo11_pose_run-batch4_前處理/weights_ready.pt"   # 👈 2b_..._fullimage.py訓練完成的權重
 
 # 要跑推論的圖片資料夾：完整X光片test圖(不是裁切/letterbox後的圖)，
 # 通常就跟GT_IMAGE_DIR是同一份
@@ -65,9 +65,9 @@ IMAGE_DIR = "33-all-test.yolov8/test/images"
 GT_LABEL_DIR = "33-all-test.yolov8/test/labels"
 GT_IMAGE_DIR = "33-all-test.yolov8/test/images"
 
-OUTPUT_XLSX = "yolo像素預測_11.xlsx"
-RAW_KEYPOINT_CSV = "yolo關鍵點原始座標_11.csv"
-VIS_DIR = "pose_預測視覺化_11"  # 推論結果視覺化輸出資料夾
+OUTPUT_XLSX = "yolo像素預測_11_batch4_前處理.xlsx"
+RAW_KEYPOINT_CSV = "yolo關鍵點原始座標_11_batch4_前處理.csv"
+VIS_DIR = "pose_預測視覺化_11_batch4_前處理"  # 推論結果視覺化輸出資料夾
 SAVE_VISUALIZATION = True
 
 IMG_SIZE = 640               # 👈 要跟2b_..._fullimage.py訓練時的IMG_SIZE一致
