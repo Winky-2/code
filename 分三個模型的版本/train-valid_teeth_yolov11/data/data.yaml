@@ -1,6 +1,0 @@
-names:
-- tooth
-nc: 1
-path: C:\Users\user\Desktop\小專題\code\train-valid_teeth_yolov11\data
-train: train/images
-val: val/images

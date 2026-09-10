@@ -42,6 +42,7 @@ B1.py       拿【132-train-second-model_v2】資料夾當train，訓練【判�
             v2是新增了算train data的bbox總和，老師要看。輸出在【yolo11_pose_run-batch4_重新標註-2】資料夾裡的【訓練摘要.xlsx】。
 
 B2.py       拿 B1.py 訓練好的最佳權重對【33-all-test.yolov8】資料夾做訓練，會輸出【yolo像素預測.xlsx】、【yolo關鍵點原始座標.csv】、【pose_預測視覺化】
+B2_v2.py    會在生的【yolo像素預測.xlsx】裡面多一個計算BBOX數量
 
     「未增強」的是將B1訓練時的一些資料增強參數拿掉的結果。
     「_前處理」的是在標註後先將圖片進行CLAHE做對比增強讓圖片更清晰的結果，引用 image_enhance.py 裡的函數。
