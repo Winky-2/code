@@ -51,3 +51,5 @@ B2_v2.py    會在生的【yolo像素預測.xlsx】裡面多一個計算BBOX數�
 C1.m        訓練ANN+算RMSE、MAE、R Square、Bias
 
 C2.m        把C1結果畫成圖
+
+_重新標註-2 的結果是最好的
