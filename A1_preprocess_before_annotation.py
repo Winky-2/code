@@ -128,8 +128,8 @@ def enhance_image(img, clip_limit=CLAHE_CLIP_LIMIT, tile_grid_size=CLAHE_TILE_GR
 # 第1部分：批次前處理設定區
 # ============================================================
 
-INPUT_DIR = "Data_second"        # 👈 原始、尚未標註的X光片資料夾
-OUTPUT_DIR = "second_A1"   # 👈 增強後、要拿去Roboflow標註的輸出資料夾
+INPUT_DIR = "Data_RCTKKK"        # 👈 原始、尚未標註的X光片資料夾
+OUTPUT_DIR = "rctkkk_A1"   # 👈 增強後、要拿去Roboflow標註的輸出資料夾
 
 CLIP_LIMIT = CLAHE_CLIP_LIMIT
 TILE_GRID_SIZE = CLAHE_TILE_GRID_SIZE
