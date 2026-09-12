@@ -56,3 +56,5 @@ C1.m        訓練ANN+算RMSE、MAE、R Square、Bias
 C2.m        把C1結果畫成圖
 
 _重新標註-2 的結果是最好的
+
+B1s.py、B2s.py、B3.py 是跑segmentation的，B1s.py 是訓練，B2s.py 是預測，B3.py 是比較 B2.py 跟B2s.py 的結果。
