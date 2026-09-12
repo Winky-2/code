@@ -1,0 +1,13 @@
+train: ../train/images
+val: ../valid/images
+test: ../test/images
+
+nc: 1
+names: ['test-segment']
+
+roboflow:
+  workspace: s-workspace-33247
+  project: test_seg-ghfpq
+  version: 1
+  license: CC BY 4.0
+  url: https://universe.roboflow.com/s-workspace-33247/test_seg-ghfpq/dataset/1
