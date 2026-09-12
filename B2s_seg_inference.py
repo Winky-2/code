@@ -36,11 +36,11 @@ from ultralytics import YOLO
 # 第1部分：設定
 # ============================================================
 
-SEG_WEIGHTS = r"C:/Users/user/Desktop/code/runs/segment/yolo11_train_segment/tooth_seg-3/weights/best.pt"
-IMAGE_DIR = "33-all-test_enhanced960/test/images"   # 👈 必須與 B2 的 IMAGE_DIR 完全相同
+SEG_WEIGHTS = "yolo11_seg_run/weights_ready.pt"
+IMAGE_DIR = "test_segment/test/images"   # 👈 必須與 B2 的 IMAGE_DIR 完全相同
 
-MASK_JSON = "B2s_mask多邊形_11_batch4.json"
-OUTPUT_XLSX = "B2s_seg推論統計_11_batch4.xlsx"
+MASK_JSON = "B2s_mask多邊形_11.json"
+OUTPUT_XLSX = "B2s_seg推論統計_11.xlsx"
 VIS_DIR = "B2s_seg視覺化"
 SAVE_VISUALIZATION = True
 

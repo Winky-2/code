@@ -97,20 +97,20 @@ from PIL import Image
 from ultralytics import YOLO
 
 # ---------------- 設定區 ----------------
-POSE_WEIGHTS = "yolo11_pose_run-batch4_重新標註-adjust960/weights_ready.pt"   # 👈 2b_..._fullimage.py訓練完成的權重
+POSE_WEIGHTS = "yolo11_pose_run/weights_ready.pt"   # 👈 2b_..._fullimage.py訓練完成的權重
 
 # 要跑推論的圖片資料夾：完整X光片test圖(不是裁切/letterbox後的圖)，
 # 通常就跟GT_IMAGE_DIR是同一份
-IMAGE_DIR = "33-all-test_enhanced960/test/images"
+IMAGE_DIR = "test_enhance/test/images"
 
 # 舊標註(ground truth)：這支必須要有，因為要靠它的bbox做IoU比對來認牙，
 # 不是只拿來算誤差而已，所以跟兩階段版不同，這裡不支援設成None
-GT_LABEL_DIR = "33-all-test_enhanced960/test/labels"
-GT_IMAGE_DIR = "33-all-test_enhanced960/test/images"
+GT_LABEL_DIR = "test_enhance/test/labels"
+GT_IMAGE_DIR = "test_enhance/test/images"
 
-OUTPUT_XLSX = "yolo像素預測_11_batch4_重新標註-adjust960.xlsx"
-RAW_KEYPOINT_CSV = "yolo關鍵點原始座標_11_batch4_重新標註-adjust960.csv"
-VIS_DIR = "pose_預測視覺化_11_batch4_重新標註-adjust960"  # 推論結果視覺化輸出資料夾
+OUTPUT_XLSX = "yolo像素預測_11.xlsx"
+RAW_KEYPOINT_CSV = "yolo關鍵點原始座標_11.csv"
+VIS_DIR = "pose_預測視覺化_11"  # 推論結果視覺化輸出資料夾
 SAVE_VISUALIZATION = True
 
 # ---------------- v2新增：letterbox scale換算設定 ----------------
@@ -126,7 +126,7 @@ LETTERBOX_SIZE = 640
 # 是否驗證scale算得對：偵測letterbox圖裡非黑內容區的實際大小，
 # 跟「原圖尺寸×scale」比對。差距超過門檻代表letterbox方式跟這裡
 # 假設的不一樣(例如不是fit-within而是stretch)，會標記出來。
-VERIFY_LETTERBOX = True
+VERIFY_LETTERBOX = False
 LETTERBOX_VERIFY_TOL_PX = 3      # 容許誤差(四捨五入造成的1~2px屬正常)
 LETTERBOX_BLACK_THRESHOLD = 10   # 灰階低於此值視為letterbox黑邊
 
@@ -135,7 +135,7 @@ LETTERBOX_BLACK_THRESHOLD = 10   # 灰階低於此值視為letterbox黑邊
 # 這種列絕對不可以餵進ANN。
 ALLOW_MISSING_ORIGINAL = False
 
-IMG_SIZE = 960               # 👈 要跟2b_..._fullimage.py訓練時的IMG_SIZE一致
+IMG_SIZE = 640              # 👈 要跟2b_..._fullimage.py訓練時的IMG_SIZE一致
 CONF_THRESHOLD = 0.15         # 跟2b一致，篩box的信心度門檻
 FALLBACK_CONF = 0.05          # 主門檻抓不到任何框時降門檻重試(會在狀態欄標註)
 KPT_CONF_WARN = 0.5           # 關鍵點信心度低於此值標「建議人工複查」
@@ -272,6 +272,12 @@ def detect_content_bbox(img_path: Path, threshold=LETTERBOX_BLACK_THRESHOLD):
     img = cv2.imread(str(img_path), cv2.IMREAD_GRAYSCALE)
     if img is None:
         return None
+    if img.ndim == 3:
+        if img.shape[2] == 1:          # OpenCV 5.0：灰階回傳 (H, W, 1)
+            img = img[:, :, 0]
+        else:                          # 保險：萬一真的是彩色或帶 alpha
+            code = cv2.COLOR_BGRA2GRAY if img.shape[2] == 4 else cv2.COLOR_BGR2GRAY
+            img = cv2.cvtColor(img, code)
     ys, xs = np.where(img > threshold)
     if len(ys) == 0:
         return None
@@ -591,8 +597,8 @@ def draw_visualization(img_path, rec, gt_points=None):
     if image is None:
         return
 
-    pa = (int(round(rec["A_x_原圖"])), int(round(rec["A_y_原圖"])))
-    pb = (int(round(rec["B_x_原圖"])), int(round(rec["B_y_原圖"])))
+    pa = (int(round(rec["A_x_letterbox"])), int(round(rec["A_y_letterbox"])))
+    pb = (int(round(rec["B_x_letterbox"])), int(round(rec["B_y_letterbox"])))
 
     cv2.line(image, pa, pb, (0, 255, 255), 2)
     cv2.circle(image, pa, 6, (0, 255, 0), -1)     # 預測A(切端) 綠實心
