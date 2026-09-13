@@ -143,7 +143,7 @@ function C2_plotMyResults_fullimage()
     min_val2 = floor(min([Y; Y_pred_offset])) - 1;
     max_val2 = ceil(max([Y; Y_pred_offset])) + 1;
 
-    plot([min_val2, max_val2], [min_val2, max_val2], 'w-', 'LineWidth', 2, 'DisplayName', '完美預測線 (誤差 0)');
+    plot([min_val2, max_val2], [min_val2, max_val2], 'k-', 'LineWidth', 2, 'DisplayName', '完美預測線 (誤差 0)');
     plot([min_val2, max_val2], [min_val2+1.0, max_val2+1.0], 'g:', 'LineWidth', 1.5, 'DisplayName', '+1.0 mm 容忍線');
     plot([min_val2, max_val2], [min_val2-1.0, max_val2-1.0], 'g:', 'LineWidth', 1.5, 'DisplayName', '-1.0 mm 容忍線');
 
@@ -161,7 +161,7 @@ function C2_plotMyResults_fullimage()
     y_lims2 = ylim;
     text(x_lims2(1) + 0.05*(x_lims2(2)-x_lims2(1)), ...
          y_lims2(2) - 0.22*(y_lims2(2)-y_lims2(1)), ...
-         clinical_text, 'FontSize', 11, 'BackgroundColor', 'k', 'EdgeColor', 'w');
+         clinical_text, 'FontSize', 11, 'BackgroundColor', 'k', 'EdgeColor', 'w','Color', 'w');
     hold off;
 
     fprintf('✅ 三張圖表已繪製完成（皆只用 test set，含臨床安全性評估圖）！\n');
