@@ -3,28 +3,25 @@
 """
 B2s_seg_inference.py
 ===============================================================
-方案B右支的推論端，跟左支的 B2 對稱：
+方案B右支的驗收腳本，跟左支的 B2 對稱：
 
-    左支： B1  訓練 pose  →  B2  推論  →  關鍵點 CSV
-    右支： B1s 訓練 seg   →  B2s 推論  →  mask 多邊形 JSON
-                                 ↓
-                          B3 讀兩邊的輸出做匯流
+    左支： B1  訓練 pose  →  B2  推論  →  關鍵點 CSV  →  B3
+    右支： B1s 訓練 seg   →  B2s 推論  →  mask 統計 Excel（單獨驗收用）
 
-把推論獨立出來的好處：
-  - seg 推論只跑一次，之後調整 B3 的幾何邏輯不用重跑模型
-  - 輸出的 JSON 可以直接檢查，不必透過 B3 才看得到 mask 長什麼樣
-  - 右支可以單獨驗證(看 Excel 的 mask 數、面積、信心度)
+*** 這支不是 B3 的上游 ***
+B3 自己會載入 SEG_WEIGHTS、對影像重跑一次 seg 推論，不吃 B2s 的輸出。
+所以 B2s 的定位只有一個：在把 seg 接進 B3 之前，先確認右支模型本身
+沒問題（每張圖偵測到幾個 mask、面積合不合理、信心度夠不夠、有沒有
+整張漏檢）。確認完就可以放著，改 B3 的幾何邏輯不需要重跑 B2s。
 
-輸出兩個檔案：
-  1. MASK_JSON  — 每張圖的 mask 多邊形座標，給 B3 用
-  2. OUTPUT_XLSX — 逐張的 mask 統計，給人看
+輸出：
+  1. OUTPUT_XLSX — 逐張的 mask 統計，給人看
+  2. VIS_DIR     — 疊上 mask 輪廓的可視化影像
 
 座標空間：Ultralytics 回傳的 masks.xy 已經換算回「餵進去那張圖」的
-實際像素座標，不是 imgsz 縮放後的座標。只要 IMAGE_DIR 與 B2 用的是
-同一個資料夾，mask 與 keypoint 就落在同一空間，B3 不需要任何轉換。
+實際像素座標，不是 imgsz 縮放後的座標。
 """
 
-import json
 from pathlib import Path
 
 import cv2
@@ -39,14 +36,12 @@ from ultralytics import YOLO
 SEG_WEIGHTS = "yolo11_seg_run/weights_ready.pt"
 IMAGE_DIR = "test_segment/test/images"   # 👈 必須與 B2 的 IMAGE_DIR 完全相同
 
-MASK_JSON = "B2s_mask多邊形_11.json"
 OUTPUT_XLSX = "B2s_seg推論統計_11.xlsx"
 VIS_DIR = "B2s_seg視覺化"
 SAVE_VISUALIZATION = True
 
-IMG_SIZE = 960          # 👈 跟 seg 訓練時一致
+IMG_SIZE = 640          # 👈 跟 seg 訓練時一致
 SEG_CONF = 0.15
-COORD_DECIMALS = 2      # 多邊形座標小數位，2 位足夠且能大幅縮小 JSON
 
 IMAGE_EXTENSIONS = {".jpg", ".jpeg", ".png"}
 
@@ -58,11 +53,6 @@ IMAGE_EXTENSIONS = {".jpg", ".jpeg", ".png"}
 def list_images(image_dir: Path):
     return sorted(p for p in image_dir.iterdir()
                   if p.suffix.lower() in IMAGE_EXTENSIONS)
-
-
-def polygon_bbox(pts):
-    return [float(pts[:, 0].min()), float(pts[:, 1].min()),
-            float(pts[:, 0].max()), float(pts[:, 1].max())]
 
 
 def polygon_area(pts):
@@ -102,7 +92,7 @@ def main():
     print(f"載入 seg 模型：{SEG_WEIGHTS}")
     print(f"待推論：{len(images)} 張，imgsz={IMG_SIZE}，conf={SEG_CONF}\n")
 
-    payload, rows = {}, []
+    rows = []
 
     for img_path in images:
         res = model.predict(source=str(img_path), imgsz=IMG_SIZE,
@@ -121,16 +111,12 @@ def main():
                 confs.append(conf)
                 entries.append({
                     "conf": round(conf, 4),
-                    "bbox": [round(v, COORD_DECIMALS) for v in polygon_bbox(pts)],
                     "area": round(polygon_area(pts), 2),
                     "n_vertices": int(len(pts)),
-                    "polygon": np.round(pts, COORD_DECIMALS).tolist(),
                 })
 
-        # 面積大的排前面，B3 挑 mask 時順序穩定、方便人工比對
+        # 面積大的排前面，統計欄位固定看「最大的那顆」
         entries.sort(key=lambda e: e["area"], reverse=True)
-
-        payload[img_path.name] = {"width": int(W), "height": int(H), "masks": entries}
 
         rows.append({
             "圖片檔名": img_path.name,
@@ -147,16 +133,6 @@ def main():
             draw(img_path, polygons, confs, Path(VIS_DIR) / f"{img_path.stem}_seg.jpg")
 
     # ---- 寫檔 ----
-    meta = {
-        "weights": SEG_WEIGHTS,
-        "image_dir": str(image_dir),
-        "imgsz": IMG_SIZE,
-        "conf": SEG_CONF,
-        "n_images": len(images),
-    }
-    with open(MASK_JSON, "w", encoding="utf-8") as f:
-        json.dump({"meta": meta, "images": payload}, f, ensure_ascii=False)
-
     df = pd.DataFrame(rows)
     with pd.ExcelWriter(OUTPUT_XLSX, engine="openpyxl") as w:
         df.to_excel(w, sheet_name="seg推論統計", index=False)
@@ -166,7 +142,6 @@ def main():
     sizes = df["影像尺寸"].unique()
 
     print(f"✅ 完成，共 {len(df)} 張")
-    print(f"📄 {MASK_JSON}")
     print(f"📄 {OUTPUT_XLSX}")
     if SAVE_VISUALIZATION:
         print(f"🖼️  {VIS_DIR}/")
