@@ -1,0 +1,251 @@
+function C2v2_plotMyResults()
+%% C2v2_plotMyResults.m
+% ============================================================
+% 對應流程圖 C 區塊的視覺化，讀 C1v2_pixelToMmPredictor.m 的輸出，
+% 畫三張圖：
+%   1. 實際長度 vs 預測長度 曲線對比圖
+%   2. 預測 vs 實際散布圖(含 ±0.5mm / ±1.0mm 誤差容忍線)
+%   3. 校正後(實際建議工作長度) vs 實際值，含過長標示(臨床安全性圖)
+%
+% *** 跟舊版 C2_plotMyResults.m 的差異 ***
+% 繪圖邏輯完全沿用，改的只有三處：
+%   1. 讀檔名跟著 METHOD 走(三種量測法各有一份輸出)
+%   2. 標題與軸標從「Test Set」改成「Out-of-Fold」
+%   3. 文字框多印摺間/重複間的標準差
+%
+% *** 為什麼圖上的點變成 54 個 ***
+% 舊版是單次切分，只有 test 那十幾筆能畫。C1v2 改成 k 摺交叉驗證之後，
+% 每一筆都輪流當過一次 held-out，都有一個「沒被自己的模型看過」的
+% 預測值(out-of-fold prediction)，所以 54 筆全部可以畫，而且全部都是
+% 誠實的樣本外預測，沒有一筆是模型看過的。
+%
+% C1v2 為此把「Train_or_Test」欄全部標成 test——不是偷改標籤，是因為
+% out-of-fold 預測在定義上就等同 test 預測。
+%
+% ⚠️ 樣本量提醒：整個 ANN 的資料母體就是醫師有記錄 mm 值的那批牙
+% (目前 54 顆)。k 摺已經把資料利用率拉到最高，但母體本身沒有變大，
+% 理想比率/過長率這類百分比指標仍然要連同 n 與標準差一起報告。
+% ============================================================
+
+    %% 1. 設定
+    METHOD = 'mask幾何';        % 必須跟 C1v2 跑的那次一致
+    filename = sprintf('預測結果與評估指標_kfold_%s.xlsx', METHOD);
+
+    if ~isfile(filename)
+        error(['找不到 %s\n' ...
+               '   請先用同樣的 METHOD 跑一次 C1v2_pixelToMmPredictor.m。'], filename);
+    end
+    fprintf('正在從 %s 讀取預測資料...\n', filename);
+
+    %% 2. 讀取逐筆預測結果
+    opts_res = detectImportOptions(filename);
+    opts_res.Sheet = '所有牙齒預測結果';
+    opts_res.VariableNamingRule = 'preserve';
+    data_res = readtable(filename, opts_res);
+
+    % k 摺模式下每一筆都是 out-of-fold，這個篩選會全數通過；
+    % 保留它是為了讓 USE_KFOLD=false 的單次切分模式也能用同一支畫圖。
+    is_test = strcmp(string(data_res.('Train_or_Test')), 'test');
+    data_test = data_res(is_test, :);
+
+    Y             = data_test.('實際長度_mm');
+    Y_pred        = data_test.('模型預測_mm');
+    Y_pred_offset = data_test.('校正後預測_mm');
+    is_overest    = logical(data_test.('是否過長'));
+    n = length(Y);
+
+    fprintf('圖表使用 %d 筆 out-of-fold 預測(每一筆都沒被自己的模型看過)。\n', n);
+
+    %% 3. 讀取評估指標
+    opts_metrics = detectImportOptions(filename);
+    opts_metrics.Sheet = '模型評估指標';
+    opts_metrics.VariableNamingRule = 'preserve';
+    data_metrics = readtable(filename, opts_metrics);
+
+    row_label = '評估範圍_與_嚴格程度';
+    labels = string(data_metrics.(row_label));
+
+    test_row     = pickRow(data_metrics, labels, 'A_Test set表現');
+    clinical_row = pickRow(data_metrics, labels, 'C_臨床安全性評估_Test set校正後');
+    sd_row       = pickRowOptional(data_metrics, labels, 'B_重複間標準差');
+    lin_row      = pickRowOptional(data_metrics, labels, 'D_線性迴歸對照組');
+
+    test_mae  = num(test_row.('MAE_mm'));
+    test_rmse = num(test_row.('RMSE_mm'));
+    test_r2   = num(test_row.('R_Square'));
+    test_bias = num(test_row.('Mean_Bias_mm'));
+
+    clinical_mae     = num(clinical_row.('MAE_mm'));
+    clinical_bias    = num(clinical_row.('Mean_Bias_mm'));
+    clinical_ideal   = num(clinical_row.('理想比率_pct'));
+    clinical_overest = num(clinical_row.('過長率_pct'));
+
+    % 標準差與線性對照組是 C1v2 新增的，舊格式讀不到就留空，不報錯
+    sd_mae = NaN; sd_ideal = NaN; sd_over = NaN;
+    if ~isempty(sd_row)
+        sd_mae   = num(sd_row.('MAE_mm'));
+        sd_ideal = num(sd_row.('理想比率_pct'));
+        sd_over  = num(sd_row.('過長率_pct'));
+    end
+    lin_mae = NaN;
+    if ~isempty(lin_row)
+        lin_mae = num(lin_row.('MAE_mm'));
+    end
+
+    fprintf('資料讀取完畢！正在繪製圖表...\n');
+    ttl = sprintf('%s，Out-of-Fold', METHOD);
+
+    %% 4. 圖表 1：實際長度 vs 預測長度 曲線對比
+    figure('Name', ['Curve: Actual vs Predicted (OOF) - ' METHOD], 'NumberTitle', 'off');
+    hold on;
+
+    [Y_sorted, sort_idx] = sort(Y);
+    Y_pred_sorted = Y_pred(sort_idx);
+
+    plot(1:n, Y_sorted, 'r-o', 'LineWidth', 1.5, 'MarkerSize', 4, ...
+        'DisplayName', '實際長度 (Actual)');
+    plot(1:n, Y_pred_sorted, 'b-*', 'LineWidth', 1.2, 'MarkerSize', 4, ...
+        'DisplayName', 'Out-of-fold 預測長度');
+
+    xlabel(sprintf('樣本排序編號 (依實際長度由小到大，n=%d)', n));
+    ylabel('長度 (mm)');
+    title(['實際長度 vs 預測長度 曲線對比圖 (' ttl ')']);
+    legend('Location', 'northwest');
+    grid on;
+    hold off;
+
+    %% 5. 圖表 2：預測 vs 實際散布圖
+    figure('Name', ['OOF: Actual vs Predicted - ' METHOD], 'NumberTitle', 'off');
+    hold on;
+
+    scatter(Y, Y_pred, 40, 'b', 'filled', 'DisplayName', 'Out-of-fold 預測');
+
+    min_val = floor(min([Y; Y_pred])) - 1;
+    max_val = ceil(max([Y; Y_pred])) + 1;
+
+    plot([min_val, max_val], [min_val, max_val], 'w-', 'LineWidth', 2, ...
+        'DisplayName', '完美預測線 (誤差 0)');
+    plot([min_val, max_val], [min_val+0.5, max_val+0.5], 'r--', 'LineWidth', 1.5, ...
+        'DisplayName', '+0.5 mm 誤差線');
+    plot([min_val, max_val], [min_val-0.5, max_val-0.5], 'r--', 'LineWidth', 1.5, ...
+        'DisplayName', '-0.5 mm 誤差線');
+    plot([min_val, max_val], [min_val+1.0, max_val+1.0], 'g:', 'LineWidth', 1.5, ...
+        'DisplayName', '+1.0 mm 誤差線');
+    plot([min_val, max_val], [min_val-1.0, max_val-1.0], 'g:', 'LineWidth', 1.5, ...
+        'DisplayName', '-1.0 mm 誤差線');
+
+    xlabel('實際長度 (mm)');
+    ylabel('預測長度 (mm)');
+    title(['實際長度 vs 預測長度 (' ttl '，搭配誤差容忍區間)']);
+    legend('Location', 'southeast');
+    grid on;
+
+    metric_text = sprintf(['【Out-of-Fold 評估指標】\n量測法 : %s\n' ...
+        'RMSE : %.3f mm\nMAE : %.3f mm%s\nR^2 : %.3f\nMean Bias : %.3f mm\n(n = %d)'], ...
+        METHOD, test_rmse, test_mae, sdSuffix(sd_mae, 'mm'), test_r2, test_bias, n);
+    if ~isnan(lin_mae)
+        metric_text = sprintf('%s\n線性對照組 MAE : %.3f mm', metric_text, lin_mae);
+    end
+    placeText(metric_text, 0.18);
+    hold off;
+
+    %% 6. 圖表 3：校正後工作長度 — 臨床安全性圖
+    figure('Name', ['Clinical Safety (OOF) - ' METHOD], 'NumberTitle', 'off');
+    hold on;
+
+    scatter(Y(~is_overest), Y_pred_offset(~is_overest), 45, 'b', 'filled', ...
+        'DisplayName', '校正後預測 (在容忍範圍內或偏短)');
+    scatter(Y(is_overest), Y_pred_offset(is_overest), 45, 'r', 'filled', ...
+        'Marker', '^', 'DisplayName', '校正後預測仍過長 (臨床風險)');
+
+    min_val2 = floor(min([Y; Y_pred_offset])) - 1;
+    max_val2 = ceil(max([Y; Y_pred_offset])) + 1;
+
+    plot([min_val2, max_val2], [min_val2, max_val2], 'w-', 'LineWidth', 2, ...
+        'DisplayName', '完美預測線 (誤差 0)');
+    plot([min_val2, max_val2], [min_val2+1.0, max_val2+1.0], 'g:', 'LineWidth', 1.5, ...
+        'DisplayName', '+1.0 mm 容忍線');
+    plot([min_val2, max_val2], [min_val2-1.0, max_val2-1.0], 'g:', 'LineWidth', 1.5, ...
+        'DisplayName', '-1.0 mm 容忍線');
+
+    xlabel('實際長度 (mm)');
+    ylabel('校正後預測長度 = 迴歸輸出 - offset (mm)');
+    title(['臨床建議工作長度 vs 實際長度 (' ttl '，含過長標示)']);
+    legend('Location', 'southeast');
+    grid on;
+
+    clinical_text = sprintf(['【臨床與安全性評估 (校正後, OOF)】\n量測法 : %s\n' ...
+        'MAE : %.3f mm%s\nMean Bias : %.3f mm\n理想比率 : %.1f%%%s\n過長率 : %.1f%%%s\n(n = %d)'], ...
+        METHOD, clinical_mae, sdSuffix(sd_mae, 'mm'), clinical_bias, ...
+        clinical_ideal, sdSuffix(sd_ideal, '%'), ...
+        clinical_overest, sdSuffix(sd_over, '%'), n);
+    placeText(clinical_text, 0.22);
+    hold off;
+
+    fprintf('✅ 三張圖表已繪製完成。\n');
+    fprintf('⚠️ 報告時務必附上 n=%d 與標準差，避免百分比被誤解為大樣本的穩定結果。\n', n);
+    if ~isnan(lin_mae) && lin_mae <= test_mae
+        fprintf('ℹ️ 線性對照組的 MAE(%.3f) 不輸 ANN(%.3f)，解讀時請一併說明。\n', ...
+            lin_mae, test_mae);
+    end
+end
+
+
+%% ============================================================
+%  子函式
+%  ============================================================
+
+function row = pickRow(tbl, labels, key)
+% 抓唯一一列，抓不到或抓到多列就報錯(通常代表 C1v2 的 MetricNames 被改過)
+    idx = contains(labels, key);
+    if sum(idx) ~= 1
+        error(['在「模型評估指標」裡找不到唯一的「%s」那一列(找到 %d 列)。\n' ...
+               '   請確認 C1v2_pixelToMmPredictor.m 的 MetricNames 沒有被改動。'], ...
+               key, sum(idx));
+    end
+    row = tbl(idx, :);
+end
+
+
+function row = pickRowOptional(tbl, labels, key)
+% 選配欄位：找不到就回空，讓舊格式的輸出也能畫
+    idx = contains(labels, key);
+    if sum(idx) == 1
+        row = tbl(idx, :);
+    else
+        row = [];
+    end
+end
+
+
+function v = num(x)
+% readtable 有時把數字讀成 cell，統一轉成 double
+    if iscell(x)
+        v = str2double(string(x));
+    else
+        v = double(x);
+    end
+end
+
+
+function s = sdSuffix(sd, unit)
+% 有標準差就附上「± x」，沒有就留空
+    if isnan(sd)
+        s = '';
+    elseif strcmp(unit, '%')
+        s = sprintf(' ± %.1f', sd);
+    else
+        s = sprintf(' ± %.3f', sd);
+    end
+end
+
+
+function placeText(txt, yOffsetRatio)
+% 把文字框放在左上角
+    x_lims = xlim;
+    y_lims = ylim;
+    text(x_lims(1) + 0.05*(x_lims(2)-x_lims(1)), ...
+         y_lims(2) - yOffsetRatio*(y_lims(2)-y_lims(1)), ...
+         txt, 'FontSize', 11, 'BackgroundColor', 'k', ...
+         'EdgeColor', 'w', 'Color', 'w');
+end
