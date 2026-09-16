@@ -58,7 +58,7 @@ function C1v2_pixelToMmPredictor()
     %% ---------------- 輸入設定區 ----------------
     % B4_build_C1_input.py 會產生三份，一次跑一份，跑完換 METHOD 再跑。
     % 三份的列數、列順序、fold 完全相同，唯一差異是「像素長度」的算法。
-    METHOD = 'mask幾何';        % 'mask幾何' | '原始預測' | '長軸投影'
+    METHOD = '原始預測';        % 'mask幾何' | '原始預測' | '長軸投影'
     filename = ['根管填充物像素長度_已配對_' METHOD '.xlsx'];
 
     FOLD_COLUMN  = '折數fold';

@@ -28,7 +28,7 @@ function C2v2_plotMyResults()
 % ============================================================
 
     %% 1. 設定
-    METHOD = 'mask幾何';        % 必須跟 C1v2 跑的那次一致
+    METHOD = '原始預測';        % 必須跟 C1v2 跑的那次一致
     filename = sprintf('預測結果與評估指標_kfold_%s.xlsx', METHOD);
 
     if ~isfile(filename)
