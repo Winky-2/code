@@ -68,7 +68,7 @@ function C1_pixelToMmPredictor_fullimage()
     %    這份Excel由「03b_merge_data.py」(尚待撰寫)產生，
     %    結構跟舊版一樣：圖片檔名 / 填充物長度(mm) / 像素長度 / 資料夾來源，
     %    只是「像素長度」欄的算法依上面說明的train/test規則區分。
-    filename = '根管填充物像素長度_已配對_全片版.xlsx';
+    filename = '根管填充物像素長度_已配對_原始預測.xlsx';
     opts = detectImportOptions(filename);
     opts.VariableNamingRule = 'preserve';  % 保留中文欄位名稱
     data = readtable(filename, opts);
