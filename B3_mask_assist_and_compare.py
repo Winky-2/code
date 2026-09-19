@@ -1,52 +1,68 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 """
-B3_mask_assist_and_compare.py
+B3_mask_assist_and_compare.py  (seg-only 版)
 ===============================================================
-方案B：分割(segmentation)當「輔助 + 防呆」，pose 主線完全不動。
+YOLO11-pose 已從流程移除，本腳本只靠 segmentation：
 
-本腳本不重跑 pose，而是讀 B2v2 已經輸出的關鍵點 CSV，
-再跑一次 seg 模型，做三件事：
+    B1s 訓練 seg → B3 推論 + 幾何量測 → B4 合併 → C1
 
-  1) 防呆 QC   : 預測的 A/B 點有沒有落在牙齒 mask 內？離邊界多遠？
-  2) 長軸投影  : 把 A/B 投影到 mask 的主軸上再算長度，
-                 消掉「垂直於牙軸」方向的定位噪音。
-  3) 平行對照  : 同時輸出三種 AB 長度，讓你用數據決定
-                 要不要升級成方案A(純幾何)。
+每張圖做三件事：
+  1) 挑出目標牙的 mask
+  2) mask 幾何長度：PCA 長軸兩端極值點的距離(原本的「方法3」)
+  3) 冠寬：牙冠段垂直於長軸的最大寬度(給 B4 的「冠寬比例尺」)
 
-     (a) 原始預測      = B2 現在在用的
-     (b) 長軸投影      = 預測點投影到 mask 主軸
-     (c) mask 幾何端點 = 完全不看關鍵點，純由 mask 推
+*** 原本靠 pose 的三件事，改成什麼 ***
 
-*** 一張圖有多顆牙時的挑 mask 問題 ***
-你們的 seg 訓練集一張圖標了好幾顆牙，所以推論時會吐出多個 mask，
-必須挑出「目標牙」那一顆。本腳本提供兩種方式：
+  (a) 挑 mask
+      舊：pose 的 A/B 點落在哪顆 mask 裡(points 模式)
+      新：center 模式 = 質心離影像中心最近的 mask。根尖片通常以目標牙
+          置中拍攝。有 GT 標註時仍優先用 gt_iou，並同時算 center 的選擇，
+          在「兩法選取一致」欄回報——這就是將來無 GT 上線時的預期錯誤率。
 
-  points : 用 pose 預測的 A/B 點去挑(哪顆 mask 把兩點包得最深)。
-           不依賴 GT，臨床推論時可用。但 A 點(切端)常落在鄰牙
-           交界處，牙列擁擠時有機會挑到隔壁牙。
+  (b) 哪一端是切端(A)
+      舊：離 pose A 點近的那端
+      新：ORIENT_MODE="arch"(預設)用醫師表的牙位決定——根尖片標準擺位下，
+          上顎牙(1x/2x)牙冠朝下、下顎牙(3x/4x)牙冠朝上，取 y 較大/較小那端。
+          查不到牙位時退回「寬度法」：兩端各 30% 長度的平均寬度，寬的是牙冠。
+          兩法都算，「寬度法方向一致」欄回報是否吻合，不吻合的圖請人工看。
+          (長度本身與方向無關，方向只影響冠寬量在哪一端)
 
-  gt_iou : 用舊標註的 GT bbox 去挑(mask 外接框與 GT 框 IoU 最高)。
-           跟 B2v2 的 select_target_instance() 同一套邏輯，準確但
-           依賴 GT，無法用在沒有標註的新病例。
+      v1 用「兩端最大寬度」比，mask 端點只要有一根突刺就判反(004、012)，
+      所以改成上面兩種。
 
-  auto   : 有 GT 就用 gt_iou，沒有就退回 points。預設值。
+  (c) scale(letterbox px → 原圖 px)
+      舊：直接讀 pose CSV 的 縮放比scale
+      新：SCALE_SOURCE 二選一
+          "xlsx"     : 讀既有的 B2 輸出 Excel 的 縮放比scale 欄(只當查表用，
+                       不需要重跑 pose)
+          "original" : 讀原圖尺寸自己算 scale = max(原圖寬,原圖高) ÷ letterbox 邊長
+                       (Roboflow「Fit (black edges)」letterbox 的換算)
+          兩者都有時會交叉驗證，差超過 1% 在 QC 標出來。
 
-現階段要驗證的是「分割對長度量測有沒有幫助」，不是「做出能上線
-的系統」，所以先用 gt_iou 把牙挑對、把三法比較的數字算乾淨比較
-重要。認牙問題等確認方案有效再處理。
+*** 冠寬量法(v2) ***
+  v1 取「切片的最外兩點距離」的最大值，mask 邊緣的突刺、碎片會直接變成
+  最大寬(025、012)。v2：
+    1) 先做形態學開運算 + 只留最大連通區，削掉細突刺與碎片
+    2) 每片寬度改用「該片 mask 像素數」而非最外兩點距離(中間有缺口不會被撐寬)
+    3) 跳過切端最前面 CROWN_SKIP_FRAC(切端圓角)，平滑窗加大
+  最大寬位置正常應落在距切端約 15–35%(接觸點附近)。
 
-不論用哪種方式，都會同時算出另一種方式的結果，並在「兩法選取一致」
-欄位回報是否挑到同一顆——這個欄位就是在量「points 模式將來上線時
-會錯多少」，別忽略它。
+*** 移除的輸出 ***
+  原始預測、長軸投影兩種長度都需要 pose 點，已刪除。B4 只剩 mask幾何
+  (+ 冠寬比例尺、牙位基準兩個衍生方法)。
 
-前置需求：
-    - 已跑完 B2v2，產生 RAW_KEYPOINT_CSV
-    - 已跑完 B1s(或等效的 seg 訓練)，有 best.pt
-    - seg 與 pose 使用同一批圖、同樣的 Resize 設定
+*** GT 標註 ***
+  GT_LABEL_DIR 兩種格式都吃，自動判斷：
+    pose 格式(舊標註，有 A/B 點) → bbox 挑 mask + GT 長度 + 端點誤差
+    seg 格式(多邊形)            → 只有 bbox 挑 mask，沒有 GT 長度
+  seg 的 test 只標了目標牙，所以 seg 格式拿第一個(通常唯一)多邊形當目標。
+
+⚠️ IMAGE_DIR 的前處理(CLAHE / unsharp)必須跟 seg 訓練時一致。
 """
 
 import math
+import re
 from pathlib import Path
 
 import cv2
@@ -59,17 +75,17 @@ from ultralytics import YOLO
 # ============================================================
 
 # --- 輸入 ---
-SEG_WEIGHTS ="yolo11_seg_run/weights_ready.pt"
-RAW_KEYPOINT_CSV = "yolo關鍵點原始座標_11.csv"   # 👈 B2v2 的輸出
-IMAGE_DIR = "test_enhance/test/images"        # 👈 必須與 B2 的 IMAGE_DIR 完全相同
+SEG_WEIGHTS = "yolo11_seg_run/weights_ready.pt"
+IMAGE_DIR = "test_segment/test/images"       # 👈 seg 的 test 影像(與 B2s 相同)
+GT_LABEL_DIR = "test_segment/test/labels"    # 👈 pose 或 seg 格式皆可；留空則強制 center
 
-# 可選：B2 的主 Excel，用來併入 GT 長度算誤差。留空則只輸出幾何量(看不到三法比較)。
-B2_XLSX = "yolo像素預測_11.xlsx"
-B2_SHEET = 0
+# --- scale 來源 ---
+SCALE_SOURCE = "auto"                        # "auto"(先查 xlsx，查不到用原圖) | "xlsx" | "original"
+SCALE_XLSX = "scale表_備份_20260913.xlsx"
+SCALE_XLSX_SHEET = "逐顆牙對照"
+ORIGINAL_IMAGE_DIR = ""                      # 原始(未 letterbox)影像資料夾；有填就交叉驗證
+SCALE_MISMATCH_TOL = 0.01                    # 兩種 scale 相差超過 1% → QC 標記
 
-# 可選：舊標註的 pose GT labels，用於 gt_iou 挑 mask。留空則強制走 points。
-GT_LABEL_DIR = "test_enhance/test/labels"
-    
 # --- 輸出 ---
 OUTPUT_XLSX = "B3_mask輔助對照_11.xlsx"
 VIS_DIR = "B3_mask視覺化"
@@ -77,38 +93,47 @@ SAVE_VISUALIZATION = True
 
 # --- 推論參數 ---
 IMG_SIZE = 640                     # 👈 跟 seg 訓練時一致
-SEG_CONF = 0.15                    # Precision 高，不需要壓太低；壓低反而增加碎 mask 干擾挑選
+SEG_CONF = 0.15
 
 # --- 挑 mask 方式 ---
-MASK_SELECT_MODE = "auto"          # "auto" | "gt_iou" | "points"
+MASK_SELECT_MODE = "auto"          # "auto"(有 GT 用 gt_iou，否則 center) | "gt_iou" | "center"
 AMBIGUOUS_IOU_GAP = 0.15           # 最佳與次佳 mask 的 IoU 差距小於此值 → 標記選取不明確
 
+# --- 方向判定 ---
+ORIENT_MODE = "arch"               # "arch"(牙位決定，查不到退回 width) | "width"
+MM_XLSX = "根管充填長度_20260904.xlsx"   # 只讀 圖片檔名 + 牙位
+MM_SHEET = "資料填寫"
+
 # --- QC 門檻 ---
-OUTSIDE_MARGIN_PX = 8.0            # 點落在 mask 外超過此距離 → 建議人工複查
-MIN_AXIS_RATIO = 0.75              # 長軸解釋比低於此值 → 牙形不夠細長，投影不可靠
+MIN_AXIS_RATIO = 0.70              # 長軸解釋比低於此值 → 牙形不夠細長(實測門牙多在 0.70–0.82，0.75 會誤報一半)
 ENDPOINT_ERROR_PX = 12.0           # 幾何端點離 GT 超過此距離 → 位置可疑(即使長度剛好)
+CROWN_END_MIN_RATIO = 1.10         # 寬度法：兩端平均寬度比小於此值 → 判定不明確
+
+# --- 冠寬 ---
+CROWN_FRAC = 0.45                  # 只在距切端 CROWN_SKIP_FRAC ~ 45% 全長內找最大寬度
+CROWN_SKIP_FRAC = 0.05             # 跳過切端圓角
+OPEN_KERNEL_FRAC = 0.04            # 開運算核大小 = 全長 × 此值(削掉細突刺)
+WIDTH_SMOOTH_FRAC = 0.03           # 平滑窗 = 全長 × 此值
+WIDTH_POS_RANGE = (0.10, 0.40)     # 最大寬位置落在此範圍外 → QC 標記
+WIDTH_RATIO_RANGE = (0.15, 0.50)   # 冠寬 ÷ 全長的合理範圍
 
 IMAGE_EXTENSIONS = {".jpg", ".jpeg", ".png"}
 
 # --- 視覺化圖例 ---
-# cv2.putText 只支援 Hershey 字型，畫不出中文(會變成問號)，所以圖上標籤
-# 只能用英文，中文對照見下方 LEGEND_ZH 與終端機輸出。
 SHOW_LEGEND = True
 LEGEND_ITEMS = [                      # (圖上標籤, BGR)
-    ("chosen mask (seg)",   (0, 200, 255)),
-    ("other masks",         (130, 130, 130)),
-    ("geo ends = METHOD 3", (255, 160, 0)),
-    ("axis proj = METHOD 2", (255, 255, 0)),
-    ("pose A-B = METHOD 1", (0, 255, 0)),
-    ("GT annotation",       (255, 0, 255)),
+    ("chosen mask (seg)", (0, 200, 255)),
+    ("other masks",       (130, 130, 130)),
+    ("mask length",       (255, 160, 0)),
+    ("crown width",       (255, 255, 255)),
+    ("GT annotation",     (255, 0, 255)),
 ]
 LEGEND_ZH = [
     ("橘黃輪廓", "選中的 mask(seg 預測)"),
     ("灰色輪廓", "其他候選 mask，未被選中"),
-    ("藍線 geo1-geo2", "方法3 mask幾何 ← 目前打算餵給 C1 的"),
-    ("青色虛線", "方法2 長軸投影(預測點投影到 mask 主軸)"),
-    ("綠線 A-B / 紅點B", "方法1 原始預測(B2 現在在用的)"),
-    ("洋紅空心圈", "GT 人工標註的 A/B 真值"),
+    ("藍線 A-B", "mask 幾何長度(A=判定的切端、B=根尖端)"),
+    ("白線", "冠寬 ← 檢查有沒有黏到鄰牙"),
+    ("洋紅空心圈", "GT 人工標註的 A/B(僅 pose 格式標註有)"),
 ]
 
 
@@ -121,7 +146,6 @@ def euclidean(p1, p2):
 
 
 def yolo_to_corners(cx, cy, w, h):
-    """YOLO 中心點格式 → (x0, y0, x1, y1) 角點格式。"""
     return cx - w / 2, cy - h / 2, cx + w / 2, cy + h / 2
 
 
@@ -150,44 +174,120 @@ def mask_axis(polygon):
     """對 mask 多邊形做 PCA，回傳 (質心, 長軸單位向量, 長軸解釋比)。
 
     長軸解釋比 = 第一主成分奇異值 / 兩個奇異值之和。
-    牙齒細長 → 接近 1；接近圓形 → 接近 0.5，此時投影方向不可信。
-    彎曲牙根也會壓低這個值，是「投影法在這顆牙上能不能用」的指標。
+    牙齒細長 → 接近 1；接近圓形 → 接近 0.5，此時長軸方向不可信。
     """
     pts = np.asarray(polygon, dtype=np.float64)
     centroid = pts.mean(axis=0)
-    centered = pts - centroid
-    _, s, vt = np.linalg.svd(centered, full_matrices=False)
-    axis = vt[0]
-    ratio = float(s[0] / max(s.sum(), 1e-9))
-    return centroid, axis, ratio
+    _, s, vt = np.linalg.svd(pts - centroid, full_matrices=False)
+    return centroid, vt[0], float(s[0] / max(s.sum(), 1e-9))
 
 
 def axis_extremes(polygon, centroid, axis):
-    """mask 沿長軸投影的兩個極值點(方案A會用的「幾何端點」)。"""
+    """mask 沿長軸投影的兩個極值點。"""
     pts = np.asarray(polygon, dtype=np.float64)
     t = (pts - centroid) @ axis
     return centroid + axis * t.min(), centroid + axis * t.max()
 
 
-def project_points(pA, pB, centroid, axis):
-    """A/B 投影到長軸上的落點(方法2 實際量的是這兩點之間的距離)。"""
-    a = np.asarray(pA, dtype=np.float64)
-    b = np.asarray(pB, dtype=np.float64)
-    tA = float((a - centroid) @ axis)
-    tB = float((b - centroid) @ axis)
-    return centroid + axis * tA, centroid + axis * tB
+def clean_mask(polygon, shape, length_px):
+    """多邊形 → 實心 mask，開運算削突刺，只留最大連通區。"""
+    H, W = shape[:2]
+    m = np.zeros((H, W), np.uint8)
+    cv2.fillPoly(m, [np.round(np.asarray(polygon)).astype(np.int32)], 1)
+    k = max(3, int(round(length_px * OPEN_KERNEL_FRAC)) | 1)
+    m2 = cv2.morphologyEx(m, cv2.MORPH_OPEN,
+                          cv2.getStructuringElement(cv2.MORPH_ELLIPSE, (k, k)))
+    n, lab, stats, _ = cv2.connectedComponentsWithStats(m2, connectivity=8)
+    if n <= 1:
+        return m                      # 開運算把整個 mask 吃掉 → 退回原 mask
+    big = 1 + int(np.argmax(stats[1:, cv2.CC_STAT_AREA]))
+    return (lab == big).astype(np.uint8)
 
 
-def project_len(pA, pB, centroid, axis):
-    """A/B 投影到長軸後的距離：只保留沿牙軸方向的分量。"""
-    qA, qB = project_points(pA, pB, centroid, axis)
-    return float(np.linalg.norm(qA - qB))
+def width_profile(mask, centroid, axis, a_end):
+    """沿長軸從 a_end 那一側起每 1 px 一片。
+    回傳 dict：d(片距離，從清理後 mask 的 a_end 側邊界起算)、w(片寬=像素數)、
+    s_lo/s_hi(片的法線範圍)、t_edge(a_end 側邊界的 t)、sign、normal、total。"""
+    ys, xs = np.nonzero(mask)
+    if len(xs) < 20:
+        return None
+    pts = np.column_stack([xs, ys]).astype(np.float64)
+    normal = np.array([-axis[1], axis[0]])
+    t = (pts - centroid) @ axis
+    s = (pts - centroid) @ normal
+    tA = float((np.asarray(a_end, dtype=np.float64) - centroid) @ axis)
+    sign = 1.0 if tA <= 0 else -1.0
+    t_edge = t.min() if sign > 0 else t.max()   # 清理後 mask 在 a_end 那側的邊界
+    d = (t - t_edge) * sign
+    total = float(d.max())
+    if total <= 0:
+        return None
+    bins = np.floor(d).astype(int)
+    order = np.argsort(bins, kind="stable")
+    bins, s = bins[order], s[order]
+    uniq, idx, cnt = np.unique(bins, return_index=True, return_counts=True)
+    return {
+        "d": uniq, "w": cnt.astype(float),
+        "s_lo": np.minimum.reduceat(s, idx), "s_hi": np.maximum.reduceat(s, idx),
+        "t_edge": float(t_edge), "sign": sign, "normal": normal, "total": total,
+    }
 
 
-def signed_dist_to_polygon(polygon, pt):
-    """點到多邊形邊界的帶號距離：正=在內部、負=在外部、0=在邊上。"""
-    poly32 = np.asarray(polygon, dtype=np.float32).reshape(-1, 1, 2)
-    return float(cv2.pointPolygonTest(poly32, (float(pt[0]), float(pt[1])), True))
+def crown_width(mask, centroid, axis, a_end):
+    """從切端起 CROWN_SKIP_FRAC ~ CROWN_FRAC 全長內的最大片寬(平滑後)。
+    回傳 dict(width, pos_ratio, p1, p2)；失敗回傳 None。"""
+    pf = width_profile(mask, centroid, axis, a_end)
+    if pf is None:
+        return None
+    d, w, total = pf["d"], pf["w"], pf["total"]
+    win = max(3, int(round(total * WIDTH_SMOOTH_FRAC)))
+    smoothed = pd.Series(w).rolling(win, center=True, min_periods=1).median().values
+    cand = np.where((d >= CROWN_SKIP_FRAC * total) & (d <= CROWN_FRAC * total))[0]
+    if len(cand) == 0:
+        return None
+    k = cand[int(np.argmax(smoothed[cand]))]
+    t_k = pf["t_edge"] + pf["sign"] * (d[k] + 0.5)
+    mid = (pf["s_lo"][k] + pf["s_hi"][k]) / 2.0
+    half = smoothed[k] / 2.0
+    nrm = pf["normal"]
+    return {
+        "width": float(smoothed[k]),
+        "pos_ratio": float((d[k] + 0.5) / total),
+        "p1": centroid + axis * t_k + nrm * (mid - half),
+        "p2": centroid + axis * t_k + nrm * (mid + half),
+    }
+
+
+def end_mean_width(mask, centroid, axis, end, frac=0.30):
+    """從 end 那側起 frac 全長內的平均片寬(寬度法判方向用)。"""
+    pf = width_profile(mask, centroid, axis, end)
+    if pf is None:
+        return float("nan")
+    sel = pf["d"] <= frac * pf["total"]
+    return float(pf["w"][sel].mean()) if sel.any() else float("nan")
+
+
+def orient(mask, centroid, axis, end1, end2, position):
+    """決定哪端是切端。回傳 (A端, B端, 依據, 寬度法兩端比, 寬度法是否同意)。
+
+    arch ：上顎(1x/2x)牙冠朝下 → y 大的是 A；下顎(3x/4x)牙冠朝上 → y 小的是 A。
+    width：兩端各 30% 長度的平均寬度，寬的是 A。
+    """
+    w1 = end_mean_width(mask, centroid, axis, end1)
+    w2 = end_mean_width(mask, centroid, axis, end2)
+    width_A_is_1 = w1 >= w2
+    ratio = max(w1, w2) / min(w1, w2) if min(w1, w2) > 0 else float("nan")
+
+    quadrant = position // 10 if position else None
+    if ORIENT_MODE == "arch" and quadrant in (1, 2, 3, 4):
+        end1_is_lower = end1[1] >= end2[1]
+        A_is_1 = end1_is_lower if quadrant in (1, 2) else not end1_is_lower
+        basis = "牙位(上顎冠朝下)" if quadrant in (1, 2) else "牙位(下顎冠朝上)"
+    else:
+        A_is_1 = width_A_is_1
+        basis = "寬度法"
+    A, B = (end1, end2) if A_is_1 else (end2, end1)
+    return A, B, basis, ratio, (A_is_1 == width_A_is_1)
 
 
 # ============================================================
@@ -195,93 +295,138 @@ def signed_dist_to_polygon(polygon, pt):
 # ============================================================
 
 def load_gt_target(label_path: Path, width: int, height: int):
-    """從 pose 格式的 GT label 撈出「目標牙」的 bbox 與 A/B 點(像素空間)。
+    """讀 GT 標註，自動判斷格式。回傳 (bbox, GT_A, GT_B, 格式)。
 
-    目標牙 = A、B 兩個 keypoint 的 visibility 都是 2 的那一行。
-    回傳 (bbox, GT_A, GT_B)，找不到則三個都是 None。
-
-    bbox 用於 gt_iou 挑 mask；A/B 點用於視覺化與「端點位置誤差」欄位。
-    注意：這裡的座標跟 pose 預測點一樣位於 letterbox(640) 空間。
+    pose 格式：class cx cy w h Ax Ay Av Bx By Bv → 取 A、B visibility 都是 2 的那行
+    seg 格式 ：class x1 y1 x2 y2 ...(偶數個座標) → 取第一個多邊形
     """
     if not label_path.exists():
-        return None, None, None
+        return None, None, None, None
+    seg_poly = None
     with open(label_path, "r", encoding="utf-8") as f:
         for line in f:
             parts = line.split()
-            if len(parts) < 11:
-                continue
-            try:
-                v1, v2 = float(parts[7]), float(parts[10])
-            except ValueError:
-                continue
-            if v1 == 2 and v2 == 2:
-                cx, cy, w, h = (float(parts[i]) for i in range(1, 5))
-                bbox = yolo_to_corners(cx * width, cy * height,
-                                       w * width, h * height)
-                gtA = (float(parts[5]) * width, float(parts[6]) * height)
-                gtB = (float(parts[8]) * width, float(parts[9]) * height)
-                return bbox, gtA, gtB
-    return None, None, None
+            if len(parts) == 11:
+                try:
+                    v1, v2 = float(parts[7]), float(parts[10])
+                except ValueError:
+                    continue
+                if v1 == 2 and v2 == 2:
+                    cx, cy, w, h = (float(parts[i]) for i in range(1, 5))
+                    bbox = yolo_to_corners(cx * width, cy * height,
+                                           w * width, h * height)
+                    gtA = (float(parts[5]) * width, float(parts[6]) * height)
+                    gtB = (float(parts[8]) * width, float(parts[9]) * height)
+                    return bbox, gtA, gtB, "pose"
+            elif len(parts) >= 7 and (len(parts) - 1) % 2 == 0 and seg_poly is None:
+                try:
+                    xy = np.array(parts[1:], dtype=np.float64).reshape(-1, 2)
+                except ValueError:
+                    continue
+                seg_poly = xy * [width, height]
+    if seg_poly is not None:
+        return polygon_bbox(seg_poly), None, None, "seg"
+    return None, None, None, None
 
 
-def pick_by_points(polygons, pA, pB):
-    """用 pose 預測的 A/B 點挑 mask：兩點中「較差的那個」內部深度最大者勝。
-
-    兩點都在內部 → 分數為正；都在外部 → 為負，仍會選出最接近的一顆，
-    由後續 QC 欄位判定可不可信。
-    """
-    best_idx, best_score = None, -1e18
-    for i, poly in enumerate(polygons):
-        score = min(signed_dist_to_polygon(poly, pA),
-                    signed_dist_to_polygon(poly, pB))
-        if score > best_score:
-            best_idx, best_score = i, score
-    return best_idx, best_score
+def pick_by_center(polygons, shape):
+    """質心離影像中心最近的 mask。根尖片通常以目標牙置中。"""
+    H, W = shape[:2]
+    c = np.array([W / 2.0, H / 2.0])
+    d = [float(np.linalg.norm(np.asarray(p, dtype=np.float64).mean(axis=0) - c))
+         for p in polygons]
+    return int(np.argmin(d))
 
 
 def pick_by_gt_iou(polygons, gt_bbox):
-    """用 GT bbox 挑 mask：mask 外接框與 GT 框 IoU 最高者勝。
-    回傳 (最佳索引, 最佳IoU, 次佳IoU)。"""
+    """mask 外接框與 GT 框 IoU 最高者勝。回傳 (最佳索引, 最佳IoU, 次佳IoU)。"""
     ious = [compute_iou(polygon_bbox(p), gt_bbox) for p in polygons]
     order = sorted(range(len(ious)), key=lambda i: ious[i], reverse=True)
-    best = order[0]
     second = ious[order[1]] if len(order) > 1 else 0.0
-    return best, ious[best], second
-
-
-def find_image(stem, image_dir: Path):
-    for ext in IMAGE_EXTENSIONS:
-        p = image_dir / f"{stem}{ext}"
-        if p.exists():
-            return p
-    for p in image_dir.iterdir():
-        if p.stem == stem and p.suffix.lower() in IMAGE_EXTENSIONS:
-            return p
-    return None
+    return order[0], ious[order[0]], second
 
 
 # ============================================================
-# 第4部分：視覺化
+# 第4部分：scale
 # ============================================================
 
-def dashed_line(img, p1, p2, color, thickness=1, dash=8):
-    """畫虛線：用來區分方法2，避免跟旁邊的實線混淆。"""
-    p1 = np.asarray(p1, dtype=np.float64)
-    p2 = np.asarray(p2, dtype=np.float64)
-    total = float(np.linalg.norm(p2 - p1))
-    if total < 1e-6:
-        return
-    unit = (p2 - p1) / total
-    t = 0.0
-    while t < total:
-        a = p1 + unit * t
-        b = p1 + unit * min(t + dash, total)
-        cv2.line(img, tuple(np.int32(a)), tuple(np.int32(b)), color, thickness)
-        t += dash * 2
+_RF_SUFFIX = re.compile(r"_(?:jpg|jpeg|png)\.rf\.[0-9a-z]+$", re.I)
 
 
-def draw_legend(img, items, line_h=17, pad=8, box_w=190):
-    """左上角畫半透明圖例。標籤只能用英文(Hershey 字型無中文)。"""
+def base_key(name):
+    """xxx_jpg.rf.<hash>.jpg → xxx，用來把 letterbox 圖對回原圖。"""
+    s = _RF_SUFFIX.sub("", Path(str(name)).stem)
+    return s.lower()
+
+
+def load_scale_table():
+    """讀既有 B2 Excel 的 縮放比scale 欄 → {base_key: scale}。
+
+    用 base_key(剝掉 Roboflow 後綴)對，因為 seg 與 pose 是不同次匯出，
+    同一張圖的 .rf.<hash> 不一樣，用完整檔名會全部對不上。
+    """
+    p = Path(SCALE_XLSX) if SCALE_XLSX else None
+    if p is None or not p.exists():
+        print(f"ℹ️  scale 表不存在：{p.resolve() if p else '(未設定)'}")
+        return {}
+    df = pd.read_excel(p, sheet_name=SCALE_XLSX_SHEET)
+    if "縮放比scale" not in df.columns or "圖片檔名" not in df.columns:
+        print(f"⚠️ {p} 沒有 圖片檔名/縮放比scale 欄，現有欄位：{list(df.columns)}")
+        return {}
+    return {base_key(r["圖片檔名"]): float(r["縮放比scale"])
+            for _, r in df.iterrows() if pd.notna(r["縮放比scale"])}
+
+
+def index_original_images():
+    """原圖資料夾 → {base_key: 路徑}。"""
+    if not ORIGINAL_IMAGE_DIR or not Path(ORIGINAL_IMAGE_DIR).exists():
+        return {}
+    return {base_key(p.name): p for p in Path(ORIGINAL_IMAGE_DIR).iterdir()
+            if p.suffix.lower() in IMAGE_EXTENSIONS}
+
+
+def scale_from_original(orig_path, lb_shape):
+    """letterbox：原圖長邊縮到 letterbox 邊長，所以 scale = 原圖長邊 ÷ letterbox 邊長。"""
+    im = cv2.imread(str(orig_path), cv2.IMREAD_GRAYSCALE)
+    if im is None:
+        return None, None, None
+    h0, w0 = im.shape[:2]
+    return max(h0, w0) / float(max(lb_shape[:2])), w0, h0
+
+
+def load_positions():
+    """醫師表 → {base_key: 牙位}。只用來決定方向，不進模型。"""
+    p = Path(MM_XLSX) if MM_XLSX else None
+    if p is None or not p.exists():
+        print(f"ℹ️  找不到醫師表 {p}，方向判定全部用寬度法")
+        return {}
+    raw = pd.read_excel(p, sheet_name=MM_SHEET, header=None, nrows=15)
+    hdr = 0
+    for i in range(len(raw)):
+        cells = [str(c) for c in raw.iloc[i].tolist() if pd.notna(c)]
+        if any("檔名" in c for c in cells) and any("牙位" in c for c in cells):
+            hdr = i
+            break
+    df = pd.read_excel(p, sheet_name=MM_SHEET, header=hdr)
+    ncol = next((c for c in df.columns if "檔名" in str(c)), None)
+    pcol = next((c for c in df.columns if "牙位" in str(c)), None)
+    if ncol is None or pcol is None:
+        print("⚠️ 醫師表找不到 檔名/牙位 欄，方向判定全部用寬度法")
+        return {}
+    out = {}
+    for _, r in df.iterrows():
+        try:
+            out[base_key(r[ncol])] = int(float(r[pcol]))
+        except (ValueError, TypeError):
+            pass
+    return out
+
+
+# ============================================================
+# 第5部分：視覺化
+# ============================================================
+
+def draw_legend(img, items, line_h=17, pad=8, box_w=170):
     h = line_h * len(items) + pad * 2
     x0, y0 = pad, pad
     x1, y1 = min(x0 + box_w, img.shape[1] - 1), min(y0 + h, img.shape[0] - 1)
@@ -295,44 +440,26 @@ def draw_legend(img, items, line_h=17, pad=8, box_w=190):
                     0.34, color, 1, cv2.LINE_AA)
 
 
-def draw(img_path, chosen, others, pA, pB, end1, end2, out_path,
-         gt_pts=None, proj_pts=None):
-    """三種方法在圖上的對應(OpenCV 是 BGR，數值看起來會跟顏色名對不上)
-
-        橘黃輪廓 (0,200,255)   = 選中的 mask
-        灰色輪廓 (130,130,130) = 其他候選 mask
-        藍線 geo1-geo2 (255,160,0)  = 方法3 mask幾何
-        青色虛線 (255,255,0)        = 方法2 長軸投影
-        綠線 A / 紅點 B             = 方法1 原始預測
-        洋紅空心圈 (255,0,255)      = GT 人工標註真值
-
-    翻圖時看兩件事：
-      1) 橘黃輪廓有沒有套在正確那顆牙上(認牙對不對)
-      2) 藍點下端(根尖側)離洋紅 GT_B 多遠(位置準不準)
-         ——長度對但位置偏的情況只有這裡看得出來，Excel 的長度誤差看不到。
+def draw(img, chosen, others, endA, endB, out_path, gt_pts=None, width_pts=None):
+    """翻圖時看三件事：
+      1) 橘黃輪廓套在正確那顆牙上(認牙)
+      2) A 在切端、B 在根尖(方向判定)，B 離洋紅 GT_B 多遠
+      3) 白線兩端落在自己這顆牙的近遠心面，沒伸進鄰牙
     """
-    img = cv2.imread(str(img_path))
-    if img is None:
-        return
+    img = img.copy()
     for poly in others:
         cv2.polylines(img, [np.asarray(poly, dtype=np.int32)], True, (130, 130, 130), 1)
-    if chosen is not None:
-        cv2.polylines(img, [np.asarray(chosen, dtype=np.int32)], True, (0, 200, 255), 2)
-        cv2.line(img, tuple(np.int32(end1)), tuple(np.int32(end2)), (255, 160, 0), 2)
-        for p, tag in ((end1, "geo1"), (end2, "geo2")):
-            cv2.circle(img, tuple(np.int32(p)), 5, (255, 160, 0), -1)
-            cv2.putText(img, tag, tuple(np.int32(p) + np.int32([6, -6])),
-                        cv2.FONT_HERSHEY_SIMPLEX, 0.45, (255, 160, 0), 1)
-    if proj_pts is not None:
-        dashed_line(img, proj_pts[0], proj_pts[1], (255, 255, 0), 1)
-        for p in proj_pts:
-            cv2.circle(img, tuple(np.int32(p)), 3, (255, 255, 0), 1)
-    cv2.line(img, tuple(np.int32(pA)), tuple(np.int32(pB)), (0, 255, 0), 1)
-    for p, tag, color in ((pA, "A", (0, 255, 0)), (pB, "B", (0, 0, 255))):
-        cv2.circle(img, tuple(np.int32(p)), 5, color, -1)
+    cv2.polylines(img, [np.asarray(chosen, dtype=np.int32)], True, (0, 200, 255), 2)
+    cv2.line(img, tuple(np.int32(endA)), tuple(np.int32(endB)), (255, 160, 0), 2)
+    for p, tag in ((endA, "A"), (endB, "B")):
+        cv2.circle(img, tuple(np.int32(p)), 5, (255, 160, 0), -1)
         cv2.putText(img, tag, tuple(np.int32(p) + np.int32([6, -6])),
-                    cv2.FONT_HERSHEY_SIMPLEX, 0.55, color, 2)
-    # GT 最後畫，確保不會被其他圖層蓋掉；空心圈避免遮住底下的預測點
+                    cv2.FONT_HERSHEY_SIMPLEX, 0.55, (255, 160, 0), 2)
+    if width_pts is not None:
+        w1, w2 = width_pts
+        cv2.line(img, tuple(np.int32(w1)), tuple(np.int32(w2)), (255, 255, 255), 2)
+        for p in (w1, w2):
+            cv2.circle(img, tuple(np.int32(p)), 3, (255, 255, 255), -1)
     if gt_pts is not None:
         gtA, gtB = gt_pts
         cv2.line(img, tuple(np.int32(gtA)), tuple(np.int32(gtB)), (255, 0, 255), 1)
@@ -347,126 +474,170 @@ def draw(img_path, chosen, others, pA, pB, end1, end2, out_path,
 
 
 # ============================================================
-# 第5部分：主流程
+# 第6部分：主流程
 # ============================================================
 
 def main():
-    kp_csv = Path(RAW_KEYPOINT_CSV)
-    if not kp_csv.exists():
-        raise FileNotFoundError(f"找不到 B2 的關鍵點 CSV：{kp_csv}(請先跑 B2v2)")
-
-    df_kp = pd.read_csv(kp_csv)
     image_dir = Path(IMAGE_DIR)
+    if not image_dir.exists():
+        raise FileNotFoundError(f"找不到影像資料夾：{image_dir}")
+    images = sorted(p for p in image_dir.iterdir()
+                    if p.suffix.lower() in IMAGE_EXTENSIONS)
     gt_dir = Path(GT_LABEL_DIR) if GT_LABEL_DIR else None
     model = YOLO(SEG_WEIGHTS)
 
-    note = "(有 GT 走 gt_iou，無則退回 points)" if MASK_SELECT_MODE == "auto" else ""
+    scale_tab = load_scale_table()
+    positions = load_positions()
+    orig_idx = index_original_images()
+    if not scale_tab and not orig_idx:
+        raise FileNotFoundError(
+            "兩個 scale 來源都拿不到：\n"
+            f"   SCALE_XLSX = {SCALE_XLSX!r}(工作目錄 {Path.cwd()})\n"
+            f"   ORIGINAL_IMAGE_DIR = {ORIGINAL_IMAGE_DIR!r}\n"
+            "   至少要有一個：B2 的舊 Excel(只查表，不用重跑 pose)，或原始未 letterbox 的影像資料夾。")
+    if SCALE_SOURCE == "xlsx" and not scale_tab:
+        raise FileNotFoundError(f"SCALE_SOURCE='xlsx' 但讀不到 {SCALE_XLSX}；改 'auto' 或 'original'。")
+    if SCALE_SOURCE == "original" and not orig_idx:
+        raise FileNotFoundError("SCALE_SOURCE='original' 但 ORIGINAL_IMAGE_DIR 沒填或是空的。")
+
+    note = "(有 GT 走 gt_iou，無則 center)" if MASK_SELECT_MODE == "auto" else ""
     print(f"挑 mask 模式：{MASK_SELECT_MODE}{note}")
+    print(f"scale 來源：{SCALE_SOURCE}"
+          f"{'(並用原圖交叉驗證)' if SCALE_SOURCE == 'xlsx' and orig_idx else ''}")
+    print(f"待處理：{len(images)} 張\n")
 
     rows = []
-    for _, r in df_kp.iterrows():
-        fname = str(r["圖片檔名"])
-        stem = Path(fname).stem
-        pA = (float(r["A_x_原圖"]), float(r["A_y_原圖"]))
-        pB = (float(r["B_x_原圖"]), float(r["B_y_原圖"]))
-        scale = float(r.get("縮放比scale", 1.0))
-        raw_len = euclidean(pA, pB)
+    for img_path in images:
+        fname = img_path.name
+        rec = {"圖片檔名": fname}
+        flags = []
 
-        rec = {
-            "圖片檔名": fname,
-            "縮放比scale": scale,
-            "AB長度_原始預測_letterbox px": round(raw_len, 4),
-            "AB長度_原始預測_原圖px": round(raw_len * scale, 4),
-        }
+        img = cv2.imread(str(img_path))
+        if img is None:
+            rec.update({"mask狀態": "❌讀不到圖片", "建議人工複查": "⚠️是"})
+            rows.append(rec)
+            continue
+        H, W = img.shape[:2]
 
-        img_path = find_image(stem, image_dir)
-        if img_path is None:
-            rec.update({"mask狀態": "❌找不到圖片", "建議人工複查": "⚠️是"})
+        # ---- scale ----
+        s_xlsx = scale_tab.get(base_key(fname))
+        s_orig, w0, h0 = None, None, None
+        op = orig_idx.get(base_key(fname))
+        if op is not None:
+            s_orig, w0, h0 = scale_from_original(op, img.shape)
+        if SCALE_SOURCE == "xlsx":
+            scale = s_xlsx
+        elif SCALE_SOURCE == "original":
+            scale = s_orig
+        else:
+            scale = s_xlsx if s_xlsx is not None else s_orig
+        rec.update({"縮放比scale": scale, "原圖寬": w0, "原圖高": h0})
+        if s_xlsx is not None and s_orig is not None:
+            rel = abs(s_xlsx - s_orig) / s_orig
+            rec["scale驗證_相對差"] = round(rel, 4)
+            if rel > SCALE_MISMATCH_TOL:
+                flags.append("scale兩來源不一致")
+        if scale is None:
+            rec.update({"mask狀態": "❌缺scale", "建議人工複查": "⚠️是"})
             rows.append(rec)
             continue
 
+        # ---- seg 推論 ----
         res = model.predict(source=str(img_path), imgsz=IMG_SIZE,
                             conf=SEG_CONF, save=False, verbose=False)[0]
         polygons = [p for p in (res.masks.xy if res.masks is not None else [])
                     if p is not None and len(p) >= 3]
-
         if not polygons:
             rec.update({"mask狀態": "❌seg無輸出", "偵測到mask數": 0, "建議人工複查": "⚠️是"})
             rows.append(rec)
             continue
 
-        # ---- 挑出目標牙的 mask ----
-        img = cv2.imread(str(img_path))
-        H, W = img.shape[:2]
-        gt_bbox, gtA, gtB = (load_gt_target(gt_dir / f"{stem}.txt", W, H)
-                             if gt_dir else (None, None, None))
-
-        idx_pts, _ = pick_by_points(polygons, pA, pB)
+        # ---- 挑目標牙 ----
+        gt_bbox, gtA, gtB, gt_fmt = (load_gt_target(gt_dir / f"{img_path.stem}.txt", W, H)
+                                     if gt_dir else (None, None, None, None))
+        idx_ctr = pick_by_center(polygons, img.shape)
         idx_iou, best_iou, second_iou = None, None, None
         if gt_bbox is not None:
             idx_iou, best_iou, second_iou = pick_by_gt_iou(polygons, gt_bbox)
 
-        if MASK_SELECT_MODE == "points" or idx_iou is None:
-            chosen_idx, used_mode = idx_pts, "points"
+        if MASK_SELECT_MODE == "center" or idx_iou is None:
+            chosen_idx, used_mode = idx_ctr, "center"
         else:
             chosen_idx, used_mode = idx_iou, "gt_iou"
 
-        poly = polygons[chosen_idx]
-        centroid, axis, ratio = mask_axis(poly)
-        end1, end2 = axis_extremes(poly, centroid, axis)
-        # 讓幾何端點的 A/B 歸屬跟預測點一致，避免對照表出現假性顛倒
-        if euclidean(pA, end2) < euclidean(pA, end1):
-            end1, end2 = end2, end1
-
-        dA = signed_dist_to_polygon(poly, pA)
-        dB = signed_dist_to_polygon(poly, pB)
-        proj_len = project_len(pA, pB, centroid, axis)
-        proj_pts = project_points(pA, pB, centroid, axis)
-        geo_len = euclidean(end1, end2)
-
-        flags = []
-        if dA < -OUTSIDE_MARGIN_PX:
-            flags.append("A點在mask外")
-        if dB < -OUTSIDE_MARGIN_PX:
-            flags.append("B點在mask外")
-        if ratio < MIN_AXIS_RATIO:
-            flags.append("牙形不夠細長")
-        if idx_iou is not None and idx_pts != idx_iou:
+        if idx_iou is not None and idx_ctr != idx_iou:
             flags.append("兩法選到不同mask")
         if (best_iou is not None and second_iou is not None
                 and (best_iou - second_iou) < AMBIGUOUS_IOU_GAP):
             flags.append("選取不明確")
 
+        # ---- 幾何 ----
+        poly = polygons[chosen_idx]
+        centroid, axis, ratio = mask_axis(poly)
+        e1, e2 = axis_extremes(poly, centroid, axis)
+        geo_len = euclidean(e1, e2)          # 長度仍用原始 mask，跟舊版可比
+        position = positions.get(base_key(fname))
+
+        mask = clean_mask(poly, img.shape, geo_len)
+        endA, endB, basis, end_ratio, agree = orient(mask, centroid, axis, e1, e2, position)
+        cw = crown_width(mask, centroid, axis, endA)
+
+        if ratio < MIN_AXIS_RATIO:
+            flags.append("牙形不夠細長")
+        if basis == "寬度法" and not (end_ratio >= CROWN_END_MIN_RATIO):
+            flags.append("切端判定不明確")
+        if basis != "寬度法" and not agree:
+            flags.append("牙位與寬度法方向不一致")
+        if cw is None:
+            flags.append("冠寬量測失敗")
+        else:
+            wr = cw["width"] / geo_len if geo_len > 0 else float("nan")
+            lo, hi = WIDTH_RATIO_RANGE
+            if not (lo <= wr <= hi):
+                flags.append("冠寬比例異常(疑似黏鄰牙或mask殘缺)")
+            plo, phi = WIDTH_POS_RANGE
+            if not (plo <= cw["pos_ratio"] <= phi):
+                flags.append("冠寬位置異常")
+
         rec.update({
             "mask狀態": "✅",
             "偵測到mask數": len(polygons),
             "選取方式": used_mode,
-            "兩法選取一致": ("—" if idx_iou is None else ("是" if idx_pts == idx_iou else "⚠️否")),
+            "GT格式": gt_fmt or "—",
+            "兩法選取一致": ("—" if idx_iou is None else ("是" if idx_ctr == idx_iou else "⚠️否")),
             "mask_IoU_vs_GT框": round(best_iou, 3) if best_iou is not None else None,
             "次佳mask_IoU": round(second_iou, 3) if second_iou is not None else None,
-            "A點到mask邊界px": round(dA, 2),
-            "B點到mask邊界px": round(dB, 2),
             "長軸解釋比": round(ratio, 3),
-            "AB長度_長軸投影_letterbox px": round(proj_len, 4),
+            "牙位": position,
+            "方向依據": basis,
+            "寬度法方向一致": "是" if agree else "⚠️否",
+            "兩端寬度比": round(end_ratio, 3) if end_ratio == end_ratio else None,
             "AB長度_mask幾何_letterbox px": round(geo_len, 4),
-            "AB長度_長軸投影_原圖px": round(proj_len * scale, 4),
             "AB長度_mask幾何_原圖px": round(geo_len * scale, 4),
         })
+        if cw is not None:
+            rec.update({
+                "冠寬_letterbox px": round(cw["width"], 4),
+                "冠寬_原圖px": round(cw["width"] * scale, 4),
+                "冠寬位置_距A端比例": round(cw["pos_ratio"], 3),
+                "長寬比_mask幾何÷冠寬": round(geo_len / cw["width"], 4),
+            })
 
-        # ---- 端點位置誤差：長度對不代表位置對 ----
-        # mask 幾何端點是 PCA 長軸極值，兩端各偏一點但方向相反時，
-        # 長度誤差會互相抵銷、看起來很準，實際上根尖位置是錯的。
-        # 臨床上真正要準的是根尖(B側)，所以這兩欄要跟長度誤差分開看。
+        # ---- 有 pose 格式 GT 時：GT 長度、端點誤差、方向驗證 ----
         if gtA is not None:
-            e1 = euclidean(end1, gtA)
-            e2 = euclidean(end2, gtB)
-            rec["幾何端點誤差_A側px"] = round(e1, 2)
-            rec["幾何端點誤差_B側px"] = round(e2, 2)
-            rec["預測點誤差_A側px"] = round(euclidean(pA, gtA), 2)
-            rec["預測點誤差_B側px"] = round(euclidean(pB, gtB), 2)
-            # 兩端誤差都大、但長度誤差很小 → 典型的「抵銷式假準確」
-            if (min(e1, e2) > ENDPOINT_ERROR_PX
-                    and abs(geo_len - euclidean(gtA, gtB)) < ENDPOINT_ERROR_PX):
+            gt_len = euclidean(gtA, gtB)
+            rec["真實AB像素長度_letterbox px"] = round(gt_len, 4)
+            rec["真實AB像素長度_原圖px"] = round(gt_len * scale, 4)
+            eA, eB = euclidean(endA, gtA), euclidean(endB, gtB)
+            rec["幾何端點誤差_A側px"] = round(eA, 2)
+            rec["幾何端點誤差_B側px"] = round(eB, 2)
+            same_dir = (euclidean(endA, gtA) + euclidean(endB, gtB)
+                        <= euclidean(endA, gtB) + euclidean(endB, gtA))
+            rec["A端判定與GT一致"] = "是" if same_dir else "⚠️否"
+            if not same_dir:
+                flags.append("切端方向判反")
+            if (min(eA, eB) > ENDPOINT_ERROR_PX
+                    and abs(geo_len - gt_len) < ENDPOINT_ERROR_PX):
                 flags.append("端點誤差抵銷(長度假準)")
 
         rec["QC備註"] = "、".join(flags)
@@ -475,94 +646,80 @@ def main():
 
         if SAVE_VISUALIZATION:
             others = [p for i, p in enumerate(polygons) if i != chosen_idx]
-            draw(img_path, poly, others, pA, pB, end1, end2,
-                 Path(VIS_DIR) / f"{stem}_mask.jpg",
+            draw(img, poly, others, endA, endB,
+                 Path(VIS_DIR) / f"{img_path.stem}_mask.jpg",
                  gt_pts=(gtA, gtB) if gtA is not None else None,
-                 proj_pts=proj_pts)
+                 width_pts=(cw["p1"], cw["p2"]) if cw is not None else None)
 
     df = pd.DataFrame(rows)
 
-    # ---- 併入 GT 長度，直接算三種方法的誤差 ----
-    summary = pd.DataFrame()
-    gt_lb = "真實AB像素長度_letterbox px"
-    gt_orig = "真實AB像素長度_原圖px"
-
-    if B2_XLSX and Path(B2_XLSX).exists():
-        df_b2 = pd.read_excel(B2_XLSX, sheet_name=B2_SHEET)
-        keep = [c for c in ("圖片檔名", gt_lb, gt_orig) if c in df_b2.columns]
-        if len(keep) > 1:
-            df = df.merge(df_b2[keep], on="圖片檔名", how="left")
-
-        items = []
-        # 兩個空間都算：letterbox 是模型工作的空間，原圖px 才是 C1 真正吃的東西。
-        # 每張圖 scale 不同，換算後排序有可能翻盤，所以不能只看 letterbox 就下結論。
-        for space, gcol, suffix in (("letterbox", gt_lb, "letterbox px"),
-                                    ("原圖", gt_orig, "原圖px")):
-            if gcol not in df.columns:
-                continue
-            for name in ("原始預測", "長軸投影", "mask幾何"):
-                col = f"AB長度_{name}_{suffix}"
-                if col not in df.columns:
-                    continue
-                d = (df[col] - df[gcol]).dropna()
-                if d.empty:
-                    continue
-                items.append({
-                    "空間": space,
-                    "方法": name,
-                    "有效張數": int(len(d)),
-                    "長度MAE px": round(d.abs().mean(), 3),
-                    "長度偏差(bias) px": round(d.mean(), 3),
-                    "誤差標準差 px": round(d.std(ddof=1), 3) if len(d) > 1 else None,
-                    "最大絕對誤差 px": round(d.abs().max(), 3),
-                })
-        summary = pd.DataFrame(items)
+    # ---- mask幾何 vs GT 長度 ----
+    items = []
+    for space, gcol, col in (
+            ("letterbox", "真實AB像素長度_letterbox px", "AB長度_mask幾何_letterbox px"),
+            ("原圖", "真實AB像素長度_原圖px", "AB長度_mask幾何_原圖px")):
+        if gcol not in df.columns or col not in df.columns:
+            continue
+        d = (df[col] - df[gcol]).dropna()
+        if d.empty:
+            continue
+        items.append({
+            "空間": space, "方法": "mask幾何", "有效張數": int(len(d)),
+            "長度MAE px": round(d.abs().mean(), 3),
+            "長度偏差(bias) px": round(d.mean(), 3),
+            "誤差標準差 px": round(d.std(ddof=1), 3) if len(d) > 1 else None,
+            "最大絕對誤差 px": round(d.abs().max(), 3),
+        })
+    summary = pd.DataFrame(items)
 
     with pd.ExcelWriter(OUTPUT_XLSX, engine="openpyxl") as w:
         df.to_excel(w, sheet_name="逐顆牙對照", index=False)
         if not summary.empty:
-            summary.to_excel(w, sheet_name="三法比較", index=False)
+            summary.to_excel(w, sheet_name="長度vsGT", index=False)
         if SAVE_VISUALIZATION:
             pd.DataFrame(LEGEND_ZH, columns=["圖上顏色", "代表什麼"]).to_excel(
                 w, sheet_name="視覺化圖例", index=False)
 
     # ---- 終端摘要 ----
-    print(f"\n✅ 完成，共處理 {len(df)} 張")
+    print(f"✅ 完成，共處理 {len(df)} 張")
     print(f"📄 {OUTPUT_XLSX}")
     if SAVE_VISUALIZATION:
         print(f"🖼️  {VIS_DIR}/")
-        print("   圖例(圖上標籤為英文，Hershey 字型無法顯示中文)：")
         for color, meaning in LEGEND_ZH:
-            print(f"     {color:<16} {meaning}")
+            print(f"     {color:<12} {meaning}")
 
-    if "mask狀態" in df.columns:
-        n_fail = int((df["mask狀態"] != "✅").sum())
-        if n_fail:
-            print(f"❌ seg 未成功的有 {n_fail} 張")
-    if "建議人工複查" in df.columns:
-        print(f"⚠️  建議人工複查：{int((df['建議人工複查'] == '⚠️是').sum())} 張")
+    n_fail = int((df["mask狀態"] != "✅").sum())
+    if n_fail:
+        print(f"❌ 未成功：{n_fail} 張(見 mask狀態 欄)")
+    print(f"⚠️  建議人工複查：{int((df['建議人工複查'] == '⚠️是').sum())} 張")
+
     if "兩法選取一致" in df.columns:
         n_diff = int((df["兩法選取一致"] == "⚠️否").sum())
         n_cmp = int(df["兩法選取一致"].isin(["是", "⚠️否"]).sum())
         if n_cmp:
-            print(f"🔀 兩法挑到不同 mask：{n_diff}/{n_cmp} 張"
-                  f"(這就是 points 模式將來上線時的預期錯誤率)")
-
-    if "幾何端點誤差_B側px" in df.columns:
-        sub = df[["幾何端點誤差_A側px", "幾何端點誤差_B側px",
-                  "預測點誤差_A側px", "預測點誤差_B側px"]].dropna()
-        if not sub.empty:
-            print("\n=== 端點位置誤差(letterbox px，中位數/最大) ===")
-            for c in sub.columns:
-                print(f"  {c:<22} {sub[c].median():>7.2f} / {sub[c].max():>7.2f}")
-            print("  ↑ B側(根尖)才是臨床風險所在；長度準但 B 側誤差大代表是抵銷出來的。")
+            print(f"🔀 center 與 gt_iou 挑到不同 mask：{n_diff}/{n_cmp} 張"
+                  f"(= 無 GT 上線時的預期認牙錯誤率)")
+    if "A端判定與GT一致" in df.columns:
+        n_rev = int((df["A端判定與GT一致"] == "⚠️否").sum())
+        n_chk = int(df["A端判定與GT一致"].notna().sum())
+        print(f"↕️  切端方向判反：{n_rev}/{n_chk} 張")
+    if "scale驗證_相對差" in df.columns:
+        rel = df["scale驗證_相對差"].dropna()
+        print(f"📏 scale 兩來源相對差：最大 {rel.max():.4f}"
+              f"(>{SCALE_MISMATCH_TOL} 的 {int((rel > SCALE_MISMATCH_TOL).sum())} 張)")
+    if "冠寬_letterbox px" in df.columns:
+        wcol = df["冠寬_letterbox px"].dropna()
+        n_bad = int(df["QC備註"].fillna("").str.contains("冠寬").sum())
+        print(f"\n=== 冠寬 ===")
+        print(f"  成功 {len(wcol)} 張，letterbox px 中位數 {wcol.median():.1f}"
+              f"(範圍 {wcol.min():.1f}–{wcol.max():.1f})；相關 QC 旗標 {n_bad} 張")
 
     if not summary.empty:
-        print("\n=== 三法比較 ===")
+        print("\n=== mask幾何 vs GT 長度 ===")
         print(summary.to_string(index=False))
-        print("\n判讀：bias 大不要緊(下游 ANN 與 OFFSET_MM 可吸收)，")
-        print("      要看的是「誤差標準差」——分散度小的那個方法才是真的比較好。")
-        print("      以「原圖」那三列為準，那才是 C1 實際吃到的刻度。")
+        print("看「誤差標準差」；bias 由下游 C1 吸收。以「原圖」列為準。")
+    elif gt_dir:
+        print("\n(GT 標註是 seg 格式，沒有 A/B 點，無法算長度誤差——C1 用醫師 mm 驗證即可)")
 
 
 if __name__ == "__main__":

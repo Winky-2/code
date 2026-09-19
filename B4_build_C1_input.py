@@ -8,21 +8,38 @@ B4_build_C1_input.py
 
 把三個來源併成 C1 吃得下的格式：
 
-    B3 的逐顆牙對照   → 三種方法的像素長度(原圖px)
-    B2 的像素預測     → scale、原圖尺寸等追溯欄位
-    醫師的 mm 記錄    → 目標值 Y
+    B3 的逐顆牙對照   → mask幾何長度(原圖px)、冠寬、scale、原圖尺寸
+    醫師的 mm 記錄    → 目標值 Y、牙位
 
-*** 為什麼一次產出三份 ***
-C1 只有一個輸入槽，三種方法必須跑三次。如果三份 Excel 是分開手動
+*** seg-only ***
+YOLO11-pose 已移除，「原始預測」「長軸投影」兩種長度(需要 pose 點)不再產出。
+B3 自己帶 scale 與原圖尺寸，不必再併 B2 Excel(B2_XLSX 預設留空)。
+
+*** 為什麼一次產出多份 ***
+C1 只有一個輸入槽，每種方法必須各跑一次。如果各份 Excel 是分開手動
 維護的，很容易出現「這份少了兩顆、那份切分不一樣」的情況，跑出來
-的三組數字就不可比，而三法比較正是這個專案要回答的問題。
+的數字就不可比，而方法比較正是這個專案要回答的問題。
 
 所以本腳本：
-  - 只取三種方法「同時都有值」的牙(任一方法失敗就三份一起排除)
-  - 用同一組 SPLIT_SEED 產生切分，三份的 資料夾來源 欄完全相同
-  - 三份的列數、列順序、檔名都一致
+  - 只取所有方法「同時都有值」的牙(任一方法失敗就全部一起排除)
+  - 用同一組 SPLIT_SEED 產生切分，每份的 資料夾來源/折數fold 欄完全相同
+  - 每份的列數、列順序、檔名都一致
 
-這樣三次 C1 的差異就只剩下「像素長度是怎麼量的」這一個變因。
+這樣 C1 之間的差異就只剩下「X 是怎麼算的」這一個變因。
+
+*** 新增兩份(USE_POSITION_METHODS = True 時) ***
+  冠寬比例尺 : X = mask幾何長度px ÷ 冠寬px × 牙位平均冠寬mm
+               長寬比與 pixel pitch 無關，牙位平均冠寬負責換回 mm。
+               跟「mask幾何」只差在刻度來源，是乾淨的單一變因對照。
+  牙位基準   : X = 牙位平均全長mm(完全不看影像)
+               C1 跑出來就是「只知道牙位」的 baseline。影像方法要贏過
+               它，才能說影像有貢獻。
+
+注意 X 欄名仍叫「像素長度」(C1 寫死讀這欄)，但這兩份的單位其實是 mm。
+C1 的迴歸會自己校正斜率與截距，單位不影響結果。
+
+⚠️ 開啟後，缺冠寬或缺牙位的牙會從「所有」檔案排除(維持列數一致)，
+   所以 n 可能比舊版少幾筆——舊版三法的數字要用新檔重跑才可比。
 
 *** 關於 train/test 切分 ***
 醫師的 mm 記錄涵蓋的牙，全部都是 pose/seg 的 test 影像(對兩個模型
@@ -32,11 +49,9 @@ C1 只有一個輸入槽，三種方法必須跑三次。如果三份 Excel 是�
 也因為 train 列不再有「未被模型訓練過的 GT 座標」可用，train 和
 test 的像素長度都來自模型推論——這反而比舊設計乾淨：舊設計 train
 用 GT、test 用預測，兩邊分布不同，會系統性偏袒 bias 小的方法。現在
-三個方法站在同一條起跑線，只比誤差的分散程度。
+所有方法站在同一條起跑線，只比誤差的分散程度。
 
-另外輸出 折數fold 欄(預設 5 摺)，之後 C1 要改成交叉驗證時直接可用。
-樣本數這個量級，單次切分的理想比率/過長率一筆對錯就跳好幾個百分點，
-k-fold 會穩定得多。
+另外輸出 折數fold 欄(預設 5 摺)，C1 交叉驗證直接使用。
 
 *** 檔名對應 ***
 B3/B2 的檔名帶 Roboflow 後綴(xxx_jpg.rf.<hash>.jpg)，醫師的記錄通常
@@ -59,7 +74,7 @@ import pandas as pd
 B3_XLSX = "B3_mask輔助對照_11.xlsx"
 B3_SHEET = "逐顆牙對照"
 
-B2_XLSX = "yolo像素預測_11.xlsx"          # 只拿追溯欄位，留空可略過
+B2_XLSX = ""                              # seg-only：B3 已帶 scale，留空即可
 B2_SHEET = 0
 
 MM_XLSX = "根管充填長度_20260904.xlsx"     # 醫師記錄的實際 mm
@@ -78,11 +93,31 @@ OVERRIDE_CSV = ""
 OUTPUT_PREFIX = "根管填充物像素長度_已配對"
 DIAGNOSTIC_XLSX = "B4_配對診斷.xlsx"
 
-# --- 三種方法：輸出檔名後綴 → B3 的欄位名 ---
+# --- 像素方法：輸出檔名後綴 → B3 的欄位名 ---
 METHODS = {
-    "原始預測": "AB長度_原始預測_原圖px",
-    "長軸投影": "AB長度_長軸投影_原圖px",
     "mask幾何": "AB長度_mask幾何_原圖px",
+}
+
+# --- 牙位衍生方法(冠寬比例尺 / 牙位基準) ---
+USE_POSITION_METHODS = True
+POSITION_COL = "牙位"
+WIDTH_COL = "冠寬_原圖px"                 # B3 新增的欄位
+LENGTH_COL_FOR_WIDTH = "AB長度_mask幾何_原圖px"   # 冠寬比例尺用哪個長度當分子
+
+# ⚠️ 教科書平均值(Wheeler's 系統，近遠心冠寬 / 全長，mm)。
+#    各版本相差約 0.5 mm，論文引用前請核對原書並在此更新。
+#    FDI 牙位末碼：1=正中門牙、2=側門牙；十位 1/2=上顎、3/4=下顎。
+MEAN_CROWN_WIDTH_MM = {
+    11: 8.5, 21: 8.5,     # 上顎正中門牙
+    12: 6.5, 22: 6.5,     # 上顎側門牙
+    31: 5.0, 41: 5.0,     # 下顎正中門牙
+    32: 5.5, 42: 5.5,     # 下顎側門牙
+}
+MEAN_TOOTH_LENGTH_MM = {
+    11: 23.5, 21: 23.5,
+    12: 22.0, 22: 22.0,
+    31: 21.0, 41: 21.0,
+    32: 22.0, 42: 22.0,
 }
 
 # --- 切分 ---
@@ -95,8 +130,13 @@ MM_RANGE = (5.0, 35.0)          # 根管充填長度的合理範圍
 PX_PER_MM_CV_WARN = 0.15        # px/mm 變異係數超過此值 → 刻度可能仍不一致
 
 # 是否把 mask狀態 非 ✅ 的牙排除。強烈建議 True：
-# 那些列的 mask幾何/長軸投影 是空的，留著會讓三份檔案的列數對不齊。
+# 那些列的 mask幾何/冠寬 是空的，留著會讓各份檔案的列數對不齊。
 DROP_MASK_FAILED = True
+
+# B3 QC備註 含這些字的牙，從「所有」檔案排除(維持列數一致)。
+# mask破碎 = seg 沒切出完整牙形，長度與冠寬都不可信(例：025)。
+# 論文請報告排除數與理由；想看不排除的結果就設成 []。
+DROP_QC_KEYWORDS = ["mask破碎"]
 
 
 # ============================================================
@@ -136,6 +176,14 @@ def guess_column(df, keywords, exclude=()):
     return None
 
 
+def parse_position(v):
+    """牙位欄可能是 11、11.0、'11' 或空白 → int 或 None。"""
+    try:
+        return int(float(str(v).strip()))
+    except (ValueError, TypeError):
+        return None
+
+
 # ============================================================
 # 第3部分：讀取來源
 # ============================================================
@@ -152,7 +200,12 @@ def load_b3():
             f"B3 的「{B3_SHEET}」缺少欄位：{missing}\n"
             f"   現有欄位：{list(df.columns)}\n"
             f"   如果只看到 letterbox px 版本，代表 B3 跑的時候 scale 沒算出來，"
-            f"請先確認 B2 的 縮放比scale 欄有值。"
+            f"請確認 B3 的 SCALE_SOURCE 設定與 縮放比scale 欄有值。"
+        )
+    if USE_POSITION_METHODS and WIDTH_COL not in df.columns:
+        raise KeyError(
+            f"B3 輸出沒有「{WIDTH_COL}」欄。請用新版 B3(有冠寬)重跑，"
+            f"或把 USE_POSITION_METHODS 設為 False。"
         )
     return df
 
@@ -280,8 +333,20 @@ def main():
                             "排除原因": f"mask狀態={r['mask狀態']}"})
         df3 = df3[df3["mask狀態"] == "✅"]
 
+    # ---- 排除 QC 判定不可信的 ----
+    if DROP_QC_KEYWORDS and "QC備註" in df3.columns:
+        qc = df3["QC備註"].fillna("").astype(str)
+        hit = qc.apply(lambda q: any(k in q for k in DROP_QC_KEYWORDS))
+        for _, r in df3[hit].iterrows():
+            dropped.append({"圖片檔名": r["圖片檔名"], "排除原因": f"QC：{r['QC備註']}"})
+        if hit.any():
+            print(f"🚫 依 QC 排除 {int(hit.sum())} 張：{', '.join(df3[hit]['圖片檔名'].map(normalize_name))}")
+        df3 = df3[~hit]
+
     # ---- 排除任一方法沒有值的 ----
     cols = list(METHODS.values())
+    if USE_POSITION_METHODS:
+        cols.append(WIDTH_COL)
     incomplete = df3[df3[cols].isna().any(axis=1)]
     for _, r in incomplete.iterrows():
         empties = [c for c in cols if pd.isna(r[c])]
@@ -290,7 +355,10 @@ def main():
     df3 = df3.dropna(subset=cols)
 
     # ---- 併 mm ----
-    merged = df3.merge(df_mm, on="_key", how="left")
+    # B3 也帶了「牙位」欄(方向判定用)，同名欄 merge 會變成 牙位_x/牙位_y。
+    # 以醫師表為準，先把 B3 裡重複的欄拿掉。
+    dup_cols = [c for c in df_mm.columns if c != "_key" and c in df3.columns]
+    merged = df3.drop(columns=dup_cols).merge(df_mm, on="_key", how="left")
 
     no_mm = merged[merged["填充物長度(mm)"].isna()]
     for _, r in no_mm.iterrows():
@@ -300,6 +368,28 @@ def main():
     # 反向：醫師有記錄但影像端沒對上的
     matched_keys = set(merged["_key"])
     orphan_mm = df_mm[~df_mm["_key"].isin(matched_keys)]
+
+    # ---- 牙位衍生方法 ----
+    derived = {}   # 輸出檔名後綴 → merged 裡的欄位名
+    if USE_POSITION_METHODS:
+        if POSITION_COL not in merged.columns:
+            raise KeyError(f"醫師記錄沒有「{POSITION_COL}」欄，無法用牙位衍生方法。")
+        pos = merged[POSITION_COL].map(parse_position)
+        mean_w = pos.map(MEAN_CROWN_WIDTH_MM)
+        mean_l = pos.map(MEAN_TOOTH_LENGTH_MM)
+
+        no_pos = merged[mean_w.isna() | mean_l.isna()]
+        for _, r in no_pos.iterrows():
+            dropped.append({"圖片檔名": r["圖片檔名"],
+                            "排除原因": f"牙位缺漏或不在對照表：{r.get(POSITION_COL)}"})
+        ok = mean_w.notna() & mean_l.notna()
+        merged = merged[ok].copy()
+        mean_w, mean_l = mean_w[ok], mean_l[ok]
+
+        merged["長寬比"] = merged[LENGTH_COL_FOR_WIDTH] / merged[WIDTH_COL]
+        merged["X_冠寬比例尺_mm"] = merged["長寬比"] * mean_w
+        merged["X_牙位基準_mm"] = mean_l
+        derived = {"冠寬比例尺": "X_冠寬比例尺_mm", "牙位基準": "X_牙位基準_mm"}
 
     if merged.empty:
         raise RuntimeError(
@@ -319,7 +409,7 @@ def main():
 
     merged = merged.sort_values("圖片檔名").reset_index(drop=True)
 
-    # ---- 切分(三份共用) ----
+    # ---- 切分(所有檔案共用) ----
     split, fold = assign_split(len(merged), SPLIT_SEED, TEST_RATIO, N_FOLDS)
     merged["資料夾來源"] = split
     merged["折數fold"] = fold
@@ -357,18 +447,35 @@ def main():
             "判讀": "⚠️ 刻度仍不一致" if cv > PX_PER_MM_CV_WARN else "✅ 尚可",
         })
 
-    # ---- 產出三份 ----
+    # 衍生方法的 X 已經是 mm：直接看「未經 C1 校正」的誤差，先有個底
+    direct_stats = []
+    for label, col in derived.items():
+        d = merged[col] - merged["填充物長度(mm)"]
+        direct_stats.append({
+            "方法": label,
+            "未校正MAE_mm": round(float(d.abs().mean()), 3),
+            "未校正bias_mm": round(float(d.mean()), 3),
+            "去除bias後MAE_mm": round(float((d - d.mean()).abs().mean()), 3),
+            "與Y相關r": round(float(np.corrcoef(merged[col], merged["填充物長度(mm)"])[0, 1]), 3)
+                        if merged[col].nunique() > 1 else None,
+        })
+
+    # ---- 產出 ----
+    all_methods = {**METHODS, **derived}
     written = []
-    for label, col in METHODS.items():
+    for label, col in all_methods.items():
         out = pd.DataFrame({
             "圖片檔名": merged["圖片檔名"],
             "填充物長度(mm)": merged["填充物長度(mm)"].round(3),
-            "像素長度": merged[col].round(4),
+            "像素長度": merged[col].round(4),   # 衍生方法的單位是 mm，欄名沿用給 C1 讀
             "資料夾來源": merged["資料夾來源"],
             "折數fold": merged["折數fold"],
             "長度方法": label,
         })
-        for extra in ("縮放比scale", "原圖寬", "原圖高", "QC備註", *MM_EXTRA_COLS):
+        extras = ("縮放比scale", "原圖寬", "原圖高", "QC備註", *MM_EXTRA_COLS)
+        if USE_POSITION_METHODS:
+            extras += (WIDTH_COL, "長寬比")
+        for extra in extras:
             if extra in merged.columns:
                 out[extra] = merged[extra]
 
@@ -379,6 +486,8 @@ def main():
     # ---- 診斷檔 ----
     with pd.ExcelWriter(DIAGNOSTIC_XLSX, engine="openpyxl") as w:
         pd.DataFrame(ratio_stats).to_excel(w, sheet_name="刻度一致性", index=False)
+        if direct_stats:
+            pd.DataFrame(direct_stats).to_excel(w, sheet_name="牙位衍生方法_未校正", index=False)
         (pd.DataFrame(dropped) if dropped else
          pd.DataFrame(columns=["圖片檔名", "排除原因"])).to_excel(
             w, sheet_name="排除清單", index=False)
@@ -399,7 +508,7 @@ def main():
 
     print(f"\n切分(seed={SPLIT_SEED})：train {int((split=='train').sum())} 筆 / "
           f"test {int((split=='test').sum())} 筆，另附 {N_FOLDS} 摺 fold 欄")
-    print("三份檔案的列數、列順序、切分完全相同，唯一差異是「像素長度」的算法：")
+    print(f"{len(written)} 份檔案的列數、列順序、切分完全相同，唯一差異是 X 的算法：")
     for p in written:
         print(f"   📄 {p}")
     print(f"   📄 {DIAGNOSTIC_XLSX}")
@@ -409,7 +518,13 @@ def main():
     print("CV 偏大代表各片的實際刻度仍不一致——這是資訊缺口，不是模型調得不夠好。")
     print("真要解決得從原始 DICOM 的 PixelSpacing 標籤下手。")
 
-    print("\n👉 接著把 C1 的 filename 依序指向上面三份，各跑一次做對照。")
+    if direct_stats:
+        print("\n=== 牙位衍生方法(未經 C1 校正，X 直接當 mm) ===")
+        print(pd.DataFrame(direct_stats).to_string(index=False))
+        print("看「去除bias後MAE」：冠寬比例尺要明顯低於牙位基準，影像才有貢獻。")
+        print("最終結論以 C1 同一組 fold 的 out-of-fold 結果為準。")
+
+    print("\n👉 接著把 C1 的 METHOD 依序設成上面各份的後綴，各跑一次做對照。")
 
 
 if __name__ == "__main__":
