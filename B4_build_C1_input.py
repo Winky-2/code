@@ -77,14 +77,15 @@ B3_SHEET = "逐顆牙對照"
 B2_XLSX = ""                              # seg-only：B3 已帶 scale，留空即可
 B2_SHEET = 0
 
-MM_XLSX = "根管充填長度_20260904.xlsx"     # 醫師記錄的實際 mm
-MM_SHEET = "資料填寫"                      # 工作表名稱或索引
+MM_XLSX = "根管充填長度_20260921 - 57.xlsx"
+MM_SHEET = 0                              # 👈 補上：工作表名稱或索引，0=第一個工作表
+MM_EXTRA_COLS = ["牙位", "醫師備註（選填）", "年齡", "性別"]
 MM_HEADER_ROW = None                      # None = 自動找標頭列(這份檔前面有說明列)
 MM_NAME_COL = None                        # None = 自動偵測檔名欄
 MM_VALUE_COL = None                       # None = 自動偵測 mm 欄
 
 # 醫師表裡的選填欄位，帶進輸出供後續錯誤分析用(不進模型)
-MM_EXTRA_COLS = ["牙位", "醫師備註（選填）"]
+MM_EXTRA_COLS = ["牙位", "醫師備註（選填）", "年齡", "性別"]
 
 # 對不上的檔名手動指定：CSV 兩欄，標頭為 影像檔名,醫師檔名
 OVERRIDE_CSV = ""
