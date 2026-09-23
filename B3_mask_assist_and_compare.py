@@ -81,7 +81,7 @@ GT_LABEL_DIR = "test_segment/test/labels"    # 👈 pose 或 seg 格式皆可；
 
 # --- scale 來源 ---
 SCALE_SOURCE = "auto"                        # "auto"(先查 xlsx，查不到用原圖) | "xlsx" | "original"
-SCALE_XLSX = "scale表_備份_20260913.xlsx"
+SCALE_XLSX = "scale表_備份_20260921.xlsx"
 SCALE_XLSX_SHEET = "逐顆牙對照"
 ORIGINAL_IMAGE_DIR = ""                      # 原始(未 letterbox)影像資料夾；有填就交叉驗證
 SCALE_MISMATCH_TOL = 0.01                    # 兩種 scale 相差超過 1% → QC 標記
