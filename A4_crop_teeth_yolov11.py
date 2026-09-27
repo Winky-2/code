@@ -8,6 +8,12 @@ A4_crop_teeth_yolov11.py
 label格式：YOLO detection，一行一顆牙 "class cx cy w h"（一張圖可多行）
 輸出檔名：<原檔名>_t<第幾行>.<副檔名>，例如 IMG001_t0.jpg、IMG001_t1.jpg
 
+資料夾結構(v2：自動判斷)：
+  - INPUT_DIR/images + INPUT_DIR/labels  (Roboflow 標準結構)
+  - 或圖片與 .txt 直接放在 INPUT_DIR 底下
+某張圖找不到 label 時：改用「純偵測模式」，偵測到的每一顆牙都裁
+  (輸出檔名 <原檔名>_d<第幾顆>，依由左到右排序)，Excel 狀態標 🔍
+
 安裝需求：
     pip install ultralytics pandas opencv-python openpyxl
 """
@@ -20,15 +26,17 @@ from ultralytics import YOLO
 
 # ---------------- 設定區 ----------------
 WEIGHTS_PATH = "train_crop_yolov11_run/weights_ready.pt"   # 👈 A2a 的輸出
-INPUT_DIR = "rename_train"                         # 👈 要裁切的資料夾(images/ + labels/，detection格式)
+INPUT_DIR = "test_A1"                         # 👈 要裁切的資料夾(images/ + labels/，detection格式)
 
-CROPPED_OUTPUT_DIR = "cropped_teeth_yolov11"                  # 👈 裁切後單顆牙圖片
-CROP_MANIFEST_XLSX = "裁切結果_yolov11.xlsx"                  # 👈 明細與QC
+CROPPED_OUTPUT_DIR = "cropped_test_teeth"                  # 👈 裁切後單顆牙圖片
+CROP_MANIFEST_XLSX = "裁切結果_test.xlsx"                  # 👈 明細與QC
 
 IMG_SIZE = 640
 CONF_THRESHOLD = 0.15
 CROP_PADDING_RATIO = 0.01
 IOU_MATCH_THRESHOLD = 0.3
+
+IMAGE_EXTENSIONS = {".jpg", ".jpeg", ".png", ".bmp", ".tif", ".tiff"}
 
 
 def yolo_to_corners(cx, cy, w, h):
@@ -86,21 +94,68 @@ def crop_and_save(image, chosen_box_corners, out_path, padding_ratio):
     return px1, py1, px2, py2
 
 
+def crop_all_detections(model, img_path, out_root):
+    """沒有 label 時：偵測到的每一顆牙都裁，依框中心 x 由左到右編號。"""
+    image = cv2.imread(str(img_path))
+    if image is None:
+        return [{"圖片檔名": img_path.name, "狀態": "❌ 圖片讀取失敗，跳過"}]
+
+    pred = model.predict(source=str(img_path), imgsz=IMG_SIZE, conf=CONF_THRESHOLD,
+                         save=False, verbose=False)[0]
+    if pred.boxes is None or len(pred.boxes) == 0:
+        return [{"圖片檔名": img_path.name, "偵測到牙齒數": 0,
+                 "狀態": "❌ 無label且偵測器沒抓到任何牙齒，跳過"}]
+
+    boxes = pred.boxes.xyxyn.cpu().numpy().tolist()
+    confs = pred.boxes.conf.cpu().numpy().tolist()
+    order = sorted(range(len(boxes)), key=lambda i: boxes[i][0] + boxes[i][2])
+
+    recs = []
+    for d_idx, i in enumerate(order):
+        record = {
+            "圖片檔名": img_path.name,
+            "牙齒編號(label第幾行,從0起)": f"d{d_idx}",
+            "該圖GT牙齒數": None,
+            "偵測到牙齒數": len(boxes),
+            "偵測信心度": round(confs[i], 3),
+            "狀態": "🔍 無label，純偵測裁切",
+        }
+        out_path = out_root / f"{img_path.stem}_d{d_idx}{img_path.suffix}"
+        crop_px = crop_and_save(image, tuple(boxes[i]), out_path, CROP_PADDING_RATIO)
+        if crop_px is None:
+            record["狀態"] += " | ❌ 裁切失敗(座標異常)"
+            recs.append(record)
+            continue
+        px1, py1, px2, py2 = crop_px
+        record.update({"裁切檔名": out_path.name, "裁切檔案路徑": str(out_path),
+                       "裁切像素座標_x1": px1, "裁切像素座標_y1": py1,
+                       "裁切像素座標_x2": px2, "裁切像素座標_y2": py2})
+        recs.append(record)
+    return recs
+
+
 def process_images(model):
-    img_dir = Path(INPUT_DIR) / "images"
-    lbl_dir = Path(INPUT_DIR) / "labels"
-    if not img_dir.exists():
-        raise FileNotFoundError(f"❌ 找不到 {img_dir}，請確認 INPUT_DIR")
+    root = Path(INPUT_DIR)
+    if not root.exists():
+        raise FileNotFoundError(f"❌ 找不到 {root}，請確認 INPUT_DIR")
+    # 有 images/ 子資料夾就用它，否則圖片直接放在 INPUT_DIR
+    img_dir = root / "images" if (root / "images").is_dir() else root
+    lbl_dir = root / "labels" if (root / "labels").is_dir() else img_dir
 
     records = []
     out_root = Path(CROPPED_OUTPUT_DIR)
-    img_paths = sorted(img_dir.glob("*.*"))
-    print(f"\n=== 對 {len(img_paths)} 張圖跑全牙齒偵測 + 逐顆配對裁切 ===")
+    img_paths = sorted(p for p in img_dir.iterdir() if p.suffix.lower() in IMAGE_EXTENSIONS)
+    if not img_paths:
+        raise FileNotFoundError(f"❌ {img_dir} 底下沒有任何圖片")
+    n_with_label = sum((lbl_dir / (p.stem + ".txt")).exists() for p in img_paths)
+    print(f"\n=== 圖片來源：{img_dir}  label來源：{lbl_dir} ===")
+    print(f"=== 共 {len(img_paths)} 張，有label {n_with_label} 張，"
+          f"無label(純偵測模式) {len(img_paths) - n_with_label} 張 ===")
 
     for img_path in img_paths:
         label_path = lbl_dir / (img_path.stem + ".txt")
         if not label_path.exists():
-            records.append({"圖片檔名": img_path.name, "狀態": "❌ 找不到標註檔，跳過"})
+            records.extend(crop_all_detections(model, img_path, out_root))
             continue
 
         gt_boxes = load_det_labels(label_path)
@@ -171,6 +226,7 @@ def process_images(model):
     print(f"✨ 裁切完成！{len(img_paths)} 張圖 → 共輸出 {n_crops} 張單顆牙圖")
     print(f"   ✅ 配對成功並用偵測框裁切: {status_col.str.startswith('✅').sum()} 顆")
     print(f"   ⚠️ 退回用GT框裁切: {status_col.str.contains('退回', na=False).sum()} 顆 👈 建議人工複查")
+    print(f"   🔍 無label純偵測裁切: {status_col.str.startswith('🔍').sum()} 顆")
     print(f"   ❌ 跳過/失敗: {status_col.str.contains('❌', na=False).sum()} 列")
     print(f"📍 裁切後圖片: {CROPPED_OUTPUT_DIR}/")
     print(f"📍 明細與品質檢查: {CROP_MANIFEST_XLSX}")
