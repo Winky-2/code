@@ -1,0 +1,6 @@
+names:
+- tooth
+nc: 1
+path: C:\Users\user\Desktop\小專題\code\yolo11_seg_run\data
+train: train/images
+val: val/images
