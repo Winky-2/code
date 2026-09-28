@@ -34,10 +34,10 @@ from ultralytics import YOLO
 # ============================================================
 
 SEG_WEIGHTS = "yolo11_seg_run/weights_ready.pt"
-IMAGE_DIR = "test_segment/test/images"   # 👈 必須與 B2 的 IMAGE_DIR 完全相同
+IMAGE_DIR = "test_single_seg-67/test/images"   # 👈 必須與 B2 的 IMAGE_DIR 完全相同
 
-OUTPUT_XLSX = "B2_seg推論統計_11.xlsx"
-VIS_DIR = "B2_seg視覺化"
+OUTPUT_XLSX = "B2_seg推論統計_67.xlsx"
+VIS_DIR = "B2_seg視覺化_67"
 SAVE_VISUALIZATION = True
 
 IMG_SIZE = 640          # 👈 跟 seg 訓練時一致
