@@ -18,9 +18,9 @@ function C2v2_plotMyResults()
 % ============================================================
 
     %% 1. 設定(必須跟 C1 跑的那次一致)
-    METHOD  = '冠寬比例尺';   % 'mask幾何' | '冠寬比例尺' | '牙位基準'
-    USE_AGE = true;
-    USE_SEX = true;
+    METHOD  = 'mask幾何';   % 'mask幾何' | '冠寬比例尺' | '牙位基準'
+    USE_AGE = false;
+    USE_SEX = false;
     SHOW_ERROR_BARS = false;
 
     filename = sprintf('預測結果與評估指標_kfold_%s%s.xlsx', METHOD, featTag(USE_AGE, USE_SEX));

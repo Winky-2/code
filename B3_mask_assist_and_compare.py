@@ -76,18 +76,18 @@ from ultralytics import YOLO
 
 # --- 輸入 ---
 SEG_WEIGHTS = "yolo11_seg_run/weights_ready.pt"
-IMAGE_DIR = "test_segment/test/images"       # 👈 seg 的 test 影像(與 B2s 相同)
-GT_LABEL_DIR = "test_segment/test/labels"    # 👈 pose 或 seg 格式皆可；留空則強制 center
+IMAGE_DIR = "test_single_seg-67/test/images"       # 👈 seg 的 test 影像(與 B2s 相同)
+GT_LABEL_DIR = "test_single_seg-67/test/labels"    # 👈 pose 或 seg 格式皆可；留空則強制 center
 
 # --- scale 來源 ---
-SCALE_SOURCE = "auto"                        # "auto"(先查 xlsx，查不到用原圖) | "xlsx" | "original"
-SCALE_XLSX = "scale表_備份_20260921.xlsx"
+SCALE_SOURCE = "auto"                      # "auto"(先查 xlsx，查不到用原圖) | "xlsx" | "original"
+SCALE_XLSX = ""
 SCALE_XLSX_SHEET = "逐顆牙對照"
-ORIGINAL_IMAGE_DIR = ""                      # 原始(未 letterbox)影像資料夾；有填就交叉驗證
+ORIGINAL_IMAGE_DIR = "cropped_test_teeth"                      # 原始(未 letterbox)影像資料夾；有填就交叉驗證
 SCALE_MISMATCH_TOL = 0.01                    # 兩種 scale 相差超過 1% → QC 標記
 
 # --- 輸出 ---
-OUTPUT_XLSX = "B3_mask輔助對照_11.xlsx"
+OUTPUT_XLSX = "B3_mask輔助對照.xlsx"
 VIS_DIR = "B3_mask視覺化"
 SAVE_VISUALIZATION = True
 
@@ -101,7 +101,7 @@ AMBIGUOUS_IOU_GAP = 0.15           # 最佳與次佳 mask 的 IoU 差距小於�
 
 # --- 方向判定 ---
 ORIENT_MODE = "arch"               # "arch"(牙位決定，查不到退回 width) | "width"
-MM_XLSX = "根管充填長度_20260904.xlsx"   # 只讀 圖片檔名 + 牙位
+MM_XLSX = "根管充填長度_20260921-67.xlsx"   # 只讀 圖片檔名 + 牙位
 MM_SHEET = "資料填寫"
 
 # --- QC 門檻 ---
@@ -351,12 +351,17 @@ def pick_by_gt_iou(polygons, gt_bbox):
 # ============================================================
 
 _RF_SUFFIX = re.compile(r"_(?:jpg|jpeg|png)\.rf\.[0-9a-z]+$", re.I)
+_LEADING_NUM = re.compile(r"^\s*0*(\d+)")
 
 
 def base_key(name):
-    """xxx_jpg.rf.<hash>.jpg → xxx，用來把 letterbox 圖對回原圖。"""
-    s = _RF_SUFFIX.sub("", Path(str(name)).stem)
-    return s.lower()
+    """取檔名開頭的編號當 key：060_xxx.jpg / 60-yyy.png → '60'。
+    開頭不是數字的檔名才退回舊規則(剝 Roboflow 後綴)。"""
+    stem = Path(str(name)).stem
+    m = _LEADING_NUM.match(stem)
+    if m:
+        return str(int(m.group(1)))
+    return _RF_SUFFIX.sub("", stem).lower()
 
 
 def load_scale_table():

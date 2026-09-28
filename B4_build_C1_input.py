@@ -71,13 +71,13 @@ import pandas as pd
 # ============================================================
 
 # --- 輸入檔 ---
-B3_XLSX = "B3_mask輔助對照_11.xlsx"
+B3_XLSX = "B3_mask輔助對照.xlsx"
 B3_SHEET = "逐顆牙對照"
 
 B2_XLSX = ""                              # seg-only：B3 已帶 scale，留空即可
 B2_SHEET = 0
 
-MM_XLSX = "根管充填長度_20260921 - 57.xlsx"
+MM_XLSX = "根管充填長度_20260921-67.xlsx"
 MM_SHEET = 0                              # 👈 補上：工作表名稱或索引，0=第一個工作表
 MM_EXTRA_COLS = ["牙位", "醫師備註（選填）", "年齡", "性別"]
 MM_HEADER_ROW = None                      # None = 自動找標頭列(這份檔前面有說明列)
@@ -148,22 +148,23 @@ _RF_SUFFIX = re.compile(r"_(?:jpg|jpeg|png)\.rf\.[0-9a-z]+$", re.I)
 _EXT = re.compile(r"\.(?:jpg|jpeg|png|tif|tiff|dcm)$", re.I)
 _AUG = re.compile(r"_aug\d+$", re.I)
 
+_LEADING_NUM = re.compile(r"^\s*0*(\d+)")
 
 def normalize_name(name) -> str:
-    """把各種來源的檔名壓成同一把鑰匙。
-
-    xxx_jpg.rf.a1b2c3.jpg → xxx
-    XXX .PNG              → xxx
-    大小寫、空白、全形括號差異一併吸收。
-    """
+    """取檔名開頭的編號當 key：060_xxx.jpg / 001.jpg → '60' / '1'。
+    開頭不是數字的檔名才退回舊規則。"""
     s = str(name).strip()
-    s = _EXT.sub("", s)          # 先去副檔名
-    s = _RF_SUFFIX.sub("", s)    # 再去 Roboflow 後綴
-    s = _EXT.sub("", s)          # 後綴剝完可能又露出一層
+    m = _LEADING_NUM.match(s)
+    if m:
+        return str(int(m.group(1)))
+    s = _EXT.sub("", s)
+    s = _RF_SUFFIX.sub("", s)
+    s = _EXT.sub("", s)
     s = _AUG.sub("", s)
     s = s.replace("（", "(").replace("）", ")")
     s = re.sub(r"[\s_\-]+", "", s)
     return s.lower()
+
 
 
 def guess_column(df, keywords, exclude=()):
