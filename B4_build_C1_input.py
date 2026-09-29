@@ -71,7 +71,7 @@ import pandas as pd
 # ============================================================
 
 # --- 輸入檔 ---
-B3_XLSX = "B3_mask輔助對照.xlsx"
+B3_XLSX = "B3_mask輔助對照_11n.xlsx"
 B3_SHEET = "逐顆牙對照"
 
 B2_XLSX = ""                              # seg-only：B3 已帶 scale，留空即可

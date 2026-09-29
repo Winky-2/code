@@ -42,12 +42,12 @@ from ultralytics import YOLO
 # 第1部分：設定
 # ============================================================
 
-SEG_WEIGHTS = "yolo11m_seg_run/weights_ready.pt"
+SEG_WEIGHTS = "yolo11n_seg_run/weights_ready.pt"
 IMAGE_DIR = "test_single_seg-67/test/images"   # 👈 必須與 B2 的 IMAGE_DIR 完全相同
 LABEL_DIR = "test_single_seg-67/test/labels"   # 👈 GT 多邊形標註（算 mAP 用）
 
-OUTPUT_XLSX = "B2_seg推論統計_11m.xlsx"
-VIS_DIR = "B2_seg視覺化_11m"
+OUTPUT_XLSX = "B2_seg推論統計_11n.xlsx"
+VIS_DIR = "B2_seg視覺化_11n"
 SAVE_VISUALIZATION = True
 
 IMG_SIZE = 640          # 👈 跟 seg 訓練時一致

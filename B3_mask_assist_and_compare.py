@@ -75,7 +75,7 @@ from ultralytics import YOLO
 # ============================================================
 
 # --- 輸入 ---
-SEG_WEIGHTS = "yolo11_seg_run/weights_ready.pt"
+SEG_WEIGHTS = "yolo11n_seg_run/weights_ready.pt"
 IMAGE_DIR = "test_single_seg-67/test/images"       # 👈 seg 的 test 影像(與 B2s 相同)
 GT_LABEL_DIR = "test_single_seg-67/test/labels"    # 👈 pose 或 seg 格式皆可；留空則強制 center
 
@@ -87,8 +87,8 @@ ORIGINAL_IMAGE_DIR = "cropped_test_teeth"                      # 原始(未 lett
 SCALE_MISMATCH_TOL = 0.01                    # 兩種 scale 相差超過 1% → QC 標記
 
 # --- 輸出 ---
-OUTPUT_XLSX = "B3_mask輔助對照.xlsx"
-VIS_DIR = "B3_mask視覺化"
+OUTPUT_XLSX = "B3_mask輔助對照_11n.xlsx"
+VIS_DIR = "B3_mask視覺化_11n"
 SAVE_VISUALIZATION = True
 
 # --- 推論參數 ---

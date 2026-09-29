@@ -1,7 +1,7 @@
 task: segment
 mode: train
 model: yolo11n-seg.pt
-data: yolo11_seg_run\data\data.yaml
+data: yolo11n_seg_run\data\data.yaml
 epochs: 150
 time: null
 patience: 0
@@ -12,7 +12,7 @@ save_period: -1
 cache: false
 device: ''
 workers: 8
-project: yolo11_seg_run
+project: yolo11n_seg_run
 name: tooth_seg
 exist_ok: false
 pretrained: true
@@ -112,4 +112,4 @@ auto_augment: randaugment
 erasing: 0.4
 cfg: null
 tracker: tracktrack.yaml
-save_dir: C:\Users\user\Desktop\小專題\code\runs\segment\yolo11_seg_run\tooth_seg
+save_dir: C:\Users\user\Desktop\小專題\code\runs\segment\yolo11n_seg_run\tooth_seg
