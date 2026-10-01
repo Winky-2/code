@@ -65,3 +65,5 @@ C2.m        把C1結果畫成圖
 
 C1_v2.m 和 C2_v2.m 是改成用K-Fold的方式訓練ANN
 C1_v3.m 和 C2_v3.m 是將excel檔新增的年齡、性別加入當參數計算
+
+C1_v4.m     設定很大epoch，然後每10回報一次MAE
