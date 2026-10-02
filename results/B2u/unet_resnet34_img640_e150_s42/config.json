@@ -1,0 +1,9 @@
+{
+  "UNET_RUN_DIR": "results\\B1u\\unet_resnet34_img640_e150_s42",
+  "UNET_WEIGHTS": "best.pt",
+  "IMAGE_DIR": "test_single_seg-67/test/images",
+  "LABEL_DIR": "test_single_seg-67/test/labels",
+  "THRESH": 0.5,
+  "YOLO_WEIGHTS": "yolo11n_seg_run/weights_ready.pt",
+  "YOLO_CONF": 0.15
+}
