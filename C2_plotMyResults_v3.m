@@ -18,7 +18,7 @@ function C2v2_plotMyResults()
 % ============================================================
 
     %% 1. 設定(必須跟 C1 跑的那次一致)
-    METHOD  = 'GT_mask幾何';   % 原本是 '冠寬比例尺'   % 'mask幾何' | '冠寬比例尺' | '牙位基準'
+    METHOD  = 'mask幾何_長邊正規化';   % 原本是 '冠寬比例尺'   % 'mask幾何' | '冠寬比例尺' | '牙位基準'
     USE_AGE = false;
     USE_SEX = false;
     SHOW_ERROR_BARS = false;

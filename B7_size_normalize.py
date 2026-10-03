@@ -7,9 +7,10 @@ B7_size_normalize.py
       只用影像本身的尺寸、沒用到醫師 mm → 不會資料洩漏
       複製既有 C1 輸入檔，只換「像素長度」欄 → 列、順序、fold 完全相同(單一變因)
 
-產出：results/B7/<run_tag>/
+產出：直接寫在本檔所在資料夾(code\，跟 B4 的輸出放一起)
   根管填充物像素長度_已配對_<原方法>_<尺度>正規化.xlsx   ← C1 的 METHOD = 檔名後綴
-  正規化摘要.xlsx(三種尺度的 px/mm CV、逐尺寸分組)、config.json
+  B7_正規化摘要.xlsx(三種尺度的 px/mm CV、逐尺寸分組)、B7_config.json
+  檔名都帶「正規化」/「B7_」，不會蓋到 B4 或其他既有檔；重跑 B7 只會覆寫 B7 自己的產出
 
 操作：
 1. FULL_IMAGE_DIR 填 test.py 用的那個整張 X 光資料夾
@@ -27,17 +28,17 @@ import pandas as pd
 from PIL import Image
 
 # ==================== 可手動修改 ====================
-RUN_NOW = True  # False 只印說明，不執行
+RUN_NOW = True
 
-FULL_IMAGE_DIR = r"data set/test_A1"      # 👈 跟 test.py 的 RAW_DIR 一樣
+FULL_IMAGE_DIR = r"data set/Data_test"      # 👈 跟 test.py 的 RAW_DIR 一樣
 INPUTS = {                                          # 原方法名 : 既有 C1 輸入檔(只讀)
     "mask幾何": "根管填充物像素長度_已配對_mask幾何.xlsx",
-    "GT_mask幾何": r"results/B3g/gt_oracle_frag1_2/根管填充物像素長度_已配對_GT_mask幾何.xlsx",
 }
 NORM = "長邊"            # "長邊" | "短邊" | "對角線"
 REF = 1200               # 換算成長邊 1200 px 等效，只為數字好讀；C1 斜率會吸收常數
-OUT_ROOT = "results/B7"
 # ===================================================
+
+HERE = Path(__file__).resolve().parent
 
 EXTS = {".jpg", ".jpeg", ".png", ".bmp", ".tif", ".tiff"}
 _NUM = re.compile(r"^\s*0*(\d+)")
@@ -90,16 +91,9 @@ def scale_table(df):
     return pd.DataFrame(rows).round(3)
 
 
-def new_out_dir(tag):
-    base = Path(OUT_ROOT) / tag
-    d, k = base, 2
-    while d.exists():
-        d, k = Path(f"{base}_{k}"), k + 1
-    d.mkdir(parents=True)
-    return d
-
-
 def main():
+    import os
+    os.chdir(HERE)                    # 相對路徑一律以 code\ 為準，從哪裡執行都一樣
     sizes = read_sizes()
     data = {}
     for label, path in INPUTS.items():
@@ -117,7 +111,8 @@ def main():
         return
 
     f = SCALES[NORM]
-    out = new_out_dir(f"size_norm_{NORM}_ref{REF}")
+    out = HERE
+    protected = {Path(p).resolve() for p in INPUTS.values()}
     summary = {}
     for label, df in data.items():
         df = df.copy()
@@ -127,7 +122,12 @@ def main():
         method = f"{label}_{NORM}正規化"
         if "長度方法" in df.columns:
             df["長度方法"] = method
-        df.to_excel(out / f"根管填充物像素長度_已配對_{method}.xlsx", index=False)
+        dst = out / f"根管填充物像素長度_已配對_{method}.xlsx"
+        if dst.resolve() in protected:
+            raise RuntimeError(f"輸出檔 {dst.name} 跟輸入檔同名，會蓋掉原檔，已停止")
+        if dst.exists():
+            print(f"♻️  覆寫 B7 之前的產出：{dst.name}")
+        df.to_excel(dst, index=False)
 
         y = df["填充物長度(mm)"]
         g = (df.assign(px每mm=df["像素長度"] / y)
@@ -139,18 +139,17 @@ def main():
               f"{cv(df['像素長度'] / y):.3f}，X–Y r {df['像素長度'].corr(y):.3f}")
         print(g.to_string())
 
-    with pd.ExcelWriter(out / "正規化摘要.xlsx", engine="openpyxl") as w:
+    with pd.ExcelWriter(out / "B7_正規化摘要.xlsx", engine="openpyxl") as w:
         for label, df in data.items():
             scale_table(df).to_excel(w, sheet_name=f"{label}_三種尺度"[:31], index=False)
         for method, g in summary.items():
             g.to_excel(w, sheet_name=f"{method}_分組"[:31])
     json.dump({"FULL_IMAGE_DIR": FULL_IMAGE_DIR, "INPUTS": INPUTS, "NORM": NORM, "REF": REF},
-              open(out / "config.json", "w", encoding="utf-8"), ensure_ascii=False, indent=2)
+              open(out / "B7_config.json", "w", encoding="utf-8"), ensure_ascii=False, indent=2)
 
-    print(f"\n📁 {out}")
+    print(f"\n📁 輸出在 {out}(跟 B4 的檔案同一層)")
     print("👉 MATLAB：")
-    print(f"   addpath('{Path.cwd().as_posix()}');")
-    print(f"   cd('{out.resolve().as_posix()}');")
+    print(f"   cd('{out.as_posix()}');")
     for label in data:
         print(f"   C1 的 METHOD = '{label}_{NORM}正規化'")
     print("   對照：同一份資料未正規化的 C1 結果(mask幾何 1.321 / GT_mask幾何 1.289 mm)")
