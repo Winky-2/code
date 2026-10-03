@@ -1,0 +1,8 @@
+{
+  "FULL_IMAGE_DIR": "data set/Data_test",
+  "INPUTS": {
+    "mask幾何": "根管填充物像素長度_已配對_mask幾何.xlsx"
+  },
+  "NORM": "長邊",
+  "REF": 1200
+}
