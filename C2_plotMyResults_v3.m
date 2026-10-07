@@ -18,8 +18,8 @@ function C2v2_plotMyResults()
 % ============================================================
 
     %% 1. 設定(必須跟 C1 跑的那次一致)
-    METHOD  = 'mask幾何';   % 原本是 '冠寬比例尺'   % 'mask幾何' | '冠寬比例尺' | 'mask幾何_長邊正規化'
-    USE_AGE = false;
+    METHOD  = 'mask幾何_長邊正規化';   % 原本是 '冠寬比例尺'   % 'mask幾何' | '冠寬比例尺' | 'mask幾何_長邊正規化'
+    USE_AGE = true;
     USE_SEX = false;
     SHOW_ERROR_BARS = false;
 
