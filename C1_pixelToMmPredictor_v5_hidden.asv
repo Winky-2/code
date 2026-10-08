@@ -1,4 +1,4 @@
-function C1_pixelToMmPredictor_v5()
+function C1_pixelToMmPredictor_v6()
 %% C1_pixelToMmPredictor_v6.m
 % ============================================================
 % 以 v3 為底，只做三件事：
@@ -17,7 +17,7 @@ function C1_pixelToMmPredictor_v5()
 % ============================================================
 
     %% ---------------- 輸入設定區 ----------------
-    METHOD = 'mask幾何_長邊正規化';   % 'mask幾何_長邊正規化' | '冠寬比例尺'
+    METHOD = 'mask幾何_長邊正規化_hid5';   % 'mask幾何_長邊正規化' | '冠寬比例尺'
     filename = ['根管填充物像素長度_已配對_' METHOD '.xlsx'];
 
     FOLD_COLUMN  = '折數fold';
@@ -25,7 +25,7 @@ function C1_pixelToMmPredictor_v5()
 
     %% ---------------- 特徵設定區 ----------------
     USE_AGE = false;      % 年齡進模型
-    USE_SEX = false;      % 性別進模型(M=1, F=0)
+    USE_SEX = true;      % 性別進模型(M=1, F=0)
     AGE_COLUMN = '年齡';
     SEX_COLUMN = '性別';
 
@@ -34,7 +34,7 @@ function C1_pixelToMmPredictor_v5()
     N_REPEATS  = 10;
     BASE_SEED  = 42;
 
-    HIDDEN_SIZE = [3 3];
+    HIDDEN_SIZE = [5 5];
     TRAIN_FCN   = 'trainbr';
     MAX_EPOCHS  = 200;
 
@@ -103,8 +103,7 @@ function C1_pixelToMmPredictor_v5()
     p = size(Xmat, 2);
     featDesc = strjoin(featNames, ' + ');
     FEAT_TAG = featTag(USE_AGE, USE_SEX);
-    h = [p HIDDEN_SIZE 1];
-    nParam = sum(h(1:end-1) .* h(2:end)) + sum(h(2:end));
+    nParam = HIDDEN_SIZE*p + HIDDEN_SIZE + HIDDEN_SIZE + 1;
 
     fprintf('=== C1 v6：%s ===\n', METHOD);
     fprintf('載入 %d 筆樣本。輸入特徵：%s\n', n, featDesc);
@@ -275,7 +274,7 @@ function C1_pixelToMmPredictor_v5()
     end
 
     %% --- 7. 匯出 ---
-    output_filename = sprintf('預測結果與評估指標_kfold_%s%s_H%s.xlsx', METHOD, FEAT_TAG, strrep(mat2str(HIDDEN_SIZE),' ','-'));
+    output_filename = sprintf('預測結果與評估指標_kfold_%s%s.xlsx', METHOD, FEAT_TAG);
     if isfile(output_filename), delete(output_filename); end
     writetable(ResultsTable, output_filename, 'Sheet', '所有牙齒預測結果');
     writetable(MetricsTable, output_filename, 'Sheet', '模型評估指標');
