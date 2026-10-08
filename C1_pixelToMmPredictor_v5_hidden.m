@@ -17,14 +17,14 @@ function C1_pixelToMmPredictor_v6()
 % ============================================================
 
     %% ---------------- 輸入設定區 ----------------
-    METHOD = 'mask幾何';   % 'mask幾何' | '冠寬比例尺' | '牙位基準'
+    METHOD = 'mask幾何_長邊正規化';   % 'mask幾何_長邊正規化' | '冠寬比例尺'
     filename = ['根管填充物像素長度_已配對_' METHOD '.xlsx'];
 
     FOLD_COLUMN  = '折數fold';
     SPLIT_COLUMN = '資料夾來源';   % 只在 USE_KFOLD=false 時才用
 
     %% ---------------- 特徵設定區 ----------------
-    USE_AGE = false;      % 年齡進模型
+    USE_AGE = true;      % 年齡進模型
     USE_SEX = false;      % 性別進模型(M=1, F=0)
     AGE_COLUMN = '年齡';
     SEX_COLUMN = '性別';
@@ -34,7 +34,7 @@ function C1_pixelToMmPredictor_v6()
     N_REPEATS  = 10;
     BASE_SEED  = 42;
 
-    HIDDEN_SIZE = 5;
+    HIDDEN_SIZE = 3;
     TRAIN_FCN   = 'trainbr';
     MAX_EPOCHS  = 200;
 

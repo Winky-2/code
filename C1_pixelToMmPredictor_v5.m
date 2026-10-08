@@ -17,7 +17,7 @@ function C1_pixelToMmPredictor_v6()
 % ============================================================
 
     %% ---------------- 輸入設定區 ----------------
-    METHOD = 'mask幾何';   % 'mask幾何' | '冠寬比例尺' | '牙位基準'
+    METHOD = 'mask幾何';   % 'mask幾何_長邊正規化' | '冠寬比例尺'
     filename = ['根管填充物像素長度_已配對_' METHOD '.xlsx'];
 
     FOLD_COLUMN  = '折數fold';
