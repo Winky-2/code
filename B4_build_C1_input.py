@@ -71,7 +71,7 @@ import pandas as pd
 # ============================================================
 
 # --- 輸入檔 ---
-B3_XLSX = "B3_mask輔助對照.xlsx"
+B3_XLSX = "B3_mask輔助對照_11n_padded.xlsx"
 B3_SHEET = "逐顆牙對照"
 
 B2_XLSX = ""                              # seg-only：B3 已帶 scale，留空即可
@@ -92,7 +92,7 @@ OVERRIDE_CSV = ""
 
 # --- 輸出 ---
 OUTPUT_PREFIX = "根管填充物像素長度_已配對"
-DIAGNOSTIC_XLSX = "B4_配對診斷.xlsx"
+DIAGNOSTIC_XLSX = "B4_配對診斷_11n_padded.xlsx"
 
 # --- 像素方法：輸出檔名後綴 → B3 的欄位名 ---
 METHODS = {

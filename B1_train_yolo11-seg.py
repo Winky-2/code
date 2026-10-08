@@ -52,8 +52,8 @@ import yaml
 from ultralytics import YOLO
 
 # ---------------- 設定區 ----------------
-SEG_DATA_DIR = "train_single_seg-268"        # 👈 Roboflow Instance Segmentation 匯出資料夾
-WORK_DIR = "yolo11_seg_run"      # 訓練用資料/權重輸出的工作資料夾
+SEG_DATA_DIR = "A5_train_padded/tb0.10_crop_seg_640"        # 👈 Roboflow Instance Segmentation 匯出資料夾
+WORK_DIR = "yolo11n_seg_run_padded"      # 訓練用資料/權重輸出的工作資料夾
 
 BASE_MODEL = "yolo11n-seg.pt"                     # 👈 跟 pose 版唯一的模型差異
 EPOCHS = 150

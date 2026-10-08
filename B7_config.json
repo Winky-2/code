@@ -1,0 +1,22 @@
+{
+  "FULL_IMAGE_DIR": "data set/Data_test",
+  "TRAIN_SEEDS": [
+    0,
+    1,
+    2,
+    3,
+    4
+  ],
+  "METHODS": [
+    "mask幾何"
+  ],
+  "NORM": "長邊",
+  "REF": 1200,
+  "INPUTS": {
+    "mask幾何|0": "根管填充物像素長度_已配對_mask幾何_seed0.xlsx",
+    "mask幾何|1": "根管填充物像素長度_已配對_mask幾何_seed1.xlsx",
+    "mask幾何|2": "根管填充物像素長度_已配對_mask幾何_seed2.xlsx",
+    "mask幾何|3": "根管填充物像素長度_已配對_mask幾何_seed3.xlsx",
+    "mask幾何|4": "根管填充物像素長度_已配對_mask幾何_seed4.xlsx"
+  }
+}
