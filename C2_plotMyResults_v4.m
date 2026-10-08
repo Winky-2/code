@@ -9,16 +9,10 @@ function C2_plotMyResults_v5()
 % ============================================================
 
     %% 1. 設定(必須跟 C1 跑的那次一致)
-<<<<<<< HEAD
-    METHOD  = '冠寬比例尺';   % 'mask幾何' | '冠寬比例尺' | '牙位基準'
-    USE_AGE = false;
-    USE_SEX = false;
-=======
     METHOD  = 'mask幾何_長邊正規化';   % 'mask幾何' | '冠寬比例尺'
     USE_AGE = false;
-    USE_SEX = false;
-    HIDDEN_SIZE = [5 5];
->>>>>>> eea951abe853d0f7c147ec4001a7ca08d509272e
+    USE_SEX = true;
+    HIDDEN_SIZE = [3 3];
     SHOW_ERROR_BARS = false;
 
     filename = sprintf('預測結果與評估指標_kfold_%s%s_H%s.xlsx', METHOD, featTag(USE_AGE, USE_SEX), strrep(mat2str(HIDDEN_SIZE),' ','-'));
