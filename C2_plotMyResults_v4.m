@@ -1,18 +1,11 @@
-function C2_plotMyResults_v4()
-%% C2_plotMyResults_v4.m
+function C2_plotMyResults_v5()
+%% C2_plotMyResults_v5.m
 % ============================================================
-% 搭配 C1_pixelToMmPredictor_v5.m。相對 v3 的改動：
-%
-%   (1) SHOW_OVERLENGTH 開關(要跟 C1 設成一樣)。false 時：
-%       - 不讀、不顯示「過長率」
-%       - 圖 3 不再把過長樣本標成紅色三角
-%   (2) 圖 3 的文字框改成「報告用的校正後指標組」：
-%       MAE / RMSE / Bias / 理想比率 / R / r^2 / R2_OOF / 95% LoA
-%   (3) 新欄位(R_Pearson / R2_OOF / SD_res_mm)讀不到時自動略過，
-%       所以舊版 C1 的輸出也還讀得起來。
-%
-% ⚠️ offset 只是平移：R、r^2、Spearman、SD_res 校正前後同值，
-%    圖上標的 R 就是未校正的 R，不要在報告裡寫成兩個數字。
+% 搭配 C1_pixelToMmPredictor_v6.m。以 v3 為底，只做三件事：
+%   (1) 圖 3 的文字框改成校正後那組：MAE / RMSE / Bias / R / R^2 / 理想比率
+%   (2) 拿掉「過長率」，圖 3 不再把過長樣本標成紅色三角
+%   (3) 不再讀「是否過長」欄(C1_v6 已不輸出)
+% 其餘(排序點圖、散布圖、年齡/性別誤差分析)與 v3 相同。
 % ============================================================
 
     %% 1. 設定(必須跟 C1 跑的那次一致)
@@ -20,12 +13,11 @@ function C2_plotMyResults_v4()
     USE_AGE = false;
     USE_SEX = false;
     SHOW_ERROR_BARS = false;
-    SHOW_OVERLENGTH = false;   % 要跟 C1_v5 的同名開關一致
 
     filename = sprintf('預測結果與評估指標_kfold_%s%s.xlsx', METHOD, featTag(USE_AGE, USE_SEX));
     if ~isfile(filename)
         error(['找不到 %s\n' ...
-               '   請先用同樣的 METHOD / USE_AGE / USE_SEX 跑一次 C1。'], filename);
+               '   請先用同樣的 METHOD / USE_AGE / USE_SEX 跑一次 C1_v6。'], filename);
     end
     fprintf('正在從 %s 讀取預測資料...\n', filename);
 
@@ -43,7 +35,6 @@ function C2_plotMyResults_v4()
     Y             = data_test.('實際長度_mm');
     Y_pred        = data_test.('模型預測_mm');
     Y_pred_offset = data_test.('校正後預測_mm');
-    is_overest    = logical(data_test.('是否過長'));
     n = length(Y);
 
     vn = data_test.Properties.VariableNames;
@@ -70,31 +61,20 @@ function C2_plotMyResults_v4()
         lin_row  = pickRowOptional(data_metrics, labels, 'D_線性迴歸對照組');
     end
 
-    % --- 未校正(圖 2 用) ---
+    % 未校正(圖 2 用)
     test_mae  = getNum(test_row, 'MAE_mm');
     test_rmse = getNum(test_row, 'RMSE_mm');
+    test_r    = getNum(test_row, 'R_Pearson');
     test_r2   = getNum(test_row, 'R_Square');
     test_bias = getNum(test_row, 'Mean_Bias_mm');
-    test_r    = getNum(test_row, 'R_Pearson');     % 新欄位，舊檔沒有 → NaN
 
-    % --- 校正後(圖 3、報告用) ---
+    % 校正後(圖 3、報告用)
     clinical_mae   = getNum(clinical_row, 'MAE_mm');
     clinical_rmse  = getNum(clinical_row, 'RMSE_mm');
     clinical_bias  = getNum(clinical_row, 'Mean_Bias_mm');
-    clinical_ideal = getNum(clinical_row, '理想比率_pct');
     clinical_r     = getNum(clinical_row, 'R_Pearson');
     clinical_r2    = getNum(clinical_row, 'R_Square');
-    clinical_r2oof = getNum(clinical_row, 'R2_OOF');
-    clinical_sdres = getNum(clinical_row, 'SD_res_mm');
-
-    clinical_overest = NaN;
-    if SHOW_OVERLENGTH
-        clinical_overest = getNum(clinical_row, '過長率_pct');
-        if isnan(clinical_overest)
-            warning(['SHOW_OVERLENGTH=true 但輸出檔沒有「過長率_pct」欄。\n' ...
-                     '   請把 C1 的同名開關也設成 true 再重跑，或在這裡設回 false。']);
-        end
-    end
+    clinical_ideal = getNum(clinical_row, '理想比率_pct');
 
     sd_mae = NaN; sd_ideal = NaN;
     if ~isempty(sd_row)
@@ -153,12 +133,12 @@ function C2_plotMyResults_v4()
     plot([min_val, max_val], [min_val+1.0, max_val+1.0], 'g:', 'LineWidth', 1.5, 'DisplayName', '+1.0 mm 誤差線');
     plot([min_val, max_val], [min_val-1.0, max_val-1.0], 'g:', 'LineWidth', 1.5, 'DisplayName', '-1.0 mm 誤差線');
     xlabel('實際長度 (mm)'); ylabel('預測長度 (mm)');
-    title(['實際長度 vs 預測長度 (' ttl '，未校正，搭配誤差容忍區間)']);
+    title(['實際長度 vs 預測長度 (' ttl '，未校正)']);
     legend('Location', 'southeast'); grid on;
 
     metric_text = sprintf(['【未校正 OOF 指標】\n量測法 : %s\n輸入 : %s\n' ...
-        'RMSE : %.3f mm\nMAE : %.3f mm%s\nMean Bias : %.3f mm\n%sr^2 : %.3f\n(n = %d)'], ...
-        METHOD, featDesc, test_rmse, test_mae, sdSuffix(sd_mae, 'mm'), test_bias, ...
+        'MAE : %.3f mm%s\nRMSE : %.3f mm\nMean Bias : %.3f mm\n%sR^2 : %.3f\n(n = %d)'], ...
+        METHOD, featDesc, test_mae, sdSuffix(sd_mae, 'mm'), test_rmse, test_bias, ...
         lineIf('R : %.3f\n', test_r), test_r2, n);
     placeText(metric_text, 0.18);
     hold off;
@@ -166,14 +146,7 @@ function C2_plotMyResults_v4()
     %% 6. 圖表 3：校正後(報告用)
     figure('Name', ['Offset-corrected (OOF) - ' METHOD], 'NumberTitle', 'off');
     hold on;
-    if SHOW_OVERLENGTH
-        scatter(Y(~is_overest), Y_pred_offset(~is_overest), 45, 'b', 'filled', ...
-            'DisplayName', '校正後預測 (在容忍範圍內或偏短)');
-        scatter(Y(is_overest), Y_pred_offset(is_overest), 45, 'r', 'filled', ...
-            'Marker', '^', 'DisplayName', '校正後預測仍過長');
-    else
-        scatter(Y, Y_pred_offset, 45, 'b', 'filled', 'DisplayName', '校正後預測');
-    end
+    scatter(Y, Y_pred_offset, 45, 'b', 'filled', 'DisplayName', '校正後預測');
     min_val2 = floor(min([Y; Y_pred_offset])) - 1;
     max_val2 = ceil(max([Y; Y_pred_offset])) + 1;
     plot([min_val2, max_val2], [min_val2, max_val2], 'w-', 'LineWidth', 2, 'DisplayName', '完美預測線 (誤差 0)');
@@ -184,26 +157,13 @@ function C2_plotMyResults_v4()
     title(['校正後預測長度 vs 實際長度 (' ttl ')']);
     legend('Location', 'southeast'); grid on;
 
-    loaTxt = '';
-    if ~isnan(clinical_sdres) && ~isnan(clinical_bias)
-        loaTxt = sprintf('95%% LoA : [%.2f, %.2f] mm\n', ...
-            clinical_bias - 1.96*clinical_sdres, clinical_bias + 1.96*clinical_sdres);
-    end
     clinical_text = sprintf(['【校正後 OOF 指標 (報告用)】\n量測法 : %s\n輸入 : %s\n' ...
-        'MAE : %.3f mm%s\n%sMean Bias : %.3f mm\n%s%s%s理想比率 : %.1f%%%s\n%s(n = %d)'], ...
-        METHOD, featDesc, ...
-        clinical_mae, sdSuffix(sd_mae, 'mm'), ...
-        lineIf('RMSE : %.3f mm\n', clinical_rmse), ...
-        clinical_bias, ...
-        lineIf('R : %.3f\n', clinical_r), ...
-        lineIf('r^2 : %.3f\n', clinical_r2), ...
-        lineIf('R2_OOF : %.3f\n', clinical_r2oof), ...
-        clinical_ideal, sdSuffix(sd_ideal, '%'), ...
-        loaTxt, n);
-    if SHOW_OVERLENGTH && ~isnan(clinical_overest)
-        clinical_text = sprintf('%s\n過長率 : %.1f%%', clinical_text, clinical_overest);
-    end
-    placeText(clinical_text, 0.28);
+        'MAE : %.3f mm%s\nRMSE : %.3f mm\nMean Bias : %.3f mm\n%sR^2 : %.3f\n' ...
+        '理想比率 : %.1f%%%s\n(n = %d)'], ...
+        METHOD, featDesc, clinical_mae, sdSuffix(sd_mae, 'mm'), clinical_rmse, ...
+        clinical_bias, lineIf('R : %.3f\n', clinical_r), clinical_r2, ...
+        clinical_ideal, sdSuffix(sd_ideal, '%'), n);
+    placeText(clinical_text, 0.26);
     hold off;
 
     %% 7. 圖表 4：誤差 vs 年齡 / 性別
@@ -260,15 +220,11 @@ function C2_plotMyResults_v4()
     %% 8. 終端機摘要(校正後)
     fprintf('\n=== 校正後 OOF 指標(報告用) ===\n');
     fprintf('  MAE       : %.3f mm%s\n', clinical_mae, sdSuffix(sd_mae, 'mm'));
-    printIf('  RMSE      : %.3f mm\n', clinical_rmse);
-    fprintf('  Mean Bias : %.3f mm\n', clinical_bias);
+    fprintf('  RMSE      : %.3f mm\n', clinical_rmse);
+    fprintf('  Mean Bias : %.3f mm  (正 = 整體偏長)\n', clinical_bias);
     printIf('  R         : %.3f  (offset 不影響，與未校正同值)\n', clinical_r);
-    printIf('  r^2       : %.3f  (同上)\n', clinical_r2);
-    printIf('  R2_OOF    : %.3f  (1-SSE/SST，會被 offset/bias 影響)\n', clinical_r2oof);
+    fprintf('  R^2       : %.3f  (同上)\n', clinical_r2);
     fprintf('  理想比率  : %.1f%%%s\n', clinical_ideal, sdSuffix(sd_ideal, '%'));
-    if SHOW_OVERLENGTH && ~isnan(clinical_overest)
-        fprintf('  過長率    : %.1f%%\n', clinical_overest);
-    end
 
     fprintf('\n✅ 圖表繪製完成。\n');
     fprintf('⚠️ 報告時務必附上 n=%d 與標準差。\n', n);
@@ -283,6 +239,7 @@ end
 %  ============================================================
 
 function tag = featTag(useAge, useSex)
+% 必須跟 C1 的 featTag 規則一致
     parts = {};
     if useAge, parts{end+1} = '年齡'; end
     if useSex, parts{end+1} = '性別'; end
