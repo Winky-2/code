@@ -1,15 +1,28 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 """
-B2_seg_inference_v4.py
+B2_seg_inference_v5.py
 ===============================================================
 seg 模型的驗收腳本（不是 B3 的上游；B3 自己重跑推論，只「讀」這支輸出的
 Excel 拿逐張 mAP 印在 B3 的圖上）。
 
 輸出（每個 seed 一份）：
-  1. OUTPUT_TMPL — 逐張的 mask 統計 + 逐張 Mask mAP50-95
-  2. VIS_TMPL    — 疊上 mask 輪廓的可視化影像，左上角印該張的 mAP50-95
-另有 SUMMARY_XLSX：跨 seed 的 mean ± SD，以及逐張 mAP 的跨 seed 寬表。
+  1. OUTPUT_TMPL — 逐張的 mask 統計 + 逐張 Mask mAP50-95 + 逐張 Mask MAE
+  2. VIS_TMPL    — 疊上 mask 輪廓的可視化影像，左上角印該張的 mAP50-95 與 MAE
+另有 SUMMARY_XLSX：跨 seed 的 mean ± SD，以及逐張 mAP / MAE 的跨 seed 寬表。
+
+*** v5 變更：逐張 Mask MAE ***
+MAE = mean|預測mask − GT mask|，在原圖解析度、整張圖(H×W)上算。
+二值 mask 下就等於「錯分像素佔整張圖的比例」(0 = 完全一致)。
+- GT：該張所有 GT 多邊形的聯集(test 集只標目標牙，通常就 1 個)
+- 預測：conf ≥ SEG_CONF、剔除碎塊後(= 圖上畫的、B3 實際用的)那幾個 mask 裡，
+  與 GT 聯集 IoU 最高的「一個」。不取全部預測的聯集，否則鄰牙會被算成錯誤。
+- 沒有預測 → 整個 GT 都算錯(MAE = GT 面積 / 整張圖)；沒有 GT 檔 → NaN。
+- 另存「MAE配對IoU」：IoU≈0 代表配錯牙，那張的 MAE 沒有意義。
+⚠️ 分母是整張圖(含 A5 補的黑邊)，牙齒佔比小 → 數值會很小，且跟 mask 大小
+   有關；跨張比較時大牙天生 MAE 較大。只拿來排序找爛圖，不要當主要指標。
+⚠️ mAP 仍用原始 mask(評模型本身)；MAE 用後處理後的 mask(評 B3 拿到的東西)。
+   REMOVE_FRAGMENTS=False 時兩者用的是同一批 mask。
 
 *** v4 變更：多 seed ***
 逐一載入 B1_train_yolo11-seg_v2.py 各 seed 的權重，推論邏輯與 v3 完全相同。
@@ -44,7 +57,7 @@ from ultralytics import YOLO
 TRAIN_SEEDS = [0, 1, 2, 3, 4]                                   # 👈 與 B1 v2 一致
 WEIGHTS_TMPL = "yolo11n_seg_run_padded_seed{s}/weights_ready.pt"
 IMAGE_DIR = "A5_test_padded/images"   # 👈 必須與 B3 的 IMAGE_DIR 完全相同
-LABEL_DIR = "A5_test_padded/labels"   # 👈 GT 多邊形標註（算 mAP 用）
+LABEL_DIR = "A5_test_padded/labels"   # 👈 GT 多邊形標註（算 mAP / MAE 用）
 
 OUTPUT_TMPL = "B2_seg推論統計_11n_padded_seed{s}.xlsx"   # 👈 B3 的 B2_XLSX 要指到對應 seed
 VIS_TMPL = "B2_seg視覺化_11n_padded_seed{s}"
@@ -52,10 +65,10 @@ SUMMARY_XLSX = "B2_seed彙整_11n_padded.xlsx"
 SAVE_VISUALIZATION = True
 
 IMG_SIZE = 640          # 👈 跟 seg 訓練時一致
-SEG_CONF = 0.15         # 統計欄位與畫圖用
+SEG_CONF = 0.15         # 統計欄位、畫圖、MAE 用
 AP_CONF = 0.001         # 算 mAP 用，不要改（Ultralytics val 預設）
 
-REMOVE_FRAGMENTS = True  # 畫圖/統計只留每個 mask 的最大連通區（不影響 mAP）
+REMOVE_FRAGMENTS = True  # 畫圖/統計/MAE 只留每個 mask 的最大連通區（不影響 mAP）
 
 IOU_THRESHOLDS = np.linspace(0.5, 0.95, 10)
 IMAGE_EXTENSIONS = {".jpg", ".jpeg", ".png"}
@@ -104,7 +117,7 @@ def load_gt_masks(label_path: Path, H, W):
     """讀 YOLO-seg 標註：class x1 y1 ... xn yn（正規化座標）。"""
     masks = []
     if not label_path.exists():
-        return None                      # 沒標註檔 → mAP 記 NaN
+        return None                      # 沒標註檔 → mAP/MAE 記 NaN
     for line in label_path.read_text(encoding="utf-8").splitlines():
         v = line.split()[1:]
         if len(v) < 6 or len(v) % 2:
@@ -159,7 +172,25 @@ def image_map50_95(pred_masks, pred_confs, gt_masks):
     return float(np.mean(aps))
 
 
-def draw(img_path, polygons, confs, map_val, out_path):
+def image_mask_mae(pred_masks, gt_masks):
+    """單張圖的 Mask MAE = mean|pred − GT|（整張圖 H×W 上的錯分像素比例）。
+    GT 取聯集；預測只取與 GT 聯集 IoU 最高的一個。回傳 (MAE, 配對IoU)。
+    GT 為 None/空 → (NaN, NaN)；沒有預測 → (GT 面積比例, 0)。"""
+    if gt_masks is None or len(gt_masks) == 0:
+        return float("nan"), float("nan")
+    gt = np.logical_or.reduce(gt_masks)
+    if len(pred_masks) == 0:
+        return float(gt.mean()), 0.0
+    ious = mask_iou(pred_masks, [gt])[:, 0]
+    k = int(np.argmax(ious))
+    return float(np.logical_xor(pred_masks[k], gt).mean()), float(ious[k])
+
+
+def _fmt(v, name, nd):
+    return f"{name}: N/A" if v is None or np.isnan(v) else f"{name}: {v:.{nd}f}"
+
+
+def draw(img_path, polygons, confs, map_val, mae_val, out_path):
     img = cv2.imread(str(img_path))
     if img is None:
         return
@@ -170,22 +201,25 @@ def draw(img_path, polygons, confs, map_val, out_path):
         cv2.putText(img, f"{conf:.2f}", tuple(top + np.int32([4, -6])),
                     cv2.FONT_HERSHEY_SIMPLEX, 0.45, (0, 200, 255), 1)
 
-    # ---- 左上角印 mAP50-95 ----
-    txt = "mAP50-95: N/A" if np.isnan(map_val) else f"mAP50-95: {map_val:.3f}"
+    # ---- 左上角印 mAP50-95 與 MAE（一行一個）----
+    lines = [_fmt(map_val, "mAP50-95", 3), _fmt(mae_val, "MAE", 4)]
     scale = max(0.6, img.shape[1] / 900)
     thick = max(1, int(round(scale * 2)))
-    (tw, th), base = cv2.getTextSize(txt, cv2.FONT_HERSHEY_SIMPLEX, scale, thick)
     pad = int(8 * scale)
-    cv2.rectangle(img, (0, 0), (tw + 2 * pad, th + base + 2 * pad), (0, 0, 0), -1)
-    cv2.putText(img, txt, (pad, pad + th), cv2.FONT_HERSHEY_SIMPLEX,
-                scale, (0, 255, 0), thick, cv2.LINE_AA)
+    y = 0
+    for txt in lines:
+        (tw, th), base = cv2.getTextSize(txt, cv2.FONT_HERSHEY_SIMPLEX, scale, thick)
+        cv2.rectangle(img, (0, y), (tw + 2 * pad, y + th + base + 2 * pad), (0, 0, 0), -1)
+        cv2.putText(img, txt, (pad, y + pad + th), cv2.FONT_HERSHEY_SIMPLEX,
+                    scale, (0, 255, 0), thick, cv2.LINE_AA)
+        y += th + base + 2 * pad
 
     out_path.parent.mkdir(parents=True, exist_ok=True)
     cv2.imwrite(str(out_path), img)
 
 
 # ============================================================
-# 第3部分：單一 seed 推論（邏輯與 v3 的 main 相同）
+# 第3部分：單一 seed 推論（邏輯與 v4 相同，多算 MAE）
 # ============================================================
 
 def run_one(seed, images, label_dir):
@@ -202,19 +236,19 @@ def run_one(seed, images, label_dir):
     print(f"\n################ seed {seed} ################")
     print(f"載入 seg 模型：{seg_weights}")
     print(f"待推論：{len(images)} 張，imgsz={IMG_SIZE}，"
-          f"統計/畫圖 conf={SEG_CONF}，mAP conf={AP_CONF}，"
+          f"統計/畫圖/MAE conf={SEG_CONF}，mAP conf={AP_CONF}，"
           f"剔除碎塊={REMOVE_FRAGMENTS}\n")
 
     rows = []
 
     for img_path in images:
-        # 用 AP_CONF 推論一次：全部拿去算 mAP，≥SEG_CONF 的才進統計與畫圖
+        # 用 AP_CONF 推論一次：全部拿去算 mAP，≥SEG_CONF 的才進統計、畫圖、MAE
         res = model.predict(source=str(img_path), imgsz=IMG_SIZE,
                             conf=AP_CONF, save=False, verbose=False)[0]
         H, W = res.orig_shape
 
         all_masks, all_confs = [], []
-        polygons, confs, entries = [], [], []
+        polygons, confs, entries, sel_masks = [], [], [], []
         if res.masks is not None:
             raw_confs = res.boxes.conf.tolist() if res.boxes is not None else []
             for i, poly in enumerate(res.masks.xy):
@@ -231,6 +265,7 @@ def run_one(seed, images, label_dir):
                     pts, n_drop = largest_part(pts, (H, W))
                 polygons.append(pts)
                 confs.append(conf)
+                sel_masks.append(poly_to_mask(pts, H, W))      # MAE：後處理後 mask
                 entries.append({
                     "conf": round(conf, 4),
                     "area": round(polygon_area(pts), 2),
@@ -240,6 +275,7 @@ def run_one(seed, images, label_dir):
 
         gt_masks = load_gt_masks(label_dir / f"{img_path.stem}.txt", H, W)
         map_val = image_map50_95(all_masks, all_confs, gt_masks)
+        mae_val, mae_iou = image_mask_mae(sel_masks, gt_masks)
 
         # 面積大的排前面，統計欄位固定看「最大的那顆」
         entries.sort(key=lambda e: e["area"], reverse=True)
@@ -253,16 +289,20 @@ def run_one(seed, images, label_dir):
             "最大mask頂點數": entries[0]["n_vertices"] if entries else 0,
             "最大mask剔除碎塊數": entries[0]["n_drop"] if entries else 0,
             "Mask_mAP50-95": None if np.isnan(map_val) else round(map_val, 4),
+            "Mask_MAE": None if np.isnan(mae_val) else round(mae_val, 6),
+            "MAE配對IoU": None if np.isnan(mae_iou) else round(mae_iou, 4),
             "GT數": None if gt_masks is None else len(gt_masks),
             "狀態": "✅" if entries else "❌無輸出",
         })
 
         if SAVE_VISUALIZATION:
-            draw(img_path, polygons, confs, map_val,
+            draw(img_path, polygons, confs, map_val, mae_val,
                  Path(vis_dir) / f"{img_path.stem}_seg.jpg")
 
     # ---- 寫檔 ----
     df = pd.DataFrame(rows)
+    for c in ("Mask_mAP50-95", "Mask_MAE", "MAE配對IoU"):
+        df[c] = pd.to_numeric(df[c], errors="coerce")
     with pd.ExcelWriter(output_xlsx, engine="openpyxl") as w:
         df.to_excel(w, sheet_name="seg推論統計", index=False)
 
@@ -270,6 +310,7 @@ def run_one(seed, images, label_dir):
     n_empty = int((df["mask數"] == 0).sum())
     n_nogt = int(df["GT數"].isna().sum())
     n_frag = int((df["最大mask剔除碎塊數"] > 0).sum())
+    n_mismatch = int((df["MAE配對IoU"] < 0.5).sum())
     sizes = df["影像尺寸"].unique()
 
     print(f"✅ 完成，共 {len(df)} 張")
@@ -279,10 +320,14 @@ def run_one(seed, images, label_dir):
     print(f"\n每張平均 mask 數：{df['mask數'].mean():.2f}")
     print(f"逐張 Mask mAP50-95 平均：{df['Mask_mAP50-95'].mean():.4f}"
           f"（中位數 {df['Mask_mAP50-95'].median():.4f}）")
+    print(f"逐張 Mask MAE 平均：{df['Mask_MAE'].mean():.6f}"
+          f"（中位數 {df['Mask_MAE'].median():.6f}，最差 {df['Mask_MAE'].max():.6f}）")
+    if n_mismatch:
+        print(f"⚠️ MAE 配對 IoU < 0.5：{n_mismatch} 張（可能配錯牙，那幾張 MAE 先別信）")
     if REMOVE_FRAGMENTS:
         print(f"✂️  最大 mask 帶碎塊（已剔除）：{n_frag} 張")
     if n_nogt:
-        print(f"⚠️ {n_nogt} 張沒有標註檔，mAP 記 N/A")
+        print(f"⚠️ {n_nogt} 張沒有標註檔，mAP/MAE 記 N/A")
     if n_empty:
         print(f"❌ 完全沒偵測到 mask：{n_empty} 張（這幾張 B3 會直接標記人工複查）")
     if len(sizes) > 1:
@@ -293,6 +338,8 @@ def run_one(seed, images, label_dir):
         "train_seed": seed,
         "逐張mAP平均": round(df["Mask_mAP50-95"].mean(), 4),
         "逐張mAP中位數": round(df["Mask_mAP50-95"].median(), 4),
+        "逐張MAE平均": round(df["Mask_MAE"].mean(), 6),
+        "逐張MAE中位數": round(df["Mask_MAE"].median(), 6),
         "平均mask數": round(df["mask數"].mean(), 2),
         "無輸出張數": n_empty,
         "帶碎塊張數": n_frag,
@@ -304,24 +351,35 @@ def run_one(seed, images, label_dir):
 # 第4部分：主流程（逐 seed 推論 + 跨 seed 彙整）
 # ============================================================
 
+def cross_seed_wide(per_image, digits):
+    """{seedX: Series(index=檔名)} → 寬表 + mean/SD，依 SD 由大到小排。"""
+    wide = pd.DataFrame(per_image)
+    seed_cols = list(wide.columns)
+    wide["mean"] = wide[seed_cols].mean(axis=1).round(digits)
+    wide["SD"] = wide[seed_cols].std(axis=1, ddof=1).round(digits)
+    return wide.sort_values("SD", ascending=False)
+
+
 def main():
     image_dir, label_dir = Path(IMAGE_DIR), Path(LABEL_DIR)
     if not image_dir.exists():
         raise FileNotFoundError(f"找不到影像資料夾：{image_dir}")
     if not label_dir.exists():
-        raise FileNotFoundError(f"找不到標註資料夾：{label_dir}（算 mAP 需要 GT）")
+        raise FileNotFoundError(f"找不到標註資料夾：{label_dir}（算 mAP/MAE 需要 GT）")
 
     images = list_images(image_dir)
     if not images:
         raise FileNotFoundError(f"{image_dir} 裡沒有任何影像")
 
-    summaries, per_image = [], {}
+    summaries, per_image_map, per_image_mae = [], {}, {}
     for s in TRAIN_SEEDS:
         df, summ = run_one(s, images, label_dir)
         if df is None:
             continue
         summaries.append(summ)
-        per_image[f"seed{s}"] = df.set_index("圖片檔名")["Mask_mAP50-95"]
+        idx = df.set_index("圖片檔名")
+        per_image_map[f"seed{s}"] = idx["Mask_mAP50-95"]
+        per_image_mae[f"seed{s}"] = idx["Mask_MAE"]
 
     if not summaries:
         raise FileNotFoundError("所有 seed 都找不到權重，請先跑 B1_train_yolo11-seg_v2.py")
@@ -332,24 +390,24 @@ def main():
                          "SD": sdf[num_cols].std(ddof=1),
                          "n_seed": sdf[num_cols].count()})
 
-    # 逐張 mAP 跨 seed：看哪幾張對訓練隨機性特別敏感
-    wide = pd.DataFrame(per_image)
-    seed_cols = list(wide.columns)
-    wide["mean"] = wide[seed_cols].mean(axis=1).round(4)
-    wide["SD"] = wide[seed_cols].std(axis=1, ddof=1).round(4)
-    wide = wide.sort_values("SD", ascending=False)
+    # 逐張指標跨 seed：看哪幾張對訓練隨機性特別敏感
+    wide_map = cross_seed_wide(per_image_map, 4)
+    wide_mae = cross_seed_wide(per_image_mae, 6)
 
     with pd.ExcelWriter(SUMMARY_XLSX, engine="openpyxl") as w:
         sdf.to_excel(w, sheet_name="各seed", index=False)
         stat.to_excel(w, sheet_name="mean±SD")
-        wide.to_excel(w, sheet_name="逐張mAP_跨seed")
+        wide_map.to_excel(w, sheet_name="逐張mAP_跨seed")
+        wide_mae.to_excel(w, sheet_name="逐張MAE_跨seed")
 
-    m = sdf["逐張mAP平均"]
+    m, e = sdf["逐張mAP平均"], sdf["逐張MAE平均"]
     print(f"\n===== 跨 {len(sdf)} 個 seed(test 集) =====")
     print(sdf.to_string(index=False))
     if len(sdf) > 1:
         print(f"\nMask mAP50-95（逐張平均）：{m.mean():.4f} ± {m.std(ddof=1):.4f} (mean ± SD)")
-        print(f"跨 seed 最不穩定的 3 張：{', '.join(wide.index[:3])}")
+        print(f"Mask MAE（逐張平均）    ：{e.mean():.6f} ± {e.std(ddof=1):.6f} (mean ± SD)")
+        print(f"跨 seed mAP 最不穩定的 3 張：{', '.join(wide_map.index[:3])}")
+        print(f"跨 seed MAE 最不穩定的 3 張：{', '.join(wide_mae.index[:3])}")
     else:
         print(f"\n⚠️ 只有 1 個 seed 有權重，無法算 SD")
     print(f"📄 {SUMMARY_XLSX}")
