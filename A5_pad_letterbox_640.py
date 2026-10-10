@@ -36,13 +36,13 @@ from pathlib import Path
 # ==================== 可手動修改 ====================
 RUN_NOW = True
 
-INPUT_IMG_DIR = "test_single_seg-67_no_resize/test/images"          # A4 輸出的裁切圖
+INPUT_IMG_DIR = "train_single_seg-268_no_resize_noCLAHE/train/images"          # A4 輸出的裁切圖
 
 LABEL_SPACE = "crop"                                    # "crop" 或 "full"（見檔頭）
-CROP_LABEL_DIR = "test_single_seg-67_no_resize/test/labels"   # LABEL_SPACE="crop" 時：裁切圖的 label 資料夾
+CROP_LABEL_DIR = "train_single_seg-268_no_resize_noCLAHE/train/labels"   # LABEL_SPACE="crop" 時：裁切圖的 label 資料夾
 FULL_LABEL_DIR = "train_crop.yolov11/train/labels"      # LABEL_SPACE="full" 時：原圖 label
 FULL_IMG_DIR = "train_crop.yolov11/train/images"        # LABEL_SPACE="full" 時：讀原圖寬高
-A4_MANIFEST_XLSX = "train裁切結果_yolov11.xlsx"           # LABEL_SPACE="full" 時：A4 裁切座標
+A4_MANIFEST_XLSX = "裁切結果_train_A1.xlsx"           # LABEL_SPACE="full" 時：A4 裁切座標
 
 LABEL_FORMAT = "seg"        # "det"(cls cx cy w h) / "pose"(det + N_KPT*(x y v)) / "seg"(cls x1 y1 ...)
 N_KPT = 2                   # pose 才用到
@@ -51,7 +51,7 @@ PAD_TB_RATIO = 0.10         # 上下各補 H*ratio 像素黑邊；設 0 = 對照
 OUT_SIZE = 640
 PAD_VALUE = 0
 
-OUTPUT_ROOT = "A5_test_padded"
+OUTPUT_ROOT = "A5_train_padded_noCLAHE"
 QC_N = 10                   # 畫前 N 張疊圖供肉眼檢查框有沒有對齊（0 = 不畫）
 
 IMAGE_EXTENSIONS = {".jpg", ".jpeg", ".png", ".bmp", ".tif", ".tiff"}

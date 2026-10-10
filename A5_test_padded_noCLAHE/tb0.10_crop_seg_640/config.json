@@ -1,0 +1,15 @@
+{
+  "INPUT_IMG_DIR": "test_single_seg-67_no_resize_noCLAHE/test/images",
+  "LABEL_SPACE": "crop",
+  "CROP_LABEL_DIR": "test_single_seg-67_no_resize_noCLAHE/test/labels",
+  "FULL_LABEL_DIR": "train_crop.yolov11/train/labels",
+  "FULL_IMG_DIR": "train_crop.yolov11/train/images",
+  "A4_MANIFEST_XLSX": "裁切結果_test_A1.xlsx",
+  "LABEL_FORMAT": "seg",
+  "N_KPT": 2,
+  "PAD_TB_RATIO": 0.1,
+  "OUT_SIZE": 640,
+  "PAD_VALUE": 0,
+  "run_tag": "tb0.10_crop_seg_640",
+  "time": "2026-10-10T23:37:33"
+}

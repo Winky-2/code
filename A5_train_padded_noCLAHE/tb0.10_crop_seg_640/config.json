@@ -1,0 +1,15 @@
+{
+  "INPUT_IMG_DIR": "train_single_seg-268_no_resize_noCLAHE/train/images",
+  "LABEL_SPACE": "crop",
+  "CROP_LABEL_DIR": "train_single_seg-268_no_resize_noCLAHE/train/labels",
+  "FULL_LABEL_DIR": "train_crop.yolov11/train/labels",
+  "FULL_IMG_DIR": "train_crop.yolov11/train/images",
+  "A4_MANIFEST_XLSX": "裁切結果_train_A1.xlsx",
+  "LABEL_FORMAT": "seg",
+  "N_KPT": 2,
+  "PAD_TB_RATIO": 0.1,
+  "OUT_SIZE": 640,
+  "PAD_VALUE": 0,
+  "run_tag": "tb0.10_crop_seg_640",
+  "time": "2026-10-10T23:39:38"
+}
