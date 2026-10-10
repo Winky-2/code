@@ -1,180 +1,342 @@
-﻿新檔名,來源資料夾,原始圖片檔名,原始標註檔名
-train_0001,train_crop.yolov11/train,100_jpg.rf.17af98847b9dfb2177f01c295676039e.jpg,100_jpg.rf.17af98847b9dfb2177f01c295676039e.txt
-train_0002,train_crop.yolov11/train,102_jpg.rf.cd8c16a69e96f3e29a131aa0b0250a71.jpg,102_jpg.rf.cd8c16a69e96f3e29a131aa0b0250a71.txt
-train_0003,train_crop.yolov11/train,103_jpg.rf.305359734e15d95a42392b1cb43ebe2f.jpg,103_jpg.rf.305359734e15d95a42392b1cb43ebe2f.txt
-train_0004,train_crop.yolov11/train,106_jpg.rf.6700f5ec7833ecc914d3c97f0defa382.jpg,106_jpg.rf.6700f5ec7833ecc914d3c97f0defa382.txt
-train_0005,train_crop.yolov11/train,107_jpg.rf.5788931bb93d486be3ca54c438012a9c.jpg,107_jpg.rf.5788931bb93d486be3ca54c438012a9c.txt
-train_0006,train_crop.yolov11/train,10_jpg.rf.8a0d38e749129d912d2d7ff2f2ac4e10.jpg,10_jpg.rf.8a0d38e749129d912d2d7ff2f2ac4e10.txt
-train_0007,train_crop.yolov11/train,110_jpg.rf.eb8fcaf10ce4c488c738fe89acb577d7.jpg,110_jpg.rf.eb8fcaf10ce4c488c738fe89acb577d7.txt
-train_0008,train_crop.yolov11/train,112_jpg.rf.7fcc5ad9a6572131a9b9458dba4fc956.jpg,112_jpg.rf.7fcc5ad9a6572131a9b9458dba4fc956.txt
-train_0009,train_crop.yolov11/train,112_jpg.rf.8a0fc1919780af5ddf1b7f6a85bf53cb.jpg,112_jpg.rf.8a0fc1919780af5ddf1b7f6a85bf53cb.txt
-train_0010,train_crop.yolov11/train,113_jpg.rf.22365cd56c09932b792fcb52066f5b29.jpg,113_jpg.rf.22365cd56c09932b792fcb52066f5b29.txt
-train_0011,train_crop.yolov11/train,114_jpg.rf.724154b813e395bb75df309b5b896e17.jpg,114_jpg.rf.724154b813e395bb75df309b5b896e17.txt
-train_0012,train_crop.yolov11/train,116_jpg.rf.7351f01414d2c7f9a7d32feaa43121f8.jpg,116_jpg.rf.7351f01414d2c7f9a7d32feaa43121f8.txt
-train_0013,train_crop.yolov11/train,116_jpg.rf.eeeb4af00559a41799be29b38019986e.jpg,116_jpg.rf.eeeb4af00559a41799be29b38019986e.txt
-train_0014,train_crop.yolov11/train,117_jpg.rf.229f496b696d146a1781b4d5bf5d0f77.jpg,117_jpg.rf.229f496b696d146a1781b4d5bf5d0f77.txt
-train_0015,train_crop.yolov11/train,11_jpg.rf.29827a85941ead5a7b712972987446c6.jpg,11_jpg.rf.29827a85941ead5a7b712972987446c6.txt
-train_0016,train_crop.yolov11/train,120_jpg.rf.465839d992bfb75b5f95a429a8254ff7.jpg,120_jpg.rf.465839d992bfb75b5f95a429a8254ff7.txt
-train_0017,train_crop.yolov11/train,121_jpg.rf.7f74df9f9bc54e8d3744e46529a62f04.jpg,121_jpg.rf.7f74df9f9bc54e8d3744e46529a62f04.txt
-train_0018,train_crop.yolov11/train,122_jpg.rf.1099b6814f131c79f5a9e415b3ac867f.jpg,122_jpg.rf.1099b6814f131c79f5a9e415b3ac867f.txt
-train_0019,train_crop.yolov11/train,123_jpg.rf.a8d33c6a1f90aa7206004306b5b9ef6d.jpg,123_jpg.rf.a8d33c6a1f90aa7206004306b5b9ef6d.txt
-train_0020,train_crop.yolov11/train,124_jpg.rf.47e717691fd0854f758cb10e30816d64.jpg,124_jpg.rf.47e717691fd0854f758cb10e30816d64.txt
-train_0021,train_crop.yolov11/train,125_jpg.rf.9650e536322d8b8400876659a36f0547.jpg,125_jpg.rf.9650e536322d8b8400876659a36f0547.txt
-train_0022,train_crop.yolov11/train,128_jpg.rf.1ba2be58c55c7ae8e9e4137eabed029d.jpg,128_jpg.rf.1ba2be58c55c7ae8e9e4137eabed029d.txt
-train_0023,train_crop.yolov11/train,128_jpg.rf.24b3d6f5c574bb6074ec8887b57482cb.jpg,128_jpg.rf.24b3d6f5c574bb6074ec8887b57482cb.txt
-train_0024,train_crop.yolov11/train,129_jpg.rf.38ee9555a8c1cff9b1cbea39d2dbe9e1.jpg,129_jpg.rf.38ee9555a8c1cff9b1cbea39d2dbe9e1.txt
-train_0025,train_crop.yolov11/train,12_jpg.rf.2215c619344f70c381401b8fe254b6a7.jpg,12_jpg.rf.2215c619344f70c381401b8fe254b6a7.txt
-train_0026,train_crop.yolov11/train,12_jpg.rf.f7e7371293eb3689a72253cead69cf2f.jpg,12_jpg.rf.f7e7371293eb3689a72253cead69cf2f.txt
-train_0027,train_crop.yolov11/train,130_jpg.rf.01947879f96412ae9480f449fc4bef40.jpg,130_jpg.rf.01947879f96412ae9480f449fc4bef40.txt
-train_0028,train_crop.yolov11/train,131_jpg.rf.67e78850f2062f3d933a1c8678f894b4.jpg,131_jpg.rf.67e78850f2062f3d933a1c8678f894b4.txt
-train_0029,train_crop.yolov11/train,132_jpg.rf.6b27a023e8c2b8b405c335602aa48aab.jpg,132_jpg.rf.6b27a023e8c2b8b405c335602aa48aab.txt
-train_0030,train_crop.yolov11/train,133jpg_jpg.rf.bb0f0087f590167918c161aaab17dbf0.jpg,133jpg_jpg.rf.bb0f0087f590167918c161aaab17dbf0.txt
-train_0031,train_crop.yolov11/train,134_jpg.rf.800e3340a63b007c37e673e8ce87da7b.jpg,134_jpg.rf.800e3340a63b007c37e673e8ce87da7b.txt
-train_0032,train_crop.yolov11/train,135_jpg.rf.9a0726f1fde26af7b6c32d0eab3c0bb1.jpg,135_jpg.rf.9a0726f1fde26af7b6c32d0eab3c0bb1.txt
-train_0033,train_crop.yolov11/train,137_jpg.rf.0ac513076b68bd9df39116ea80ef6003.jpg,137_jpg.rf.0ac513076b68bd9df39116ea80ef6003.txt
-train_0034,train_crop.yolov11/train,138_jpg.rf.6865fc3a390b399c660fda95d42ea9b1.jpg,138_jpg.rf.6865fc3a390b399c660fda95d42ea9b1.txt
-train_0035,train_crop.yolov11/train,139_jpg.rf.68408d96f6dac1b2d371d22016360652.jpg,139_jpg.rf.68408d96f6dac1b2d371d22016360652.txt
-train_0036,train_crop.yolov11/train,13_jpg.rf.499acb5bbef8837875d92abd4108bc1d.jpg,13_jpg.rf.499acb5bbef8837875d92abd4108bc1d.txt
-train_0037,train_crop.yolov11/train,140_jpg.rf.e624f3e5e0861e06f2787dec92fcea91.jpg,140_jpg.rf.e624f3e5e0861e06f2787dec92fcea91.txt
-train_0038,train_crop.yolov11/train,141_jpg.rf.8ab137b0cb8cfb458159daf008b40bd9.jpg,141_jpg.rf.8ab137b0cb8cfb458159daf008b40bd9.txt
-train_0039,train_crop.yolov11/train,144_jpg.rf.356c84c005f144c36c1816ad46da1155.jpg,144_jpg.rf.356c84c005f144c36c1816ad46da1155.txt
-train_0040,train_crop.yolov11/train,146_jpg.rf.9684ff731b8c6a865cc9e2d174858458.jpg,146_jpg.rf.9684ff731b8c6a865cc9e2d174858458.txt
-train_0041,train_crop.yolov11/train,147_jpg.rf.7829980ca20b9757dc9d8cd742181cb5.jpg,147_jpg.rf.7829980ca20b9757dc9d8cd742181cb5.txt
-train_0042,train_crop.yolov11/train,148_jpg.rf.9908da4cfe7712020ad1c07ee0683afd.jpg,148_jpg.rf.9908da4cfe7712020ad1c07ee0683afd.txt
-train_0043,train_crop.yolov11/train,148_jpg.rf.cae518cd89ac8414b6c54ef1e9f57016.jpg,148_jpg.rf.cae518cd89ac8414b6c54ef1e9f57016.txt
-train_0044,train_crop.yolov11/train,149_jpg.rf.c922894ca7128875f07ef614e91b6708.jpg,149_jpg.rf.c922894ca7128875f07ef614e91b6708.txt
-train_0045,train_crop.yolov11/train,14_jpg.rf.99770c810e42edfd9897eb9bca1b0b5e.jpg,14_jpg.rf.99770c810e42edfd9897eb9bca1b0b5e.txt
-train_0046,train_crop.yolov11/train,154_jpg.rf.e68d5e5496f95aa39a233fbc5a5662f1.jpg,154_jpg.rf.e68d5e5496f95aa39a233fbc5a5662f1.txt
-train_0047,train_crop.yolov11/train,155_jpg.rf.2868320b7cf0cd37ff574162549b6553.jpg,155_jpg.rf.2868320b7cf0cd37ff574162549b6553.txt
-train_0048,train_crop.yolov11/train,156_jpg.rf.807010df65c78e5aeee02a640266f112.jpg,156_jpg.rf.807010df65c78e5aeee02a640266f112.txt
-train_0049,train_crop.yolov11/train,157_jpg.rf.8a4ca42ddc3a4ce723d0cb55d3f4d2f8.jpg,157_jpg.rf.8a4ca42ddc3a4ce723d0cb55d3f4d2f8.txt
-train_0050,train_crop.yolov11/train,15_jpg.rf.2eb576e7341108dfd62fb056ff3cde4c.jpg,15_jpg.rf.2eb576e7341108dfd62fb056ff3cde4c.txt
-train_0051,train_crop.yolov11/train,160_jpg.rf.e6350e1411cc6bac518e66c12f0da3af.jpg,160_jpg.rf.e6350e1411cc6bac518e66c12f0da3af.txt
-train_0052,train_crop.yolov11/train,161_jpg.rf.86ce2318e234fa52242dc6126c2339dd.jpg,161_jpg.rf.86ce2318e234fa52242dc6126c2339dd.txt
-train_0053,train_crop.yolov11/train,162_jpg.rf.2ae3d4aad082228679a12fbc12b56d62.jpg,162_jpg.rf.2ae3d4aad082228679a12fbc12b56d62.txt
-train_0054,train_crop.yolov11/train,163_jpg.rf.803597cd8a0a5929efeb411f91277098.jpg,163_jpg.rf.803597cd8a0a5929efeb411f91277098.txt
-train_0055,train_crop.yolov11/train,163_jpg.rf.cc042fdde9f1fc158514e19590f44dfa.jpg,163_jpg.rf.cc042fdde9f1fc158514e19590f44dfa.txt
-train_0056,train_crop.yolov11/train,165_jpg.rf.99999f9e2d9655e14ae40825d67dddc5.jpg,165_jpg.rf.99999f9e2d9655e14ae40825d67dddc5.txt
-train_0057,train_crop.yolov11/train,167_jpg.rf.8e30963ff2f3276148ab09acf8670ad4.jpg,167_jpg.rf.8e30963ff2f3276148ab09acf8670ad4.txt
-train_0058,train_crop.yolov11/train,169_jpg.rf.bad1a8da1561d956f9f961ed245fd6a9.jpg,169_jpg.rf.bad1a8da1561d956f9f961ed245fd6a9.txt
-train_0059,train_crop.yolov11/train,16_jpg.rf.ac1d61ed5277524957af9d646b6bf2a4.jpg,16_jpg.rf.ac1d61ed5277524957af9d646b6bf2a4.txt
-train_0060,train_crop.yolov11/train,170_jpg.rf.2ed3a20ed779d11e761470de5a1d9bdf.jpg,170_jpg.rf.2ed3a20ed779d11e761470de5a1d9bdf.txt
-train_0061,train_crop.yolov11/train,170_jpg.rf.6e1f85f2f41e032e116ff353477d60fd.jpg,170_jpg.rf.6e1f85f2f41e032e116ff353477d60fd.txt
-train_0062,train_crop.yolov11/train,172_jpg.rf.997cfc7ac182fc0b40977305af02fc75.jpg,172_jpg.rf.997cfc7ac182fc0b40977305af02fc75.txt
-train_0063,train_crop.yolov11/train,172_jpg.rf.e48cb15509a27923cc07d866bad7c427.jpg,172_jpg.rf.e48cb15509a27923cc07d866bad7c427.txt
-train_0064,train_crop.yolov11/train,173_jpg.rf.399583227f07bc980a3cc0fc6d69b830.jpg,173_jpg.rf.399583227f07bc980a3cc0fc6d69b830.txt
-train_0065,train_crop.yolov11/train,174_jpg.rf.6fe6072287097bf6d060f8ff6bf3df7a.jpg,174_jpg.rf.6fe6072287097bf6d060f8ff6bf3df7a.txt
-train_0066,train_crop.yolov11/train,175_jpg.rf.26fca886dcc1a514eacac1d182ca4e73.jpg,175_jpg.rf.26fca886dcc1a514eacac1d182ca4e73.txt
-train_0067,train_crop.yolov11/train,176_jpg.rf.5d861a60bc665ed29f916ae71d7f72ff.jpg,176_jpg.rf.5d861a60bc665ed29f916ae71d7f72ff.txt
-train_0068,train_crop.yolov11/train,177_jpg.rf.7db36fd94f1b70232c8fa2335967a9fc.jpg,177_jpg.rf.7db36fd94f1b70232c8fa2335967a9fc.txt
-train_0069,train_crop.yolov11/train,179_jpg.rf.e97103279b9436b0038fa4e4d8b32b8b.jpg,179_jpg.rf.e97103279b9436b0038fa4e4d8b32b8b.txt
-train_0070,train_crop.yolov11/train,17_jpg.rf.43b6f1e8d5fe45646de14190694f78db.jpg,17_jpg.rf.43b6f1e8d5fe45646de14190694f78db.txt
-train_0071,train_crop.yolov11/train,180_jpg.rf.110f7d48936650b34aaa506aa02ce3a1.jpg,180_jpg.rf.110f7d48936650b34aaa506aa02ce3a1.txt
-train_0072,train_crop.yolov11/train,180_jpg.rf.bf0c78eb9e324c10af315ed445803517.jpg,180_jpg.rf.bf0c78eb9e324c10af315ed445803517.txt
-train_0073,train_crop.yolov11/train,182_jpg.rf.c784ba8cd46ce8b0776fa8fab524536a.jpg,182_jpg.rf.c784ba8cd46ce8b0776fa8fab524536a.txt
-train_0074,train_crop.yolov11/train,183_jpg.rf.f9f2f37d5bbadeb310ad7be892d14b02.jpg,183_jpg.rf.f9f2f37d5bbadeb310ad7be892d14b02.txt
-train_0075,train_crop.yolov11/train,184_jpg.rf.2a7488dd5dfcf44f1c03436bfbeeb6b4.jpg,184_jpg.rf.2a7488dd5dfcf44f1c03436bfbeeb6b4.txt
-train_0076,train_crop.yolov11/train,187_jpg.rf.2d1d83e8c4749b0ad79591cb22ce6b83.jpg,187_jpg.rf.2d1d83e8c4749b0ad79591cb22ce6b83.txt
-train_0077,train_crop.yolov11/train,188_jpg.rf.742cfeaa4911383d49705f8734a7cc04.jpg,188_jpg.rf.742cfeaa4911383d49705f8734a7cc04.txt
-train_0078,train_crop.yolov11/train,189_jpg.rf.a6ad429952d02be1c42dafb8d16da6d0.jpg,189_jpg.rf.a6ad429952d02be1c42dafb8d16da6d0.txt
-train_0079,train_crop.yolov11/train,18_jpg.rf.2005b214713d7ce74358730fcbc2cbe5.jpg,18_jpg.rf.2005b214713d7ce74358730fcbc2cbe5.txt
-train_0080,train_crop.yolov11/train,18_jpg.rf.45e65a289d331a7ae30947457676a918.jpg,18_jpg.rf.45e65a289d331a7ae30947457676a918.txt
-train_0081,train_crop.yolov11/train,190_jpg.rf.e846697292e05d8d458f78ecec1c87d7.jpg,190_jpg.rf.e846697292e05d8d458f78ecec1c87d7.txt
-train_0082,train_crop.yolov11/train,194_jpg.rf.3389e0cef4406ac0ed11a7b290518ef1.jpg,194_jpg.rf.3389e0cef4406ac0ed11a7b290518ef1.txt
-train_0083,train_crop.yolov11/train,196_jpg.rf.c67c34cad3981d186a3f8aee9d85f428.jpg,196_jpg.rf.c67c34cad3981d186a3f8aee9d85f428.txt
-train_0084,train_crop.yolov11/train,208_jpg.rf.534094c10c6c52f78250fd408af5208f.jpg,208_jpg.rf.534094c10c6c52f78250fd408af5208f.txt
-train_0085,train_crop.yolov11/train,20_jpg.rf.86d4b1e65bd76e9c1f29e5ac4183e7da.jpg,20_jpg.rf.86d4b1e65bd76e9c1f29e5ac4183e7da.txt
-train_0086,train_crop.yolov11/train,21_jpg.rf.174c2293fba5df914980e2714d94ab8f.jpg,21_jpg.rf.174c2293fba5df914980e2714d94ab8f.txt
-train_0087,train_crop.yolov11/train,21_jpg.rf.f7212f98b9f72f3b772aaea26dada78f.jpg,21_jpg.rf.f7212f98b9f72f3b772aaea26dada78f.txt
-train_0088,train_crop.yolov11/train,224_jpg.rf.84e861fe2e01e4967e49d6bfb28391f8.jpg,224_jpg.rf.84e861fe2e01e4967e49d6bfb28391f8.txt
-train_0089,train_crop.yolov11/train,22_jpg.rf.baed10e25af826a8d1c6b3bd7a8145e3.jpg,22_jpg.rf.baed10e25af826a8d1c6b3bd7a8145e3.txt
-train_0090,train_crop.yolov11/train,22_jpg.rf.bca1536a6e4778538b74d7f1d99b5e44.jpg,22_jpg.rf.bca1536a6e4778538b74d7f1d99b5e44.txt
-train_0091,train_crop.yolov11/train,236_jpg.rf.1718cca5c6589b662e2aa23420c009e7.jpg,236_jpg.rf.1718cca5c6589b662e2aa23420c009e7.txt
-train_0092,train_crop.yolov11/train,237_jpg.rf.7c0a858f87510afcbfc26fa98a2a69ed.jpg,237_jpg.rf.7c0a858f87510afcbfc26fa98a2a69ed.txt
-train_0093,train_crop.yolov11/train,23_jpg.rf.6d812d2ff801b868b6de4bfe19236e76.jpg,23_jpg.rf.6d812d2ff801b868b6de4bfe19236e76.txt
-train_0094,train_crop.yolov11/train,23_jpg.rf.94f617ceac232644510e63980ec7dcc0.jpg,23_jpg.rf.94f617ceac232644510e63980ec7dcc0.txt
-train_0095,train_crop.yolov11/train,245_jpg.rf.2b5052048ccc178768897e1dcb68a61c.jpg,245_jpg.rf.2b5052048ccc178768897e1dcb68a61c.txt
-train_0096,train_crop.yolov11/train,24_jpg.rf.4525adb81f9a21356932e066db27dba7.jpg,24_jpg.rf.4525adb81f9a21356932e066db27dba7.txt
-train_0097,train_crop.yolov11/train,252_jpg.rf.a82c5a05d7c747874af8710d3e6042f5.jpg,252_jpg.rf.a82c5a05d7c747874af8710d3e6042f5.txt
-train_0098,train_crop.yolov11/train,25_jpg.rf.84d6222fd45b487ca12f3aea4376c67d.jpg,25_jpg.rf.84d6222fd45b487ca12f3aea4376c67d.txt
-train_0099,train_crop.yolov11/train,262_jpg.rf.4876edece2ed2b02b0355dc7597aafb8.jpg,262_jpg.rf.4876edece2ed2b02b0355dc7597aafb8.txt
-train_0100,train_crop.yolov11/train,267_jpg.rf.3dc8cfefda02cdbca0a265cef97176b0.jpg,267_jpg.rf.3dc8cfefda02cdbca0a265cef97176b0.txt
-train_0101,train_crop.yolov11/train,26_jpg.rf.6268f48004666b239d1d02d6c61a1ec5.jpg,26_jpg.rf.6268f48004666b239d1d02d6c61a1ec5.txt
-train_0102,train_crop.yolov11/train,27_jpg.rf.b040f2c6e6645224ab1fa27ee62c5ace.jpg,27_jpg.rf.b040f2c6e6645224ab1fa27ee62c5ace.txt
-train_0103,train_crop.yolov11/train,281_jpg.rf.3b40568d4efb6b2aaefdebac1cb336b8.jpg,281_jpg.rf.3b40568d4efb6b2aaefdebac1cb336b8.txt
-train_0104,train_crop.yolov11/train,28_jpg.rf.294aaa1c253caa6949e879ceb4d8faf8.jpg,28_jpg.rf.294aaa1c253caa6949e879ceb4d8faf8.txt
-train_0105,train_crop.yolov11/train,29_jpg.rf.4aeacd02eb9b6d405ffe09bc0492cba0.jpg,29_jpg.rf.4aeacd02eb9b6d405ffe09bc0492cba0.txt
-train_0106,train_crop.yolov11/train,300_jpg.rf.5dbce77b4af70d8ab2308f715b9b9691.jpg,300_jpg.rf.5dbce77b4af70d8ab2308f715b9b9691.txt
-train_0107,train_crop.yolov11/train,309_jpg.rf.0092f32bf9836bd2661c9b4f64a3340f.jpg,309_jpg.rf.0092f32bf9836bd2661c9b4f64a3340f.txt
-train_0108,train_crop.yolov11/train,30_jpg.rf.b6ed3132eda311c9af83405cdceae188.jpg,30_jpg.rf.b6ed3132eda311c9af83405cdceae188.txt
-train_0109,train_crop.yolov11/train,314_jpg.rf.fcba16bd20eeadf90fecdcd39371caf1.jpg,314_jpg.rf.fcba16bd20eeadf90fecdcd39371caf1.txt
-train_0110,train_crop.yolov11/train,316_jpg.rf.34358c3c57b8edd5eea6c90ac8f54e55.jpg,316_jpg.rf.34358c3c57b8edd5eea6c90ac8f54e55.txt
-train_0111,train_crop.yolov11/train,319_jpg.rf.e3f79ef92cdbeeafca6cf31ef720dbc5.jpg,319_jpg.rf.e3f79ef92cdbeeafca6cf31ef720dbc5.txt
-train_0112,train_crop.yolov11/train,31_jpg.rf.20aaf68e8d32a209e12fd6e5d828ee91.jpg,31_jpg.rf.20aaf68e8d32a209e12fd6e5d828ee91.txt
-train_0113,train_crop.yolov11/train,32_jpg.rf.288ad7bbe2a4473de69bb658eafb6e07.jpg,32_jpg.rf.288ad7bbe2a4473de69bb658eafb6e07.txt
-train_0114,train_crop.yolov11/train,333_jpg.rf.47da21d04c82f56678f2e44dcb938c49.jpg,333_jpg.rf.47da21d04c82f56678f2e44dcb938c49.txt
-train_0115,train_crop.yolov11/train,335_jpg.rf.aaa1c09f5fff9b91d85f3e69dbe67023.jpg,335_jpg.rf.aaa1c09f5fff9b91d85f3e69dbe67023.txt
-train_0116,train_crop.yolov11/train,33_jpg.rf.c4fe938033facddb9be65443cb511e2c.jpg,33_jpg.rf.c4fe938033facddb9be65443cb511e2c.txt
-train_0117,train_crop.yolov11/train,34_jpg.rf.c8ebd169bcc50e75f3897733dbf5a1e2.jpg,34_jpg.rf.c8ebd169bcc50e75f3897733dbf5a1e2.txt
-train_0118,train_crop.yolov11/train,35_jpg.rf.8295969d37cefd0b06514c73b409cb98.jpg,35_jpg.rf.8295969d37cefd0b06514c73b409cb98.txt
-train_0119,train_crop.yolov11/train,375_jpg.rf.0806f240987c191f7a63985d6933204f.jpg,375_jpg.rf.0806f240987c191f7a63985d6933204f.txt
-train_0120,train_crop.yolov11/train,384_jpg.rf.61b0fa74b6f5bda04d89090c62fa24eb.jpg,384_jpg.rf.61b0fa74b6f5bda04d89090c62fa24eb.txt
-train_0121,train_crop.yolov11/train,389_jpg.rf.1c724bd1a4c3c4acb753539e1117a6ab.jpg,389_jpg.rf.1c724bd1a4c3c4acb753539e1117a6ab.txt
-train_0122,train_crop.yolov11/train,38_jpg.rf.462d10dd9ff88157ff7b346edbdb00d8.jpg,38_jpg.rf.462d10dd9ff88157ff7b346edbdb00d8.txt
-train_0123,train_crop.yolov11/train,396_jpg.rf.3a1b363e71643d9dc2e9da438237b957.jpg,396_jpg.rf.3a1b363e71643d9dc2e9da438237b957.txt
-train_0124,train_crop.yolov11/train,41_jpg.rf.0e8e222db74e5232d91250204f82a4b6.jpg,41_jpg.rf.0e8e222db74e5232d91250204f82a4b6.txt
-train_0125,train_crop.yolov11/train,42_jpg.rf.b91cc6680020e42d26be8b795f9fc53b.jpg,42_jpg.rf.b91cc6680020e42d26be8b795f9fc53b.txt
-train_0126,train_crop.yolov11/train,43_jpg.rf.b7d9431c8c542e70dffbefc51a8d8875.jpg,43_jpg.rf.b7d9431c8c542e70dffbefc51a8d8875.txt
-train_0127,train_crop.yolov11/train,44_jpg.rf.15513e04204485c8dfc5fde4c9a60299.jpg,44_jpg.rf.15513e04204485c8dfc5fde4c9a60299.txt
-train_0128,train_crop.yolov11/train,45_jpg.rf.6ffe240052f047b99c8e5c2325b31b50.jpg,45_jpg.rf.6ffe240052f047b99c8e5c2325b31b50.txt
-train_0129,train_crop.yolov11/train,46_jpg.rf.48f4fdfb3707490535c14020347140f8.jpg,46_jpg.rf.48f4fdfb3707490535c14020347140f8.txt
-train_0130,train_crop.yolov11/train,47_jpg.rf.241c80032f79e076ffc65bc8944cfd1c.jpg,47_jpg.rf.241c80032f79e076ffc65bc8944cfd1c.txt
-train_0131,train_crop.yolov11/train,47_jpg.rf.8b39c740e984a07cc90c22afbf1a1aca.jpg,47_jpg.rf.8b39c740e984a07cc90c22afbf1a1aca.txt
-train_0132,train_crop.yolov11/train,48_jpg.rf.7a3e4f51602213caad85cf6aa6b46ec2.jpg,48_jpg.rf.7a3e4f51602213caad85cf6aa6b46ec2.txt
-train_0133,train_crop.yolov11/train,50_jpg.rf.b562b051b2c2be14d3bbe3e3213e221e.jpg,50_jpg.rf.b562b051b2c2be14d3bbe3e3213e221e.txt
-train_0134,train_crop.yolov11/train,51_jpg.rf.bfe82bbdd82e86eb0ff7648eedf8a85d.jpg,51_jpg.rf.bfe82bbdd82e86eb0ff7648eedf8a85d.txt
-train_0135,train_crop.yolov11/train,52_jpg.rf.33567aa19e942da45ce9364d4b1b6b0b.jpg,52_jpg.rf.33567aa19e942da45ce9364d4b1b6b0b.txt
-train_0136,train_crop.yolov11/train,53_jpg.rf.eaf614f198df215c5b26e1580d2a66fb.jpg,53_jpg.rf.eaf614f198df215c5b26e1580d2a66fb.txt
-train_0137,train_crop.yolov11/train,54_jpg.rf.1720f2e3c1d51cf6982a0cbcc33cd5a5.jpg,54_jpg.rf.1720f2e3c1d51cf6982a0cbcc33cd5a5.txt
-train_0138,train_crop.yolov11/train,56_jpg.rf.d3913f516dcf0eebb6c9b7a0d1492fff.jpg,56_jpg.rf.d3913f516dcf0eebb6c9b7a0d1492fff.txt
-train_0139,train_crop.yolov11/train,57_jpg.rf.f1707b1979ef5bcd884fffe81a60c719.jpg,57_jpg.rf.f1707b1979ef5bcd884fffe81a60c719.txt
-train_0140,train_crop.yolov11/train,58_jpg.rf.24b0b4e4cb6a9705cb1371a11b9722c7.jpg,58_jpg.rf.24b0b4e4cb6a9705cb1371a11b9722c7.txt
-train_0141,train_crop.yolov11/train,60_jpg.rf.931887a322ea1acd6c1c037bb2e0a64a.jpg,60_jpg.rf.931887a322ea1acd6c1c037bb2e0a64a.txt
-train_0142,train_crop.yolov11/train,61_jpg.rf.394920cdedb87b625ccdcde79ae27544.jpg,61_jpg.rf.394920cdedb87b625ccdcde79ae27544.txt
-train_0143,train_crop.yolov11/train,61_jpg.rf.9f6d17688f92f4ae29314da7045b0e4a.jpg,61_jpg.rf.9f6d17688f92f4ae29314da7045b0e4a.txt
-train_0144,train_crop.yolov11/train,62_jpg.rf.712f1cb53403ea1d3eddbe46ae95b891.jpg,62_jpg.rf.712f1cb53403ea1d3eddbe46ae95b891.txt
-train_0145,train_crop.yolov11/train,62_jpg.rf.90c7aaef40e57c5482182c6e9d307d10.jpg,62_jpg.rf.90c7aaef40e57c5482182c6e9d307d10.txt
-train_0146,train_crop.yolov11/train,63_jpg.rf.76742b16755d9010c0d1bc3a49630e2d.jpg,63_jpg.rf.76742b16755d9010c0d1bc3a49630e2d.txt
-train_0147,train_crop.yolov11/train,64_jpg.rf.6b1040d0a21eeb30cafbcbad2e2bec7e.jpg,64_jpg.rf.6b1040d0a21eeb30cafbcbad2e2bec7e.txt
-train_0148,train_crop.yolov11/train,66_jpg.rf.6a11122f7740c8be948637c2200452f7.jpg,66_jpg.rf.6a11122f7740c8be948637c2200452f7.txt
-train_0149,train_crop.yolov11/train,66_jpg.rf.ae88c28cab7ff1557c689aa5941a20d5.jpg,66_jpg.rf.ae88c28cab7ff1557c689aa5941a20d5.txt
-train_0150,train_crop.yolov11/train,67_jpg.rf.fb880b1b46a5d0c23e06e3de3d6d6ad6.jpg,67_jpg.rf.fb880b1b46a5d0c23e06e3de3d6d6ad6.txt
-train_0151,train_crop.yolov11/train,68_jpg.rf.448dbddc552e4ba001b9a907063f5a0d.jpg,68_jpg.rf.448dbddc552e4ba001b9a907063f5a0d.txt
-train_0152,train_crop.yolov11/train,69_jpg.rf.ac487c6ac5211ae8d9371f03798a9dbd.jpg,69_jpg.rf.ac487c6ac5211ae8d9371f03798a9dbd.txt
-train_0153,train_crop.yolov11/train,73_jpg.rf.1279f4d4680608c9d399a50411de5122.jpg,73_jpg.rf.1279f4d4680608c9d399a50411de5122.txt
-train_0154,train_crop.yolov11/train,75_jpg.rf.fdc8b10185c611ce99fd076071d675b7.jpg,75_jpg.rf.fdc8b10185c611ce99fd076071d675b7.txt
-train_0155,train_crop.yolov11/train,76_jpg.rf.085b91a622b64215b0326713cb666259.jpg,76_jpg.rf.085b91a622b64215b0326713cb666259.txt
-train_0156,train_crop.yolov11/train,78_jpg.rf.80906c7a540baf79ca07130abe948301.jpg,78_jpg.rf.80906c7a540baf79ca07130abe948301.txt
-train_0157,train_crop.yolov11/train,78_jpg.rf.aa80b04ba848354577341ba69e36fe71.jpg,78_jpg.rf.aa80b04ba848354577341ba69e36fe71.txt
-train_0158,train_crop.yolov11/train,79_jpg.rf.3e1348c8ca0a696db72dc85f0428dab1.jpg,79_jpg.rf.3e1348c8ca0a696db72dc85f0428dab1.txt
-train_0159,train_crop.yolov11/train,81_jpg.rf.0eca2d3eb75430ed2196ad6d8ec619c6.jpg,81_jpg.rf.0eca2d3eb75430ed2196ad6d8ec619c6.txt
-train_0160,train_crop.yolov11/train,82_jpg.rf.7e576039182e1d86e5b2cb8ac04b6599.jpg,82_jpg.rf.7e576039182e1d86e5b2cb8ac04b6599.txt
-train_0161,train_crop.yolov11/train,82_jpg.rf.94f28232180ce0ef4c9117a495d3e8ec.jpg,82_jpg.rf.94f28232180ce0ef4c9117a495d3e8ec.txt
-train_0162,train_crop.yolov11/train,83_jpg.rf.7bc6a6203f643d779a9f04ca1bc0eb36.jpg,83_jpg.rf.7bc6a6203f643d779a9f04ca1bc0eb36.txt
-train_0163,train_crop.yolov11/train,84_jpg.rf.4c8b9bc1125dbb1a50879a909c202b3a.jpg,84_jpg.rf.4c8b9bc1125dbb1a50879a909c202b3a.txt
-train_0164,train_crop.yolov11/train,84_jpg.rf.bcbb1a2eda487d03ec49864c07ddf714.jpg,84_jpg.rf.bcbb1a2eda487d03ec49864c07ddf714.txt
-train_0165,train_crop.yolov11/train,85_jpg.rf.9eadd3b8af8a0cf8675fdf68d8d2f69b.jpg,85_jpg.rf.9eadd3b8af8a0cf8675fdf68d8d2f69b.txt
-train_0166,train_crop.yolov11/train,85_jpg.rf.c0260f69e283c627381b8513d96ecfbf.jpg,85_jpg.rf.c0260f69e283c627381b8513d96ecfbf.txt
-train_0167,train_crop.yolov11/train,87_jpg.rf.6e6ae9dba2cbcfdfc20ab11b62b7034b.jpg,87_jpg.rf.6e6ae9dba2cbcfdfc20ab11b62b7034b.txt
-train_0168,train_crop.yolov11/train,88_jpg.rf.182c44c277e81c025965cf5273a5af62.jpg,88_jpg.rf.182c44c277e81c025965cf5273a5af62.txt
-train_0169,train_crop.yolov11/train,89_jpg.rf.0f943ebe001e793df1f1fde91ee1ca4d.jpg,89_jpg.rf.0f943ebe001e793df1f1fde91ee1ca4d.txt
-train_0170,train_crop.yolov11/train,93_jpg.rf.1138171bda8dd9d1e8090a11b91b0de2.jpg,93_jpg.rf.1138171bda8dd9d1e8090a11b91b0de2.txt
-train_0171,train_crop.yolov11/train,94_jpg.rf.3b080d42176f38779da2ae969e8aefe3.jpg,94_jpg.rf.3b080d42176f38779da2ae969e8aefe3.txt
-train_0172,train_crop.yolov11/train,94_jpg.rf.be2b4da7330e7ce2c3b4a4a02ba7813e.jpg,94_jpg.rf.be2b4da7330e7ce2c3b4a4a02ba7813e.txt
-train_0173,train_crop.yolov11/train,95_jpg.rf.18f3e3809951563c2b717f14104d0896.jpg,95_jpg.rf.18f3e3809951563c2b717f14104d0896.txt
-train_0174,train_crop.yolov11/train,96_jpg.rf.1cf1cdbf7b7598e8d2868554140d7ac7.jpg,96_jpg.rf.1cf1cdbf7b7598e8d2868554140d7ac7.txt
-train_0175,train_crop.yolov11/train,97_jpg.rf.1d20d34201ae80814ffc45486c98a780.jpg,97_jpg.rf.1d20d34201ae80814ffc45486c98a780.txt
-train_0176,train_crop.yolov11/train,97_jpg.rf.86ff53e92a9c69b0a55bbaaf2b9ebbc7.jpg,97_jpg.rf.86ff53e92a9c69b0a55bbaaf2b9ebbc7.txt
-train_0177,train_crop.yolov11/train,98_jpg.rf.e6b01d3871854e1452817bb329a6cbb9.jpg,98_jpg.rf.e6b01d3871854e1452817bb329a6cbb9.txt
-train_0178,train_crop.yolov11/train,99_jpg.rf.26e375572eca02a959228a3da5afb91a.jpg,99_jpg.rf.26e375572eca02a959228a3da5afb91a.txt
-train_0179,train_crop.yolov11/train,99_jpg.rf.a4a12505f126977195fba59edf2605ea.jpg,99_jpg.rf.a4a12505f126977195fba59edf2605ea.txt
+﻿新檔名,來源資料夾,原始圖片檔名,原始標註檔名,有標註
+train_0001,data set/Data_train,100_jpg.rf.zBbcITNYiOcvIIxh1qx1.jpg,,False
+train_0002,data set/Data_train,102_jpg.rf.cOqGrl79YDBIOZPR7Uk2.jpg,,False
+train_0003,data set/Data_train,103_jpg.rf.Deptbe2jCwirlk47XUfs.jpg,,False
+train_0004,data set/Data_train,104_jpg.rf.tebPpIUBrsuohpY3eyBJ.jpg,,False
+train_0005,data set/Data_train,106_jpg.rf.Iq2cMy4AsimbP7ZrdGhu.jpg,,False
+train_0006,data set/Data_train,106_jpg.rf.MLwXjX93KXTHIQ9x9i3S.jpg,,False
+train_0007,data set/Data_train,106_jpg.rf.mWb0FQ6G8sA7H6MylYL9.jpg,,False
+train_0008,data set/Data_train,107_jpg.rf.iN5tqKA8IHgWStPaSDbX.jpg,,False
+train_0009,data set/Data_train,107_jpg.rf.R53jnKyIU6tPb9lZup3l.jpg,,False
+train_0010,data set/Data_train,10_jpg.rf.fqKDmeZqkFWYTfLaPw13.jpg,,False
+train_0011,data set/Data_train,110_jpg.rf.HAOBL09cd7d446IjUbiu.jpg,,False
+train_0012,data set/Data_train,110_jpg.rf.ikLGqujd4yj9WaZMc80y.jpg,,False
+train_0013,data set/Data_train,111_jpg.rf.1PdQojT423e4gXOhcKqE.jpg,,False
+train_0014,data set/Data_train,111_jpg.rf.JVLjY2dZ7dhq02Up4wKK.jpg,,False
+train_0015,data set/Data_train,112_jpg.rf.hx6KRaDs61QlDUfj2rrZ.jpg,,False
+train_0016,data set/Data_train,112_jpg.rf.vBO5PtvKDZ85oYBCMHWb.jpg,,False
+train_0017,data set/Data_train,113_jpg.rf.v1jFpX0vawrbAEPOi41J.jpg,,False
+train_0018,data set/Data_train,114_jpg.rf.XBFwZ3rk7pf7CJJ2NL0d.jpg,,False
+train_0019,data set/Data_train,115_jpg.rf.MLv9zfoj4I1ZZlMQ2whN.jpg,,False
+train_0020,data set/Data_train,115_jpg.rf.oQSykOhzhg0JK43ZBt1X.jpg,,False
+train_0021,data set/Data_train,116_jpg.rf.elsYxycWmqmYUSui8xXc.jpg,,False
+train_0022,data set/Data_train,116_jpg.rf.XRFkoomhbVV3XOXw1rZO.jpg,,False
+train_0023,data set/Data_train,117_jpg.rf.k3Sqg4SsYkFfv9fYtL9G.jpg,,False
+train_0024,data set/Data_train,117_jpg.rf.Mfok43OTRmMwznFwnWRZ.jpg,,False
+train_0025,data set/Data_train,118_jpg.rf.joQlzOlcAfJo3ed23EDm.jpg,,False
+train_0026,data set/Data_train,118_jpg.rf.wbxCbQ4JUtyec7KJLh4i.jpg,,False
+train_0027,data set/Data_train,119_jpg.rf.c3qKseGjhTB6M4qqX9Tw.jpg,,False
+train_0028,data set/Data_train,119_jpg.rf.LQ4bgbLgxzH5XpupGSCq.jpg,,False
+train_0029,data set/Data_train,11_jpg.rf.zEXMWjzub4jdq1N6xLSg.jpg,,False
+train_0030,data set/Data_train,120_jpg.rf.at1MEouQFpblO3gCnJEN.jpg,,False
+train_0031,data set/Data_train,120_jpg.rf.GCC6Iwh8hUJZRBVEeTAC.jpg,,False
+train_0032,data set/Data_train,120_jpg.rf.NdMPZyvpCmCCSGdla70b.jpg,,False
+train_0033,data set/Data_train,121_jpg.rf.0vzhYkLLrZwcqgUfirSx.jpg,,False
+train_0034,data set/Data_train,121_jpg.rf.xj2WFuKLXgBAGe7t3rt5.jpg,,False
+train_0035,data set/Data_train,122_jpg.rf.SSVF2KxEl1bbXotxsT6t.jpg,,False
+train_0036,data set/Data_train,122_jpg.rf.Y7FXDxKzPrjliV7QSOS4.jpg,,False
+train_0037,data set/Data_train,123_jpg.rf.Op5vIZ4bK8Ec29XJEXxv.jpg,,False
+train_0038,data set/Data_train,123_jpg.rf.s0cgacKlymGO0e0ZYWql.jpg,,False
+train_0039,data set/Data_train,124_jpg.rf.K7BrU7WQShdNBz4RXA9A.jpg,,False
+train_0040,data set/Data_train,124_jpg.rf.xZ7Xj6uGRfDzm8ETXJfO.jpg,,False
+train_0041,data set/Data_train,125_jpg.rf.kEUqEKSwUQ0qpPBjTeid.jpg,,False
+train_0042,data set/Data_train,125_jpg.rf.yufX7vEdlPgESeb8CoPt.jpg,,False
+train_0043,data set/Data_train,126_jpg.rf.jzgEtA0oPWy133pYY9x5.jpg,,False
+train_0044,data set/Data_train,127_jpg.rf.jbL2h6nGeLLlts3GaeoU.jpg,,False
+train_0045,data set/Data_train,127_jpg.rf.Zgs2ZHHAYuaJgXe2f0jL.jpg,,False
+train_0046,data set/Data_train,128_jpg.rf.2UYGvKv8DWqbwYdu2dCW.jpg,,False
+train_0047,data set/Data_train,128_jpg.rf.iW8sUpPY8fCfe1vzU56Y.jpg,,False
+train_0048,data set/Data_train,129_jpg.rf.WhxBQuVtaV1pGAxh1uCn.jpg,,False
+train_0049,data set/Data_train,12_jpg.rf.bXosK0gbTDgTthxHagI4.jpg,,False
+train_0050,data set/Data_train,12_jpg.rf.PmzXGlQbQyt9T1k6ocDl.jpg,,False
+train_0051,data set/Data_train,130_jpg.rf.0oEqEnTqGc0oUaAIIl5V.jpg,,False
+train_0052,data set/Data_train,130_jpg.rf.ANJAuJxwR4mut7zNzHc0.jpg,,False
+train_0053,data set/Data_train,131_jpg.rf.nnehjmPjk2R5R8DjtS4u.jpg,,False
+train_0054,data set/Data_train,132_jpg.rf.t9WUz3jjNUpfB97smuzO.jpg,,False
+train_0055,data set/Data_train,133_jpg.rf.yTLrv2TNF0CdCUjQnmup.jpg,,False
+train_0056,data set/Data_train,133jpg_jpg.rf.G8OLtQsq4mQp2zoQrMe4.jpg,,False
+train_0057,data set/Data_train,134_jpg.rf.2XenLCIh3KMN0tuN0gj4.jpg,,False
+train_0058,data set/Data_train,134_jpg.rf.B2XhuiR39kRn2ooPMgPz.jpg,,False
+train_0059,data set/Data_train,135_jpg.rf.7oTLKu45FYzGPQff3hBC.jpg,,False
+train_0060,data set/Data_train,136_jpg.rf.WbRLv6mooUKbLrsUhsmA.jpg,,False
+train_0061,data set/Data_train,137_jpg.rf.ARd2pAEdfTsxGCfpkDN2.jpg,,False
+train_0062,data set/Data_train,138_jpg.rf.CIWd1EovwAEvWBjD70J2.jpg,,False
+train_0063,data set/Data_train,138_jpg.rf.QaQmbeldv8ef7GGqjKJ0.jpg,,False
+train_0064,data set/Data_train,139_jpg.rf.fZrCuHrqgREfEeDUcC1z.jpg,,False
+train_0065,data set/Data_train,13_jpg.rf.5h1FSgAd28vkX1IZ8IW4.jpg,,False
+train_0066,data set/Data_train,13_jpg.rf.zs2gdxtdxwHZBPjijTOg.jpg,,False
+train_0067,data set/Data_train,140_jpg.rf.vLOW6acx6A9dHJ5jZ2Rk.jpg,,False
+train_0068,data set/Data_train,141_jpg.rf.Oae0GnACdtqLi2Yqn8f8.jpg,,False
+train_0069,data set/Data_train,142_jpg.rf.I3tGC4toU3CwtkBN8Gfu.jpg,,False
+train_0070,data set/Data_train,142_jpg.rf.RNjdzPxkq6yDViZ0JWcd.jpg,,False
+train_0071,data set/Data_train,143_jpg.rf.BHnzVtAzKorByaKAfGIn.jpg,,False
+train_0072,data set/Data_train,143_jpg.rf.ZCSQks3IlwP3B5wqtORf.jpg,,False
+train_0073,data set/Data_train,144_jpg.rf.yh9cLwBAaCgStqCnPaE4.jpg,,False
+train_0074,data set/Data_train,145_jpg.rf.8L6fWCvFg6TBAA8XbYVj.jpg,,False
+train_0075,data set/Data_train,145_jpg.rf.TpNw0O6EbtVLbSVm37Sh.jpg,,False
+train_0076,data set/Data_train,146_jpg.rf.PZJMicBCopQPYIyKqbvJ.jpg,,False
+train_0077,data set/Data_train,146_jpg.rf.slzoDglxga9MIq4DwZuN.jpg,,False
+train_0078,data set/Data_train,147_jpg.rf.nrba6JW6MRJ7ceE98zKH.jpg,,False
+train_0079,data set/Data_train,148_jpg.rf.imx1EBfDRdhMLOMPjFp1.jpg,,False
+train_0080,data set/Data_train,148_jpg.rf.t3oQzQTU509tUf5FcV1L.jpg,,False
+train_0081,data set/Data_train,148_jpg.rf.TzpzE8nXNKU3lEad387t.jpg,,False
+train_0082,data set/Data_train,149_jpg.rf.MrsorCRSv4gWDuF84NhT.jpg,,False
+train_0083,data set/Data_train,149_jpg.rf.nyJEjecCDct7QTOdW4EJ.jpg,,False
+train_0084,data set/Data_train,14_jpg.rf.LuYuwjJ855NKv45JZJNF.jpg,,False
+train_0085,data set/Data_train,150_jpg.rf.2inhjljUgwzKcWxMYgzp.jpg,,False
+train_0086,data set/Data_train,150_jpg.rf.NJSzJDIpiuk7DsbkI0Nn.jpg,,False
+train_0087,data set/Data_train,151_jpg.rf.47MZ91CJL7f30XbYJ5ff.jpg,,False
+train_0088,data set/Data_train,151_jpg.rf.v8C8YY36DU12OkIri7U1.jpg,,False
+train_0089,data set/Data_train,152_jpg.rf.Hvi6TXU8HqIPFsTkXgio.jpg,,False
+train_0090,data set/Data_train,153_jpg.rf.XHJhoLU8tPdhBJC1ZGHL.jpg,,False
+train_0091,data set/Data_train,154_jpg.rf.HuH7z9UY4sznXr8XQQTk.jpg,,False
+train_0092,data set/Data_train,154_jpg.rf.JnhVFhCQlv8zLX0RHV25.jpg,,False
+train_0093,data set/Data_train,155_jpg.rf.iyqvqvCc7324lwLcw40W.jpg,,False
+train_0094,data set/Data_train,155_jpg.rf.UnW7KTWsXK0qj2z2Dkvl.jpg,,False
+train_0095,data set/Data_train,156_jpg.rf.xyzOOyzCNrAZTJfl3oOM.jpg,,False
+train_0096,data set/Data_train,157_jpg.rf.iZxMHP74FZPyMI9xP4ll.jpg,,False
+train_0097,data set/Data_train,158_jpg.rf.DQYBOtaEIMPpBUnhqGu8.jpg,,False
+train_0098,data set/Data_train,159_jpg.rf.Ff45uyooW059bZENUP4f.jpg,,False
+train_0099,data set/Data_train,15_jpg.rf.cjVHcq4CaqPqFHr9cijd.jpg,,False
+train_0100,data set/Data_train,160_jpg.rf.jm80LTMjG2PYx3YXaDaC.jpg,,False
+train_0101,data set/Data_train,161_jpg.rf.CG1Uy1VjNPbZKseCXz7d.jpg,,False
+train_0102,data set/Data_train,161_jpg.rf.s13LyvZqKKHmRequ18UP.jpg,,False
+train_0103,data set/Data_train,162_jpg.rf.Sykiyv8WEzV5twKHnKGE.jpg,,False
+train_0104,data set/Data_train,163_jpg.rf.DtKMlwOvGMypgt5KbhnS.jpg,,False
+train_0105,data set/Data_train,163_jpg.rf.s9SJBgxMtmwNZJ1deuqC.jpg,,False
+train_0106,data set/Data_train,164_jpg.rf.P9WXjXyNjpwye8ERCtYe.jpg,,False
+train_0107,data set/Data_train,165_jpg.rf.KhaeGNP5J5MFVzv20U0t.jpg,,False
+train_0108,data set/Data_train,166_jpg.rf.dxXDJPaah13IMCyQvhi2.jpg,,False
+train_0109,data set/Data_train,167_jpg.rf.EdonNhYcZWP2eHEtEDal.jpg,,False
+train_0110,data set/Data_train,168_jpg.rf.ZHdsEfU7TzBFbqR1lu0P.jpg,,False
+train_0111,data set/Data_train,169_jpg.rf.TxeazVozjY7FKm2HgO5S.jpg,,False
+train_0112,data set/Data_train,16_jpg.rf.l6oWfPuoXZU63dZombW3.jpg,,False
+train_0113,data set/Data_train,170_jpg.rf.Gxgv1eFIyjrDBshElEsA.jpg,,False
+train_0114,data set/Data_train,170_jpg.rf.U44WnXEItb8mrQ9ctn2K.jpg,,False
+train_0115,data set/Data_train,171_jpg.rf.rflL3OcSwF8X76J8y5T6.jpg,,False
+train_0116,data set/Data_train,172_jpg.rf.L6GPNmKM9Ei7dINc0HAG.jpg,,False
+train_0117,data set/Data_train,172_jpg.rf.RpNr73ACOp3jzDI92lAI.jpg,,False
+train_0118,data set/Data_train,172_jpg.rf.XqLKXtHL5cypKcjHyTkh.jpg,,False
+train_0119,data set/Data_train,173_jpg.rf.UH30YittpYPFDpO0vNLg.jpg,,False
+train_0120,data set/Data_train,174_jpg.rf.bF3PTLniCVcbv6iNsfzy.jpg,,False
+train_0121,data set/Data_train,175_jpg.rf.f0BqyUz8t6NjAE7GGrOw.jpg,,False
+train_0122,data set/Data_train,175_jpg.rf.serSDZEm1APNY3n3ANxj.jpg,,False
+train_0123,data set/Data_train,176_jpg.rf.Yy4r0m2drX4QMjXpOseS.jpg,,False
+train_0124,data set/Data_train,177_jpg.rf.9dIdh7RJknGCbQpVZhJl.jpg,,False
+train_0125,data set/Data_train,177_jpg.rf.FF0djvQ1bc5K2U5mLRek.jpg,,False
+train_0126,data set/Data_train,178_jpg.rf.6RXSnaOWF9r2BtTuqmes.jpg,,False
+train_0127,data set/Data_train,179_jpg.rf.r3P04EwezFFTHyTDaQzn.jpg,,False
+train_0128,data set/Data_train,17_jpg.rf.ErmQTOdXDjdqSWwnuls9.jpg,,False
+train_0129,data set/Data_train,180_jpg.rf.iEsVLQcnhg3Q0JBVq6tf.jpg,,False
+train_0130,data set/Data_train,180_jpg.rf.MBV4hArYcwdO1evut4dy.jpg,,False
+train_0131,data set/Data_train,181_jpg.rf.14LLlH4Kv4ilE8WTKBE9.jpg,,False
+train_0132,data set/Data_train,182_jpg.rf.p4r1kKnerl8QDZLemlu1.jpg,,False
+train_0133,data set/Data_train,183_jpg.rf.PwFYdzFujd17AkBrrB5m.jpg,,False
+train_0134,data set/Data_train,184_jpg.rf.cEWuTgwqF4ikj5vg52EC.jpg,,False
+train_0135,data set/Data_train,185_jpg.rf.h7vuQFzWx8LsrKDkjrZW.jpg,,False
+train_0136,data set/Data_train,186_jpg.rf.3LiZl0y5Gz17RCx08GfF.jpg,,False
+train_0137,data set/Data_train,187_jpg.rf.0YqOibKwD10uHaPPoUnk.jpg,,False
+train_0138,data set/Data_train,188_jpg.rf.iwb3BMFuKvOtpPt2dMmt.jpg,,False
+train_0139,data set/Data_train,189_jpg.rf.KU6jcqv455anpxCdZ1d8.jpg,,False
+train_0140,data set/Data_train,18_jpg.rf.8Ue9ClKI5OQ190wcW59U.jpg,,False
+train_0141,data set/Data_train,18_jpg.rf.dUUj5QuMXB9KfjtwAQL2.jpg,,False
+train_0142,data set/Data_train,190_jpg.rf.OBvC0TAlj4QeFgP6vxF7.jpg,,False
+train_0143,data set/Data_train,190_jpg.rf.Z5WthvHjjb40WNBTg4bc.jpg,,False
+train_0144,data set/Data_train,195_jpg.rf.DdugL8F2zCWN4g8yzc5a.jpg,,False
+train_0145,data set/Data_train,196_jpg.rf.AilFvjJ6KQxRBjeuC0y4.jpg,,False
+train_0146,data set/Data_train,197_jpg.rf.RCRRpYgtWyAnRqROZWJS.jpg,,False
+train_0147,data set/Data_train,199_jpg.rf.p5kYqJLlm7aBBi9GGAHR.jpg,,False
+train_0148,data set/Data_train,19_jpg.rf.miUXpkiwfvAQzEohgT1x.jpg,,False
+train_0149,data set/Data_train,1_jpg.rf.j9WxO5JWa21EoNDShRT3.jpg,,False
+train_0150,data set/Data_train,200_jpg.rf.fpkFZXUx7DJyLVDttOxK.jpg,,False
+train_0151,data set/Data_train,202_jpg.rf.RwnE8ixLBEEGqp5Q2QbK.jpg,,False
+train_0152,data set/Data_train,203_jpg.rf.VR9DjUsInF6tJsokWmOE.jpg,,False
+train_0153,data set/Data_train,204_jpg.rf.Z46uGD5sdtROBRBW6wnn.jpg,,False
+train_0154,data set/Data_train,205_jpg.rf.4VsbHkehBQGO4mt0F8Ze.jpg,,False
+train_0155,data set/Data_train,206_jpg.rf.P8fDbyrJeoVgmBtGw5Xn.jpg,,False
+train_0156,data set/Data_train,209_jpg.rf.af6sFft8QOYlt0hprmqg.jpg,,False
+train_0157,data set/Data_train,20_jpg.rf.uWnvJk2th5oPVVgFZG2p.jpg,,False
+train_0158,data set/Data_train,210_jpg.rf.fHZdZ5upWuJzlaR10vaW.jpg,,False
+train_0159,data set/Data_train,211_jpg.rf.Uflj3MDTbD4bu7VyE4cm.jpg,,False
+train_0160,data set/Data_train,213_jpg.rf.4zgH1J5hNn2k9MZ6wKfF.jpg,,False
+train_0161,data set/Data_train,215_jpg.rf.Zooi889XKQc3oGS5F0ds.jpg,,False
+train_0162,data set/Data_train,21_jpg.rf.IUwHSwFpvA8NdquhNTKQ.jpg,,False
+train_0163,data set/Data_train,21_jpg.rf.R4OCHGfKVIJekSxfpjZc.jpg,,False
+train_0164,data set/Data_train,224_jpg.rf.FQ3SGmK4MRFRWRbLI8Ew.jpg,,False
+train_0165,data set/Data_train,224_jpg.rf.MvDJcyZI6KGgClHnTfIB.jpg,,False
+train_0166,data set/Data_train,225_jpg.rf.BYXztIx1AGrYtBHZIz4f.jpg,,False
+train_0167,data set/Data_train,226_jpg.rf.v5LGOVeXhDXLaoASrZrn.jpg,,False
+train_0168,data set/Data_train,227_jpg.rf.OEjaysCtbiHFmhx334um.jpg,,False
+train_0169,data set/Data_train,229_jpg.rf.d9hxFn2Iyuyu0x3lKqz4.jpg,,False
+train_0170,data set/Data_train,22_jpg.rf.e66FYJQZxzC5cJBiprXl.jpg,,False
+train_0171,data set/Data_train,22_jpg.rf.Lhr7wto4XyGVLnQBBcbL.jpg,,False
+train_0172,data set/Data_train,231_jpg.rf.IG52vemvwFco6UhUTxCa.jpg,,False
+train_0173,data set/Data_train,232_jpg.rf.cWW9V2Zb15VIordVgXCW.jpg,,False
+train_0174,data set/Data_train,234_jpg.rf.ptTAq8G22hbiPTEqohoC.jpg,,False
+train_0175,data set/Data_train,236_jpg.rf.uQq4PBjStRXSFUZzdeA3.jpg,,False
+train_0176,data set/Data_train,236_jpg.rf.wqrtzgpVLKjnWI5vL8jU.jpg,,False
+train_0177,data set/Data_train,237_jpg.rf.23IKeul7xTIhI0oco2jp.jpg,,False
+train_0178,data set/Data_train,237_jpg.rf.rX5y5CXrWZaia9kLbWpt.jpg,,False
+train_0179,data set/Data_train,238_jpg.rf.7JzLQP0WujDHoM2bb5MY.jpg,,False
+train_0180,data set/Data_train,239_jpg.rf.y79RCDMUE7uzX60eZAl8.jpg,,False
+train_0181,data set/Data_train,23_jpg.rf.nxKbSRiNbWylCB0PsQDm.jpg,,False
+train_0182,data set/Data_train,23_jpg.rf.YqUlVCuW8raj9eq9auBv.jpg,,False
+train_0183,data set/Data_train,240_jpg.rf.paFucoyEjLNV5xF94LoT.jpg,,False
+train_0184,data set/Data_train,241_jpg.rf.EM0husfs09pPFKg1fXRR.jpg,,False
+train_0185,data set/Data_train,249_jpg.rf.iI2eLuQzQyExqnRdtXeF.jpg,,False
+train_0186,data set/Data_train,24_jpg.rf.3oB7FVhtnm9IiB2i6Iv9.jpg,,False
+train_0187,data set/Data_train,251_jpg.rf.WWJ5xnyMTKG7nMuSWesq.jpg,,False
+train_0188,data set/Data_train,252_jpg.rf.XdUUPMIFxqPacsHLfmZq.jpg,,False
+train_0189,data set/Data_train,253_jpg.rf.L5CbKdgDqI6EtmuYpUgJ.jpg,,False
+train_0190,data set/Data_train,255_jpg.rf.8xsyUAK1EXwKG76KZ12M.jpg,,False
+train_0191,data set/Data_train,256_jpg.rf.dh3ICJyMIiHCkQ6UnC1t.jpg,,False
+train_0192,data set/Data_train,25_jpg.rf.YdItq0XeLQoXS7oHmItp.jpg,,False
+train_0193,data set/Data_train,260_jpg.rf.W5KfH8ywjZQ4cW5FWvxe.jpg,,False
+train_0194,data set/Data_train,261_jpg.rf.VKugaA1aMpZDBNyo3EEQ.jpg,,False
+train_0195,data set/Data_train,262_jpg.rf.Eozgl5PsKa16QY8PWf11.jpg,,False
+train_0196,data set/Data_train,263_jpg.rf.hg9nx4WK0686woUSF7Uc.jpg,,False
+train_0197,data set/Data_train,264_jpg.rf.KIscanexAoq61Ts99M7s.jpg,,False
+train_0198,data set/Data_train,267_jpg.rf.gaCBE4wbwchHVAvIU3sk.jpg,,False
+train_0199,data set/Data_train,268_jpg.rf.b0pAFsqwn5DvPLVy5NO6.jpg,,False
+train_0200,data set/Data_train,26_jpg.rf.K4IQ538cBB8w1qArxEsM.jpg,,False
+train_0201,data set/Data_train,270_jpg.rf.Ar0asWU96X6igF23VGqq.jpg,,False
+train_0202,data set/Data_train,271_jpg.rf.lc2w7U202HTqPQHVY3w5.jpg,,False
+train_0203,data set/Data_train,273_jpg.rf.rsbw2ntbZC8t3U3dj17K.jpg,,False
+train_0204,data set/Data_train,275_jpg.rf.kBrzCq2sDaCxUm2iGU9q.jpg,,False
+train_0205,data set/Data_train,277_jpg.rf.8VaGKiPjjZbAV7eCjnMo.jpg,,False
+train_0206,data set/Data_train,27_jpg.rf.2L4EQCrDObgBuMzJcS4j.jpg,,False
+train_0207,data set/Data_train,280_jpg.rf.8jQWnH4mx5WgNBaDu1Ks.jpg,,False
+train_0208,data set/Data_train,281_jpg.rf.L1l41sbw8M7UgkwCiVxh.jpg,,False
+train_0209,data set/Data_train,28_jpg.rf.yckZZ4Y3NHIiE6EeWDof.jpg,,False
+train_0210,data set/Data_train,290_jpg.rf.nM24gpQOFRDzASnJg6fH.jpg,,False
+train_0211,data set/Data_train,29_jpg.rf.GX9TxaoHXJIIaPTpp1L8.jpg,,False
+train_0212,data set/Data_train,29_jpg.rf.hwqPnyU1M6g9b4r4ZVwa.jpg,,False
+train_0213,data set/Data_train,309_jpg.rf.mtLxaGTewqdVcYu8KVPy.jpg,,False
+train_0214,data set/Data_train,30_jpg.rf.aBnHJFgaj0Zw6ESn4odC.jpg,,False
+train_0215,data set/Data_train,314_jpg.rf.3HJBhxWP2u0b8WNibAub.jpg,,False
+train_0216,data set/Data_train,314_jpg.rf.UOo616EhNr1arlkVy6pT.jpg,,False
+train_0217,data set/Data_train,316_jpg.rf.4oNSuebmWSaSaHOS6306.jpg,,False
+train_0218,data set/Data_train,319_jpg.rf.H5QxVjla5sD5Rg9f0AT5.jpg,,False
+train_0219,data set/Data_train,31_jpg.rf.oX4lhIcug5Kwm6TCgWPe.jpg,,False
+train_0220,data set/Data_train,322_jpg.rf.xaxYWyvhWmnqBD5bb36y.jpg,,False
+train_0221,data set/Data_train,325_jpg.rf.2rGwrvwpjBvFv3T3NuSh.jpg,,False
+train_0222,data set/Data_train,32_jpg.rf.EFODRKiHdgETh9IN6Qij.jpg,,False
+train_0223,data set/Data_train,333_jpg.rf.Pazr0Hd0C8Ih18XsvGQX.jpg,,False
+train_0224,data set/Data_train,334_jpg.rf.G4Foi7ToeiO8DrIOFCoR.jpg,,False
+train_0225,data set/Data_train,335_jpg.rf.VSc3QvV4LiGTkYpWY8J5.jpg,,False
+train_0226,data set/Data_train,336_jpg.rf.l6EGbSKw46IMKoKuknjp.jpg,,False
+train_0227,data set/Data_train,33_jpg.rf.Vxt2XHnhpAkisL8n5k5h.jpg,,False
+train_0228,data set/Data_train,34_jpg.rf.fiYtX6yoD73Kc9d6zZVW.jpg,,False
+train_0229,data set/Data_train,35_jpg.rf.rxztBb7D8sZR3PErdeUY.jpg,,False
+train_0230,data set/Data_train,375_jpg.rf.BLrFKpqrdSFK4Q3BNccc.jpg,,False
+train_0231,data set/Data_train,389_jpg.rf.7d3cdMnnG6zhIJLxuKAB.jpg,,False
+train_0232,data set/Data_train,38_jpg.rf.qhOkFOi9AgaJaTrJr9Mw.jpg,,False
+train_0233,data set/Data_train,38_jpg.rf.Z7hAILmQxetsz8LDVTpi.jpg,,False
+train_0234,data set/Data_train,396_jpg.rf.cilEfUTMwPK07063SDH0.jpg,,False
+train_0235,data set/Data_train,3_jpg.rf.QArFeqQ6v9m2CRs9XZjm.jpg,,False
+train_0236,data set/Data_train,41_jpg.rf.k4vBVFfQpOdyIsqd3mCz.jpg,,False
+train_0237,data set/Data_train,42_jpg.rf.W8Npjron5qYORvc1SsDk.jpg,,False
+train_0238,data set/Data_train,42_jpg.rf.z7frOxcC8urmPnpxvzjb.jpg,,False
+train_0239,data set/Data_train,43_jpg.rf.60YwM7raRUelPWEty02v.jpg,,False
+train_0240,data set/Data_train,44_jpg.rf.OrHGTFtDTO2i94ZeYUlZ.jpg,,False
+train_0241,data set/Data_train,45_jpg.rf.MMWvsIcVmSDaFyNofCqQ.jpg,,False
+train_0242,data set/Data_train,46_jpg.rf.oKUB9c3MnnrfVqrHil9g.jpg,,False
+train_0243,data set/Data_train,470_jpg.rf.Q4Y48UeeNTunXxlXiHwC.jpg,,False
+train_0244,data set/Data_train,47_jpg.rf.Bhb0yLOorNaEcniupN2m.jpg,,False
+train_0245,data set/Data_train,47_jpg.rf.ESBMc9kB6BzwEnMRrDqX.jpg,,False
+train_0246,data set/Data_train,48_jpg.rf.0j0yaPlfhUgKM6GjxgDt.jpg,,False
+train_0247,data set/Data_train,49_jpg.rf.YrbntMefDjr6mUyeoZ1r.jpg,,False
+train_0248,data set/Data_train,504_jpg.rf.1gPhL3OafGB82Bnkw07Z.jpg,,False
+train_0249,data set/Data_train,50_jpg.rf.9ZFqoVKOCjP6pa9D3tHA.jpg,,False
+train_0250,data set/Data_train,50_jpg.rf.AiCRGz3edgO7di7KC0VZ.jpg,,False
+train_0251,data set/Data_train,51_jpg.rf.d9igQyAvFNWBa3ol4qnl.jpg,,False
+train_0252,data set/Data_train,51_jpg.rf.RUhSxVm2mhhIFkpM3Ff8.jpg,,False
+train_0253,data set/Data_train,52_jpg.rf.83z9smu95Fxgyry8bzt1.jpg,,False
+train_0254,data set/Data_train,53_jpg.rf.GViJfGfmFeCH6H0DxHwF.jpg,,False
+train_0255,data set/Data_train,53_jpg.rf.ZgvZFQZpDfOV13XJKCR7.jpg,,False
+train_0256,data set/Data_train,54_jpg.rf.1z86PG27bFhoq0Hc96su.jpg,,False
+train_0257,data set/Data_train,54_jpg.rf.hDzYTtPzZ2avrtws6FCA.jpg,,False
+train_0258,data set/Data_train,56_jpg.rf.aHM5ptHqJPwdS7LClBtQ.jpg,,False
+train_0259,data set/Data_train,57_jpg.rf.cv2DG9UVBiE0GbOtRYFV.jpg,,False
+train_0260,data set/Data_train,57_jpg.rf.zuphr7fATcY6PNLexbEp.jpg,,False
+train_0261,data set/Data_train,58_jpg.rf.PkZlRW8RYCkuHm1byh6m.jpg,,False
+train_0262,data set/Data_train,60_jpg.rf.2APjq5glECXtXYFpdjmG.jpg,,False
+train_0263,data set/Data_train,60_jpg.rf.gGAL92Nn6WJIkvJQyEjo.jpg,,False
+train_0264,data set/Data_train,60_jpg.rf.QuRep4TbtEiN6a8lB7dh.jpg,,False
+train_0265,data set/Data_train,61_jpg.rf.cSA5TVpE35TtpMr5f1zK.jpg,,False
+train_0266,data set/Data_train,61_jpg.rf.mXCHH5V8gTm3s06WlJtd.jpg,,False
+train_0267,data set/Data_train,62_jpg.rf.CBqVbMDqE8DFXg7OexjQ.jpg,,False
+train_0268,data set/Data_train,62_jpg.rf.GIHoXQzbuBcevgixVmij.jpg,,False
+train_0269,data set/Data_train,63_jpg.rf.1degjLYfb6icIw9DdzAQ.jpg,,False
+train_0270,data set/Data_train,63_jpg.rf.6IWl7ekdYdGIwjwbpuOy.jpg,,False
+train_0271,data set/Data_train,64_jpg.rf.HNvFoGzJXrZCjOnLHY3X.jpg,,False
+train_0272,data set/Data_train,64_jpg.rf.pGKjd2f8Gk70KjP6RyDk.jpg,,False
+train_0273,data set/Data_train,65_jpg.rf.9nDoqNNFDmcbqNfODPPp.jpg,,False
+train_0274,data set/Data_train,66_jpg.rf.JkbUfaAR4OAPB6bDgh29.jpg,,False
+train_0275,data set/Data_train,66_jpg.rf.miVPy0cCmqVV1HC56Rqr.jpg,,False
+train_0276,data set/Data_train,67_jpg.rf.5Qilcsv4jOFbBvVNsTra.jpg,,False
+train_0277,data set/Data_train,67_jpg.rf.9S1dYmbBqUWzgulZ44RU.jpg,,False
+train_0278,data set/Data_train,67_jpg.rf.VQnKgbZPVaNoXwNDcbLr.jpg,,False
+train_0279,data set/Data_train,683_jpg.rf.0HX1POojvuRquBclgN3U.jpg,,False
+train_0280,data set/Data_train,685_jpg.rf.SqeT3REKUbCb773P6IP7.jpg,,False
+train_0281,data set/Data_train,68_jpg.rf.0rWAfo2f1FCLdlD5T5jI.jpg,,False
+train_0282,data set/Data_train,69_jpg.rf.2GwcJQEk5IBhzCOJlhAh.jpg,,False
+train_0283,data set/Data_train,69_jpg.rf.tksPdtj94juO1P1wRoca.jpg,,False
+train_0284,data set/Data_train,70_jpg.rf.bvdrL7XLj2i0MnMq2VyL.jpg,,False
+train_0285,data set/Data_train,71_jpg.rf.nPWaIN0sjMQsTS6E128i.jpg,,False
+train_0286,data set/Data_train,72_jpg.rf.tbI0Tacp7VtwynbcOJNm.jpg,,False
+train_0287,data set/Data_train,73_jpg.rf.x0s8OFche9t9NRNZi1Tj.jpg,,False
+train_0288,data set/Data_train,74_jpg.rf.aOEETOvAiIghCWPLyyiQ.jpg,,False
+train_0289,data set/Data_train,74_jpg.rf.w3SzUNse2eUamCy0ImEC.jpg,,False
+train_0290,data set/Data_train,75_jpg.rf.3W27ihzVDU92Te01ywbe.jpg,,False
+train_0291,data set/Data_train,76_jpg.rf.FlanJj3tJzyqRYhFcn1S.jpg,,False
+train_0292,data set/Data_train,76_jpg.rf.FOZrTNT3VYl1kt0KpXKG.jpg,,False
+train_0293,data set/Data_train,76_jpg.rf.vC9r0CJJTE6U2I8whlUD.jpg,,False
+train_0294,data set/Data_train,77_jpg.rf.uU0yUix9Ped6DiALmVyh.jpg,,False
+train_0295,data set/Data_train,77_jpg.rf.Z7j4TZfxaZ7rzGCMPWJk.jpg,,False
+train_0296,data set/Data_train,78_jpg.rf.d8MorItwzn1vmFMEGrOC.jpg,,False
+train_0297,data set/Data_train,78_jpg.rf.IQqkMmgabjdBsUib04s2.jpg,,False
+train_0298,data set/Data_train,79_jpg.rf.6dMKZyeXpyYm2wxHjRjY.jpg,,False
+train_0299,data set/Data_train,79_jpg.rf.uxFFIjRTmBMGllhQF8Gm.jpg,,False
+train_0300,data set/Data_train,7_jpg.rf.Ol3VcFlrfrHHj1WEPjBk.jpg,,False
+train_0301,data set/Data_train,80_jpg.rf.Ja3Mghp2ssYP9HtHyH6O.jpg,,False
+train_0302,data set/Data_train,80_jpg.rf.LF9kkNiM39gtoNwcVZrt.jpg,,False
+train_0303,data set/Data_train,81_jpg.rf.shNKnmKF5JqIuQBRLrE7.jpg,,False
+train_0304,data set/Data_train,81_jpg.rf.xVh3zp7hl7xeLhQSsijV.jpg,,False
+train_0305,data set/Data_train,82_jpg.rf.7iaexPfyPt5tFGWjZfkR.jpg,,False
+train_0306,data set/Data_train,82_jpg.rf.ckjJRLR79hPkw7B0Ypc2.jpg,,False
+train_0307,data set/Data_train,82_jpg.rf.GfpuGbem1D5Oc2mKISj6.jpg,,False
+train_0308,data set/Data_train,83_jpg.rf.7hAESrXzVGfRMCxyuUno.jpg,,False
+train_0309,data set/Data_train,83_jpg.rf.jL3DcoXFtYPcMjIaZnvZ.jpg,,False
+train_0310,data set/Data_train,84_jpg.rf.GjHSxFvj3jYcL4R04xbw.jpg,,False
+train_0311,data set/Data_train,84_jpg.rf.SztiGAKR99eCZm5OouWy.jpg,,False
+train_0312,data set/Data_train,85_jpg.rf.kSAuDn5xqoTnX2QRDKeS.jpg,,False
+train_0313,data set/Data_train,85_jpg.rf.uVTv21zq0hjLOG55ahuY.jpg,,False
+train_0314,data set/Data_train,86_jpg.rf.XYLifU4NknEwoQZFVaF9.jpg,,False
+train_0315,data set/Data_train,87_jpg.rf.HouoBrbwMPQLLzdpfN2P.jpg,,False
+train_0316,data set/Data_train,87_jpg.rf.Rm0RzfoItcOcMcMJipUM.jpg,,False
+train_0317,data set/Data_train,87_jpg.rf.V0rSjsbHfRybKCSPjzq9.jpg,,False
+train_0318,data set/Data_train,88_jpg.rf.CtB8QjuWjEAku0zHADqQ.jpg,,False
+train_0319,data set/Data_train,88_jpg.rf.hBh97g6026Yap1d3t74c.jpg,,False
+train_0320,data set/Data_train,88_jpg.rf.zLrwImuacjBYWI51I7C6.jpg,,False
+train_0321,data set/Data_train,89_jpg.rf.4ej3Dsopa62936SzRmYw.jpg,,False
+train_0322,data set/Data_train,89_jpg.rf.cKGT46kU63jdCjEe8NFW.jpg,,False
+train_0323,data set/Data_train,8_jpg.rf.ncTE0eEFtcQrKaLo0GvE.jpg,,False
+train_0324,data set/Data_train,90_jpg.rf.8MnZPXKJqFMEOKVqj33D.jpg,,False
+train_0325,data set/Data_train,91_jpg.rf.S0hHbu2U1gpfa5MR81Xc.jpg,,False
+train_0326,data set/Data_train,92_jpg.rf.unorzg0UvwCz478iwY95.jpg,,False
+train_0327,data set/Data_train,93_jpg.rf.2Dnd9NAowfoeKTu9AHrP.jpg,,False
+train_0328,data set/Data_train,93_jpg.rf.8Y6GNU1WTekPryAyvrtc.jpg,,False
+train_0329,data set/Data_train,93_jpg.rf.DPIavjMp7ZT701OfTOmm.jpg,,False
+train_0330,data set/Data_train,94_jpg.rf.qTei0Co2yDWO8XUOSevD.jpg,,False
+train_0331,data set/Data_train,94_jpg.rf.zpobyPWGRspbMkeEFSkR.jpg,,False
+train_0332,data set/Data_train,95_jpg.rf.4G5PE6mLYMXX1M6kYKwt.jpg,,False
+train_0333,data set/Data_train,96_jpg.rf.8qJgKZPtkvytYQ23HOqY.jpg,,False
+train_0334,data set/Data_train,96_jpg.rf.rQ56nHQi8MxkRv0YKNzC.jpg,,False
+train_0335,data set/Data_train,97_jpg.rf.9pSw3gdEjWjoLHxfOJ3n.jpg,,False
+train_0336,data set/Data_train,97_jpg.rf.xFrOz30h9eXKPrAqQMSI.jpg,,False
+train_0337,data set/Data_train,98_jpg.rf.8xsfpto1zR5FwjuL8MuE.jpg,,False
+train_0338,data set/Data_train,98_jpg.rf.cFzUsRMOx8HCHeNxF5Mr.jpg,,False
+train_0339,data set/Data_train,99_jpg.rf.mrJSTunk5a0CRpJGcABi.jpg,,False
+train_0340,data set/Data_train,99_jpg.rf.ymTRFEplz4tp3CHxPDGj.jpg,,False
+train_0341,data set/Data_train,9_jpg.rf.Emenemd00iL0O6z0se2S.jpg,,False
