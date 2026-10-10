@@ -52,6 +52,7 @@ MIN_INLIERS_HINT = 6        # 檔名對得上的原圖，門檻放寬（最後�
 NCC_WARN = 0.99             # NCC 低於此值 → 不輸出，移到 _review（實測正確配對都 ≥0.996）
 SIFT_CONTRAST = 0.02        # 預設0.04；調低讓小裁切區也有足夠特徵點
 REVIEW_DIR = "_review_未還原"
+NCC_REVIEW_MIN = 0.95       # 未過門檻但 NCC ≥ 此值 → 輸出「候選還原圖＋比對圖」給人目視確認（方案D）
 QC_CSV = "A1r_配對QC.csv"
 
 
@@ -343,23 +344,54 @@ def process(raw_dir, ds_root, out_root):
                 M, score = M2, s2
 
         if idx is None or score < NCC_WARN:
-            # 不輸出：把輸出端的 CLAHE 圖與 label 移到 _review，避免混進無CLAHE組
+            # 不輸出：把輸出端的 CLAHE 圖與 label 移到 _review（保留原相對路徑），避免混進無CLAHE組
             rv = out_root / REVIEW_DIR
-            rv.mkdir(exist_ok=True)
             dst = out_root / rel
             if dst.exists():
-                shutil.move(str(dst), str(rv / dst.name))
+                (rv / "原CLAHE圖" / rel).parent.mkdir(parents=True, exist_ok=True)
+                shutil.move(str(dst), str(rv / "原CLAHE圖" / rel))
+            moved_lbl = ""
             for lp in (dst.with_suffix(".txt"),
                        out_root / Path(*[("labels" if x == "images" else x) for x in rel.parts]).with_suffix(".txt")):
                 if lp.exists():
-                    shutil.move(str(lp), str(rv / lp.name))
+                    lrel = lp.relative_to(out_root)
+                    (rv / "label" / lrel).parent.mkdir(parents=True, exist_ok=True)
+                    shutil.move(str(lp), str(rv / "label" / lrel))
+                    moved_lbl = str(lrel)
+            has_cand = idx is not None and score >= NCC_REVIEW_MIN
+            if has_cand:                                    # 方案D：候選還原圖 + 比對圖
+                it = lib.items[idx]
+                _, foot = score_M(it, ds, M, valid_ds)
+                warped_cl = cv2.warpAffine(it["clahe"], M, (w, h), flags=cv2.INTER_LINEAR)
+                warped_raw = cv2.warpAffine(it["raw"], M, (w, h), flags=cv2.INTER_LINEAR)
+                cand = ds.copy()
+                cand[foot] = warped_raw[foot]
+                cand_out = cv2.cvtColor(cand, cv2.COLOR_GRAY2BGR) if (color is not None and color.ndim == 3) else cand
+                (rv / "候選還原" / rel).parent.mkdir(parents=True, exist_ok=True)
+                imwrite_u(rv / "候選還原" / rel, cand_out, [cv2.IMWRITE_JPEG_QUALITY, 100])
+                yy, xx = np.mgrid[0:h, 0:w]
+                checker = np.where(((yy // 32 + xx // 32) % 2) == 0, ds, warped_cl)
+                panels = [ds, warped_cl, checker, cand]
+                titles = ["1 CLAHE dataset", "2 CLAHE(raw) warped", "3 checker 1+2", "4 restored (noCLAHE)"]
+                vis = []
+                for im, t in zip(panels, titles):
+                    im = cv2.cvtColor(im, cv2.COLOR_GRAY2BGR)
+                    cv2.putText(im, t, (8, 24), cv2.FONT_HERSHEY_SIMPLEX, 0.7, (0, 255, 255), 2)
+                    vis.append(im)
+                vis = np.hstack(vis)
+                cv2.putText(vis, f"NCC={score:.4f}  src={it['path'].name}", (8, h - 12),
+                            cv2.FONT_HERSHEY_SIMPLEX, 0.7, (0, 255, 255), 2)
+                (rv / "比對圖").mkdir(parents=True, exist_ok=True)
+                imwrite_u(rv / "比對圖" / ("__".join(rel.with_suffix("").parts) + ".png"), vis)
             rec.update({"對應原圖": lib.items[idx]["path"].name if idx is not None else None,
                         "NCC(重建CLAHE vs 資料集)": round(score, 4) if idx is not None else None,
-                        "方法": how,
+                        "方法": how, "label原位置": moved_lbl,
+                        "候選還原": "有（待目視確認）" if has_cand else "無",
                         "狀態": "❌ 未還原（已移到 _review，CLAHE組也要剔除這張）"})
             rows.append(rec)
             print(f"[{k}/{len(ds_imgs)}] {rel}: ❌ 未還原 "
-                  f"(最佳 {rec['對應原圖']} NCC={score:.4f}, hint={[lib.items[i]['path'].name for i in hints]})")
+                  f"(最佳 {rec['對應原圖']} NCC={score:.4f}, hint={[lib.items[i]['path'].name for i in hints]})"
+                  f"{'  → 已輸出候選圖待目視' if has_cand else ''}")
             continue
 
         it = lib.items[idx]
@@ -394,6 +426,10 @@ def process(raw_dir, ds_root, out_root):
         bad = df.loc[st.str.startswith('❌'), "資料集圖片"]
         (out_root / "未還原清單.txt").write_text("\n".join(bad), encoding="utf-8")
         print(f"👉 未還原的 {n_bad} 張已移到 {REVIEW_DIR}/；CLAHE 組也要剔除同樣這些（清單：未還原清單.txt）")
+        n_cand = (df.get("候選還原", pd.Series(dtype=str)) == "有（待目視確認）").sum()
+        if n_cand:
+            print(f"👀 其中 {n_cand} 張有候選還原圖：看 {REVIEW_DIR}/比對圖/，對歪的就把 {REVIEW_DIR}/候選還原/ 裡同名圖刪掉，")
+            print(f"   再執行 A1r_accept_review.py 把剩下的收回資料集")
     dup = df.loc[st.str.startswith('✅'), "對應原圖"].value_counts() if "對應原圖" in df else pd.Series(dtype=int)
     dup = dup[dup > 1]
     if len(dup):
@@ -403,12 +439,9 @@ def process(raw_dir, ds_root, out_root):
 
 
 # ---------------- 直接按「執行」時用這三個（命令列有給參數就以命令列為準）----------------
-RAW_DIR = [r"C:\Users\user\Desktop\論文\code\data set\Data_first",
-           r"C:\Users\user\Desktop\論文\code\data set\Data_second",
-           r"C:\Users\user\Desktop\論文\code\data set\Data_RCTKKK",
-           r"C:\Users\user\Desktop\論文\code\data set\Data_train"]                 # 👈 A1 之前的原圖；多個資料夾就列多個，例如 [r"C:\...\train原圖1", r"C:\...\train原圖2"]
-CLAHE_SET_DIR = "data set/cropped_train_A1"   # 👈 底下有 train/valid/test 或 images/labels 的那層
-OUTPUT_DIR = "A1r_train_noCLAHE"               # 👈 輸出（不可已存在）
+RAW_DIR = "data set/Data_test"               # 👈 A1 之前的原圖；多個資料夾就列多個，例如 [r"C:\...\train原圖1", r"C:\...\train原圖2"]
+CLAHE_SET_DIR = "test_single_seg-67_no_resize"   # 👈 底下有 train/valid/test 或 images/labels 的那層
+OUTPUT_DIR = "test_single_seg-67_no_resize_noCLAHE"               # 👈 輸出（不可已存在）
 
 if __name__ == "__main__":
     if len(sys.argv) == 4:
