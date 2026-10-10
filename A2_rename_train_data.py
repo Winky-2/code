@@ -44,7 +44,7 @@ import pandas as pd
 
 # ---------------- 設定區 ----------------
 # 👇 改成你實際的來源資料夾清單，每個資料夾底下要有 images/ 和 labels/
-SOURCE_DIRS = ["train_crop.yolov11/train"]
+SOURCE_DIRS = ["train_crop.yolov11/traindata set/Data_train"]
 
 OUTPUT_DIR = "rename_train"      # 合併＋重新編號後的輸出資料夾(之後接ALL_TEETH_EXPORT_DIR)
 FILENAME_PREFIX = "train"              # 新檔名前綴，例如 tooth_0001.jpg

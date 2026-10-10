@@ -26,10 +26,10 @@ from ultralytics import YOLO
 
 # ---------------- 設定區 ----------------
 WEIGHTS_PATH = "train_crop_yolov11_run/weights_ready.pt"   # 👈 A2a 的輸出
-INPUT_DIR = "test_A1"                         # 👈 要裁切的資料夾(images/ + labels/，detection格式)
+INPUT_DIR = "rename_train"                         # 👈 要裁切的資料夾(images/ + labels/，detection格式)
 
-CROPPED_OUTPUT_DIR = "cropped_test_teeth"                  # 👈 裁切後單顆牙圖片
-CROP_MANIFEST_XLSX = "裁切結果_test.xlsx"                  # 👈 明細與QC
+CROPPED_OUTPUT_DIR = "cropped_train"                  # 👈 裁切後單顆牙圖片
+CROP_MANIFEST_XLSX = "裁切結果_train.xlsx"                  # 👈 明細與QC
 
 IMG_SIZE = 640
 CONF_THRESHOLD = 0.15
