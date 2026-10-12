@@ -1,0 +1,16 @@
+train: ../train/images
+val: ../valid/images
+test: ../test/images
+
+kpt_shape: [2, 3]
+flip_idx: [0, 1]
+
+nc: 1
+names: ['teeth']
+
+roboflow:
+  workspace: s-workspace-33247
+  project: test_enhance
+  version: 1
+  license: CC BY 4.0
+  url: https://universe.roboflow.com/s-workspace-33247/test_enhance/dataset/1
