@@ -19,7 +19,7 @@ function C2_plotMyResults_fullimage()
 % ============================================================
 
     %% 1. 設定檔案路徑
-    filename = '預測結果與評估指標_train80_test20_像素轉mm_全片版.xlsx';
+    filename = '預測結果與評估指標_train80_test20_重新標註-2.xlsx';
     fprintf('正在從 %s 讀取預測資料...\n', filename);
 
     %% 2. 讀取工作表 1：所有牙齒預測結果，只取 test set 來畫圖
