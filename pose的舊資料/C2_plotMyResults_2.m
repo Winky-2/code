@@ -13,7 +13,7 @@ function C2_plotMyResults()
 % ============================================================
 
     %% 1. 設定(必須跟 C1 跑的那次一致)
-    METHOD      = '重新標註-2';
+    METHOD      = '26_batch4_前處理';
     USE_AGE     = false;
     USE_SEX     = false;
     HIDDEN_SIZE = 5;

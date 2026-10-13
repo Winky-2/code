@@ -41,14 +41,14 @@ import numpy as np
 import pandas as pd
 
 # ---------------- 設定區 ----------------
-B2_XLSX = "yolo像素預測_11_batch4_重新標註-2.xlsx"   # 👈 B2 的 OUTPUT_XLSX
+B2_XLSX = "yolo像素預測_26_batch4.xlsx"   # 👈 B2 的 OUTPUT_XLSX
 B2_SHEET = "預測結果"
 
 MM_XLSX = "根管充填長度_20260921-67.xlsx"                     # 👈 醫師 mm 記錄
 MM_SHEET = "資料填寫"                                          # 檔內另有「工作表1」是草稿，別讀錯
 MM_EXTRA_COLS = ["牙位", "年齡", "性別", "醫師備註（選填）"]    # 帶進輸出供錯誤分析，C1 不讀
 
-OUTPUT_XLSX = "根管填充物像素長度_已配對_重新標註-2.xlsx"           # ⚠️ C1 寫死讀這個檔名，別改
+OUTPUT_XLSX = "根管填充物像素長度_已配對_26_batch4.xlsx"           # ⚠️ C1 寫死讀這個檔名，別改
 DIAGNOSTIC_XLSX = "B3_配對診斷_重新標註-2.xlsx"
 
 TRAIN_PX_SOURCE = "pred"      # "GT" 或 "pred"，見檔頭；C1 走 k-fold 時必須是 "pred"

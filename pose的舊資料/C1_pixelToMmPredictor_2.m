@@ -21,7 +21,7 @@ function C1_pixelToMmPredictor()
 % ============================================================
 
     %% ---------------- 輸入設定區 ----------------
-    METHOD = '重新標註-2';   % 讀 根管填充物像素長度_已配對_<METHOD>.xlsx
+    METHOD = '26_batch4_前處理';   % 讀 根管填充物像素長度_已配對_<METHOD>.xlsx
     filename = ['根管填充物像素長度_已配對_' METHOD '.xlsx'];
 
     FOLD_COLUMN  = '折數fold';
