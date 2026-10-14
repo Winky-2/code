@@ -22,16 +22,16 @@ import pandas as pd
 from C_function import FitnetBR, feat_tag, mround, parse_sex, to_num
 
 # ==================== 可手動修改 ====================
-RUN_NOW = False
+RUN_NOW = True
 
 # ---- 輸入 ----
-METHOD = "冠寬比例尺"            # 'mask幾何_長邊正規化' | '冠寬比例尺'
+METHOD = "mask幾何_長邊正規化"            # 'mask幾何_長邊正規化' | '冠寬比例尺'
 FOLD_COLUMN = "折數fold"
 SPLIT_COLUMN = "資料夾來源"      # 只在 USE_KFOLD=False 時才用
 
 # ---- 特徵 ----
-USE_AGE = False
-USE_SEX = True
+USE_AGE = True
+USE_SEX = False
 AGE_COLUMN = "年齡"
 SEX_COLUMN = "性別"
 

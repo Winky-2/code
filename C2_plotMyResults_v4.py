@@ -16,22 +16,27 @@ import os
 import numpy as np
 import pandas as pd
 
-from C_function import feat_tag, hidden_tag
+from C_function import result_filename as _result_filename
 
 # ==================== 可手動修改 ====================
 RUN_NOW = True
 
 METHOD = "mask幾何_長邊正規化"   # 'mask幾何' | '冠寬比例尺'
-USE_AGE = False
-USE_SEX = True
-HIDDEN_SIZE = [3, 3]
+USE_AGE = True
+USE_SEX = False
+HIDDEN_SIZE = 5
 SHOW_ERROR_BARS = False
 # ====================================================
 
 
 def result_filename() -> str:
-    return (f"預測結果與評估指標_kfold_{METHOD}{feat_tag(USE_AGE, USE_SEX)}"
-            f"_H{hidden_tag(HIDDEN_SIZE)}.xlsx")
+    """先找新檔名(含 _H)；找不到再退回舊版 C1 的檔名(無 _H)"""
+    new = _result_filename(METHOD, USE_AGE, USE_SEX, HIDDEN_SIZE)
+    old = _result_filename(METHOD, USE_AGE, USE_SEX, HIDDEN_SIZE, with_h=False)
+    if not os.path.isfile(new) and os.path.isfile(old):
+        print(f"ℹ️ 找不到 {new}，改讀舊命名 {old}(請確認它是用 H={HIDDEN_SIZE} 跑的)")
+        return old
+    return new
 
 
 # ---------------- 子函式 ----------------
@@ -110,7 +115,8 @@ def main():
     filename = result_filename()
     if not os.path.isfile(filename):
         raise FileNotFoundError(
-            f"找不到 {filename}\n   請先用同樣的 METHOD / USE_AGE / USE_SEX 跑一次 C1。")
+            f"找不到 {filename}\n   請先用同樣的 METHOD / USE_AGE / USE_SEX / HIDDEN_SIZE 跑一次 C1。\n"
+            f"   目前資料夾裡的結果檔：{[f for f in os.listdir('.') if f.startswith('預測結果與評估指標')]}")
     print(f"正在從 {filename} 讀取預測資料...")
 
     # --- 2. 逐筆預測結果 ---

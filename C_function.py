@@ -37,6 +37,13 @@ def hidden_tag(hidden) -> str:
     return "[" + "-".join(str(int(v)) for v in h) + "]"
 
 
+def result_filename(method, use_age, use_sex, hidden, with_h=True) -> str:
+    """C1 輸出 / C2 輸入的檔名(兩支共用，避免再對不上)
+    with_h=False 是舊版 C1(檔名沒有 _H 標籤)的命名，C2 找不到新檔名時退回用它"""
+    h = f"_H{hidden_tag(hidden)}" if with_h else ""
+    return f"預測結果與評估指標_kfold_{method}{feat_tag(use_age, use_sex)}{h}.xlsx"
+
+
 # ==================== 數值工具 ====================
 def to_num(x) -> np.ndarray:
     return pd.to_numeric(pd.Series(x), errors="coerce").to_numpy(dtype=float)
