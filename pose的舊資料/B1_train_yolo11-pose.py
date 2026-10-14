@@ -50,10 +50,10 @@ import yaml
 from ultralytics import YOLO
 
 # ---------------- 設定區 ----------------
-POSE_DATA_DIR = "132-train-second-model_enhanced"    # 👈 Roboflow匯出：完整X光片，單一class + keypoint visibility標目標牙
-WORK_DIR = "yolo26_pose_run-batch4_前處理"              # 訓練用資料/權重輸出的工作資料夾
+POSE_DATA_DIR = "132-train-second-model_2models"    # 👈 Roboflow匯出：完整X光片，單一class + keypoint visibility標目標牙
+WORK_DIR = "yolo11_pose_run-batch4_bbox"              # 訓練用資料/權重輸出的工作資料夾
 
-BASE_MODEL = "yolo26n-pose.pt"
+BASE_MODEL = "yolo11n-pose.pt"
 EPOCHS = 150
 
 #    全片解析度通常比裁切後單顆牙圖大很多，如果沿用640，目標牙在畫面裡
@@ -78,6 +78,48 @@ AMP = False             # 關閉混合精度，排除AMP造成NaN導致fitness c
 BATCH = 4              # 資料量小，batch別開太大
 
 random.seed(RANDOM_SEED)
+
+SCRIPT_DIR = Path(__file__).resolve().parent
+SEARCH_UP_LEVELS = 3     # 找資料夾時往上找幾層
+
+
+def resolve_data_dir(name):
+    """相對路徑依序找：目前目錄 → 腳本資料夾 → 往上 SEARCH_UP_LEVELS 層 →
+    腳本資料夾底下任一層的同名資料夾。找不到就報錯並列出找過哪裡。"""
+    p = Path(name)
+    if p.is_absolute():
+        tried = [p]
+    else:
+        tried = [Path.cwd() / p, SCRIPT_DIR / p]
+        tried += [SCRIPT_DIR.parents[i] / p
+                  for i in range(min(SEARCH_UP_LEVELS, len(SCRIPT_DIR.parents)))]
+    for c in tried:
+        if c.is_dir():
+            return c.resolve()
+    if not p.is_absolute():
+        hits = sorted(d for d in SCRIPT_DIR.rglob(p.name) if d.is_dir())
+        if hits:
+            return hits[0].resolve()
+
+    nearby = sorted(d.name for d in SCRIPT_DIR.iterdir() if d.is_dir())
+    raise FileNotFoundError(
+        f"❌ 找不到資料夾 POSE_DATA_DIR = {name}\n"
+        f"   已找過：\n" + "".join(f"     {c}\n" for c in dict.fromkeys(tried)) +
+        f"   以及 {SCRIPT_DIR} 底下所有子資料夾。\n"
+        f"   腳本資料夾裡現有的資料夾：{nearby}\n"
+        f"   請確認名稱拼字，或直接填絕對路徑。")
+
+
+def resolve_work_dir(name):
+    """輸出資料夾固定放在腳本旁邊(不受從哪裡執行影響)；
+    但若只有目前目錄底下有舊的同名資料夾，沿用它，避免找不到上次訓練好的權重。"""
+    p = Path(name)
+    if p.is_absolute():
+        return p
+    by_script, by_cwd = SCRIPT_DIR / p, Path.cwd() / p
+    if not by_script.exists() and by_cwd.exists():
+        return by_cwd.resolve()
+    return by_script.resolve()
 
 
 def collect_pose_dataset():
@@ -123,6 +165,88 @@ def split_train_val(pool, val_ratio):
     print(f"📊 train/val切分：train {len(train_items)} 張 / val {len(val_items)} 張"
           f"(val_ratio={val_ratio})")
     return train_items, val_items
+
+
+def count_label_dir(lbl_dir):
+    """數一個 labels/ 資料夾的 bbox。每行 = 1 個 bbox；
+    A 或 B 任一 v>0 視為目標牙(加星號)，其餘為一般牙(v=0)。
+    回傳 (彙總dict, 逐張list)。"""
+    per_image = []
+    for txt in sorted(Path(lbl_dir).glob("*.txt")):
+        n_box = n_target = 0
+        with open(txt, "r", encoding="utf-8") as f:
+            for line in f:
+                parts = line.split()
+                if len(parts) < 5:
+                    continue
+                n_box += 1
+                if len(parts) >= 11 and (float(parts[7]) > 0 or float(parts[10]) > 0):
+                    n_target += 1
+        per_image.append({"標註檔": txt.name, "bbox數": n_box, "目標牙bbox數": n_target})
+
+    n_img = len(per_image)
+    n_box = sum(r["bbox數"] for r in per_image)
+    n_target = sum(r["目標牙bbox數"] for r in per_image)
+    summary = {
+        "圖片數": n_img,
+        "bbox總數": n_box,
+        "目標牙bbox": n_target,
+        "一般牙bbox": n_box - n_target,
+        "平均每張bbox": round(n_box / n_img, 2) if n_img else None,
+        "目標牙數≠1的圖": sum(1 for r in per_image if r["目標牙bbox數"] != 1),
+    }
+    return summary, per_image
+
+
+def write_bbox_stats(work_dir):
+    """統計 bbox 數量，輸出 work_dir/bbox數量統計.xlsx。
+    分兩組：
+      原始資料夾 : POSE_DATA_DIR 底下 Roboflow 的 train / valid / test(+合計)
+      B1實際切分 : 這支腳本重新切出來、真正拿去訓練的 train / val
+    回傳 B1 實際切分的 {split: summary}，給訓練摘要用。"""
+    rows, per_rows = [], []
+
+    sources = [("原始資料夾", s, Path(POSE_DATA_DIR) / s / "labels") for s in ("train", "valid", "test")]
+    sources.append(("原始資料夾", "(扁平)labels", Path(POSE_DATA_DIR) / "labels"))
+    sources += [("B1實際切分", s, work_dir / "data" / s / "labels") for s in ("train", "val")]
+
+    b1_split = {}
+    for group, split, lbl_dir in sources:
+        if not lbl_dir.exists():
+            continue
+        summary, per_image = count_label_dir(lbl_dir)
+        if summary["圖片數"] == 0:
+            continue
+        rows.append({"來源": group, "split": split, **summary})
+        per_rows += [{"來源": group, "split": split, **r} for r in per_image]
+        if group == "B1實際切分":
+            b1_split[split] = summary
+
+    # 原始資料夾合計 = 你說的「資料夾裡所有的(train+valid…)」
+    orig = [r for r in rows if r["來源"] == "原始資料夾"]
+    if orig:
+        tot = {k: sum(r[k] for r in orig) for k in
+               ("圖片數", "bbox總數", "目標牙bbox", "一般牙bbox", "目標牙數≠1的圖")}
+        tot["平均每張bbox"] = round(tot["bbox總數"] / tot["圖片數"], 2)
+        rows.append({"來源": "原始資料夾", "split": "合計", **tot})
+
+    if not rows:
+        print("⚠️ 找不到任何 labels/*.txt，略過 bbox 統計")
+        return b1_split
+
+    df = pd.DataFrame(rows)
+    out_path = work_dir / "bbox數量統計.xlsx"
+    with pd.ExcelWriter(out_path, engine="openpyxl") as w:
+        df.to_excel(w, sheet_name="彙總", index=False)
+        pd.DataFrame(per_rows).to_excel(w, sheet_name="逐張", index=False)
+
+    print(f"\n📦 bbox 數量統計：{out_path}")
+    print(df.to_string(index=False))
+    n_bad = sum(r["目標牙數≠1的圖"] for r in orig)
+    if n_bad:
+        print(f"⚠️ 原始資料夾有 {n_bad} 張圖的目標牙(v>0)不是剛好 1 顆，見「逐張」sheet。")
+        print(f"   0 顆 = 這張沒有 A/B 監督訊號；>1 顆 = B2 的 IoU 選框前提要再確認。")
+    return b1_split
 
 
 def copy_items(items, dst_img_dir, dst_lbl_dir):
@@ -176,11 +300,17 @@ def train_pose_model():
     ready_path = work_dir / "weights_ready.pt"
     if ready_path.exists():
         print(f"⚠️ 偵測到已經訓練過的模型 {ready_path}，直接使用，若要重新訓練請先刪除 {work_dir}")
+        write_bbox_stats(work_dir)    # 不重訓也補出 bbox 統計(讀上次複製好的 data/)
         return ready_path
 
     pool = collect_pose_dataset()
     if not pool:
-        raise FileNotFoundError(f"在 {POSE_DATA_DIR} 裡找不到任何已標註的資料")
+        inside = sorted(str(d.relative_to(POSE_DATA_DIR))
+                        for d in Path(POSE_DATA_DIR).rglob("*") if d.is_dir())[:20]
+        raise FileNotFoundError(
+            f"在 {POSE_DATA_DIR} 裡找不到任何「圖片+同名標註」\n"
+            f"   需要的結構：train/images + train/labels(valid、test 同理)，或扁平的 images/ + labels/\n"
+            f"   這個資料夾裡實際有的子資料夾：{inside}")
 
     train_items, val_items = split_train_val(pool, VAL_RATIO)
 
@@ -188,6 +318,7 @@ def train_pose_model():
     copy_items(train_items, data_root / "train" / "images", data_root / "train" / "labels")
     copy_items(val_items, data_root / "val" / "images", data_root / "val" / "labels")
     data_yaml = write_data_yaml(data_root)
+    bbox_split = write_bbox_stats(work_dir)   # 訓練前先寫，訓練中斷也留得下
 
     model = YOLO(BASE_MODEL)
     model.train(
@@ -223,6 +354,9 @@ def train_pose_model():
         summary_df = pd.DataFrame([{
             "train張數": len(train_items),
             "val張數": len(val_items),
+            **{f"{k}_{s}": bbox_split[s][k]
+               for s in ("train", "val") if s in bbox_split
+               for k in ("bbox總數", "目標牙bbox", "一般牙bbox")},
             **val_metrics,
         }])
         summary_path = work_dir / "訓練摘要.xlsx"
@@ -236,6 +370,12 @@ def train_pose_model():
 
 
 def main():
+    global POSE_DATA_DIR, WORK_DIR
+    POSE_DATA_DIR = str(resolve_data_dir(POSE_DATA_DIR))
+    WORK_DIR = str(resolve_work_dir(WORK_DIR))
+    print(f"📂 標註資料：{POSE_DATA_DIR}")
+    print(f"📂 輸出資料夾：{WORK_DIR}")
+
     weights_path = train_pose_model()
 
     print(f"\n=======================================================")
