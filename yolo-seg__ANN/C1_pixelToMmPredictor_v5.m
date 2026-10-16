@@ -17,15 +17,15 @@ function C1_pixelToMmPredictor_v6()
 % ============================================================
 
     %% ---------------- 輸入設定區 ----------------
-    METHOD = '冠寬比例尺';   % 'mask幾何_長邊正規化' | '冠寬比例尺'
-    filename = ['根管填充物像素長度_已配對_' METHOD '.xlsx'];
+    METHOD = 'mask幾何_長邊正規化';   % 'mask幾何_長邊正規化' | '冠寬比例尺'
+    filename = ['根管填充物像素長度_已配對_26n_' METHOD '.xlsx'];
 
     FOLD_COLUMN  = '折數fold';
     SPLIT_COLUMN = '資料夾來源';   % 只在 USE_KFOLD=false 時才用
 
     %% ---------------- 特徵設定區 ----------------
     USE_AGE = false;      % 年齡進模型
-    USE_SEX = true;      % 性別進模型(M=1, F=0)
+    USE_SEX = false;      % 性別進模型(M=1, F=0)
     AGE_COLUMN = '年齡';
     SEX_COLUMN = '性別';
 
@@ -274,7 +274,7 @@ function C1_pixelToMmPredictor_v6()
     end
 
     %% --- 7. 匯出 ---
-    output_filename = sprintf('預測結果與評估指標_kfold_%s%s.xlsx', METHOD, FEAT_TAG);
+    output_filename = sprintf('預測結果與評估指標_kfold_26n_%s%s.xlsx', METHOD, FEAT_TAG);
     if isfile(output_filename), delete(output_filename); end
     writetable(ResultsTable, output_filename, 'Sheet', '所有牙齒預測結果');
     writetable(MetricsTable, output_filename, 'Sheet', '模型評估指標');
