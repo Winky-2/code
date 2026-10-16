@@ -35,12 +35,12 @@ from ultralytics import YOLO
 # 第1部分：設定
 # ============================================================
  
-SEG_WEIGHTS = "yolo11n_seg_run_padded_noCLAHE_remask/weights_ready.pt"
-IMAGE_DIR = "test_single_seg-67_noCLAHE_reMask/test/images"   # 👈 必須與 B3 的 IMAGE_DIR 完全相同
-LABEL_DIR = "test_single_seg-67_noCLAHE_reMask/test/labels"   # 👈 GT 多邊形標註（算 mAP 用）
+SEG_WEIGHTS = "yolo26n_seg_run_padded/weights_ready.pt"
+IMAGE_DIR = "A5_test_padded/images"   # 👈 必須與 B3 的 IMAGE_DIR 完全相同
+LABEL_DIR = "A5_test_padded/labels"   # 👈 GT 多邊形標註（算 mAP 用）
  
-OUTPUT_XLSX = "B2_seg推論統計_11n_padded_noCLAHE_reMask.xlsx"          # 👈 B3 的 B2_XLSX 要指到這個檔
-VIS_DIR = "B2_seg視覺化_11n_padded_noCLAHE_reMask"
+OUTPUT_XLSX = "B2_seg推論統計_26n_padded.xlsx"          # 👈 B3 的 B2_XLSX 要指到這個檔
+VIS_DIR = "B2_seg視覺化_26n_padded"
 SAVE_VISUALIZATION = True
  
 IMG_SIZE = 640          # 👈 跟 seg 訓練時一致

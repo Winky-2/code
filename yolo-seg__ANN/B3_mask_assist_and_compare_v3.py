@@ -70,21 +70,21 @@ import pandas as pd
 # ============================================================
 
 # --- 輸入 ---
-SEG_WEIGHTS = "yolo11n_seg_run_padded_noCLAHE_remask/weights_ready.pt"
-IMAGE_DIR = "test_single_seg-67_noCLAHE_reMask/test/images"       # 👈 seg 的 test 影像(與 B2 相同)
-GT_LABEL_DIR = "test_single_seg-67_noCLAHE_reMask/test/labels"    # 👈 pose 或 seg 格式皆可；留空則強制 center
-B2_XLSX = "B2_seg推論統計_11n_padded_noCLAHE_reMask.xlsx"                  # 👈 B2 的輸出，只拿 Mask_mAP50-95 印在圖上
+SEG_WEIGHTS = "yolo26n_seg_run_padded/weights_ready.pt"
+IMAGE_DIR = "A5_test_padded/images"       # 👈 seg 的 test 影像(與 B2 相同)
+GT_LABEL_DIR = "A5_test_padded/labels"    # 👈 pose 或 seg 格式皆可；留空則強制 center
+B2_XLSX = "B2_seg推論統計_26n_padded.xlsx"                  # 👈 B2 的輸出，只拿 Mask_mAP50-95 印在圖上
 
 # --- scale 來源 ---
 SCALE_SOURCE = "auto"                      # "auto"(先查 xlsx，查不到用原圖) | "xlsx" | "original"
 SCALE_XLSX = ""
 SCALE_XLSX_SHEET = "逐顆牙對照"
-ORIGINAL_IMAGE_DIR = "test_single_seg-67_no_resize/test/images"  # 原始(未 letterbox)影像資料夾；有填就交叉驗證
+ORIGINAL_IMAGE_DIR = "A5_test_padded/images"  # 原始(未 letterbox)影像資料夾；有填就交叉驗證
 SCALE_MISMATCH_TOL = 0.01                  # 兩種 scale 相差超過 1% → QC 標記
 
 # --- 輸出 ---
-OUTPUT_XLSX = "B3_mask輔助對照_11n_padded_noCLAHE_reMask.xlsx"
-VIS_DIR = "B3_mask視覺化_11n_padded_noCLAHE_reMask"
+OUTPUT_XLSX = "B3_mask輔助對照_26n_padded.xlsx"
+VIS_DIR = "B3_mask視覺化_26n_padded"
 SAVE_VISUALIZATION = True
 TOP_N_WORST = 10                   # 終端印出絕對誤差最大的前 N 張(0 = 不印)
 
