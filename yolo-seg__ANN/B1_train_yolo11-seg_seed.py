@@ -67,9 +67,9 @@ from ultralytics import YOLO
 
 # ---------------- 設定區 ----------------
 SEG_DATA_DIR = "A5_train_padded"        # 👈 Roboflow Instance Segmentation 匯出資料夾
-WORK_DIR = "yolo11n_seg_run_padded"      # 實際輸出到 {WORK_DIR}_seed{s}/
+WORK_DIR = "yolo26n_seg_run_padded"      # 實際輸出到 {WORK_DIR}_seed{s}/
 
-BASE_MODEL = "yolo11n-seg.pt"                     # 👈 跟 pose 版唯一的模型差異
+BASE_MODEL = "yolo26n-seg.pt"                     # 👈 跟 pose 版唯一的模型差異
 EPOCHS = 150
 
 # 以下刻意與 B1_train_yolo11-pose_v2.py 對齊，不要單獨調整
@@ -80,7 +80,7 @@ CLASS_NAMES = ["tooth"]     # A 案與 B 案都只用單一 class
 
 # 本次實驗唯一的變因
 TRAIN_SEEDS = [0, 1, 2, 3, 4]   # 0 = 舊版實際用的 seed(Ultralytics 預設)
-SEED_SUMMARY_XLSX = f"{WORK_DIR}_seed彙整.xlsx"
+SEED_SUMMARY_XLSX = f"{WORK_DIR}_seed彙整_26.xlsx"
 
 PATIENCE = 0                # early stopping 關閉
 LR0 = 0.001                 # 小資料集調低初始學習率

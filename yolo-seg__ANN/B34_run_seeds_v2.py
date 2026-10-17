@@ -58,21 +58,21 @@ B3_MODULE = "B3_mask_assist_and_compare_v3"
 B4_MODULE = "B4_build_C1_input"
 
 # --- 各 seed 的輸入(B1/B2 的輸出) ---
-SEG_WEIGHTS_TMPL = "yolo11n_seg_run_padded_seed{s}/weights_ready.pt"
-B2_XLSX_TMPL = "B2_seg推論統計_11n_padded_seed{s}.xlsx"
+SEG_WEIGHTS_TMPL = "yolo26n_seg_run_padded_seed{s}/weights_ready.pt"
+B2_XLSX_TMPL = "B2_seg推論統計_26n_padded_seed{s}.xlsx"
 
 # --- 各 seed 的輸出 ---
-B3_OUT_TMPL = "B3_mask輔助對照_11n_padded_seed{s}.xlsx"
-B3_VIS_TMPL = "B3_mask視覺化_11n_padded_seed{s}"
+B3_OUT_TMPL = "B3_mask輔助對照_26n_padded_seed{s}.xlsx"
+B3_VIS_TMPL = "B3_mask視覺化_26n_padded_seed{s}"
 B3_SAVE_VIS = True                 # 5 個 seed 都畫圖較慢；只要數字可設 False
 SKIP_B3_IF_EXISTS = False          # True：B3 輸出已存在就不重跑(只改 B4 時省時間)
 
-B4_RAW_DIR_TMPL = "B4_seed_raw/seed{s}"            # B4 原始輸出(對齊前)
-B4_DIAG_TMPL = "B4_配對診斷_11n_padded_seed{s}.xlsx"
+B4_RAW_DIR_TMPL = "B4_seed_raw_26/seed{s}"            # B4 原始輸出(對齊前)
+B4_DIAG_TMPL = "B4_配對診斷_26n_padded_seed{s}.xlsx"
 PREFIX_NAME = "根管填充物像素長度_已配對"          # 與 B4 的 OUTPUT_PREFIX、C1 一致
 FINAL_TMPL = PREFIX_NAME + "_{label}_seed{s}.xlsx"  # C1 的 METHOD = "{label}_seed{s}"
 
-SUMMARY_XLSX = "B34_seed彙整_11n_padded.xlsx"
+SUMMARY_XLSX = "B34_seed彙整_26n_padded.xlsx"
 TOP_N_WORST = 10                   # 終端印出跨 seed MAE 最大的前 N 張(0 = 不印)
 # ===================================================
 

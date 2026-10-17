@@ -42,13 +42,13 @@ from ultralytics import YOLO
 # ============================================================
 
 TRAIN_SEEDS = [0, 1, 2, 3, 4]                                   # 👈 與 B1 v2 一致
-WEIGHTS_TMPL = "yolo11n_seg_run_padded_seed{s}/weights_ready.pt"
+WEIGHTS_TMPL = "yolo26n_seg_run_padded_seed{s}/weights_ready.pt"
 IMAGE_DIR = "A5_test_padded/images"   # 👈 必須與 B3 的 IMAGE_DIR 完全相同
 LABEL_DIR = "A5_test_padded/labels"   # 👈 GT 多邊形標註（算 mAP 用）
 
-OUTPUT_TMPL = "B2_seg推論統計_11n_padded_seed{s}.xlsx"   # 👈 B3 的 B2_XLSX 要指到對應 seed
-VIS_TMPL = "B2_seg視覺化_11n_padded_seed{s}"
-SUMMARY_XLSX = "B2_seed彙整_11n_padded.xlsx"
+OUTPUT_TMPL = "B2_seg推論統計_26n_padded_seed{s}.xlsx"   # 👈 B3 的 B2_XLSX 要指到對應 seed
+VIS_TMPL = "B2_seg視覺化_26n_padded_seed{s}"
+SUMMARY_XLSX = "B2_seed彙整_26n_padded.xlsx"
 SAVE_VISUALIZATION = True
 
 IMG_SIZE = 640          # 👈 跟 seg 訓練時一致
