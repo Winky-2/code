@@ -41,8 +41,8 @@ RUN_NOW = True
 FULL_IMAGE_DIR = r"data set/Data_test"      # 👈 跟 test.py 的 RAW_DIR 一樣
 TRAIN_SEEDS = [0, 1, 2, 3, 4]               # 👈 與 B34 一致；None = 舊版單一檔
 METHODS = ["mask幾何"]                      # 只放有 px 刻度的方法
-INPUT_TMPL = "根管填充物像素長度_已配對_{label}_seed{s}.xlsx"   # B34 的輸出(只讀)
-INPUT_TMPL_NOSEED = "根管填充物像素長度_已配對_{label}.xlsx"    # TRAIN_SEEDS=None 時用
+INPUT_TMPL = r"B4_seed_raw_26\seed2\根管填充物像素長度_已配對_26n_{label}_seed{s}.xlsx"   # B34 的輸出(只讀)
+INPUT_TMPL_NOSEED = "根管填充物像素長度_已配對_26n_{label}.xlsx"    # TRAIN_SEEDS=None 時用
 NORM = "長邊"            # "長邊" | "短邊" | "對角線"
 REF = 1200               # 換算成長邊 1200 px 等效，只為數字好讀；C1 斜率會吸收常數
 # ===================================================
