@@ -32,7 +32,7 @@ RUN_NOW = True
 
 FULL_IMAGE_DIR = r"data set/Data_test"      # 👈 跟 test.py 的 RAW_DIR 一樣
 INPUTS = {                                          # 原方法名 : 既有 C1 輸入檔(只讀)
-    "mask幾何": "根管填充物像素長度_已配對_26n_mask幾何.xlsx",
+    "mask幾何": "根管填充物像素長度_已配對_mask幾何.xlsx",
 }
 NORM = "長邊"            # "長邊" | "短邊" | "對角線"
 REF = 1200               # 換算成長邊 1200 px 等效，只為數字好讀；C1 斜率會吸收常數

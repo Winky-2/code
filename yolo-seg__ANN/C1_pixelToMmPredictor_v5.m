@@ -18,7 +18,7 @@ function C1_pixelToMmPredictor_v6()
 
     %% ---------------- 輸入設定區 ----------------
     METHOD = 'mask幾何_長邊正規化';   % 'mask幾何_長邊正規化' | '冠寬比例尺'
-    filename = ['根管填充物像素長度_已配對_26n_' METHOD '_seed2.xlsx'];
+    filename = ['根管填充物像素長度_已配對_' METHOD '.xlsx'];
 
     FOLD_COLUMN  = '折數fold';
     SPLIT_COLUMN = '資料夾來源';   % 只在 USE_KFOLD=false 時才用
