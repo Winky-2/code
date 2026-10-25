@@ -47,7 +47,7 @@ def batch(files, table):
         age = None if pd.isna(r["年齡"]) else float(r["年齡"])
         pos = None if pd.isna(r["牙位"]) else int(r["牙位"])
         true_mm = None if pd.isna(r["實際長度_mm"]) else float(r["實際長度_mm"])
-        img = cv2.imread(f)
+        img = P.imread_u(f)
         if img is None:
             rows.append({**rec, "狀態": "讀不到影像"})
             continue

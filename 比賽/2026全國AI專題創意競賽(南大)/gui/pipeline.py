@@ -29,7 +29,7 @@ import numpy as np
 HERE = Path(__file__).resolve().parent
 
 # ==================== 設定區 ====================
-SEG_WEIGHTS = HERE / "best.pt"          # TODO 1：換成論文用的 seg 權重
+SEG_WEIGHTS = HERE / "weights_ready.pt"          # TODO 1：換成論文用的 seg 權重
 REG_MODEL = HERE / "reg_model.json"     # fit_regressor.py 或 C1_export_final_ann.m 產生
 
 # ---- A1 CLAHE(值抄自 A1_CLAHE_before_annotation.py) ----
@@ -59,7 +59,7 @@ OPEN_KERNEL_FRAC = 0.04
 #                 → scale = 原圖長邊 ÷ 640(B3 原寫法，沒扣掉 A5 的上下補邊)
 #   "b3_padded"  ：ORIGINAL_IMAGE_DIR 指向 A5 輸出(檔內預設值) → scale = 1
 #   "exact"      ：照 A5 檔頭公式把端點逆換回原圖座標(數學上最正確)
-LENGTH_SCALE_MODE = "b3_original"
+LENGTH_SCALE_MODE = "b3_padded"
 
 # ---- B7 正規化 ----
 NORM_REF = 1200
@@ -70,6 +70,17 @@ IDEAL_TOLERANCE_MM = 1.0
 
 TOOTH_POSITIONS = [11, 12, 21, 22, 31, 32, 41, 42]
 # =================================================
+
+
+# ============================================================
+# 讀圖：cv2.imread 在 Windows 遇到中文路徑會回傳 None，改用 imdecode
+# ============================================================
+def imread_u(path, flags=cv2.IMREAD_COLOR):
+    try:
+        buf = np.fromfile(str(path), dtype=np.uint8)
+    except OSError:
+        return None
+    return cv2.imdecode(buf, flags) if buf.size else None
 
 
 # ============================================================
@@ -318,6 +329,8 @@ def get_reg():
 # ============================================================
 def measure(bgr, position=None, scale_mode=LENGTH_SCALE_MODE):
     """影像 → 長度特徵(不經迴歸)。check_consistency.py 也用這個。"""
+    if bgr is None:
+        raise ValueError("影像讀取失敗(檔案損毀或路徑有問題)")
     H0, W0 = bgr.shape[:2]
     enh = enhance_image(bgr) if USE_CLAHE else bgr.copy()
     g = compute_geom(W0, H0)

@@ -25,7 +25,7 @@ import pandas as pd
 # ==================== 設定 ====================
 RUN_NOW = True
 # TODO 5：B7 產生、C1 讀的那份檔
-TRAIN_XLSX = "根管填充物像素長度_已配對_26n_mask幾何_長邊正規化.xlsx"
+TRAIN_XLSX = "根管填充物像素長度_已配對_mask幾何_長邊正規化.xlsx"
 USE_AGE = True                    # 論文主結果 = 長邊正規化 + 年齡
 FOLD_COLUMN = "折數fold"
 OUT_JSON = "reg_model.json"
