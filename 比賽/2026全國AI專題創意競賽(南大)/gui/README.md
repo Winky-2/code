@@ -1,5 +1,12 @@
 # 根管工作長度輔助估測系統 — GUI
 
+## 真正需要讀到、一定要放在一起的檔案
+GUI資料夾/
+├── app.py
+├── pipeline.py
+├── weights_ready.pt      ← YOLO seg 權重
+└── reg_model.json        ← C1_export_final_ann.m 跑完產生的
+
 ## 檔案
 | 檔案 | 用途 |
 |---|---|

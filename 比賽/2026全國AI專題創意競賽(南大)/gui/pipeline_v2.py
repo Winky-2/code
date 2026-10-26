@@ -10,7 +10,7 @@ pipeline.py — GUI 用的單張推論流程（不訓練、不讀 GT）
   B2/B3 YOLO-seg 推論    conf 0.15，剔除碎塊(最大連通區)
   B3  挑牙 + 幾何        center 挑牙 → PCA 長軸極值點距離 = AB 長度
   B7  長邊正規化         X = 原圖px × 1200 ÷ 整張長邊
-  C1  迴歸 + offset      (X, 年齡) → mm，再 −0.5 mm；|誤差|≤1 mm 為理想
+  C1  迴歸 + offset      (X, 年齡) → mm，再 −0.5 mm
 
 ⚠️ 所有參數都必須跟「訓練迴歸模型用的那份 Excel」產生時一致。
    改完後一定要跑 check_consistency.py 驗證(見 README)。
@@ -64,9 +64,8 @@ LENGTH_SCALE_MODE = "b3_padded"
 # ---- B7 正規化 ----
 NORM_REF = 1200
 
-# ---- C1 臨床設定 ----
+# ---- C1 校正 ----
 OFFSET_MM = 0.5
-IDEAL_TOLERANCE_MM = 1.0
 
 TOOTH_POSITIONS = [11, 12, 21, 22, 31, 32, 41, 42]
 # =================================================
@@ -256,19 +255,24 @@ class Regressor:
             x.append(float(age))
         return np.asarray(x, dtype=np.float64)
 
+    def _ann1(self, net, xn):
+        v = lambda k, src: np.atleast_1d(np.asarray(src[k], dtype=np.float64)).reshape(-1)
+        pi = net["in_ps"]
+        xi = (xn - v("xoffset", pi)) * v("gain", pi) + float(np.ravel(pi["ymin"])[0])
+        b1 = v("b1", net)
+        IW = np.asarray(net["IW"], dtype=np.float64).reshape(len(b1), -1)    # MATLAB 1 欄時會被攤平
+        h = np.tanh(IW @ xi + b1)                                            # tansig == tanh
+        o = float(v("LW", net) @ h + float(v("b2", net)[0]))
+        po = net["out_ps"]
+        return (o - float(np.ravel(po["ymin"])[0])) / float(np.ravel(po["gain"])[0]) \
+            + float(np.ravel(po["xoffset"])[0])
+
     def _ann(self, x):
         d = self.d
-        v = lambda k, src=d: np.atleast_1d(np.asarray(src[k], dtype=np.float64)).reshape(-1)
         x = np.atleast_1d(np.asarray(x, dtype=np.float64)).reshape(-1)
-        xn = (x - v("mu")) / v("sg")
-        pi = d["in_ps"]
-        xi = (xn - v("xoffset", pi)) * v("gain", pi) + float(np.ravel(pi["ymin"])[0])
-        b1 = v("b1")
-        IW = np.asarray(d["IW"], dtype=np.float64).reshape(len(b1), -1)      # MATLAB 1 欄時會被攤平
-        h = np.tanh(IW @ xi + b1)                                            # tansig == tanh
-        o = float(np.asarray(d["LW"]).reshape(-1) @ h + float(np.asarray(d["b2"]).reshape(-1)[0]))
-        po = d["out_ps"]
-        return (o - po["ymin"]) / float(np.ravel(po["gain"])[0]) + float(np.ravel(po["xoffset"])[0])
+        xn = (x - np.ravel(d["mu"])) / np.ravel(d["sg"])
+        nets = d["nets"] if isinstance(d["nets"], list) else [d["nets"]]   # 1 個網路時 jsonencode 不是 list
+        return float(np.mean([self._ann1(n, xn) for n in nets]))
 
     def _selftest(self):
         for row in self.d.get("selftest", []):
@@ -288,16 +292,6 @@ class Regressor:
         feats = "長邊正規化像素長度" + (" + 年齡" if self.use_age else "")
         return f"{self.kind}（{feats}，n={self.d.get('n', '?')}）"
 
-
-def judge(pred_off_mm, true_mm):
-    if true_mm is None or not (true_mm > 0):
-        return "—（未輸入實際充填長度）", None
-    err = pred_off_mm - true_mm
-    if abs(err) <= IDEAL_TOLERANCE_MM:
-        return f"🟢 理想（誤差 {err:+.2f} mm，容許 ±{IDEAL_TOLERANCE_MM} mm）", err
-    if err > 0:
-        return f"🔴 過長（{err:+.2f} mm）", err
-    return f"🟡 過短（{err:+.2f} mm）", err
 
 
 # ============================================================
@@ -377,42 +371,39 @@ def draw_result(m):
     return vis
 
 
-def run(img_rgb, age=None, position=None, true_mm=None):
+def run(img_rgb, age=None, position=None):
     """GUI 入口。img_rgb：Gradio 給的 RGB(或灰階) numpy。
-    回傳 (原圖, CLAHE, 結果疊圖, 校正後預測mm, 判讀, 明細dict)，影像皆為 RGB。"""
+    回傳 (CLAHE 前處理圖, mask 疊圖, 校正後 mm 或 None, 訊息, 明細dict)，影像皆為 RGB。
+    迴歸模型讀不到時仍回傳兩張圖，mm 留空並在訊息寫原因。"""
     if img_rgb.ndim == 2:
         bgr = cv2.cvtColor(img_rgb, cv2.COLOR_GRAY2BGR)
     else:
         bgr = cv2.cvtColor(img_rgb[:, :, :3], cv2.COLOR_RGB2BGR)
     position = int(position) if position not in (None, "", "不指定") else None
+    to_rgb = lambda x: cv2.cvtColor(x, cv2.COLOR_BGR2RGB)
 
     m = measure(bgr, position)
-    to_rgb = lambda x: cv2.cvtColor(x, cv2.COLOR_BGR2RGB)
     if not m["ok"]:
-        return to_rgb(bgr), to_rgb(m["enh"]), to_rgb(m["enh"]), None, m["msg"], {}
-
-    reg = get_reg()
-    pred = reg.predict(m["feat"], age)
-    pred_off = pred - OFFSET_MM
-    status, err = judge(pred_off, true_mm)
+        return to_rgb(m["enh"]), to_rgb(m["enh"]), None, m["msg"], {}
 
     info = {
         "影像尺寸": f"{m['W0']}x{m['H0']}",
         "偵測到 mask 數": len(m["polys"]),
-        "AB 長度 (640 px)": round(m["len_lb"], 2),
         "AB 長度 (原圖 px)": round(m["len_orig"], 2),
         "長邊正規化特徵": round(m["feat"], 3),
-        "年齡": age,
         "方向依據": m["basis"],
-        "迴歸模型": reg.describe(),
-        "模型預測 (mm)": round(pred, 2),
-        f"校正後預測 (−{OFFSET_MM} mm)": round(pred_off, 2),
     }
-    if err is not None:
-        info["誤差 (mm)"] = round(err, 2)
+    msg = "✅ 完成"
     if len(m["polys"]) > 1:
-        info["提醒"] = "偵測到多顆牙，已選最靠近影像中心的那顆（橘色），請確認是目標牙"
-    return to_rgb(bgr), to_rgb(m["enh"]), to_rgb(draw_result(m)), round(pred_off, 2), status, info
+        msg = "⚠️ 偵測到多顆牙，已選最靠近影像中心的那顆（橘色），請確認是目標牙"
+
+    try:
+        reg = get_reg()
+        pred_off = reg.predict(m["feat"], age) - OFFSET_MM
+    except (FileNotFoundError, ValueError, RuntimeError, KeyError) as e:
+        return to_rgb(m["enh"]), to_rgb(draw_result(m)), None, f"❌ {e}", info
+    info["迴歸模型"] = reg.describe()
+    return to_rgb(m["enh"]), to_rgb(draw_result(m)), round(pred_off, 2), msg, info
 
 
 # ============================================================
