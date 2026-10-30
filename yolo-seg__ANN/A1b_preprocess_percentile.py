@@ -45,9 +45,9 @@ import pandas as pd
 # 設定區
 # ============================================================
 INPUT_DIR = "test_single_seg-67_no_resize_noCLAHE/test/images"          # 👈 原始、未增強的圖
-OUTPUT_DIR = "test_A1b_pct"      # 👈 輸出（同檔名）
+OUTPUT_DIR = "test_A1b_multi"      # 👈 輸出（同檔名）
 
-MODE = "percentile"              # "percentile" | "gamma" | "usm" | "clahe" | "multi"
+MODE = "multi"              # "percentile" | "gamma" | "usm" | "clahe" | "multi"
 
 BLACK_BORDER_THRESHOLD = 5       # 與 A1 / enhance_image 相同
 P_LO, P_HI = 1.0, 99.0           # 百分位拉伸的下/上百分位
