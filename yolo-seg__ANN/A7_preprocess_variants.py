@@ -44,9 +44,9 @@ import numpy as np
 RUN_NOW = True  # False = 只列印設定，True = 執行
 
 # 輸入：含 images/ labels/ 的資料集目錄（建議用 A6 的無 CLAHE 雙胞胎）
-INPUT_DIR = "test_single_seg-67_no_resize_noCLAHE/test"          # 👈 原始、未增強的圖
+INPUT_DIR = "train_single_seg-268_no_resize_noCLAHE/train"          # 👈 原始、未增強的圖
 
-OUTPUT_ROOT = "A7_prep_variants"
+OUTPUT_ROOT = "A7_prep_variants_train"
 RUN_TAG = ""                 # 留空 = 由 INPUT_DIR 自動產生
 
 # 要產出的變體（註解掉就不跑）。raw 是基準，建議永遠留著
