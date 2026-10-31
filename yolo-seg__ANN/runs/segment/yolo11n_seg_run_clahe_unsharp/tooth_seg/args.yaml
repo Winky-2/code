@@ -32,7 +32,6 @@ profile: false
 freeze: null
 multi_scale: 0.0
 compile: false
-channels_last: null
 overlap_mask: true
 mask_ratio: 4
 dropout: 0.0
@@ -45,7 +44,7 @@ max_det: 300
 quantize: null
 dnn: false
 plots: true
-nms: null
+end2end: null
 source: null
 vid_stride: 1
 stream_buffer: false
@@ -65,11 +64,13 @@ show_conf: true
 show_boxes: true
 line_width: null
 format: torchscript
+keras: false
 optimize: false
 dynamic: false
 simplify: true
 opset: null
 workspace: null
+nms: false
 lr0: 0.001
 lrf: 0.01
 momentum: 0.937
@@ -111,4 +112,4 @@ auto_augment: randaugment
 erasing: 0.4
 cfg: null
 tracker: tracktrack.yaml
-save_dir: C:\Users\www\Desktop\小專題\code\yolo-seg__ANN\runs\segment\yolo11n_seg_run_clahe_unsharp\tooth_seg
+save_dir: C:\Users\USER\Desktop\論文\code\yolo-seg__ANN\runs\segment\yolo11n_seg_run_clahe_unsharp\tooth_seg
