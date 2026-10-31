@@ -50,12 +50,11 @@ from pathlib import Path
 import pandas as pd
 import yaml
 from ultralytics import YOLO
-
 # ---------------- 設定區 ----------------
-SEG_DATA_DIR = "A5_train_padded"        # 👈 Roboflow Instance Segmentation 匯出資料夾
-WORK_DIR = "yolo26n_seg_run_padded_noCLAHE_remask"      # 訓練用資料/權重輸出的工作資料夾
+SEG_DATA_DIR = "A7_prep_clahe_unsharp_train/tb0.10_crop_seg_640"        # 👈 Roboflow Instance Segmentation 匯出資料夾
+WORK_DIR = "yolo11n_seg_run_clahe_unsharp"      # 訓練用資料/權重輸出的工作資料夾
 
-BASE_MODEL = "yolo26n-seg.pt"                     # 👈 跟 pose 版唯一的模型差異
+BASE_MODEL = "yolo11n-seg.pt"                     # 👈 跟 pose 版唯一的模型差異
 EPOCHS = 150
 
 # 以下刻意與 B1_train_yolo11-pose_v2.py 對齊，不要單獨調整
