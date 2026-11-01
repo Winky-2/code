@@ -16,7 +16,7 @@ function C2_plotMyResults_v5()
     SHOW_ERROR_BARS = false;
 % _H%s
 %, strrep(mat2str(HIDDEN_SIZE),' ','-')
-    filename = sprintf('預測結果與評估指標_kfold_26n_%s%s_seed2.xlsx', METHOD, featTag(USE_AGE, USE_SEX));
+    filename = sprintf('預測結果與評估指標_kfold_11n_padded_noCLAHE_reMask_%s%s.xlsx', METHOD, featTag(USE_AGE, USE_SEX));
     if ~isfile(filename)
         error(['找不到 %s\n' ...
                '   請先用同樣的 METHOD / USE_AGE / USE_SEX 跑一次 C1_v6。'], filename);
@@ -129,7 +129,7 @@ function C2_plotMyResults_v5()
     end
     min_val = floor(min([Y; Y_pred])) - 1;
     max_val = ceil(max([Y; Y_pred])) + 1;
-    plot([min_val, max_val], [min_val, max_val], 'w-', 'LineWidth', 2, 'DisplayName', '完美預測線 (誤差 0)');
+    plot([min_val, max_val], [min_val, max_val], 'k-', 'LineWidth', 2, 'DisplayName', '完美預測線 (誤差 0)');
     plot([min_val, max_val], [min_val+0.5, max_val+0.5], 'r--', 'LineWidth', 1.5, 'DisplayName', '+0.5 mm 誤差線');
     plot([min_val, max_val], [min_val-0.5, max_val-0.5], 'r--', 'LineWidth', 1.5, 'DisplayName', '-0.5 mm 誤差線');
     plot([min_val, max_val], [min_val+1.0, max_val+1.0], 'g:', 'LineWidth', 1.5, 'DisplayName', '+1.0 mm 誤差線');
@@ -151,7 +151,7 @@ function C2_plotMyResults_v5()
     scatter(Y, Y_pred_offset, 45, 'b', 'filled', 'DisplayName', '校正後預測');
     min_val2 = floor(min([Y; Y_pred_offset])) - 1;
     max_val2 = ceil(max([Y; Y_pred_offset])) + 1;
-    plot([min_val2, max_val2], [min_val2, max_val2], 'w-', 'LineWidth', 2, 'DisplayName', '完美預測線 (誤差 0)');
+    plot([min_val2, max_val2], [min_val2, max_val2], 'k-', 'LineWidth', 2, 'DisplayName', '完美預測線 (誤差 0)');
     plot([min_val2, max_val2], [min_val2+1.0, max_val2+1.0], 'g:', 'LineWidth', 1.5, 'DisplayName', '+1.0 mm 容忍線');
     plot([min_val2, max_val2], [min_val2-1.0, max_val2-1.0], 'g:', 'LineWidth', 1.5, 'DisplayName', '-1.0 mm 容忍線');
     xlabel('實際長度 (mm)');
@@ -182,7 +182,7 @@ function C2_plotMyResults_v5()
         xa = [min(age) max(age)];
         plot(xa, polyval(pp, xa), 'y-', 'LineWidth', 1.8, ...
             'DisplayName', sprintf('趨勢 %.3f mm/歲', pp(1)));
-        yline(0, 'w-', 'HandleVisibility', 'off');
+        yline(0, 'k-', 'HandleVisibility', 'off');
         [r_age, p_age] = corr(age, res, 'Type', 'Spearman');
         xlabel('年齡 (歲)'); ylabel('誤差 = 預測 - 實際 (mm)');
         title(sprintf('誤差 vs 年齡 (Spearman ρ=%.2f, p=%.3f)', r_age, p_age));
@@ -195,8 +195,8 @@ function C2_plotMyResults_v5()
         hold on;
         rng(0);
         jit = (rand(n,1) - 0.5) * 0.25;
-        scatter(gx + jit, res, 25, 'w', 'filled', 'MarkerFaceAlpha', 0.6);
-        yline(0, 'w-');
+        scatter(gx + jit, res, 25, 'k', 'filled', 'MarkerFaceAlpha', 0.6);
+        yline(0, 'k-');
         hold off;
         xticks([1 2]); xticklabels({'F', 'M'}); xlim([0.5 2.5]);
         p_sex = NaN;
@@ -319,6 +319,6 @@ function placeText(txt, yOffsetRatio)
     y_lims = ylim;
     text(x_lims(1) + 0.05*(x_lims(2)-x_lims(1)), ...
          y_lims(2) - yOffsetRatio*(y_lims(2)-y_lims(1)), ...
-         txt, 'FontSize', 11, 'BackgroundColor', 'k', ...
-         'EdgeColor', 'w', 'Color', 'w');
+         txt, 'FontSize', 11, 'BackgroundColor', 'w', ...
+         'EdgeColor', 'k', 'Color', 'k');
 end
