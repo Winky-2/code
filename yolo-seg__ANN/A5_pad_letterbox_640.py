@@ -51,7 +51,7 @@ PAD_TB_RATIO = 0.10         # 上下各補 H*ratio 像素黑邊；設 0 = 對照
 OUT_SIZE = 640
 PAD_VALUE = 0
 
-OUTPUT_ROOT = "A7_prep_tophat_train"
+OUTPUT_ROOT = "A7_prep_tophat_test"
 QC_N = 10                   # 畫前 N 張疊圖供肉眼檢查框有沒有對齊（0 = 不畫）
 
 IMAGE_EXTENSIONS = {".jpg", ".jpeg", ".png", ".bmp", ".tif", ".tiff"}
