@@ -36,10 +36,10 @@ from pathlib import Path
 # ==================== 可手動修改 ====================
 RUN_NOW = True
 
-INPUT_IMG_DIR = "A7_prep_variants_train/train_single_seg-268_no_resize_noCLAHE/tophat/images"          # A4 輸出的裁切圖
+INPUT_IMG_DIR = "A7_prep_variants_test/test_single_seg-67_no_resize_noCLAHE/tophat/images"          # A4 輸出的裁切圖
 
 LABEL_SPACE = "crop"                                    # "crop" 或 "full"（見檔頭）
-CROP_LABEL_DIR = "A7_prep_variants_train/train_single_seg-268_no_resize_noCLAHE/tophat/labels"   # LABEL_SPACE="crop" 時：裁切圖的 label 資料夾
+CROP_LABEL_DIR = "A7_prep_variants_test/test_single_seg-67_no_resize_noCLAHE/tophat/labels"   # LABEL_SPACE="crop" 時：裁切圖的 label 資料夾
 FULL_LABEL_DIR = "train_crop.yolov11/train/labels"      # LABEL_SPACE="full" 時：原圖 label
 FULL_IMG_DIR = "train_crop.yolov11/train/images"        # LABEL_SPACE="full" 時：讀原圖寬高
 A4_MANIFEST_XLSX = "裁切結果_train_A1.xlsx"           # LABEL_SPACE="full" 時：A4 裁切座標
