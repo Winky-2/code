@@ -1,7 +1,7 @@
-function C2s_plotSingleModel_v2()
-%% C2s_plotSingleModel_v2.m
+function C2x_plotSingleModel_v1()
+%% C2x_plotSingleModel_v1.m
 % ============================================================
-% 與 v1 相同的四張圖，但全部放進「一個視窗、四個分頁」(uitabgroup)。
+% 四張圖放進「一個視窗、四個分頁」(uitabgroup)。
 %
 %   分頁1 排序點圖
 %   分頁2 散布圖（未校正）＋ 指標文字框
@@ -9,8 +9,17 @@ function C2s_plotSingleModel_v2()
 %   分頁4 誤差 vs 年齡 / 性別
 %
 % 資料來源：C1x_modelCompare_v1 的「模型對照_kfold_*.xlsx」。
-% 年齡/性別不在該檔內，會自動從 B4 的輸入檔用檔名 join 回來；
-% join 不到就把分頁4 留空訊息，不會中斷。
+% 年齡/性別不在該檔內，會自動從 B4/B7 的輸入檔用「檔名開頭編號」join 回來；
+% join 不到就在分頁4 顯示原因，不會中斷。
+%
+% *** 修正紀錄 ***
+%   - 關閉 TeX 解譯：METHOD 裡的「_」不再把下一個字變下標
+%     (R^2 → R²、\rho → ρ 改用 Unicode)
+%   - 年齡/性別 join 改用檔名開頭編號(與 Python 端 base_key 相同)
+%   - 年齡欄是文字(如「45歲」)也能抽出數字
+%   - 終端印出 join 筆數與年齡/性別有值筆數，方便除錯
+%   - MAE SD = 0 時提示：多半是每次重複都用同一組 fold
+%   - 函式名與檔名一致
 % ============================================================
 
     %% ---------------- 設定（要跟 C1x 那次一致）----------------
@@ -46,7 +55,13 @@ function C2s_plotSingleModel_v2()
     i0 = find(string(Cmp.('模型')) == string(MODEL), 1);
     if isempty(i0), error('總表裡找不到模型 %s。', MODEL); end
 
-    offsetMM = str2double(getSetting(Set, 'offset_mm', '0.5'));
+    offsetStr = getSetting(Set, 'offset_mm', '');
+    if isempty(offsetStr)
+        offsetMM = 0.5;
+        fprintf('⚠️ 設定 sheet 找不到 offset_mm，暫用 0.5 mm——請確認與 C1x 一致。\n');
+    else
+        offsetMM = str2double(offsetStr);
+    end
     featDesc = getSetting(Set, '輸入特徵', '像素長度');
     nRep     = getSetting(Set, '重複次數', '?');
 
@@ -69,22 +84,27 @@ function C2s_plotSingleModel_v2()
 
     %% ---------------- join 年齡 / 性別 ----------------
     demoFile = sprintf('根管填充物像素長度_已配對_%s.xlsx', METHOD);
-    age = nan(n,1); sex = nan(n,1); hasDemo = false; demoMsg = '';
+    age = nan(n,1); sex = nan(n,1); demoMsg = '';
     if isfile(demoFile)
         try
-            o = detectImportOptions(demoFile); o.VariableNamingRule = 'preserve';
+            o = detectImportOptions(demoFile, 'VariableNamingRule','preserve');
             if ismember('性別', o.VariableNames), o = setvartype(o, '性別', 'string'); end
+            if ismember('年齡', o.VariableNames), o = setvartype(o, '年齡', 'string'); end
             D = readtable(demoFile, o);
             if ismember('圖片檔名', D.Properties.VariableNames)
-                [tf, loc] = ismember(string(ids), string(D.('圖片檔名')));
+                [tf, loc] = ismember(numKey(ids), numKey(D.('圖片檔名')));
                 if ismember('年齡', D.Properties.VariableNames)
                     a = toNum(D.('年齡')); age(tf) = a(loc(tf));
                 end
                 if ismember('性別', D.Properties.VariableNames)
                     s = parseSex(D.('性別')); sex(tf) = s(loc(tf));
                 end
-                hasDemo = any(~isnan(age)) || any(~isnan(sex));
-                fprintf('已從 %s join 到 %d/%d 筆的年齡/性別。\n', demoFile, sum(tf), n);
+                fprintf('已從 %s join 到 %d/%d 筆；年齡有值 %d、性別有值 %d。\n', ...
+                    demoFile, sum(tf), n, sum(~isnan(age)), sum(~isnan(sex)));
+                if ~any(tf)
+                    demoMsg = sprintf('檔名對不上：逐筆預測「%s」 vs B7「%s」', ...
+                        string(ids(1)), string(D.('圖片檔名')(1)));
+                end
             else
                 demoMsg = sprintf('%s 沒有「圖片檔名」欄，無法對應。', demoFile);
             end
@@ -103,6 +123,10 @@ function C2s_plotSingleModel_v2()
     %% ---------------- 建立單一視窗 + 四個分頁 ----------------
     fig = uifigure('Name', sprintf('單模型結果 - %s（%s）', MODEL, METHOD), ...
                    'Position', [100 80 1020 720]);
+    % 關閉 TeX：避免 METHOD 裡的「_」把下一個字變下標
+    set(fig, 'DefaultTextInterpreter','none', ...
+             'DefaultLegendInterpreter','none', ...
+             'DefaultAxesTickLabelInterpreter','none');
     tg  = uitabgroup(fig, 'Units','normalized', 'Position', [0 0 1 1]);
 
     %% ===== 分頁1：排序點圖 =====
@@ -118,7 +142,7 @@ function C2s_plotSingleModel_v2()
     scatter(ax1, x, Yps, 30, dotC, 'filled', 's', 'DisplayName','Out-of-fold 預測長度');
     xlabel(ax1, sprintf('樣本排序編號（依實際長度由小到大，n=%d）', n));
     ylabel(ax1, '長度 (mm)');
-    title(tl1, {'實際 vs 預測 排序點圖', ttl});
+    title(tl1, {'實際 vs 預測 排序點圖', ttl}, 'Interpreter','none');
     legend(ax1, 'Location','northwest'); grid(ax1,'on'); hold(ax1,'off');
 
     %% ===== 分頁2：散布圖（未校正）=====
@@ -138,12 +162,12 @@ function C2s_plotSingleModel_v2()
     plot(ax2, [lo hi],[lo+1.0 hi+1.0], 'g:', 'LineWidth',1.4,'DisplayName','+1.0 mm');
     plot(ax2, [lo hi],[lo-1.0 hi-1.0], 'g:', 'LineWidth',1.4,'DisplayName','-1.0 mm');
     xlabel(ax2, '實際長度 (mm)'); ylabel(ax2, '預測長度 (mm)');
-    title(tl2, {'實際 vs 預測（未校正）', ttl});
+    title(tl2, {'實際 vs 預測（未校正）', ttl}, 'Interpreter','none');
     legend(ax2, 'Location','southeast'); grid(ax2,'on');
     axis(ax2, [lo hi lo hi]);
     t2 = sprintf(['【未校正 OOF 指標】\n模型 : %s\n量測法 : %s\n輸入 : %s\n' ...
                   'MAE : %.3f mm\nRMSE : %.3f mm\nMean Bias : %.3f mm\n' ...
-                  'R : %.3f\nR^2 : %.3f\n(n = %d，%s 次重複平均)'], ...
+                  'R : %.3f\nR² : %.3f\n(n = %d，%s 次重複平均)'], ...
                   MODEL, METHOD, featDesc, mae_raw, rmse_raw, bias_raw, r_val, r2_val, n, nRep);
     placeText(ax2, t2, 0.22);
     hold(ax2, 'off');
@@ -160,12 +184,12 @@ function C2s_plotSingleModel_v2()
         'DisplayName',sprintf('-%.1f mm 容忍線',TOL_MM));
     xlabel(ax3, '實際長度 (mm)');
     ylabel(ax3, sprintf('校正後預測長度 = 模型輸出 - %.2f mm', offsetMM));
-    title(tl3, {'實際 vs 校正後預測（報告用）', ttl});
+    title(tl3, {'實際 vs 校正後預測（報告用）', ttl}, 'Interpreter','none');
     legend(ax3, 'Location','southeast'); grid(ax3,'on');
     axis(ax3, [lo2 hi2 lo2 hi2]);
     t3 = sprintf(['【校正後 OOF 指標（報告用）】\n模型 : %s\n量測法 : %s\n輸入 : %s\n' ...
                   'MAE : %.3f ± %.3f mm\nRMSE : %.3f mm\nMean Bias : %.3f mm\n' ...
-                  'R : %.3f\nR^2 : %.3f\n理想比率 : %.1f%%\n(n = %d，%s 次重複平均)'], ...
+                  'R : %.3f\nR² : %.3f\n理想比率 : %.1f%%\n(n = %d，%s 次重複平均)'], ...
                   MODEL, METHOD, featDesc, mae_off, sd_off, rmse_off, bias_off, ...
                   r_val, r2_val, ideal_val, n, nRep);
     placeText(ax3, t3, 0.30);
@@ -174,7 +198,7 @@ function C2s_plotSingleModel_v2()
     %% ===== 分頁4：誤差 vs 年齡 / 性別 =====
     res = Y_pred - Y;
     [tl4, ax4a, ax4b] = newTab2(tg, '4  誤差分析');
-    title(tl4, {'誤差分析', ttl});
+    title(tl4, {'誤差分析', ttl}, 'Interpreter','none');
 
     % --- 年齡 ---
     okA = ~isnan(age);
@@ -194,7 +218,7 @@ function C2s_plotSingleModel_v2()
         yline(ax4a, 0, 'k-', 'HandleVisibility','off');
         rA = NaN; pA = NaN;
         try, [rA, pA] = corr(age(okA), res(okA), 'Type','Spearman'); catch, end
-        title(ax4a, sprintf('誤差 vs 年齡 (Spearman \\rho=%.2f, p=%.3f)', rA, pA));
+        title(ax4a, sprintf('誤差 vs 年齡 (Spearman ρ=%.2f, p=%.3f)', rA, pA));
         legend(ax4a, 'Location','best');
         hold(ax4a, 'off');
         fprintf('\n=== 誤差分析 ===\n');
@@ -256,9 +280,13 @@ function C2s_plotSingleModel_v2()
     fprintf('  MAE       : %.3f ± %.3f mm\n', mae_off, sd_off);
     fprintf('  RMSE      : %.3f mm   （由代表性重複重算）\n', rmse_off);
     fprintf('  Mean Bias : %.3f mm   （正 = 整體偏長）\n', bias_off);
-    fprintf('  R / R^2   : %.3f / %.3f   （offset 不影響）\n', r_val, r2_val);
+    fprintf('  R / R²    : %.3f / %.3f   （offset 不影響）\n', r_val, r2_val);
     fprintf('  理想比率  : %.1f %%  （±%.1f mm 內）\n', ideal_val, TOL_MM);
     fprintf('  n = %d，%s 次重複平均；圖上的點是最接近中位數 MAE 的那次重複。\n', n, nRep);
+    if sd_off == 0
+        fprintf(['⚠️ MAE SD = 0：各次重複結果完全相同，多半是每次都用同一組 fold。\n' ...
+                 '   此時「重複平均」沒有意義，報告請寫固定 fold 單次，SD 改用摺間標準差。\n']);
+    end
     fprintf('報告時務必附上 n 與標準差。\n');
 end
 
@@ -283,7 +311,8 @@ end
 function placeText(ax, txt, yRatio)
     xl = xlim(ax); yl = ylim(ax);
     text(ax, xl(1) + 0.05*(xl(2)-xl(1)), yl(2) - yRatio*(yl(2)-yl(1)), txt, ...
-        'FontSize', 10, 'BackgroundColor', 'w', 'EdgeColor', 'k', 'Color', 'k');
+        'FontSize', 10, 'BackgroundColor', 'w', 'EdgeColor', 'k', 'Color', 'k', ...
+        'Interpreter', 'none');
 end
 
 function v = getSetting(Set, key, defaultVal)
@@ -300,7 +329,19 @@ function tag = featTag(useAge, useSex)
 end
 
 function v = toNum(x)
-    if iscell(x) || isstring(x), v = str2double(string(x)); else, v = double(x); end
+% 數值直接轉；文字抽第一段數字（"45歲" → 45），抽不到為 NaN
+    if isnumeric(x), v = double(x); return; end
+    v = str2double(regexp(string(x), '\d+(\.\d+)?', 'match', 'once'));
+end
+
+function k = numKey(s)
+% 取檔名開頭編號：060_xxx.jpg → "60"；開頭不是數字就原樣
+    s = string(s); k = s;
+    tok = regexp(s, '^\s*0*(\d+)', 'tokens', 'once');
+    if ~iscell(tok), tok = {tok}; end
+    for i = 1:numel(s)
+        if ~isempty(tok{i}), k(i) = tok{i}{1}; end
+    end
 end
 
 function s = parseSex(v)
