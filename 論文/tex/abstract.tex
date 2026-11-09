@@ -1,0 +1,5 @@
+\begin{abstract}
+Preoperative periapical radiographs often lack a pixel-to-millimetre scale and vary in export scale, which hinders direct measurement of root length. This work presents a calibration-free pipeline for estimating the root canal filling length. YOLO11n extracts the target tooth, and after top-hat contrast enhancement, YOLO11n-seg segments the tooth and its principal-axis length is measured. The length is normalised by the radiograph's long side and converted to millimetres by Gaussian process regression with patient age, followed by a 0.5-mm safety offset. On 67 anterior teeth, the mean absolute error decreased from 1.433~mm with unprocessed images to 0.993~mm, 62.7\% of errors fell within $\pm1.0$~mm, and the estimates were biased short overall. The pipeline keeps the estimation error at about 1~mm without a physical calibration object.
+\end{abstract}
+
+\noindent\textbf{Keywords:} root canal treatment, working length, periapical radiograph, YOLO11, morphological top-hat transformation, Gaussian process regression.

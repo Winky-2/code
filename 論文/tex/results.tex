@@ -1,0 +1,90 @@
+\section{Results}
+
+This section evaluates the proposed pipeline from four perspectives. First, the tooth segmentation performance of YOLO11n-seg is reported. Second, the effect of preprocessing on length estimation is compared with the segmentation and regression settings held fixed. Third, regression models are compared under the same preprocessing. Finally, the effect of input features is analysed and the relationship of the estimation error with age and sex is examined.
+
+\subsection{Tooth Segmentation Performance}
+On the validation set, the YOLO11n detector for single-tooth extraction achieved a precision of \tbd{}, recall of \tbd{}, mAP@50 of \tbd{}, and mAP@50:95 of \tbd{}. The longitudinal-axis measurement relies on an accurate tooth contour, so mask errors at the apex or incisal edge propagate directly to the length estimate. Table~\ref{tab:seg} summarises the performance of the top-hat segmentation model on the validation and independent test sets. On the validation set, the box and mask mAP@50 both reached 0.995, and the box and mask mAP@50:95 were \tbd{0.834?} and \tbd{0.766?}, respectively. On the independent test set, the mean per-image mask mAP@50:95 was \tbd{}; among the 67 images, \tbd{} produced no output and \tbd{} contained fragments that were removed. Comparing the pixel lengths of predicted and reference contours with the same geometric measurement gave an overall MAE of \tbd{}~px (relative error \tbd{}\%), with \tbd{} and \tbd{}~px for maxillary and mandibular teeth, respectively.
+
+\begin{table}[t]
+\centering
+\caption{Tooth segmentation performance and pixel-level length error (top-hat preprocessing).}
+\label{tab:seg}
+\footnotesize\setlength{\tabcolsep}{3pt}
+\begin{tabular}{@{}lcc@{}}
+\toprule
+Metric & Validation & Test ($n=67$) \\
+\midrule
+Box mAP@50 & 0.995 & -- \\
+Box mAP@50:95 & \tbd{0.834?} & -- \\
+Mask mAP@50 & 0.995 & -- \\
+Mask mAP@50:95$^{a}$ & \tbd{0.766?} & \tbd{} \\
+Length MAE (px, all) & -- & \tbd{} \\
+Length MAE (px, max./mand.) & -- & \tbd{} / \tbd{} \\
+Mean relative error (\%) & -- & \tbd{} \\
+Length bias (px) & -- & \tbd{} \\
+\bottomrule
+\end{tabular}
+
+\smallskip
+{\footnotesize $^{a}$Test value is the per-image mean.}
+\end{table}
+
+\subsection{Effectiveness of Image Preprocessing}
+To assess the effect of preprocessing on length estimation, a controlled comparison was conducted in which the segmentation architecture, data split, training configuration, length measurement, and regression model (GPR) were held constant and only the preprocessing was varied. Rows 1--3 of Table~\ref{tab:compare} compare the out-of-fold performance of unprocessed, CLAHE, and top-hat images, all using the long-side-normalised pixel length and age as inputs. The unprocessed images yielded an MAE of 1.433~mm, an $R$ of only 0.232, and an ideal ratio of 44.8\%. CLAHE reduced the MAE to 1.038~mm and increased $R$ to 0.722. Top-hat preprocessing performed best, with a corrected MAE of 0.993~mm, RMSE of 1.320~mm, $R=0.727$, $R^2=0.529$, an ideal ratio of 62.7\%, and a mean bias of $-0.493$~mm; compared with CLAHE, the MAE decreased by 0.045~mm and the ideal ratio increased by 6.0 percentage points. These results suggest that suppressing large-scale exposure non-uniformity while enhancing local bright and dark details provides more discriminative inputs for segmentation and thereby improves the subsequent length estimation. Figure~\ref{fig:scatter} shows the corrected predictions of top-hat + GPR against the reference lengths with $\pm1.0$-mm tolerance lines.
+
+\begin{table*}[t]
+\centering
+\caption{Root canal filling-length estimation with different preprocessing and regression models (out-of-fold, $n=67$).}
+\label{tab:compare}
+\resizebox{\linewidth}{!}{%
+\begin{tabular}{@{}rlcccccc@{}}
+\toprule
+No. & Preprocessing + model & MAE (mm) & RMSE (mm) & $R$ & $R^2$ & Bias (mm) & Ideal (\%) \\
+\midrule
+1 & Unprocessed + GPR & 1.433 & 1.833 & 0.232 & 0.054 & $-0.572$ & 44.8 \\
+2 & CLAHE + GPR & 1.038 & 1.336 & 0.722 & 0.521 & $-0.506$ & 56.7 \\
+3 & \textbf{Top-hat + GPR (proposed)} & \textbf{0.993} & \textbf{1.320} & \textbf{0.727} & \textbf{0.529} & $-0.493$ & \textbf{62.7} \\
+4 & CLAHE + ANN & 1.054 & 1.376 & 0.689 & 0.475 & $-0.466$ & 56.7 \\
+5 & Top-hat + linear regression & 1.153 & \tbd{} & \tbd{} & \tbd{} & \tbd{} & \tbd{} \\
+\bottomrule
+\end{tabular}}
+
+\smallskip
+\begin{minipage}{0.95\linewidth}\footnotesize
+All values are after subtracting the 0.5-mm offset, which does not affect $R$ or $R^2$. Inputs are the long-side-normalised pixel length and age. Rows 1--3 fix GPR and vary preprocessing; rows 2 and 4 fix CLAHE and compare GPR with ANN (mean of 10 repetitions); row 5 is the linear-regression baseline under top-hat. All results use the same five folds.
+\end{minipage}
+\end{table*}
+
+\begin{figure}[t]
+\centering
+\fbox{\parbox[c][5cm][c]{0.9\linewidth}{\centering \tbd{scatter plot: corrected prediction vs.\ reference (top-hat + GPR)}}}
+\caption{Corrected predictions of top-hat + GPR versus clinician-recorded filling lengths with $\pm1.0$-mm tolerance lines (out-of-fold, $n=67$).}
+\label{fig:scatter}
+\end{figure}
+
+\subsection{Comparison of Regression Models}
+Regression models were compared under identical preprocessing. With CLAHE fixed (rows 2 and 4 of Table~\ref{tab:compare}), GPR achieved an MAE of 1.038~mm, RMSE of 1.336~mm, and $R=0.722$, whereas the ANN (mean of 10 repetitions) obtained 1.054~mm, 1.376~mm, and 0.689, respectively; the difference is small, with GPR slightly lower. Under top-hat preprocessing, linear regression with the same inputs yielded an MAE of 1.153~mm, higher than the 0.993~mm of GPR (row 5), indicating that modelling the residual beyond the linear trend with GPR further reduces the estimation error. In addition, GPR involves no random initialisation and is deterministic for a fixed fold assignment, removing the need to average over repeated runs as required for the ANN.
+
+\subsection{Input-Feature Analysis and Error Analysis}
+Table~\ref{tab:inputs} compares the corrected performance of different input settings with top-hat + GPR. Long-side normalisation reduced the coefficient of variation of px/mm from \tbd{0.407?} to \tbd{0.076?} and increased the correlation between pixel length and true length from $r=$~\tbd{0.052?} to \tbd{0.678?}; accordingly, the MAE was \tbd{}~mm with unnormalised pixel length and \tbd{}~mm after normalisation. Adding age reduced the MAE to 0.993~mm, whereas adding sex as well yielded \tbd{}~mm, and adding sex alone yielded \tbd{}~mm. The Spearman correlation between error and age was $\rho=$~\tbd{} ($p=$~\tbd{}), and the MAEs of female and male patients were \tbd{} and \tbd{}~mm ($p=$~\tbd{}).
+
+\begin{table}[t]
+\centering
+\caption{Corrected out-of-fold performance of different input settings (top-hat + GPR, $n=67$; MAE and RMSE in mm).}
+\label{tab:inputs}
+\small\setlength{\tabcolsep}{3pt}
+\begin{tabular}{@{}lcccc@{}}
+\toprule
+Input & MAE & RMSE & $R$ & Ideal (\%) \\
+\midrule
+Unnormalised & \tbd{} & \tbd{} & \tbd{} & \tbd{} \\
+Normalised & \tbd{} & \tbd{} & \tbd{} & \tbd{} \\
+\textbf{Norm. + age (ours)} & \textbf{0.993} & \textbf{1.320} & \textbf{0.727} & \textbf{62.7} \\
+Norm. + sex & \tbd{} & \tbd{} & \tbd{} & \tbd{} \\
+Norm. + age + sex & \tbd{} & \tbd{} & \tbd{} & \tbd{} \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Visual Assessment of Segmentation}
+\tbd{Representative segmentation results (original image, reference-contour overlay, predicted-mask overlay); describe agreement at the crown and apex, and cases with larger errors with their likely causes.}

@@ -1,0 +1,177 @@
+% ============================================================
+% Section: Experimental Setup
+% (structure follows the reference paper: 4.1 environment & training,
+%  4.2 evaluation protocol & metrics with A/B/C sub-parts)
+% Preamble needs:  \usepackage{booktabs,xcolor,soul,amsmath,amssymb}
+% \tbd{...} = information still to be filled in (yellow highlight)
+% ============================================================
+
+
+\section{Experimental Setup}
+
+This section presents the experimental setup used to evaluate the proposed
+framework for automated estimation of root canal filling length. Specifically,
+the hardware and software configurations, training settings,
+and hyperparameter selections are introduced to ensure experimental
+reproducibility. The evaluation protocol and the performance metrics used for
+tooth segmentation, length estimation, and clinical safety are then defined.
+
+\subsection{Implementation Environment and Training Configuration}
+
+All experiments were conducted on a local workstation running Microsoft
+Windows~11 (64-bit). The hardware comprised an AMD Ryzen~7 9700X processor
+(8 cores, 3.80~GHz), 32~GB of RAM, and an NVIDIA GeForce RTX~5070~Ti GPU with
+16~GB of VRAM to support deep learning model training and inference. The
+software stack was implemented in Python~3.14.6, with PyTorch~2.13.0 and
+CUDA~13.0 (cuDNN~9.20) as the deep learning framework and GPU acceleration
+backend. Ultralytics~8.4.104 was used for training and inference of the
+detection and segmentation models, and OpenCV~5.0.0 was used for image
+preprocessing, mask post-processing, and geometric measurement.
+Pixel-to-millimetre conversion and statistical analyses were performed in
+MATLAB~R2026a with the Statistics and Machine Learning Toolbox and the Deep
+Learning Toolbox. The detailed hardware and software configurations are
+summarised in Table~\ref{tab:hw}.
+
+\begin{table}[t]
+\centering
+\caption{Hardware and software configurations.}
+\label{tab:hw}
+\small
+\begin{tabular}{@{}p{0.36\columnwidth}p{0.58\columnwidth}@{}}
+\toprule
+Component & Specification / Version \\
+\midrule
+Operating system & Microsoft Windows 11 (64-bit, build 26200) \\
+GPU & NVIDIA GeForce RTX 5070 Ti (16 GB VRAM) \\
+CPU / RAM & AMD Ryzen 7 9700X (8 cores, 3.80 GHz) / 32 GB (5600 MT/s) \\
+Programming language & Python 3.14.6 \\
+Deep learning framework & PyTorch 2.13.0 / CUDA 13.0 (cuDNN 9.20) \\
+Detection / segmentation framework & Ultralytics 8.4.104 \\
+Image analysis tool & OpenCV 5.0.0 \\
+Numerical computing & MATLAB R2026a (Statistics and ML Toolbox, Deep Learning Toolbox) \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+
+The hyperparameter settings are summarised in Table~\ref{tab:hyper}. The YOLO11n detector used for single-tooth extraction was initialised from \texttt{yolo11n.pt} and trained on the 179 full radiographs; its settings are also listed in Table~\ref{tab:hyper}. The
+segmentation model was initialised from the pretrained \texttt{yolo11n-seg.pt}
+weights and optimised with AdamW at an initial learning rate of
+$1\times10^{-3}$. The model was trained for 150 epochs with a batch size of 4,
+with early stopping disabled (patience $=0$) and automatic mixed precision
+turned off to avoid numerical instability; the checkpoint with the best
+validation fitness was retained. Data augmentation comprised random rotation
+($\pm10^\circ$), translation (0.05), scaling (0.1), and mosaic (0.3), whereas
+horizontal flipping was disabled to preserve the physiological orientation of
+the teeth. The optimisation objective followed the standard segmentation losses
+of the YOLO framework, including bounding-box regression, classification, and
+mask losses. A fixed random seed (\tbd{}) and deterministic mode were used for reproducibility.
+
+For pixel-to-millimetre conversion, Gaussian process regression (GPR; MATLAB
+\texttt{fitrgp}) took the long-side-normalised pixel length and patient age as
+inputs. A squared-exponential kernel with a linear basis (mean) function was
+adopted, and the kernel hyperparameters (length scale, signal standard
+deviation, and noise standard deviation) were estimated within each training
+fold by maximising the marginal log-likelihood. Input features were z-score
+standardised with the mean and standard deviation of the training fold before
+being applied to the test fold. Performance was assessed on out-of-fold
+predictions from five-fold cross-validation (the 67 teeth were randomly permuted with a fixed seed of 42 and assigned to the five folds in turn, giving 13--14 teeth per fold without stratification), and all comparison settings---alternative input
+features and ordinary least-squares linear regression with identical
+inputs---used the same folds.
+Because GPR involves no random initialisation, its results are deterministic for
+a fixed fold assignment and were therefore obtained from a single run.
+
+Comparative experiments followed a one-factor-at-a-time design, with the input
+features fixed to the long-side-normalised pixel length and age. For the
+preprocessing comparison, GPR was fixed and top-hat enhancement was compared with
+CLAHE (clip limit \tbd{}, $8\times8$ tiles) and with the unprocessed images; a
+segmentation model was trained for each group under identical training settings,
+using the same polygon annotations and the same folds. For the regression
+comparison, CLAHE preprocessing was fixed and GPR was compared with a
+feed-forward artificial neural network (ANN; MATLAB \texttt{fitnet}, one hidden
+layer of five neurons, Bayesian regularisation \texttt{trainbr}, at most 200
+epochs); because of its random weight initialisation, ANN results are averaged
+over 10 repetitions. Ordinary least-squares linear regression with identical
+inputs served as an additional baseline.
+
+\begin{table*}[t]
+\centering
+\caption{Summary of hyperparameter settings for model training.}
+\label{tab:hyper}
+\begin{tabular}{@{}lp{0.30\linewidth}p{0.44\linewidth}@{}}
+\toprule
+Model & Parameter & Value / Setting \\
+\midrule
+YOLO11n detector & Pretrained weights  & \texttt{yolo11n.pt} \\
+            & Data split                & 179 radiographs; \tbd{} train / \tbd{} val \\
+            & Input size                & \tbd{} \\
+            & Epochs / batch size       & \tbd{} / \tbd{} \\
+            & Optimiser / initial LR    & \tbd{} / \tbd{} \\
+\midrule
+YOLO11n-seg & Pretrained weights        & \texttt{yolo11n-seg.pt} \\
+            & Input size                & $640\times640$ (letterbox) \\
+            & Optimiser                 & AdamW \\
+            & Initial learning rate     & $1\times10^{-3}$ \\
+            & Batch size                & 4 \\
+            & Epochs                    & 150 \\
+            & Early stopping            & Disabled (patience $=0$) \\
+            & Mixed precision (AMP)     & Off \\
+            & Augmentation              & Rotation $\pm10^\circ$, translation 0.05, scale 0.1, mosaic 0.3, no flipping \\
+            & Random seed               & \tbd{} \\
+\midrule
+GPR         & Inputs                    & Normalised pixel length + age (z-scored per training fold) \\
+            & Kernel / basis            & Squared exponential / linear \\
+            & Hyperparameter estimation & Maximum marginal log-likelihood, per fold \\
+            & Validation                & 5-fold CV, out-of-fold ($n=67$) \\
+            & Safety offset / tolerance & $-0.5$~mm / $\pm1.0$~mm \\
+\midrule
+ANN (comp.) & Architecture           & Feed-forward, 1 hidden layer, 5 neurons (\texttt{fitnet}) \\
+            & Training algorithm        & Bayesian regularisation (\texttt{trainbr}), $\le$200 epochs \\
+            & Repetitions               & 10 (random initialisation), mean reported \\
+\bottomrule
+\end{tabular}
+\end{table*}
+
+\subsection{Evaluation Protocol and Performance Metrics}
+
+To quantitatively evaluate the proposed framework, performance was assessed at
+three levels: tooth segmentation, root canal filling length estimation, and
+clinical safety. Segmentation was evaluated on the validation and independent
+test sets, whereas all length-related metrics were computed on out-of-fold
+predictions after subtracting the 0.5~mm safety offset.
+
+\paragraph{A. Segmentation Metrics}
+Segmentation performance was reported as box and mask mAP@50 and mAP@50:95.
+The mAP@50 metric evaluates the mean average precision at an IoU threshold of
+0.50, while mAP@50:95 averages it over IoU thresholds from 0.50 to 0.95 in
+steps of 0.05. On the independent test set, per-image mask mAP@50:95 was
+computed at the original image resolution from all predicted masks with a
+confidence of at least 0.001.
+
+\paragraph{B. Length Estimation Metrics}
+Let $y_i$ denote the reference filling length of the $i$-th tooth, $\hat{y}_i$
+the offset-corrected predicted length, and $n$ the number of test teeth.
+Estimation accuracy was evaluated by the mean absolute error (MAE), root mean
+square error (RMSE), Pearson correlation coefficient ($R$), and coefficient of
+determination ($R^2$):
+\begin{align}
+\mathrm{MAE}  &= \frac{1}{n}\sum_{i=1}^{n}\lvert \hat{y}_i - y_i \rvert, \\
+\mathrm{RMSE} &= \sqrt{\frac{1}{n}\sum_{i=1}^{n}(\hat{y}_i - y_i)^2}, \\
+R &= \frac{\sum_{i=1}^{n}(\hat{y}_i-\bar{\hat{y}})(y_i-\bar{y})}
+         {\sqrt{\sum_{i=1}^{n}(\hat{y}_i-\bar{\hat{y}})^2}\sqrt{\sum_{i=1}^{n}(y_i-\bar{y})^2}}, \\
+R^2 &= (R)^2 .
+\end{align}
+Because the safety offset only shifts the predictions, $R$ and $R^2$ are
+unaffected by it, whereas MAE and RMSE change.
+
+\paragraph{C. Clinical Safety Metrics}
+Clinical safety was assessed by the ideal rate, defined as the proportion of
+teeth whose corrected error falls within $\pm1.0$~mm, and by the mean bias,
+where a positive value indicates systematic overestimation:
+\begin{align}
+\text{Ideal rate} &= \frac{1}{n}\sum_{i=1}^{n}\mathbb{1}\left(\lvert \hat{y}_i - y_i \rvert \le 1.0\right)\times 100\%, \\
+\text{Bias} &= \frac{1}{n}\sum_{i=1}^{n}(\hat{y}_i - y_i).
+\end{align}
+The association between estimation error and age was examined with the
+Spearman rank correlation, and differences between sexes were tested with the
+Wilcoxon rank-sum test.
