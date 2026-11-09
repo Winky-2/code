@@ -1,0 +1,25 @@
+{
+  "SEG_DATA_DIR": "train_single_seg-268",
+  "ENCODER": "resnet34",
+  "ENCODER_WEIGHTS": "imagenet",
+  "EPOCHS": 150,
+  "IMG_SIZE": 640,
+  "VAL_RATIO": 0.2,
+  "RANDOM_SEED": 42,
+  "LR0": 0.001,
+  "LRF": 0.01,
+  "BATCH": 4,
+  "AMP": false,
+  "AUG": {
+    "degrees": 10,
+    "translate": 0.05,
+    "scale": 0.1
+  },
+  "THRESH": 0.5,
+  "RUN_TAG": "unet_resnet34_img640_e150_s42",
+  "device": "cuda",
+  "n_train": 215,
+  "n_val": 53,
+  "train_fingerprint": "8f4b7961a6ebba149e049c7f8c1d665090015561262a0ca7d110f701b13025ab",
+  "val_fingerprint": "26d69fe1574ee680726dcdd9aa2205afbbd941dcbd52e6eab542578223097cfd"
+}

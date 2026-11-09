@@ -1,0 +1,9 @@
+{
+  "FULL_IMAGE_DIR": "data set/test_A1",
+  "INPUTS": {
+    "mask幾何": "根管填充物像素長度_已配對_mask幾何.xlsx",
+    "GT_mask幾何": "results/B3g/gt_oracle_frag1_2/根管填充物像素長度_已配對_GT_mask幾何.xlsx"
+  },
+  "NORM": "長邊",
+  "REF": 1200
+}
