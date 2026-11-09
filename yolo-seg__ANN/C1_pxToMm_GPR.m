@@ -18,8 +18,8 @@ function C1_pixelToMmPredictor_GPR()
 % ============================================================
 
     %% ---------------- 輸入設定區 ----------------
-    METHOD = 'mask幾何_長邊正規化';   % 'mask幾何_長邊正規化' | '冠寬比例尺'
-    filename = ['根管填充物像素長度_已配對_11n_noCLAHE_reMask_' METHOD '.xlsx'];
+    METHOD = '牙位基準';   % 'mask幾何_長邊正規化' | '冠寬比例尺' | '牙位基準'
+    filename = ['根管填充物像素長度_已配對_11n_tophat_' METHOD '.xlsx'];
 
     FOLD_COLUMN  = '折數fold';
     SPLIT_COLUMN = '資料夾來源';   % 只在 USE_KFOLD=false 時才用
