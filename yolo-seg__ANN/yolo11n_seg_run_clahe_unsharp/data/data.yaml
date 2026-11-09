@@ -1,6 +1,0 @@
-names:
-- tooth
-nc: 1
-path: C:\Users\USER\Desktop\論文\code\yolo-seg__ANN\yolo11n_seg_run_clahe_unsharp\data
-train: train/images
-val: val/images
