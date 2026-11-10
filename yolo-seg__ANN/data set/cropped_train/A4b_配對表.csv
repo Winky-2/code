@@ -1,0 +1,180 @@
+﻿manifest來源,實際原圖,方式,MAE,與manifest同名
+train_0001.jpg,train_0001.jpg,檔名,1.64,True
+train_0002.jpg,train_0002.jpg,檔名,1.64,True
+train_0003.jpg,train_0003.jpg,檔名,2.22,True
+train_0004.jpg,train_0005.jpg,全圖搜尋,4.09,False
+train_0005.jpg,train_0008.jpg,全圖搜尋,2.22,False
+train_0006.jpg,train_0010.jpg,全圖搜尋,1.61,False
+train_0007.jpg,train_0012.jpg,全圖搜尋,1.49,False
+train_0008.jpg,train_0015.jpg,全圖搜尋,2.11,False
+train_0009.jpg,train_0016.jpg,全圖搜尋,2.13,False
+train_0010.jpg,train_0017.jpg,全圖搜尋,1.84,False
+train_0011.jpg,train_0018.jpg,全圖搜尋,1.86,False
+train_0012.jpg,train_0022.jpg,全圖搜尋（次佳 2.6，區分度低⚠️）,1.5,False
+train_0013.jpg,train_0315.jpg,全圖搜尋,5.74,False
+train_0014.jpg,train_0027.jpg,全圖搜尋,5.6,False
+train_0015.jpg,train_0029.jpg,全圖搜尋,1.64,False
+train_0016.jpg,train_0031.jpg,全圖搜尋,1.48,False
+train_0017.jpg,train_0033.jpg,全圖搜尋,2.04,False
+train_0018.jpg,train_0035.jpg,全圖搜尋,1.66,False
+train_0019.jpg,train_0037.jpg,全圖搜尋,3.96,False
+train_0020.jpg,train_0040.jpg,全圖搜尋,1.64,False
+train_0021.jpg,train_0041.jpg,全圖搜尋,1.48,False
+train_0022.jpg,train_0046.jpg,全圖搜尋,1.5,False
+train_0023.jpg,train_0047.jpg,全圖搜尋（次佳 3.6，區分度低⚠️）,3.58,False
+train_0024.jpg,train_0048.jpg,全圖搜尋,1.54,False
+train_0025.jpg,train_0049.jpg,全圖搜尋,3.97,False
+train_0026.jpg,train_0050.jpg,全圖搜尋,1.6,False
+train_0027.jpg,train_0051.jpg,全圖搜尋,1.54,False
+train_0028.jpg,train_0053.jpg,全圖搜尋,1.66,False
+train_0029.jpg,train_0054.jpg,全圖搜尋,1.71,False
+train_0030.jpg,train_0056.jpg,全圖搜尋,1.47,False
+train_0031.jpg,train_0058.jpg,全圖搜尋,4.12,False
+train_0032.jpg,train_0059.jpg,全圖搜尋,4.46,False
+train_0033.jpg,train_0061.jpg,全圖搜尋,1.54,False
+train_0034.jpg,train_0063.jpg,全圖搜尋,1.51,False
+train_0035.jpg,train_0064.jpg,全圖搜尋,7.18,False
+train_0036.jpg,train_0065.jpg,全圖搜尋,1.47,False
+train_0037.jpg,train_0067.jpg,全圖搜尋（次佳 6.5，區分度低⚠️）,5.75,False
+train_0038.jpg,train_0068.jpg,全圖搜尋（次佳 3.8，區分度低⚠️）,3.33,False
+train_0039.jpg,train_0073.jpg,全圖搜尋（次佳 4.2，區分度低⚠️）,1.73,False
+train_0040.jpg,train_0077.jpg,全圖搜尋,1.52,False
+train_0041.jpg,train_0078.jpg,全圖搜尋,5.53,False
+train_0042.jpg,train_0080.jpg,全圖搜尋,1.61,False
+train_0043.jpg,train_0081.jpg,全圖搜尋,1.66,False
+train_0044.jpg,train_0082.jpg,全圖搜尋,1.93,False
+train_0045.jpg,train_0084.jpg,全圖搜尋,1.54,False
+train_0046.jpg,train_0091.jpg,全圖搜尋（次佳 3.3，區分度低⚠️）,2.04,False
+train_0047.jpg,train_0093.jpg,全圖搜尋,2.01,False
+train_0048.jpg,train_0095.jpg,全圖搜尋,1.46,False
+train_0049.jpg,train_0096.jpg,全圖搜尋,1.63,False
+train_0050.jpg,train_0099.jpg,全圖搜尋,1.42,False
+train_0051.jpg,train_0100.jpg,全圖搜尋,1.74,False
+train_0052.jpg,train_0102.jpg,全圖搜尋,1.52,False
+train_0053.jpg,train_0103.jpg,全圖搜尋,1.48,False
+train_0054.jpg,train_0104.jpg,全圖搜尋,6.68,False
+train_0055.jpg,train_0105.jpg,全圖搜尋,1.95,False
+train_0056.jpg,train_0107.jpg,全圖搜尋,1.74,False
+train_0057.jpg,train_0109.jpg,全圖搜尋,1.86,False
+train_0058.jpg,train_0111.jpg,全圖搜尋（次佳 2.6，區分度低⚠️）,1.93,False
+train_0059.jpg,train_0112.jpg,全圖搜尋,1.48,False
+train_0060.jpg,train_0113.jpg,全圖搜尋,1.65,False
+train_0061.jpg,train_0114.jpg,全圖搜尋,2.35,False
+train_0062.jpg,train_0116.jpg,全圖搜尋（次佳 2.7，區分度低⚠️）,1.75,False
+train_0063.jpg,train_0117.jpg,全圖搜尋,1.93,False
+train_0064.jpg,train_0119.jpg,全圖搜尋,1.8,False
+train_0065.jpg,train_0120.jpg,全圖搜尋,1.79,False
+train_0066.jpg,train_0121.jpg,全圖搜尋（次佳 2.5，區分度低⚠️）,1.6,False
+train_0067.jpg,train_0123.jpg,全圖搜尋（次佳 2.7，區分度低⚠️）,1.63,False
+train_0068.jpg,train_0125.jpg,全圖搜尋,1.51,False
+train_0069.jpg,train_0127.jpg,全圖搜尋,1.67,False
+train_0070.jpg,train_0128.jpg,全圖搜尋,1.84,False
+train_0071.jpg,train_0129.jpg,全圖搜尋,1.83,False
+train_0072.jpg,train_0130.jpg,全圖搜尋,1.69,False
+train_0073.jpg,train_0132.jpg,全圖搜尋,2.14,False
+train_0074.jpg,train_0133.jpg,全圖搜尋,1.49,False
+train_0075.jpg,train_0134.jpg,全圖搜尋（次佳 2.7，區分度低⚠️）,1.74,False
+train_0076.jpg,train_0137.jpg,全圖搜尋,1.82,False
+train_0077.jpg,train_0138.jpg,全圖搜尋,1.79,False
+train_0078.jpg,train_0139.jpg,全圖搜尋（次佳 5.0，區分度低⚠️）,4.55,False
+train_0079.jpg,train_0140.jpg,全圖搜尋,1.49,False
+train_0080.jpg,train_0141.jpg,全圖搜尋,1.62,False
+train_0081.jpg,train_0142.jpg,全圖搜尋,1.56,False
+train_0082.jpg,train_0207.jpg,全圖搜尋,1.62,False
+train_0083.jpg,train_0145.jpg,全圖搜尋,1.55,False
+train_0084.jpg,train_0235.jpg,全圖搜尋,1.51,False
+train_0085.jpg,train_0157.jpg,全圖搜尋,1.61,False
+train_0086.jpg,train_0162.jpg,全圖搜尋,1.57,False
+train_0087.jpg,train_0163.jpg,全圖搜尋,2.02,False
+train_0088.jpg,train_0164.jpg,全圖搜尋,1.87,False
+train_0089.jpg,train_0171.jpg,全圖搜尋,1.53,False
+train_0090.jpg,train_0170.jpg,全圖搜尋,1.69,False
+train_0091.jpg,train_0175.jpg,全圖搜尋（次佳 1.8，區分度低⚠️）,1.66,False
+train_0092.jpg,train_0178.jpg,全圖搜尋,2.69,False
+train_0093.jpg,train_0181.jpg,全圖搜尋,1.63,False
+train_0094.jpg,train_0182.jpg,全圖搜尋,2.6,False
+train_0095.jpg,train_0211.jpg,全圖搜尋,1.79,False
+train_0096.jpg,train_0186.jpg,全圖搜尋,1.57,False
+train_0097.jpg,train_0188.jpg,全圖搜尋,3.67,False
+train_0098.jpg,train_0192.jpg,全圖搜尋,1.94,False
+train_0099.jpg,train_0195.jpg,全圖搜尋,1.55,False
+train_0100.jpg,train_0198.jpg,全圖搜尋,1.72,False
+train_0101.jpg,train_0200.jpg,全圖搜尋,1.93,False
+train_0102.jpg,train_0206.jpg,全圖搜尋,1.79,False
+train_0103.jpg,train_0208.jpg,全圖搜尋,1.51,False
+train_0104.jpg,train_0209.jpg,全圖搜尋,1.7,False
+train_0105.jpg,train_0212.jpg,全圖搜尋,1.58,False
+train_0106.jpg,train_0249.jpg,全圖搜尋,1.54,False
+train_0107.jpg,train_0213.jpg,全圖搜尋,4.08,False
+train_0108.jpg,train_0214.jpg,全圖搜尋,5.2,False
+train_0109.jpg,train_0216.jpg,全圖搜尋,1.82,False
+train_0110.jpg,train_0217.jpg,全圖搜尋,1.78,False
+train_0111.jpg,train_0218.jpg,全圖搜尋,1.83,False
+train_0112.jpg,train_0219.jpg,全圖搜尋,1.61,False
+train_0113.jpg,train_0222.jpg,全圖搜尋（次佳 2.0，區分度低⚠️）,1.94,False
+train_0114.jpg,train_0223.jpg,全圖搜尋,1.45,False
+train_0115.jpg,train_0225.jpg,全圖搜尋（次佳 2.0，區分度低⚠️）,1.95,False
+train_0116.jpg,train_0227.jpg,全圖搜尋,1.89,False
+train_0117.jpg,train_0228.jpg,全圖搜尋,1.88,False
+train_0118.jpg,train_0229.jpg,全圖搜尋,1.48,False
+train_0119.jpg,train_0230.jpg,全圖搜尋,1.59,False
+train_0120.jpg,train_0307.jpg,全圖搜尋,2.16,False
+train_0121.jpg,train_0231.jpg,全圖搜尋,1.6,False
+train_0122.jpg,train_0233.jpg,全圖搜尋,1.45,False
+train_0123.jpg,train_0234.jpg,全圖搜尋,1.76,False
+train_0124.jpg,train_0236.jpg,全圖搜尋（次佳 4.4，區分度低⚠️）,1.83,False
+train_0125.jpg,train_0237.jpg,全圖搜尋,1.82,False
+train_0126.jpg,train_0239.jpg,全圖搜尋,1.58,False
+train_0127.jpg,train_0240.jpg,全圖搜尋,1.68,False
+train_0128.jpg,train_0241.jpg,全圖搜尋,1.61,False
+train_0129.jpg,train_0242.jpg,全圖搜尋,2.41,False
+train_0130.jpg,train_0245.jpg,全圖搜尋（次佳 3.7，區分度低⚠️）,3.44,False
+train_0131.jpg,train_0244.jpg,全圖搜尋,4.55,False
+train_0132.jpg,train_0246.jpg,全圖搜尋,1.55,False
+train_0133.jpg,train_0250.jpg,全圖搜尋,6.36,False
+train_0134.jpg,train_0252.jpg,全圖搜尋,5.66,False
+train_0135.jpg,train_0253.jpg,全圖搜尋,1.53,False
+train_0136.jpg,train_0255.jpg,全圖搜尋,1.63,False
+train_0137.jpg,train_0257.jpg,全圖搜尋,1.54,False
+train_0138.jpg,train_0258.jpg,全圖搜尋,1.48,False
+train_0139.jpg,train_0259.jpg,全圖搜尋,1.7,False
+train_0140.jpg,train_0261.jpg,全圖搜尋,1.48,False
+train_0141.jpg,train_0263.jpg,全圖搜尋,1.54,False
+train_0142.jpg,train_0266.jpg,全圖搜尋,1.45,False
+train_0143.jpg,train_0265.jpg,全圖搜尋,1.85,False
+train_0144.jpg,train_0267.jpg,全圖搜尋,5.27,False
+train_0145.jpg,train_0075.jpg,全圖搜尋,1.55,False
+train_0146.jpg,train_0270.jpg,全圖搜尋,1.96,False
+train_0147.jpg,train_0271.jpg,全圖搜尋,1.54,False
+train_0148.jpg,train_0275.jpg,全圖搜尋,1.59,False
+train_0149.jpg,train_0274.jpg,全圖搜尋,1.64,False
+train_0150.jpg,train_0278.jpg,全圖搜尋,1.42,False
+train_0151.jpg,train_0281.jpg,全圖搜尋,1.55,False
+train_0152.jpg,train_0282.jpg,全圖搜尋,1.48,False
+train_0153.jpg,train_0287.jpg,全圖搜尋（次佳 1.8，區分度低⚠️）,1.62,False
+train_0154.jpg,train_0290.jpg,全圖搜尋,1.95,False
+train_0155.jpg,train_0291.jpg,全圖搜尋,1.56,False
+train_0156.jpg,train_0297.jpg,全圖搜尋,1.81,False
+train_0157.jpg,train_0296.jpg,全圖搜尋,1.58,False
+train_0158.jpg,train_0298.jpg,全圖搜尋,1.87,False
+train_0159.jpg,train_0304.jpg,全圖搜尋,1.61,False
+train_0160.jpg,train_0305.jpg,全圖搜尋,1.44,False
+train_0161.jpg,train_0306.jpg,全圖搜尋,1.49,False
+train_0162.jpg,train_0308.jpg,全圖搜尋,1.51,False
+train_0163.jpg,train_0310.jpg,全圖搜尋,1.63,False
+train_0164.jpg,train_0311.jpg,全圖搜尋,2.16,False
+train_0165.jpg,train_0313.jpg,全圖搜尋,1.63,False
+train_0166.jpg,train_0312.jpg,全圖搜尋,1.57,False
+train_0167.jpg,train_0317.jpg,全圖搜尋,1.92,False
+train_0168.jpg,train_0319.jpg,全圖搜尋,1.85,False
+train_0169.jpg,train_0322.jpg,全圖搜尋,1.93,False
+train_0170.jpg,train_0329.jpg,全圖搜尋（次佳 2.3，區分度低⚠️）,1.48,False
+train_0171.jpg,train_0331.jpg,全圖搜尋,1.58,False
+train_0172.jpg,train_0330.jpg,全圖搜尋,1.61,False
+train_0173.jpg,train_0332.jpg,全圖搜尋,4.03,False
+train_0174.jpg,train_0334.jpg,全圖搜尋（次佳 2.8，區分度低⚠️）,1.44,False
+train_0175.jpg,train_0335.jpg,全圖搜尋,5.89,False
+train_0176.jpg,train_0336.jpg,全圖搜尋,3.63,False
+train_0177.jpg,train_0338.jpg,全圖搜尋,5.17,False
+train_0178.jpg,train_0340.jpg,全圖搜尋,1.48,False
+train_0179.jpg,train_0339.jpg,全圖搜尋,2.03,False

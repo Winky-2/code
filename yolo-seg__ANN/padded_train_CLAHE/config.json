@@ -1,0 +1,15 @@
+{
+  "INPUT_IMG_DIR": "data set/cropped_train_CLAHE",
+  "LABEL_SPACE": "crop",
+  "CROP_LABEL_DIR": "",
+  "FULL_LABEL_DIR": "",
+  "FULL_IMG_DIR": "",
+  "A4_MANIFEST_XLSX": "裁切結果_train_A1.xlsx",
+  "LABEL_FORMAT": "seg",
+  "N_KPT": 2,
+  "PAD_TB_RATIO": 0.1,
+  "OUT_SIZE": 640,
+  "PAD_VALUE": 0,
+  "run_tag": "tb0.10_crop_seg_640",
+  "time": "2026-11-10T13:03:47"
+}
