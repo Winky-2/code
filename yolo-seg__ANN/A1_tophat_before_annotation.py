@@ -154,8 +154,8 @@ def roi_stats(gray_in, gray_out):
 # 第1部分：批次前處理設定區
 # ============================================================
 
-INPUT_DIR = "padded_train/images"   # 👈 原始、未增強的圖
-OUTPUT_DIR = "padded_train_tophat"                                   # 👈 輸出（同檔名）
+INPUT_DIR = "test-77/test/images"   # 👈 原始、未增強的圖
+OUTPUT_DIR = "test-77_tophat/images"                                   # 👈 輸出（同檔名）
 
 IMAGE_EXTENSIONS = {".jpg", ".jpeg", ".png"}
 OVERWRITE_EXISTING = False

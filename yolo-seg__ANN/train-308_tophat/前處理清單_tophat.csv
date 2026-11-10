@@ -1,0 +1,309 @@
+﻿檔名,狀態,MODE,K,shape,strength,ROI_wh,前_mean,後_mean,前_std,後_std,前_飽和pct,後_飽和pct,平均改動量
+train_0001_t0_jpg.rf.17f61a54675a83814280b2e7584093f7.jpg,✅,contrast,31,ellipse,1.0,150x440,116.4,115.8,36.7,40.9,0.0,0.27,6.37
+train_0002_t0_jpg.rf.7795d889db87d337a98816a2dbb6a46b.jpg,✅,contrast,31,ellipse,1.0,171x359,105.6,104.5,31.1,37.6,0.0,1.8,7.02
+train_0002_t1_jpg.rf.98fe1eaba32f6648a5a7e75b6af4a446.jpg,⚠️ 飽和 2.37%，K 可能過大,contrast,31,ellipse,1.0,161x365,105.7,104.1,27.8,34.2,0.0,2.37,6.8
+train_0003_t0_jpg.rf.a6f42503595b44432792c2f130aa5830.jpg,⚠️ 飽和 2.18%，K 可能過大,contrast,31,ellipse,1.0,132x381,126.5,125.1,39.2,47.7,0.0,2.18,10.79
+train_0004_t0_jpg.rf.1eee27c79bdc470cc8a278763811c08f.jpg,⚠️ 飽和 3.17%，K 可能過大,contrast,31,ellipse,1.0,127x317,87.2,86.4,25.7,34.6,0.0,3.17,10.5
+train_0005_t0_jpg.rf.531673c4052ff0c3dd68d081d1869409.jpg,⚠️ 飽和 6.14%，K 可能過大,contrast,31,ellipse,1.0,95x325,105.7,103.4,38.6,51.5,0.0,6.14,13.94
+train_0005_t1_jpg.rf.a576961a56e0a983c687641631c262da.jpg,⚠️ 飽和 5.13%，K 可能過大,contrast,31,ellipse,1.0,107x385,128.6,125.9,43.9,54.4,0.0,5.13,12.19
+train_0005_t2_jpg.rf.3a46ab52b478f3ad5f6ae826aea9892b.jpg,⚠️ 飽和 5.54%，K 可能過大,contrast,31,ellipse,1.0,116x352,109.6,107.5,37.3,49.5,0.0,5.54,12.5
+train_0005_t3_jpg.rf.da4f91abe4c591d5b4c0b8099c9ee108.jpg,⚠️ 飽和 5.55%，K 可能過大,contrast,31,ellipse,1.0,157x394,120.5,116.6,36.1,46.8,0.0,5.55,10.6
+train_0006_t0_jpg.rf.15e144f50ea0fc27c3f43ae2e431373a.jpg,⚠️ 飽和 3.31%，K 可能過大,contrast,31,ellipse,1.0,171x411,84.4,83.2,32.7,37.7,0.0,3.31,7.29
+train_0007_t0_jpg.rf.715999faf47111e3edcf59bfe308a257.jpg,✅,contrast,31,ellipse,1.0,182x493,100.1,99.6,37.6,40.7,0.0,0.91,5.45
+train_0007_t1_jpg.rf.753d1bf7b50fa1856d06557055767318.jpg,✅,contrast,31,ellipse,1.0,147x470,126.9,126.4,45.8,48.5,0.0,0.38,5.44
+train_0008_t0_jpg.rf.a53809eaeaff89f5a730678f6f768e51.jpg,⚠️ 飽和 8.59%，K 可能過大,contrast,31,ellipse,1.0,152x332,109.0,108.0,40.4,47.7,2.99,8.59,9.79
+train_0009_t0_jpg.rf.3dec3c459a8337b145e3d0767fd20c74.jpg,⚠️ 飽和 3.11%，K 可能過大,contrast,31,ellipse,1.0,131x406,81.1,80.3,26.2,32.9,0.63,3.11,8.79
+train_0009_t1_jpg.rf.53631f623d13c4128f8ca71f24b52c88.jpg,⚠️ 飽和 2.81%，K 可能過大,contrast,31,ellipse,1.0,104x414,74.6,74.4,27.8,33.3,0.6,2.81,8.03
+train_0010_t0_jpg.rf.588b261b0252fde24e15de4640f73039.jpg,⚠️ 飽和 7.26%，K 可能過大,contrast,31,ellipse,1.0,144x388,75.2,74.9,30.0,36.0,4.78,7.26,8.23
+train_0011_t0_jpg.rf.e5bed40ed37c939cbaca5509ac60ce15.jpg,⚠️ 飽和 2.01%，K 可能過大,contrast,31,ellipse,1.0,190x376,156.5,153.9,41.2,48.1,1.13,2.01,9.19
+train_0011_t1_jpg.rf.32800c833e72b12788ef3461da5f2486.jpg,⚠️ 飽和 2.05%，K 可能過大,contrast,31,ellipse,1.0,189x416,141.9,139.5,49.1,55.6,0.0,2.05,9.12
+train_0012_t0_jpg.rf.f214df99ab5c0acd9ca8df7c036462e6.jpg,✅,contrast,31,ellipse,1.0,189x384,89.7,88.1,28.6,34.0,0.0,0.79,6.24
+train_0013_t0_jpg.rf.cf2a161aaef1196f4c9f5689fee22df9.jpg,⚠️ 飽和 4.92%，K 可能過大,contrast,31,ellipse,1.0,141x318,118.7,118.8,49.9,57.3,0.34,4.92,10.75
+train_0014_t0_jpg.rf.c7af2d4987becda3be7e89909a9f8341.jpg,⚠️ 飽和 5.92%，K 可能過大,contrast,31,ellipse,1.0,160x332,106.3,107.0,46.2,55.3,0.75,5.92,11.4
+train_0015_t0_jpg.rf.1932862842d0193276c2669dbb840c85.jpg,✅,contrast,31,ellipse,1.0,210x374,125.2,123.2,41.5,47.1,0.0,1.09,7.26
+train_0015_t1_jpg.rf.c8e890341822332d6ce51f3378edfe40.jpg,⚠️ 飽和 2.36%，K 可能過大,contrast,31,ellipse,1.0,169x445,95.5,95.2,33.1,39.8,1.11,2.36,7.77
+train_0015_t2_jpg.rf.adb120b01b2d3c59e42e8c362385f899.jpg,✅,contrast,31,ellipse,1.0,196x474,113.6,111.6,33.1,38.4,0.0,0.9,6.6
+train_0016_t0_jpg.rf.78eae71a489cd4afc8f71d36ec885aab.jpg,⚠️ 飽和 2.6%，K 可能過大,contrast,31,ellipse,1.0,206x353,89.3,88.3,31.8,36.1,0.0,2.6,5.52
+train_0017_t0_jpg.rf.ff0124d082cfc8075b6d23d4538510e5.jpg,⚠️ 飽和 8.16%，K 可能過大,contrast,31,ellipse,1.0,166x509,103.7,103.5,53.6,56.3,5.72,8.16,6.98
+train_0017_t1_jpg.rf.5ac10544c6cd4a524a979b7582749857.jpg,⚠️ 飽和 8.77%，K 可能過大,contrast,31,ellipse,1.0,162x494,94.8,94.9,47.8,51.7,6.14,8.77,7.86
+train_0018_t0_jpg.rf.98ab17693525335beee4cc3af595c6fd.jpg,✅,contrast,31,ellipse,1.0,173x458,109.5,109.0,40.0,43.2,0.0,0.92,5.26
+train_0018_t1_jpg.rf.905025367740eeb40b474e3feff0c515.jpg,⚠️ 飽和 2.1%，K 可能過大,contrast,31,ellipse,1.0,181x471,101.0,100.5,34.0,39.2,0.0,2.1,6.51
+train_0019_t0_jpg.rf.e476d3d3fd6be38cc6d6a8fea50fadfe.jpg,✅,contrast,31,ellipse,1.0,112x383,121.4,120.4,32.1,41.9,0.0,1.93,10.93
+train_0019_t1_jpg.rf.7ac0da44f2f6bc4f182295c1417bb9ce.jpg,⚠️ 飽和 2.52%，K 可能過大,contrast,31,ellipse,1.0,103x368,120.5,119.0,33.8,44.2,0.0,2.52,11.73
+train_0019_t2_jpg.rf.989f77043de9ba97bfc0a0677fd095e9.jpg,✅,contrast,31,ellipse,1.0,148x411,127.4,124.4,32.0,40.5,0.0,1.58,9.24
+train_0020_t0_jpg.rf.abc97a7fe803bd479cb2e49c888c0ed0.jpg,⚠️ 飽和 4.78%，K 可能過大,contrast,31,ellipse,1.0,175x519,90.0,90.0,33.5,37.3,2.31,4.78,6.31
+train_0020_t2_jpg.rf.36e47232fe362429d217d9182d016a5f.jpg,⚠️ 飽和 3.87%，K 可能過大,contrast,31,ellipse,1.0,171x487,86.9,86.7,31.5,35.2,1.54,3.87,5.91
+train_0021_t0_jpg.rf.fa539d00c550cff757bc75aeeacec42f.jpg,⚠️ 飽和 12.29%，K 可能過大,contrast,31,ellipse,1.0,111x388,56.7,56.6,27.3,31.8,9.66,12.29,7.0
+train_0021_t1_jpg.rf.ae8eba500df7b23ba8325c54c60ed701.jpg,⚠️ 飽和 15.02%，K 可能過大,contrast,31,ellipse,1.0,115x402,54.6,55.0,28.6,32.9,11.78,15.02,6.64
+train_0021_t3_jpg.rf.e3c22351f4f2f383e4f8c3f56ad5e9da.jpg,⚠️ 飽和 13.37%，K 可能過大,contrast,31,ellipse,1.0,151x408,63.0,63.2,32.0,36.0,10.02,13.37,6.37
+train_0022_t0_jpg.rf.903c305c2e0107096258beeac6fb70fd.jpg,⚠️ 飽和 5.77%，K 可能過大,contrast,31,ellipse,1.0,118x443,101.5,100.2,27.1,39.6,0.12,5.77,11.95
+train_0022_t1_jpg.rf.74822c8bdf581e460c96070f683e27a1.jpg,⚠️ 飽和 6.43%，K 可能過大,contrast,31,ellipse,1.0,148x441,98.8,96.0,26.3,37.4,0.23,6.43,10.3
+train_0022_t2_jpg.rf.9dd9a55963246b0983023c329ed53378.jpg,⚠️ 飽和 5.15%，K 可能過大,contrast,31,ellipse,1.0,209x488,105.4,103.7,31.4,37.6,2.44,5.15,7.56
+train_0023_t0_jpg.rf.3b2eaa3f42b77114556a0082b3451d5b.jpg,⚠️ 飽和 3.56%，K 可能過大,contrast,31,ellipse,1.0,197x354,111.7,110.9,37.0,43.5,0.0,3.56,9.65
+train_0024_t0_jpg.rf.88952b1a3744681388e3aa1d09239e42.jpg,✅,contrast,31,ellipse,1.0,192x434,107.8,107.4,42.5,45.3,0.0,0.82,5.2
+train_0024_t1_jpg.rf.662b9138a3e33284fe9b9c72fb589612.jpg,⚠️ 飽和 3.56%，K 可能過大,contrast,31,ellipse,1.0,225x458,115.1,113.2,37.1,43.4,0.0,3.56,6.92
+train_0025_t0_jpg.rf.fd8aee726c252cb2ce407d6101c854a3.jpg,⚠️ 飽和 14.83%，K 可能過大,contrast,31,ellipse,1.0,161x355,93.0,93.1,46.0,52.8,10.04,14.83,11.67
+train_0027_t0_jpg.rf.681848feeae2c640ba1ba23321f35ecc.jpg,⚠️ 飽和 2.36%，K 可能過大,contrast,31,ellipse,1.0,120x395,82.0,81.9,32.2,37.1,0.0,2.36,6.6
+train_0027_t1_jpg.rf.c621d780b07689527886344d0792a49b.jpg,⚠️ 飽和 6.56%，K 可能過大,contrast,31,ellipse,1.0,114x394,86.4,84.6,31.7,41.5,0.0,6.56,9.8
+train_0027_t2_jpg.rf.81566301e52a3f6cea3946885483ab2f.jpg,⚠️ 飽和 3.05%，K 可能過大,contrast,31,ellipse,1.0,139x396,108.4,106.3,34.5,40.5,0.0,3.05,7.07
+train_0027_t3_jpg.rf.7ff02d374d3f5ad9a2e1442b3ff9c187.jpg,✅,contrast,31,ellipse,1.0,89x412,98.3,97.5,31.1,35.1,0.0,0.77,6.13
+train_0028_t0_jpg.rf.2039f99cdafcbf68d1b0902b271c15a2.jpg,⚠️ 飽和 2.23%，K 可能過大,contrast,31,ellipse,1.0,193x474,101.8,100.9,37.7,41.9,0.0,2.23,6.08
+train_0028_t1_jpg.rf.ed12e7f16c5a87538934c0fe4f0cb5b3.jpg,⚠️ 飽和 2.16%，K 可能過大,contrast,31,ellipse,1.0,188x468,100.8,100.4,38.8,42.0,0.0,2.16,5.41
+train_0029_t0_jpg.rf.ef15f82d73e1ee194ac3ad875c946fe4.jpg,✅,contrast,31,ellipse,1.0,123x354,89.3,88.5,37.2,42.6,0.0,1.52,8.48
+train_0030_t0_jpg.rf.d6e1bb2a662af412c4d6d4cfb79e3b05.jpg,⚠️ 飽和 4.94%，K 可能過大,contrast,31,ellipse,1.0,134x427,97.4,95.7,27.8,36.1,2.14,4.94,8.84
+train_0030_t1_jpg.rf.70d1cff5a329dad113a63d3de0b04c88.jpg,⚠️ 飽和 6.72%，K 可能過大,contrast,31,ellipse,1.0,113x438,88.1,87.4,27.1,34.7,3.69,6.72,8.7
+train_0030_t2_jpg.rf.4cea1f78d5af0f04c4f5320f9fd2c2a0.jpg,⚠️ 飽和 5.0%，K 可能過大,contrast,31,ellipse,1.0,125x432,96.3,94.7,29.1,35.5,3.58,5.0,8.4
+train_0030_t3_jpg.rf.2e83ac548f2b1a5a1bed944337e9ef68.jpg,⚠️ 飽和 4.06%，K 可能過大,contrast,31,ellipse,1.0,129x444,110.3,109.0,31.4,37.8,2.99,4.06,8.15
+train_0031_t0_jpg.rf.3f6cc5cc43718fe411c5c873692bdd4b.jpg,⚠️ 飽和 4.17%，K 可能過大,contrast,31,ellipse,1.0,168x371,110.7,110.0,38.7,46.9,0.0,4.17,10.36
+train_0031_t1_jpg.rf.b031d26324b3a02bc0d4489dbfa43d71.jpg,⚠️ 飽和 3.06%，K 可能過大,contrast,31,ellipse,1.0,143x334,124.9,123.6,33.3,41.6,0.0,3.06,9.49
+train_0031_t2_jpg.rf.2a0f93dd58cc9a4032d91b0b28727ec7.jpg,⚠️ 飽和 4.27%，K 可能過大,contrast,31,ellipse,1.0,157x409,115.5,113.8,34.2,41.6,0.04,4.27,9.35
+train_0032_t0_jpg.rf.6369e9d338b6d79685b6eabe29610df1.jpg,⚠️ 飽和 2.03%，K 可能過大,contrast,31,ellipse,1.0,97x358,105.0,103.1,29.1,39.2,0.0,2.03,10.62
+train_0032_t1_jpg.rf.d15d265ed5c7295f228dff7a47ed423c.jpg,⚠️ 飽和 2.73%，K 可能過大,contrast,31,ellipse,1.0,91x349,105.4,102.0,28.7,41.6,0.0,2.73,12.82
+train_0032_t2_jpg.rf.69396d49cfef9a71b7a56c494a12a56f.jpg,⚠️ 飽和 2.35%，K 可能過大,contrast,31,ellipse,1.0,102x356,116.5,113.8,30.6,41.3,0.0,2.35,11.53
+train_0032_t3_jpg.rf.9bc2bae802673e9375542058fce3b9ce.jpg,✅,contrast,31,ellipse,1.0,102x374,116.5,115.4,31.9,38.7,0.0,1.28,9.24
+train_0033_t0_jpg.rf.d7cbb9180697fb0550ff69995b783535.jpg,✅,contrast,31,ellipse,1.0,116x372,88.7,87.7,24.6,30.6,0.0,0.77,7.45
+train_0033_t1_jpg.rf.2f907fc4972c9c03a46f8cd6ac5f7d64.jpg,✅,contrast,31,ellipse,1.0,101x360,87.2,86.4,23.6,29.8,0.0,0.62,7.8
+train_0033_t2_jpg.rf.34af8dd0364cf5e0ad2662a401e2db59.jpg,✅,contrast,31,ellipse,1.0,115x374,98.5,97.1,28.7,33.3,0.0,0.33,7.23
+train_0033_t3_jpg.rf.c581dfd77b9960fae757985b3344a5e0.jpg,✅,contrast,31,ellipse,1.0,109x372,103.8,103.3,29.8,34.1,0.0,0.05,6.91
+train_0034_t0_jpg.rf.946c4d01c533a6b275472f01f946576e.jpg,✅,contrast,31,ellipse,1.0,151x396,102.4,101.2,35.1,39.5,0.0,0.9,6.21
+train_0034_t1_jpg.rf.a45322a9811548b11e2365f54def30e3.jpg,✅,contrast,31,ellipse,1.0,128x389,100.1,98.6,31.2,37.3,0.0,1.62,7.34
+train_0034_t2_jpg.rf.62deab6b0ebd897d16e6a09c1759e4c7.jpg,⚠️ 飽和 2.2%，K 可能過大,contrast,31,ellipse,1.0,107x374,103.6,101.6,28.7,36.7,0.0,2.2,8.49
+train_0035_t0_jpg.rf.f1b8c063b4154d0ed7908aca63b71030.jpg,⚠️ 飽和 11.09%，K 可能過大,contrast,31,ellipse,1.0,147x298,89.8,89.5,39.0,46.9,7.3,11.09,12.05
+train_0036_t0_jpg.rf.c1123734da02b0f38dd99fe2041a0d03.jpg,✅,contrast,31,ellipse,1.0,156x430,95.7,95.4,29.7,34.0,0.0,0.96,6.4
+train_0036_t1_jpg.rf.a6c4bcefb9d012a6629d125bdd8108b5.jpg,✅,contrast,31,ellipse,1.0,145x383,103.7,102.6,31.9,38.3,0.0,1.54,7.65
+train_0037_t0_jpg.rf.7057ef4948dcd5dafd022ed682a45fd6.jpg,⚠️ 飽和 10.65%，K 可能過大,contrast,31,ellipse,1.0,214x344,105.3,105.1,52.9,58.7,5.27,10.65,12.86
+train_0037_t1_jpg.rf.a5553e1bca5e879489c8d2fc0cb11206.jpg,⚠️ 飽和 14.72%，K 可能過大,contrast,31,ellipse,1.0,143x342,100.9,101.2,54.5,60.4,9.68,14.72,11.73
+train_0038_t0_jpg.rf.c85ed84e514c1897e0a34d7392ba170d.jpg,✅,contrast,31,ellipse,1.0,138x393,85.2,86.4,34.1,43.4,0.0,1.5,9.67
+train_0038_t1_jpg.rf.6637e3c9c8c86db21f40ed922b87ff99.jpg,⚠️ 飽和 4.64%，K 可能過大,contrast,31,ellipse,1.0,123x392,103.4,102.2,43.3,48.8,2.39,4.64,8.67
+train_0039_t0_jpg.rf.d89751b37e9c6c8514705419b149a50d.jpg,⚠️ 飽和 6.05%，K 可能過大,contrast,31,ellipse,1.0,167x386,108.4,108.0,44.6,48.6,3.56,6.05,6.84
+train_0039_t1_jpg.rf.f8f1812402432d5cae45350be415d9a5.jpg,⚠️ 飽和 6.49%，K 可能過大,contrast,31,ellipse,1.0,166x381,101.9,102.0,42.1,46.6,3.51,6.49,7.29
+train_0040_t0_jpg.rf.ed7bca295d5b96459dd3ea20bf9b777e.jpg,✅,contrast,31,ellipse,1.0,96x274,121.2,119.5,27.8,33.9,0.0,0.03,6.97
+train_0040_t1_jpg.rf.3229d43df5c692d6a12b63293fce7c7e.jpg,✅,contrast,31,ellipse,1.0,109x301,114.7,114.4,31.6,36.2,0.0,0.0,7.29
+train_0040_t2_jpg.rf.cb9397368b4d0f68abdf17c41347f380.jpg,⚠️ 飽和 2.1%，K 可能過大,contrast,31,ellipse,1.0,108x328,130.0,128.8,36.3,42.6,0.0,2.1,7.2
+train_0041_t0_jpg.rf.c618a70d3f58439dc02e98cbce0fa9cf.jpg,⚠️ 飽和 3.15%，K 可能過大,contrast,31,ellipse,1.0,96x362,101.0,99.0,32.8,42.8,0.01,3.15,11.17
+train_0041_t1_jpg.rf.fc84009cc1c018834c6676a538e5bf77.jpg,⚠️ 飽和 2.45%，K 可能過大,contrast,31,ellipse,1.0,101x370,108.9,108.8,38.7,44.8,0.19,2.45,9.19
+train_0041_t2_jpg.rf.2b18e98b3b059f72f0efe7f1f09028ee.jpg,⚠️ 飽和 3.32%，K 可能過大,contrast,31,ellipse,1.0,94x367,102.5,101.0,31.0,42.1,0.01,3.32,12.07
+train_0041_t3_jpg.rf.79c26735443113a27001547ec24100b7.jpg,⚠️ 飽和 2.29%，K 可能過大,contrast,31,ellipse,1.0,107x402,120.9,120.1,41.0,49.5,0.1,2.29,12.1
+train_0042_t0_jpg.rf.fcb8e9756a66cd8efaa8f45db41ab922.jpg,⚠️ 飽和 2.16%，K 可能過大,contrast,31,ellipse,1.0,160x511,104.7,103.4,32.8,37.4,0.0,2.16,6.68
+train_0042_t1_jpg.rf.d9f6c03b0afdf5e962cc51a8dcd9d66f.jpg,✅,contrast,31,ellipse,1.0,162x455,111.3,110.5,34.3,38.6,0.0,0.73,6.69
+train_0043_t0_jpg.rf.65ebbc9dd8c074fe76c1fa63f0bb3dc9.jpg,⚠️ 飽和 4.73%，K 可能過大,contrast,31,ellipse,1.0,171x388,110.4,111.1,49.1,55.6,0.0,4.73,8.07
+train_0044_t0_jpg.rf.862b86eee420b6cd6d0c207cb9d9a1dc.jpg,✅,contrast,31,ellipse,1.0,171x454,134.3,132.3,38.4,44.4,0.0,0.96,7.89
+train_0044_t1_jpg.rf.7be9819ce3ad1569636576ca4624975a.jpg,⚠️ 飽和 2.9%，K 可能過大,contrast,31,ellipse,1.0,172x433,122.9,121.2,38.3,45.9,0.0,2.9,8.15
+train_0045_t0_jpg.rf.c9b09b13402d477e9bb5857b8f99ba92.jpg,⚠️ 飽和 3.65%，K 可能過大,contrast,31,ellipse,1.0,176x454,107.6,106.0,31.7,38.9,0.0,3.65,7.52
+train_0045_t1_jpg.rf.4f85ff5a3e4aef5bd912fb662db31cad.jpg,⚠️ 飽和 2.87%，K 可能過大,contrast,31,ellipse,1.0,188x592,111.1,110.5,43.4,47.4,0.3,2.87,6.23
+train_0046_t0_jpg.rf.f988a1bc7b36175444bb420f480dbcbe.jpg,⚠️ 飽和 11.27%，K 可能過大,contrast,31,ellipse,1.0,139x430,84.5,83.7,41.7,47.8,5.18,11.27,8.48
+train_0046_t1_jpg.rf.f70dc6ab83d0aec5ed6de49bda90b0cc.jpg,✅,contrast,31,ellipse,1.0,127x304,86.9,88.2,38.1,42.0,0.0,0.99,7.0
+train_0047_t0_jpg.rf.8ef1976a08b0f1c11e6d00f65c82b0ee.jpg,✅,contrast,31,ellipse,1.0,194x435,97.6,96.5,36.0,41.0,0.0,1.87,7.22
+train_0047_t1_jpg.rf.a6a817a32fd1799afb89897cd3783465.jpg,✅,contrast,31,ellipse,1.0,193x430,116.6,115.4,37.5,44.0,0.0,1.19,8.75
+train_0048_t0_jpg.rf.b704c087467752deb2a2ea42b6460109.jpg,⚠️ 飽和 3.44%，K 可能過大,contrast,31,ellipse,1.0,169x416,103.3,100.9,31.2,38.6,0.0,3.44,7.34
+train_0048_t1_jpg.rf.e3419bf843ab2012228656876b1d2961.jpg,⚠️ 飽和 2.62%，K 可能過大,contrast,31,ellipse,1.0,166x368,91.1,88.9,24.9,33.7,0.0,2.62,7.63
+train_0048_t2_jpg.rf.387a1f68c750db4cd9a7686e4ae37da2.jpg,⚠️ 飽和 3.34%，K 可能過大,contrast,31,ellipse,1.0,176x370,92.9,90.5,22.6,32.1,0.0,3.34,7.78
+train_0049_t0_jpg.rf.d2ac04dd92310d88ef9ec31ae4c130d1.jpg,⚠️ 飽和 2.11%，K 可能過大,contrast,31,ellipse,1.0,184x465,119.3,117.3,28.5,35.4,0.0,2.11,7.05
+train_0049_t1_jpg.rf.a4e7cb385d5040ff7cb6f78c91c95605.jpg,⚠️ 飽和 2.86%，K 可能過大,contrast,31,ellipse,1.0,153x351,104.3,102.5,26.4,37.0,0.0,2.86,8.51
+train_0050_t0_jpg.rf.56d6d15e714d34b0690f198adb25b6a5.jpg,✅,contrast,31,ellipse,1.0,225x566,116.9,116.7,49.6,51.8,0.0,0.48,5.14
+train_0051_t0_jpg.rf.ab364cad62b35cd0efcd79f838585bcd.jpg,✅,contrast,31,ellipse,1.0,238x511,103.2,102.0,27.7,32.9,0.0,1.35,6.44
+train_0051_t1_jpg.rf.cde76a084f6a909be845ef1575c7ab9f.jpg,✅,contrast,31,ellipse,1.0,242x415,110.8,109.6,32.3,37.4,0.0,1.41,6.42
+train_0052_t0_jpg.rf.cbcf820f94b007a19d4f4c0d4c8e8caf.jpg,✅,contrast,31,ellipse,1.0,163x446,106.2,105.9,39.6,42.3,0.0,0.91,5.25
+train_0052_t1_jpg.rf.89fabb38619d45b4196b23029bb2e980.jpg,✅,contrast,31,ellipse,1.0,152x471,106.2,105.4,39.8,43.2,0.0,1.58,5.85
+train_0053_t0_jpg.rf.e521ac5f21a503282763c4b1c9e7d0d4.jpg,✅,contrast,31,ellipse,1.0,140x448,107.9,107.5,38.0,41.5,0.0,0.62,5.8
+train_0053_t1_jpg.rf.abd6f92f065235e2acc66b9d40242d72.jpg,✅,contrast,31,ellipse,1.0,144x442,100.0,99.5,34.9,40.0,0.0,1.81,7.13
+train_0053_t2_jpg.rf.642fad81ca7d5b3720c023c37b818d0f.jpg,⚠️ 飽和 2.8%，K 可能過大,contrast,31,ellipse,1.0,150x509,100.6,99.5,32.3,37.9,0.04,2.8,7.33
+train_0054_t0_jpg.rf.bfa15fb7428f2396fbdf1605c9c1178b.jpg,⚠️ 飽和 4.48%，K 可能過大,contrast,31,ellipse,1.0,136x355,116.7,115.8,43.8,53.7,0.0,4.48,12.39
+train_0055_t0_jpg.rf.5cdbf8eb31e4b91ab3098312e4976a07.jpg,✅,contrast,31,ellipse,1.0,154x466,124.1,121.7,29.2,36.8,0.0,1.53,8.2
+train_0055_t1_jpg.rf.76fcdab0f68661d17c7581fcbf07beb7.jpg,⚠️ 飽和 2.59%，K 可能過大,contrast,31,ellipse,1.0,197x518,131.6,128.4,32.7,40.2,0.0,2.59,8.1
+train_0055_t2_jpg.rf.2bb2db758636a592545110f7b0d0041a.jpg,⚠️ 飽和 2.32%，K 可能過大,contrast,31,ellipse,1.0,192x430,141.0,138.3,40.9,48.4,0.01,2.32,8.58
+train_0056_t0_jpg.rf.1dd32483ab98bbcffdaef85e25fd9110.jpg,⚠️ 飽和 5.36%，K 可能過大,contrast,31,ellipse,1.0,131x400,107.1,105.9,33.2,39.5,0.01,5.36,7.51
+train_0057_t0_jpg.rf.4621ba0b9eb97e8254330e2a4045f9f7.jpg,✅,contrast,31,ellipse,1.0,157x396,103.7,102.7,36.2,42.0,0.0,1.69,8.3
+train_0057_t1_jpg.rf.45b02cb6714663a782aba5513fae25b8.jpg,✅,contrast,31,ellipse,1.0,138x413,92.6,92.8,33.6,39.6,0.0,1.42,8.39
+train_0058_t0_jpg.rf.e0fefb5c036e29e2a7bfef25b8242a86.jpg,✅,contrast,31,ellipse,1.0,154x513,127.5,126.8,35.8,40.2,0.05,1.39,7.83
+train_0058_t1_jpg.rf.54dabe12e9f686fb2a252f13a040ce21.jpg,✅,contrast,31,ellipse,1.0,127x464,122.2,122.3,26.6,33.9,0.0,0.37,9.22
+train_0059_t0_jpg.rf.8215cf9b6449925968f2da13f4c5b26e.jpg,⚠️ 飽和 4.99%，K 可能過大,contrast,31,ellipse,1.0,122x353,86.0,85.6,38.7,44.1,2.41,4.99,8.64
+train_0059_t1_jpg.rf.cebbe8626303aeec18520df6e2b21970.jpg,⚠️ 飽和 8.34%，K 可能過大,contrast,31,ellipse,1.0,145x372,76.5,76.6,44.1,47.2,5.94,8.34,5.67
+train_0060_t0_jpg.rf.d0b2124e870298ef36cdd229c5177257.jpg,✅,contrast,31,ellipse,1.0,178x486,108.8,107.0,28.6,35.5,0.0,1.7,7.32
+train_0060_t1_jpg.rf.b90200e4b50f89c90434d66bc6017251.jpg,✅,contrast,31,ellipse,1.0,156x491,112.2,111.7,33.5,39.4,0.0,1.92,7.31
+train_0060_t2_jpg.rf.3d2a9dcafcd4af929e3efaf2ff3d32f0.jpg,✅,contrast,31,ellipse,1.0,177x388,117.6,115.3,36.3,43.1,0.0,1.67,7.85
+train_0061_t0_jpg.rf.838d45410c43ae5b60365646b2b0f650.jpg,⚠️ 飽和 12.8%，K 可能過大,contrast,31,ellipse,1.0,160x429,119.7,118.7,53.3,58.4,8.12,12.8,9.63
+train_0062_t0_jpg.rf.27690d4039b71fc2f46a0c9cb2204b0d.jpg,⚠️ 飽和 13.5%，K 可能過大,contrast,31,ellipse,1.0,147x386,53.6,54.4,29.2,34.5,9.52,13.5,7.1
+train_0064_t0_jpg.rf.dbaf254acd5117f0da84738d38475f18.jpg,⚠️ 飽和 10.15%，K 可能過大,contrast,31,ellipse,1.0,197x419,82.3,82.5,36.7,39.5,8.77,10.15,6.6
+train_0065_t0_jpg.rf.0e61df332700e742f36fb796a402d98b.jpg,⚠️ 飽和 4.05%，K 可能過大,contrast,31,ellipse,1.0,152x509,96.1,95.1,33.3,39.2,0.0,4.05,8.33
+train_0065_t1_jpg.rf.ddd0e41e2e60158e7fcdd39ca2d190fd.jpg,✅,contrast,31,ellipse,1.0,152x434,109.6,109.4,42.8,47.6,0.0,1.9,8.13
+train_0065_t2_jpg.rf.66c9f9b1e79bcdc8b07564fe5c64a17e.jpg,⚠️ 飽和 6.61%，K 可能過大,contrast,31,ellipse,1.0,117x402,75.8,74.8,26.4,34.3,0.0,6.61,9.3
+train_0066_t0_jpg.rf.31dc44788ab9dda495cc04ac951dcdb9.jpg,⚠️ 飽和 3.1%，K 可能過大,contrast,31,ellipse,1.0,183x516,98.2,97.1,37.3,42.4,0.0,3.1,7.13
+train_0066_t1_jpg.rf.7d7eae59b67d1a73df90bf9787f5b319.jpg,⚠️ 飽和 4.22%，K 可能過大,contrast,31,ellipse,1.0,136x456,85.1,83.6,27.4,35.4,0.0,4.22,8.64
+train_0067_t0_jpg.rf.b6d387a5b71e415cfae107b3e6040dfd.jpg,⚠️ 飽和 3.53%，K 可能過大,contrast,31,ellipse,1.0,142x417,103.9,103.4,39.9,45.9,0.0,3.53,7.41
+train_0067_t1_jpg.rf.77cddf1e5c6bb14e6c4188a678dfb2eb.jpg,⚠️ 飽和 5.2%，K 可能過大,contrast,31,ellipse,1.0,155x487,91.4,90.2,29.1,37.9,0.59,5.2,8.92
+train_0068_t0_jpg.rf.b7dfa8e40ab0416505202c6878312304.jpg,✅,contrast,31,ellipse,1.0,164x462,106.0,104.8,23.7,28.8,0.0,0.57,6.16
+train_0068_t1_jpg.rf.22a8bbb0ca815fe21a50526ebdc91fbd.jpg,✅,contrast,31,ellipse,1.0,218x517,110.9,108.8,27.5,33.7,0.0,1.7,6.82
+train_0068_t2_jpg.rf.647bf3ed4a2dbc4bb7f28934454b60da.jpg,⚠️ 飽和 2.45%，K 可能過大,contrast,31,ellipse,1.0,203x416,122.7,120.6,38.7,45.9,0.0,2.45,7.42
+train_0069_t0_jpg.rf.dae8ecb34d833c7eddcece4770f1b9ba.jpg,⚠️ 飽和 3.11%，K 可能過大,contrast,31,ellipse,1.0,185x533,104.3,103.5,31.8,36.5,0.74,3.11,6.94
+train_0069_t1_jpg.rf.8f9f3d7ff0868e74ef76887be1d188bf.jpg,⚠️ 飽和 4.97%，K 可能過大,contrast,31,ellipse,1.0,200x439,100.5,99.8,41.9,46.3,1.5,4.97,6.71
+train_0070_t0_jpg.rf.dc459332e7c1e49c1cb9b6e286c56f5e.jpg,✅,contrast,31,ellipse,1.0,191x427,110.2,109.2,32.0,37.4,0.0,0.55,7.28
+train_0070_t1_jpg.rf.e3693d057bb433b95adc2a689b0406b8.jpg,✅,contrast,31,ellipse,1.0,187x423,117.6,116.3,30.6,36.6,0.0,0.35,7.58
+train_0071_t0_jpg.rf.17abbc1415e9b1fc97991ab9f255f500.jpg,⚠️ 飽和 9.81%，K 可能過大,contrast,31,ellipse,1.0,180x454,100.0,99.5,44.5,49.7,5.82,9.81,7.67
+train_0071_t1_jpg.rf.dd05f755ff83e1b7d01157fdbfa763c5.jpg,⚠️ 飽和 6.5%，K 可能過大,contrast,31,ellipse,1.0,174x444,108.2,108.1,40.7,47.7,3.26,6.5,9.58
+train_0072_t0_jpg.rf.ba50bf6ef6608ab25d1f371fac58374d.jpg,⚠️ 飽和 2.76%，K 可能過大,contrast,31,ellipse,1.0,226x431,105.7,105.2,42.4,46.2,0.9,2.76,6.58
+train_0073_t0_jpg.rf.5824f05888f5c55b64b50af207c878f2.jpg,⚠️ 飽和 2.48%，K 可能過大,contrast,31,ellipse,1.0,184x534,118.1,116.7,35.8,42.2,0.02,2.48,9.19
+train_0073_t1_jpg.rf.c75ed9f90cc5708d49164e32a7ca24f7.jpg,⚠️ 飽和 3.27%，K 可能過大,contrast,31,ellipse,1.0,198x457,121.5,119.0,38.3,45.0,0.14,3.27,8.84
+train_0073_t2_jpg.rf.a0a52db8eecdfce1d9d935295fb4cad3.jpg,⚠️ 飽和 4.35%，K 可能過大,contrast,31,ellipse,1.0,128x438,120.6,119.1,38.3,46.5,0.31,4.35,10.04
+train_0074_t0_jpg.rf.e6a284cd213a986af2acc5a84a49a7d4.jpg,⚠️ 飽和 4.52%，K 可能過大,contrast,31,ellipse,1.0,191x399,87.2,86.5,38.3,41.7,0.98,4.52,5.99
+train_0074_t1_jpg.rf.6c40a22bd59f37b2ec79cd706185769c.jpg,⚠️ 飽和 4.11%，K 可能過大,contrast,31,ellipse,1.0,162x375,89.5,89.1,38.2,41.1,0.0,4.11,5.72
+train_0074_t2_jpg.rf.440544ab07a6f88496c16e5fe7658ac3.jpg,⚠️ 飽和 2.34%，K 可能過大,contrast,31,ellipse,1.0,134x442,96.2,95.9,32.8,36.6,0.16,2.34,6.21
+train_0075_t0_jpg.rf.8f8d4166286a7c670ed84db8532d1c1a.jpg,⚠️ 飽和 6.32%，K 可能過大,contrast,31,ellipse,1.0,151x399,100.0,100.9,38.3,44.0,4.45,6.32,9.45
+train_0076_t0_jpg.rf.73c26ae03e7107afddf95934fdeda91a.jpg,⚠️ 飽和 10.45%，K 可能過大,contrast,31,ellipse,1.0,155x399,83.3,84.1,38.8,46.7,5.8,10.45,9.11
+train_0077_t0_jpg.rf.dd8dad6d6591c23a0516d42507b27f23.jpg,✅,contrast,31,ellipse,1.0,165x466,104.5,103.4,32.5,38.1,0.0,1.84,7.59
+train_0077_t1_jpg.rf.c8bebfe16ada6d5427861aece7c969cc.jpg,✅,contrast,31,ellipse,1.0,186x348,131.5,129.8,41.7,48.3,0.0,1.34,7.84
+train_0077_t2_jpg.rf.4a7724a713c530b755080c00acc083be.jpg,✅,contrast,31,ellipse,1.0,206x392,116.1,115.4,43.4,48.5,0.0,1.25,7.43
+train_0078_t0_jpg.rf.6dad7daf1a729d8d1a4861f6dd13165f.jpg,⚠️ 飽和 10.21%，K 可能過大,contrast,31,ellipse,1.0,126x352,112.7,113.7,49.7,59.2,0.0,10.21,10.77
+train_0079_t0_jpg.rf.4fb13ae36a110fac2e1052a2a613fcf3.jpg,✅,contrast,31,ellipse,1.0,156x441,107.6,106.4,31.3,36.1,0.0,0.92,6.45
+train_0079_t1_jpg.rf.f0ce9770b732bdc359d75ecc88576d2f.jpg,✅,contrast,31,ellipse,1.0,157x404,117.8,116.9,34.3,39.1,0.0,0.7,7.1
+train_0080_t0_jpg.rf.558393bb5cd28ca3e5fc33267f53c19f.jpg,✅,contrast,31,ellipse,1.0,170x369,94.2,94.1,34.6,38.4,0.0,1.26,6.02
+train_0081_t0_jpg.rf.ad04e1171e5d383e46f52424a73a2056.jpg,⚠️ 飽和 6.28%，K 可能過大,contrast,31,ellipse,1.0,159x484,76.3,75.1,27.8,32.9,4.52,6.28,7.36
+train_0081_t1_jpg.rf.9eff916f1e118102fab3c9818b356f95.jpg,⚠️ 飽和 3.74%，K 可能過大,contrast,31,ellipse,1.0,163x411,68.0,66.4,22.0,27.2,2.07,3.74,6.54
+train_0082_t0_jpg.rf.6d444260e054530a4ebc177938828cba.jpg,✅,contrast,31,ellipse,1.0,157x381,93.5,93.4,36.4,40.9,0.0,1.84,7.07
+train_0083_t0_jpg.rf.b221dd2190cf7db651e50e2083bd5340.jpg,⚠️ 飽和 3.32%，K 可能過大,contrast,31,ellipse,1.0,144x382,83.2,82.9,35.1,39.2,0.04,3.32,6.79
+train_0084_t0_jpg.rf.01c3284afdf09ef32fb58d7a1146df73.jpg,⚠️ 飽和 4.72%，K 可能過大,contrast,31,ellipse,1.0,130x449,103.4,104.0,40.7,46.8,2.25,4.72,10.15
+train_0085_t0_jpg.rf.19a0f1299a1aea15fb6f7811da18f46a.jpg,⚠️ 飽和 5.72%，K 可能過大,contrast,31,ellipse,1.0,124x416,77.7,78.2,23.9,32.7,1.61,5.72,9.9
+train_0085_t1_jpg.rf.3f15c9310dc48eb95b0425e4285a91ed.jpg,⚠️ 飽和 6.58%，K 可能過大,contrast,31,ellipse,1.0,144x471,92.6,91.5,30.7,34.8,4.39,6.58,6.75
+train_0087_t0_jpg.rf.e75a2bff147f1f6d1201e03351ccea2c.jpg,⚠️ 飽和 3.37%，K 可能過大,contrast,31,ellipse,1.0,190x375,129.3,127.2,36.6,43.9,0.0,3.37,8.78
+train_0087_t1_jpg.rf.12cf23e028c287fa33e711e282596401.jpg,⚠️ 飽和 5.2%，K 可能過大,contrast,31,ellipse,1.0,216x420,111.1,109.5,42.1,46.8,3.38,5.2,7.16
+train_0087_t2_jpg.rf.92d7d592bf9d0732bef59f2ed0f8e175.jpg,⚠️ 飽和 6.13%，K 可能過大,contrast,31,ellipse,1.0,216x464,92.3,91.3,33.8,38.2,4.05,6.13,6.1
+train_0088_t0_jpg.rf.2a6ee735cd3251623ccb118ebadca05c.jpg,⚠️ 飽和 4.02%，K 可能過大,contrast,31,ellipse,1.0,166x404,116.4,115.6,45.0,48.2,2.25,4.02,7.35
+train_0089_t0_jpg.rf.a64eaa533f0b96cea2a559ba7c7290cd.jpg,⚠️ 飽和 2.33%，K 可能過大,contrast,31,ellipse,1.0,136x346,99.2,98.5,37.7,41.1,0.0,2.33,6.22
+train_0090_t0_jpg.rf.89f81c1252e039367b73c0dd05e31469.jpg,⚠️ 飽和 4.78%，K 可能過大,contrast,31,ellipse,1.0,263x410,101.9,100.8,33.9,38.6,2.51,4.78,6.64
+train_0090_t1_jpg.rf.9cb2a01b2d312f1edf4798f6bb643205.jpg,⚠️ 飽和 5.37%，K 可能過大,contrast,31,ellipse,1.0,266x489,88.7,87.9,29.6,33.6,3.65,5.37,6.06
+train_0090_t2_jpg.rf.2c35700a54b6c13d036e8e2f24595b4c.jpg,✅,contrast,31,ellipse,1.0,176x398,120.7,119.7,25.8,33.4,0.0,1.65,7.76
+train_0091_t0_jpg.rf.5c9bc1f0a9b18e8f957a1dac982ea504.jpg,✅,contrast,31,ellipse,1.0,136x423,88.6,88.4,35.3,40.5,0.02,0.82,6.54
+train_0092_t0_jpg.rf.e8314cf604bca3cafd47b5792a04fa2a.jpg,⚠️ 飽和 3.74%，K 可能過大,contrast,31,ellipse,1.0,185x351,114.1,113.8,46.5,54.4,0.0,3.74,10.95
+train_0093_t0_jpg.rf.a2f10c3d732fe4887152eaf2eb0fa229.jpg,⚠️ 飽和 5.21%，K 可能過大,contrast,31,ellipse,1.0,140x368,82.2,81.8,27.7,32.7,3.12,5.21,7.19
+train_0095_t0_jpg.rf.9afb6db3f8d1d8a6906027c89a8ae3f2.jpg,⚠️ 飽和 3.43%，K 可能過大,contrast,31,ellipse,1.0,198x384,89.9,89.2,47.4,51.4,1.0,3.43,7.05
+train_0096_t0_jpg.rf.6619fe493da3bacd7e2e0bb16485bc8a.jpg,⚠️ 飽和 6.27%，K 可能過大,contrast,31,ellipse,1.0,112x397,71.9,72.0,22.1,32.7,0.46,6.27,10.71
+train_0096_t1_jpg.rf.cdc0f513ce32517a76e582d7577953be.jpg,⚠️ 飽和 3.34%，K 可能過大,contrast,31,ellipse,1.0,118x432,91.2,91.7,28.6,34.8,1.0,3.34,8.55
+train_0096_t2_jpg.rf.7c1f25bcbaf77df2af5791735a78c7e1.jpg,⚠️ 飽和 6.2%，K 可能過大,contrast,31,ellipse,1.0,116x413,75.6,74.5,24.7,31.0,0.62,6.2,8.2
+train_0098_t0_jpg.rf.51fbab91d7601f8985c4ca28e5076f89.jpg,⚠️ 飽和 6.23%，K 可能過大,contrast,31,ellipse,1.0,181x425,117.7,117.1,40.8,47.5,1.74,6.23,8.01
+train_0098_t1_jpg.rf.119b406e2045b21d5b2d45859ae87e72.jpg,⚠️ 飽和 5.72%，K 可能過大,contrast,31,ellipse,1.0,171x486,89.0,88.5,36.7,42.2,2.9,5.72,6.55
+train_0098_t2_jpg.rf.d7ef00483e587854254f631f29c4f7e4.jpg,⚠️ 飽和 6.28%，K 可能過大,contrast,31,ellipse,1.0,192x505,94.5,92.9,33.9,38.3,3.84,6.28,6.19
+train_0099_t0_jpg.rf.5526da4f8379db05eee1f5289e81f054.jpg,✅,contrast,31,ellipse,1.0,173x420,98.7,98.6,45.4,48.7,0.0,1.23,6.32
+train_0100_t0_jpg.rf.078e82007fe89bcc15b7c232df71ff39.jpg,⚠️ 飽和 3.52%，K 可能過大,contrast,31,ellipse,1.0,172x422,94.1,93.8,37.9,43.3,0.0,3.52,7.98
+train_0101_t0_jpg.rf.70d1639a177e94c8142f50cc8d2e293e.jpg,⚠️ 飽和 3.29%，K 可能過大,contrast,31,ellipse,1.0,129x329,140.3,136.1,36.8,51.8,0.0,3.29,13.6
+train_0101_t1_jpg.rf.d50e505a89a1ea7809477fa488d8b26e.jpg,✅,contrast,31,ellipse,1.0,102x315,147.0,145.0,41.0,50.1,0.0,0.01,12.43
+train_0101_t2_jpg.rf.3d7bcf85680c705b21121a4113061c08.jpg,✅,contrast,31,ellipse,1.0,123x316,130.9,129.4,38.8,53.7,0.0,1.49,15.55
+train_0102_t0_jpg.rf.9d4336b37e95a82b8196f09e2d3871a9.jpg,⚠️ 飽和 2.04%，K 可能過大,contrast,31,ellipse,1.0,135x445,127.4,126.7,35.4,44.6,0.0,2.04,10.36
+train_0102_t1_jpg.rf.ad7ca2e40e6cddeaebd4358c21c2fe35.jpg,⚠️ 飽和 2.24%，K 可能過大,contrast,31,ellipse,1.0,127x415,121.9,119.6,33.4,43.5,0.0,2.24,10.76
+train_0102_t2_jpg.rf.d90f2ac256d40b52c777eeb616ade37c.jpg,✅,contrast,31,ellipse,1.0,156x408,127.7,126.2,37.0,44.5,0.0,1.28,9.47
+train_0103_t0_jpg.rf.385d6ca303c48409468e19b57d3659d7.jpg,✅,contrast,31,ellipse,1.0,164x416,108.2,107.1,34.5,39.2,0.0,1.05,6.48
+train_0104_t0_jpg.rf.66b44dfa2223216ffa20ccf4773846d4.jpg,✅,contrast,31,ellipse,1.0,153x461,116.8,115.8,37.1,41.4,0.01,0.77,6.69
+train_0104_t1_jpg.rf.037b1c937565242a6fcce75408960743.jpg,⚠️ 飽和 4.3%，K 可能過大,contrast,31,ellipse,1.0,193x457,91.0,89.8,32.5,39.0,0.0,4.3,7.57
+train_0107_t0_jpg.rf.f7034dae4f2619be1737fef8ae5db44a.jpg,⚠️ 飽和 3.08%，K 可能過大,contrast,31,ellipse,1.0,164x317,88.6,87.5,29.4,37.7,0.0,3.08,10.44
+train_0115_t0_jpg.rf.14510fe1f747d7fab7481710bd4ce610.jpg,⚠️ 飽和 9.02%，K 可能過大,contrast,31,ellipse,1.0,164x376,118.9,117.7,50.5,56.4,3.93,9.02,9.43
+train_0116_t0_jpg.rf.53184d0d59d609537a2a4be6263eb5ad.jpg,⚠️ 飽和 4.8%，K 可能過大,contrast,31,ellipse,1.0,116x364,120.0,117.8,38.0,48.4,0.82,4.8,12.14
+train_0116_t1_jpg.rf.cce9f939af03f636a656f62915ff3338.jpg,⚠️ 飽和 4.09%，K 可能過大,contrast,31,ellipse,1.0,110x366,114.6,112.9,32.9,45.3,0.02,4.09,12.39
+train_0116_t2_jpg.rf.68c88601db03c0c82c755244a584c5b5.jpg,⚠️ 飽和 5.43%，K 可能過大,contrast,31,ellipse,1.0,124x397,130.8,129.3,45.4,55.2,1.45,5.43,11.86
+train_0118_t0_jpg.rf.6d384b0de2e6597d82a106d8f93fc35e.jpg,✅,contrast,31,ellipse,1.0,102x350,92.7,91.4,29.5,34.3,0.0,0.33,7.39
+train_0118_t1_jpg.rf.89f36eb1d197df845072703708255715.jpg,✅,contrast,31,ellipse,1.0,97x327,87.9,85.7,29.7,36.3,0.0,1.27,8.63
+train_0118_t2_jpg.rf.f4dc5acdcfb3485382e0242d3cf6b346.jpg,⚠️ 飽和 2.87%，K 可能過大,contrast,31,ellipse,1.0,97x326,90.7,88.3,27.6,36.7,0.0,2.87,10.0
+train_0118_t3_jpg.rf.6d00eca3702560068a6d2fa02679ddf5.jpg,✅,contrast,31,ellipse,1.0,105x382,106.9,105.0,34.4,40.5,0.0,0.87,8.47
+train_0119_t0_jpg.rf.44b6a07d610025027f169897d59b47a1.jpg,✅,contrast,31,ellipse,1.0,162x397,105.7,105.9,45.4,49.0,0.0,1.89,6.61
+train_0120_t0_jpg.rf.2b69affd2b3cd1cbe3940db9327ab96c.jpg,⚠️ 飽和 12.07%，K 可能過大,contrast,31,ellipse,1.0,145x396,111.9,110.0,53.8,60.3,7.6,12.07,11.39
+train_0121_t0_jpg.rf.a584bd158c7340a20a49f0c94944d83b.jpg,⚠️ 飽和 2.04%，K 可能過大,contrast,31,ellipse,1.0,197x391,106.9,105.8,35.2,39.9,0.0,2.04,6.33
+train_0122_t0_jpg.rf.849ac62e33936d60f2bad0b06e5bcbe0.jpg,⚠️ 飽和 4.9%，K 可能過大,contrast,31,ellipse,1.0,122x364,100.9,99.2,33.0,42.1,0.0,4.9,9.42
+train_0122_t1_jpg.rf.a6aaf91ea6acb4dfac155a965dcab2e3.jpg,⚠️ 飽和 2.5%，K 可能過大,contrast,31,ellipse,1.0,121x368,91.2,90.5,32.1,37.0,0.0,2.5,6.52
+train_0122_t2_jpg.rf.9c687b4dabfc8f94160ffbda52639eba.jpg,⚠️ 飽和 3.2%，K 可能過大,contrast,31,ellipse,1.0,138x381,103.3,103.8,38.5,45.8,0.0,3.2,8.27
+train_0124_t0_jpg.rf.efd81c196de1dcf17c84508087d5b8c5.jpg,⚠️ 飽和 7.91%，K 可能過大,contrast,31,ellipse,1.0,166x382,105.4,105.2,46.2,50.2,3.77,7.91,7.2
+train_0124_t1_jpg.rf.dc7a452a4698c4e6be8d68a171428ffa.jpg,⚠️ 飽和 8.88%，K 可能過大,contrast,31,ellipse,1.0,164x377,97.9,98.5,43.8,48.1,4.4,8.88,7.66
+train_0125_t0_jpg.rf.15f9977cb1dfb86f71771ab810bf0f93.jpg,⚠️ 飽和 8.71%，K 可能過大,contrast,31,ellipse,1.0,148x387,105.8,105.3,52.8,57.0,4.65,8.71,8.34
+train_0125_t1_jpg.rf.1f4ddbca08414ee3cae75a5f847b08c3.jpg,⚠️ 飽和 9.36%，K 可能過大,contrast,31,ellipse,1.0,128x367,103.0,102.5,44.8,51.0,2.31,9.36,9.88
+train_0125_t2_jpg.rf.7941f977e6a3b7b3401db3e73515cb0b.jpg,⚠️ 飽和 7.36%，K 可能過大,contrast,31,ellipse,1.0,109x360,110.1,109.2,40.1,48.4,0.69,7.36,11.65
+train_0126_t0_jpg.rf.7137fbea653e476a26788fbf3e650ff8.jpg,✅,contrast,31,ellipse,1.0,101x290,101.7,99.1,29.6,37.6,0.0,0.78,9.49
+train_0126_t1_jpg.rf.3f9817c4fdaa2f0bc2dee2c2d19d6b0c.jpg,✅,contrast,31,ellipse,1.0,97x277,104.5,101.3,27.6,36.6,0.0,0.69,10.04
+train_0126_t2_jpg.rf.3a2676c92ffd25c0134e6c9629d20983.jpg,✅,contrast,31,ellipse,1.0,142x311,120.4,118.2,32.9,39.8,0.0,0.59,8.52
+train_0126_t3_jpg.rf.5415409c3e3b0490a4b4535b8bb10384.jpg,✅,contrast,31,ellipse,1.0,124x317,117.4,116.1,36.8,41.8,0.0,0.44,7.74
+train_0127_t0_jpg.rf.fa3a16d298912c8d4234b44a34a6fdc5.jpg,✅,contrast,31,ellipse,1.0,189x457,147.7,146.6,39.5,45.3,0.0,1.11,7.75
+train_0127_t1_jpg.rf.54643c18d7d2c2b68268d6c9f971ec3e.jpg,⚠️ 飽和 2.24%，K 可能過大,contrast,31,ellipse,1.0,153x420,126.6,125.8,33.9,43.3,0.0,2.24,9.38
+train_0128_t0_jpg.rf.c9841bb3c80843dabc3afe27e894e9d1.jpg,⚠️ 飽和 3.25%，K 可能過大,contrast,31,ellipse,1.0,122x439,101.9,101.1,34.4,43.5,0.0,3.25,10.19
+train_0128_t1_jpg.rf.9325862a297cd807715a9c30cd0e1c12.jpg,✅,contrast,31,ellipse,1.0,123x458,110.0,110.3,35.0,44.1,0.0,1.64,10.39
+train_0128_t2_jpg.rf.0f86f5e3a0cb6bf9460eed5d4d42dc24.jpg,⚠️ 飽和 3.51%，K 可能過大,contrast,31,ellipse,1.0,136x447,110.0,107.3,36.6,45.0,0.0,3.51,9.37
+train_0129_t0_jpg.rf.e7c387ef0ff35400f7074a68baf60a13.jpg,✅,contrast,31,ellipse,1.0,94x288,117.9,117.4,27.8,38.0,0.0,0.78,11.24
+train_0129_t1_jpg.rf.6eb827f992da77116729975e07bdf360.jpg,✅,contrast,31,ellipse,1.0,111x304,129.9,130.2,30.3,40.4,0.0,0.55,11.33
+train_0129_t2_jpg.rf.3c6834f8cc9718b346a84f1dca42dc75.jpg,✅,contrast,31,ellipse,1.0,95x293,118.8,117.4,29.5,39.8,0.0,0.97,11.51
+train_0129_t3_jpg.rf.9221cab6e69457e14fb598f77604cdbc.jpg,✅,contrast,31,ellipse,1.0,117x309,130.1,128.6,33.3,40.3,0.0,0.43,9.49
+train_0130_t0_jpg.rf.5bc6fa21c4490f4b13e1230f73fd4c9b.jpg,⚠️ 飽和 3.54%，K 可能過大,contrast,31,ellipse,1.0,198x354,111.8,111.0,36.8,43.3,0.0,3.54,9.56
+train_0131_t0_jpg.rf.697836e956c832f91231290e51e0a9db.jpg,✅,contrast,31,ellipse,1.0,156x408,145.6,145.4,31.7,37.6,0.0,0.17,7.75
+train_0131_t1_jpg.rf.f016f5073dbf2fb67a0f474595a92506.jpg,✅,contrast,31,ellipse,1.0,142x405,157.9,157.3,28.9,33.7,0.0,0.03,6.58
+train_0131_t2_jpg.rf.03adebe238b9a558af19fb5f0c0291f2.jpg,✅,contrast,31,ellipse,1.0,148x417,151.0,150.5,35.2,40.4,0.0,0.22,7.51
+train_0132_t0_jpg.rf.d37f66b0bf96ddf758c19889af79f03f.jpg,✅,contrast,31,ellipse,1.0,243x382,128.1,126.1,35.1,40.3,0.0,0.94,6.39
+train_0133_t0_jpg.rf.68c7d327d44df48f7b819d2cc5484e94.jpg,⚠️ 飽和 3.88%，K 可能過大,contrast,31,ellipse,1.0,188x361,95.5,93.6,32.5,41.2,0.0,3.88,10.77
+train_0135_t0_jpg.rf.08b21bb3d1aa5f93e7803d62e6e312d9.jpg,⚠️ 飽和 2.89%，K 可能過大,contrast,31,ellipse,1.0,155x399,93.1,93.3,41.4,46.2,0.0,2.89,7.82
+train_0135_t1_jpg.rf.d408e1d4224b4eb4af37114d8bb25639.jpg,⚠️ 飽和 2.14%，K 可能過大,contrast,31,ellipse,1.0,150x421,88.5,88.7,33.8,37.9,0.07,2.14,6.99
+train_0136_t0_jpg.rf.c4866845022dacee04aed4b934ceb0f0.jpg,⚠️ 飽和 8.14%，K 可能過大,contrast,31,ellipse,1.0,163x434,108.4,108.0,40.2,43.7,5.79,8.14,6.75
+train_0136_t1_jpg.rf.1cbb998fbb7695cbf42a4c4a08e98f2f.jpg,⚠️ 飽和 7.1%，K 可能過大,contrast,31,ellipse,1.0,142x371,108.8,109.1,43.1,48.3,2.27,7.1,8.64
+train_0137_t0_jpg.rf.358085183787b2923c39463c7f27cbdc.jpg,⚠️ 飽和 3.03%，K 可能過大,contrast,31,ellipse,1.0,125x458,94.0,93.3,29.5,37.8,0.0,3.03,9.6
+train_0137_t1_jpg.rf.10094488ba0eb6e307ced49de0cdf9d6.jpg,⚠️ 飽和 3.51%，K 可能過大,contrast,31,ellipse,1.0,129x471,89.4,88.7,27.7,36.1,0.0,3.51,9.2
+train_0138_t0_jpg.rf.b3b6e4e86049ef3a67f74c8910eabc83.jpg,✅,contrast,31,ellipse,1.0,184x497,106.4,105.9,28.8,33.4,0.0,0.75,6.13
+train_0138_t1_jpg.rf.789c59b581d0b148d2548e12f00ded58.jpg,✅,contrast,31,ellipse,1.0,175x497,115.3,114.6,30.0,33.7,0.0,0.47,5.48
+train_0139_t0_jpg.rf.ed5e5ce0542f340ae730ba2f673de439.jpg,✅,contrast,31,ellipse,1.0,191x448,115.7,114.7,35.3,39.6,0.0,0.46,6.18
+train_0139_t1_jpg.rf.876949c0070637f7dadbf49fc649cb5d.jpg,✅,contrast,31,ellipse,1.0,171x426,95.1,94.4,39.8,44.4,0.0,1.18,6.83
+train_0140_t0_jpg.rf.840ad9abb63d632404e87f89cd2ccef3.jpg,⚠️ 飽和 2.25%，K 可能過大,contrast,31,ellipse,1.0,129x406,91.6,90.3,29.8,35.9,0.0,2.25,7.64
+train_0140_t1_jpg.rf.e58be75c2486c9188c61fb477a5d0835.jpg,⚠️ 飽和 2.36%，K 可能過大,contrast,31,ellipse,1.0,142x470,101.2,100.4,31.6,38.3,0.0,2.36,7.9
+train_0141_t0_jpg.rf.adba374dee3cab7f8ae2eb1c07c3cfac.jpg,⚠️ 飽和 4.4%，K 可能過大,contrast,31,ellipse,1.0,117x388,85.5,84.0,30.6,37.3,0.0,4.4,9.09
+train_0141_t1_jpg.rf.0beacd8924db4092019830248b74bd1e.jpg,✅,contrast,31,ellipse,1.0,110x382,78.6,78.3,29.2,34.8,0.0,1.68,7.79
+train_0141_t2_jpg.rf.0a353bd82380ca96b3792f8f54fbda4f.jpg,⚠️ 飽和 2.03%，K 可能過大,contrast,31,ellipse,1.0,128x412,98.3,97.8,34.6,38.0,0.0,2.03,6.81
+train_0141_t3_jpg.rf.2541181b91c90e9679b92625a1532bc0.jpg,⚠️ 飽和 2.58%，K 可能過大,contrast,31,ellipse,1.0,140x417,97.4,95.2,31.5,36.6,0.0,2.58,7.06
+train_0142_t0_jpg.rf.b3d57cb70149ec1b13499849cae74c51.jpg,✅,contrast,31,ellipse,1.0,158x485,112.3,110.0,34.3,40.4,0.0,1.75,7.24
+train_0142_t1_jpg.rf.ba419f4b67e7c69d77157d02a5f6514a.jpg,✅,contrast,31,ellipse,1.0,124x442,91.8,89.8,30.4,37.3,0.0,1.82,8.24
+train_0142_t2_jpg.rf.f7cb5a8968f0a829397c12617ff44ae0.jpg,⚠️ 飽和 2.02%，K 可能過大,contrast,31,ellipse,1.0,120x449,89.6,88.4,28.8,35.0,0.0,2.02,7.65
+train_0142_t3_jpg.rf.33345fa6d605ec541dd65a2eafc198a6.jpg,⚠️ 飽和 3.42%，K 可能過大,contrast,31,ellipse,1.0,114x442,100.7,100.7,31.8,41.3,0.0,3.42,10.21
+train_0144_t0_jpg.rf.9ad87e25cde5497880b33b1b42689ba5.jpg,⚠️ 飽和 5.02%，K 可能過大,contrast,31,ellipse,1.0,93x321,113.7,115.5,28.5,45.1,1.24,5.02,16.99
+train_0144_t1_jpg.rf.7664712e4aa956a871feb705e40308bc.jpg,⚠️ 飽和 5.48%，K 可能過大,contrast,31,ellipse,1.0,94x316,112.1,111.7,25.7,42.5,0.4,5.48,15.92
+train_0144_t2_jpg.rf.502553066bb507b3378283e19e00db57.jpg,⚠️ 飽和 4.6%，K 可能過大,contrast,31,ellipse,1.0,103x339,125.7,126.6,36.7,44.7,2.51,4.6,11.48
+train_0144_t3_jpg.rf.640b6d522a15be11eed586305e15ae81.jpg,⚠️ 飽和 4.87%，K 可能過大,contrast,31,ellipse,1.0,102x338,123.8,122.3,33.9,43.5,1.55,4.87,12.19
+train_0146_t0_jpg.rf.03f9f078b0054a6003954c9a760f7886.jpg,⚠️ 飽和 4.03%，K 可能過大,contrast,31,ellipse,1.0,113x385,127.0,127.8,34.7,47.3,0.0,4.03,13.92
+train_0146_t1_jpg.rf.ac991267c4b3d47700da54bf4a30ee75.jpg,⚠️ 飽和 2.15%，K 可能過大,contrast,31,ellipse,1.0,103x398,125.3,126.0,35.0,47.8,0.0,2.15,14.33
+train_0146_t2_jpg.rf.b1ab49e4a26bf6493686491e8ec51a62.jpg,✅,contrast,31,ellipse,1.0,108x385,137.3,137.0,34.9,43.6,0.0,0.9,10.84
+train_0146_t3_jpg.rf.18a079480c2ae38719af353ad5a20b71.jpg,⚠️ 飽和 2.38%，K 可能過大,contrast,31,ellipse,1.0,133x416,139.5,138.5,40.1,47.3,0.01,2.38,9.83
+train_0147_t0_jpg.rf.9729dfd32709b77fa152070a233e8e13.jpg,✅,contrast,31,ellipse,1.0,214x447,129.0,126.7,32.6,38.9,0.0,1.22,6.87
+train_0147_t2_jpg.rf.e7fbb591941360f46a8ccc3f1ed936f3.jpg,✅,contrast,31,ellipse,1.0,202x503,111.2,109.2,31.3,36.7,0.0,1.46,6.55
+train_0148_t0_jpg.rf.56e7955514f5b8329fda0875e0212042.jpg,✅,contrast,31,ellipse,1.0,176x426,110.2,109.9,34.9,39.4,0.0,1.57,6.63
+train_0148_t1_jpg.rf.e8cb02dbf822e934cc2d223d0b409b8a.jpg,⚠️ 飽和 2.49%，K 可能過大,contrast,31,ellipse,1.0,176x430,104.0,103.7,33.0,37.6,0.0,2.49,6.09
+train_0150_t0_jpg.rf.229752ef1dfbef0dfe4e086a2807865f.jpg,⚠️ 飽和 3.92%，K 可能過大,contrast,31,ellipse,1.0,108x443,93.7,93.7,33.0,39.6,0.0,3.92,9.02
+train_0150_t1_jpg.rf.1ee2d087f5ec08855390665b02737424.jpg,✅,contrast,31,ellipse,1.0,118x470,100.9,101.1,36.0,40.7,0.0,1.62,7.74
+train_0150_t2_jpg.rf.b10ccb0102273b3274be1c83471a6109.jpg,✅,contrast,31,ellipse,1.0,122x448,102.7,101.7,34.8,40.1,0.04,1.41,7.26
+train_0152_t0_jpg.rf.76d85a4e84ad5fd4997c356acbb83514.jpg,⚠️ 飽和 2.01%，K 可能過大,contrast,31,ellipse,1.0,114x436,88.2,86.5,29.6,36.0,0.0,2.01,7.65
+train_0152_t1_jpg.rf.9bcbfa2fec577c36781c8976c6473554.jpg,✅,contrast,31,ellipse,1.0,111x439,97.5,95.8,30.2,36.2,0.0,2.0,7.75
+train_0155_t0_jpg.rf.ed2ce8344a10836c32fd28a748968858.jpg,✅,contrast,31,ellipse,1.0,166x467,121.2,121.0,31.2,38.1,0.0,0.74,7.67
+train_0155_t1_jpg.rf.2eaf762ddabd14fdd2b2585f8a844d9b.jpg,✅,contrast,31,ellipse,1.0,210x455,104.9,103.4,29.8,35.3,0.0,1.64,6.69
+train_0157_t0_jpg.rf.ce06f04c437cb5ae098797643969578b.jpg,✅,contrast,31,ellipse,1.0,120x460,101.9,100.3,31.7,38.6,0.0,1.48,9.28
+train_0157_t1_jpg.rf.db825790b85b426024c468d22134be13.jpg,⚠️ 飽和 3.32%，K 可能過大,contrast,31,ellipse,1.0,117x460,97.3,96.5,26.7,36.4,0.0,3.32,10.13
+train_0157_t2_jpg.rf.68bf99261f7b54fd33afa3d719d77fab.jpg,⚠️ 飽和 2.28%，K 可能過大,contrast,31,ellipse,1.0,136x475,106.0,105.0,27.2,35.7,0.0,2.28,8.46
+train_0158_t0_jpg.rf.03477fc543604c5e338c497b334e06ec.jpg,✅,contrast,31,ellipse,1.0,229x427,108.8,108.1,36.6,40.7,0.0,0.6,6.71
+train_0158_t1_jpg.rf.e333033c2d7a0635298002606ac6b65f.jpg,✅,contrast,31,ellipse,1.0,205x409,109.5,107.9,39.3,44.7,0.0,1.62,7.84
+train_0159_t0_jpg.rf.28bc4f562f7c29c8fc12f39055604dd7.jpg,✅,contrast,31,ellipse,1.0,179x461,98.2,96.8,36.0,40.6,0.0,1.96,6.37
+train_0159_t1_jpg.rf.4d8d42f7b35637083890c1d2f790408e.jpg,⚠️ 飽和 2.09%，K 可能過大,contrast,31,ellipse,1.0,172x492,123.6,122.3,42.7,49.6,0.0,2.09,8.5
+train_0161_t0_jpg.rf.53eaee1cdda9486d0094d970e1799d06.jpg,⚠️ 飽和 2.26%，K 可能過大,contrast,31,ellipse,1.0,189x519,101.3,100.8,34.7,38.3,0.0,2.26,5.59
+train_0161_t1_jpg.rf.72e8c0c11f7859fa2a00754f85a29f8b.jpg,⚠️ 飽和 2.41%，K 可能過大,contrast,31,ellipse,1.0,179x495,105.8,105.1,32.8,36.8,0.0,2.41,5.76
+train_0162_t0_jpg.rf.0841fd03ce121bfde931526db0b9f336.jpg,✅,contrast,31,ellipse,1.0,188x495,93.3,92.7,31.6,36.4,0.0,1.05,7.24
+train_0163_t0_jpg.rf.8d8bc22c5f613d823319b458db50d0f2.jpg,✅,contrast,31,ellipse,1.0,181x420,125.3,123.8,38.6,45.5,0.0,1.13,8.45
+train_0163_t2_jpg.rf.0897b3fcddb88ce69e37d142e1959e8e.jpg,⚠️ 飽和 2.65%，K 可能過大,contrast,31,ellipse,1.0,178x511,95.2,94.1,29.6,34.8,0.0,2.65,6.55
+train_0165_t0_jpg.rf.2d8b60c17784d840cfc73618701d9e19.jpg,✅,contrast,31,ellipse,1.0,119x409,87.0,86.4,32.2,36.6,0.0,0.99,6.71
+train_0165_t2_jpg.rf.bd094240adeb30778315803df9130a50.jpg,⚠️ 飽和 3.34%，K 可能過大,contrast,31,ellipse,1.0,167x448,109.9,108.9,43.2,48.1,1.07,3.34,8.06
+train_0166_t0_jpg.rf.cc20a6daef5e14b174af1987c97b570e.jpg,⚠️ 飽和 4.13%，K 可能過大,contrast,31,ellipse,1.0,154x413,83.2,84.6,38.9,46.7,0.02,4.13,7.79
+train_0167_t0_jpg.rf.aec745b33da5d2c01c4e6db4ce5a8e50.jpg,⚠️ 飽和 3.82%，K 可能過大,contrast,31,ellipse,1.0,153x409,124.4,124.8,40.1,49.1,0.06,3.82,11.28
+train_0167_t1_jpg.rf.560142b0672806c0b7a58afe03fe4a23.jpg,⚠️ 飽和 3.74%，K 可能過大,contrast,31,ellipse,1.0,175x449,136.0,133.4,41.8,48.6,0.15,3.74,9.32
+train_0167_t2_jpg.rf.71a4f8442586844ae3d4b4ddf18e79b3.jpg,⚠️ 飽和 2.26%，K 可能過大,contrast,31,ellipse,1.0,201x440,144.8,142.9,36.2,41.9,0.94,2.26,8.02
+train_0168_t0_jpg.rf.84ff2101f7bf3c35c258922b02e48592.jpg,⚠️ 飽和 4.02%，K 可能過大,contrast,31,ellipse,1.0,131x415,122.1,122.0,37.3,48.2,0.0,4.02,12.78
+train_0168_t1_jpg.rf.3188840e204fe9ba977ae76e472bb7b2.jpg,✅,contrast,31,ellipse,1.0,111x381,124.4,123.4,33.4,42.0,0.0,1.57,10.8
+train_0168_t3_jpg.rf.8a431bd2d2a2bae7200165d666717d6f.jpg,✅,contrast,31,ellipse,1.0,139x428,145.1,143.2,33.9,40.3,0.35,1.69,8.3
+train_0169_t0_jpg.rf.13c989d4467484512a72145ebab349bb.jpg,⚠️ 飽和 6.4%，K 可能過大,contrast,31,ellipse,1.0,160x446,125.3,124.4,38.6,46.7,2.46,6.4,10.35
+train_0169_t1_jpg.rf.f78e48110f4079dc56fdb28d2db9d6d8.jpg,⚠️ 飽和 2.17%，K 可能過大,contrast,31,ellipse,1.0,161x487,136.1,134.6,37.4,43.6,0.0,2.17,9.35
+train_0171_t0_jpg.rf.59d9a975e308d47a8884d83c82dce487.jpg,⚠️ 飽和 2.96%，K 可能過大,contrast,31,ellipse,1.0,132x424,90.4,90.6,33.2,41.1,0.0,2.96,9.32
+train_0171_t1_jpg.rf.e274893b3e5d2419b796237d61b660b5.jpg,⚠️ 飽和 6.26%，K 可能過大,contrast,31,ellipse,1.0,115x380,74.8,74.8,29.2,35.9,0.02,6.26,8.06
+train_0171_t2_jpg.rf.ec6aeb5dbb5329fbe21d9a500dcfd2c9.jpg,⚠️ 飽和 5.53%，K 可能過大,contrast,31,ellipse,1.0,117x396,81.2,81.6,28.9,37.2,0.0,5.53,9.06
+train_0175_t0_jpg.rf.a9a24a6892cf4911d4eb0dc92398acff.jpg,✅,contrast,31,ellipse,1.0,95x303,147.5,146.7,34.8,42.0,0.0,0.54,10.03
+train_0175_t1_jpg.rf.e73fa7461cac846771825fcc4732ac46.jpg,✅,contrast,31,ellipse,1.0,93x301,145.9,144.2,33.8,40.8,0.0,0.48,9.65
+train_0175_t2_jpg.rf.2f20342ea03518a6e568b648c478006f.jpg,✅,contrast,31,ellipse,1.0,116x324,158.8,157.6,34.1,39.4,0.0,0.53,7.87
+train_0176_t0_jpg.rf.1a4ca9c4bdc295d7da922094b8fff4d3.jpg,⚠️ 飽和 3.89%，K 可能過大,contrast,31,ellipse,1.0,132x339,91.5,90.1,32.4,41.7,0.0,3.89,11.02
+train_0177_t0_jpg.rf.f440dbc0bd8f979e326c9305f38276df.jpg,⚠️ 飽和 2.61%，K 可能過大,contrast,31,ellipse,1.0,148x362,141.1,139.7,32.2,42.6,0.0,2.61,10.35
+train_0177_t1_jpg.rf.4ffee5525113677c9785fe515a391cf4.jpg,⚠️ 飽和 2.16%，K 可能過大,contrast,31,ellipse,1.0,141x362,145.9,144.3,31.7,41.3,0.0,2.16,9.96
+train_0177_t2_jpg.rf.57cb65847182ef55b437e1342a65a020.jpg,⚠️ 飽和 4.82%，K 可能過大,contrast,31,ellipse,1.0,133x395,147.9,150.0,39.6,50.8,0.0,4.82,11.94
+train_0178_t0_jpg.rf.080f8daab00846e2ba315046f85591a2.jpg,✅,contrast,31,ellipse,1.0,183x392,117.2,116.0,28.4,33.2,0.0,0.58,5.95
+train_0178_t1_jpg.rf.6d3ba25c5a87863eb6193e2e94ee1144.jpg,✅,contrast,31,ellipse,1.0,204x456,117.3,116.1,24.8,30.5,0.0,0.59,5.89
+train_0179_t0_jpg.rf.bf53b5e862f06ecb06ebf0f99220cbef.jpg,⚠️ 飽和 8.95%，K 可能過大,contrast,31,ellipse,1.0,148x375,126.4,126.2,46.6,54.5,5.04,8.95,11.04

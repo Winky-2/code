@@ -1,0 +1,78 @@
+﻿資料集檔名,相對路徑,還原出的裁切檔名,編號,來源檔,配對方式,狀態,資料集尺寸,來源尺寸,尺寸,label
+001_d1_jpg.rf.55c174a77b98ec1352828ebfa5b9ab51.jpg,test\images\001_d1_jpg.rf.55c174a77b98ec1352828ebfa5b9ab51.jpg,001_d1,1,001_d1.jpg,完整檔名,✅,174x517,179x564,⚠️ 不同,已複製
+002_d0_jpg.rf.239b012acf3a5d81cc23f63768811eab.jpg,test\images\002_d0_jpg.rf.239b012acf3a5d81cc23f63768811eab.jpg,002_d0,2,002_d0.jpg,完整檔名,✅,357x788,382x969,⚠️ 不同,已複製
+003_d1_jpg.rf.38cc6ea2963bec79f589d69fb3c38567.jpg,test\images\003_d1_jpg.rf.38cc6ea2963bec79f589d69fb3c38567.jpg,003_d1,3,003_d1.jpg,完整檔名,✅,338x962,342x960,⚠️ 不同,已複製
+004_d3_jpg.rf.0908e2acaf0d93383f9ba4d0804e8011.jpg,test\images\004_d3_jpg.rf.0908e2acaf0d93383f9ba4d0804e8011.jpg,004_d3,4,004_d3.jpg,完整檔名,✅,255x759,259x757,⚠️ 不同,已複製
+005_d1_jpg.rf.93c30592402d913f3267450c16f2d887.jpg,test\images\005_d1_jpg.rf.93c30592402d913f3267450c16f2d887.jpg,005_d1,5,005_d1.jpg,完整檔名,✅,298x800,318x806,⚠️ 不同,已複製
+006_d1_jpg.rf.3c7d07d05aae59d1f393853f31eb78a9.jpg,test\images\006_d1_jpg.rf.3c7d07d05aae59d1f393853f31eb78a9.jpg,006_d1,6,006_d1.jpg,完整檔名,✅,346x929,356x929,⚠️ 不同,已複製
+007_d1_jpg.rf.dd647087a302f451c265723a4c79a4f4.jpg,test\images\007_d1_jpg.rf.dd647087a302f451c265723a4c79a4f4.jpg,007_d1,7,007_d1.jpg,完整檔名,✅,337x960,365x975,⚠️ 不同,已複製
+008_d1_jpg.rf.fbef341d23507d0e4aca06499a411bb3.jpg,test\images\008_d1_jpg.rf.fbef341d23507d0e4aca06499a411bb3.jpg,008_d1,8,008_d1.jpg,完整檔名,✅,153x493,160x490,⚠️ 不同,已複製
+009_d1_jpg.rf.a4e9643443ee2e940ab17d8bc2f79ed4.jpg,test\images\009_d1_jpg.rf.a4e9643443ee2e940ab17d8bc2f79ed4.jpg,009_d1,9,009_d1.jpg,完整檔名,✅,613x1644,611x1646,⚠️ 不同,已複製
+010_d1_jpg.rf.9c2ea6a8287eca71401d1cb4a5b4c75c.jpg,test\images\010_d1_jpg.rf.9c2ea6a8287eca71401d1cb4a5b4c75c.jpg,010_d1,10,010_d1.jpg,完整檔名,✅,151x424,158x418,⚠️ 不同,已複製
+011_d0_jpg.rf.8592f84486d3e21026a0de8bd8475f37.jpg,test\images\011_d0_jpg.rf.8592f84486d3e21026a0de8bd8475f37.jpg,011_d0,11,011_d0.jpg,完整檔名,✅,365x958,378x959,⚠️ 不同,已複製
+012_d1_jpg.rf.8f5edc0c4d896e0ac72c42fad4b4ae7e.jpg,test\images\012_d1_jpg.rf.8f5edc0c4d896e0ac72c42fad4b4ae7e.jpg,012_d1,12,012_d1.jpg,完整檔名,✅,357x862,363x865,⚠️ 不同,已複製
+013_d1_jpg.rf.b7990f89d66aa887a430c51d7385ddcd.jpg,test\images\013_d1_jpg.rf.b7990f89d66aa887a430c51d7385ddcd.jpg,013_d1,13,013_d1.jpg,完整檔名,✅,336x873,343x877,⚠️ 不同,已複製
+014_d2_jpg.rf.a14a36104d29927ab54f862a9837d584.jpg,test\images\014_d2_jpg.rf.a14a36104d29927ab54f862a9837d584.jpg,014_d2,14,014_d1.jpg,編號,✅,249x756,262x756,⚠️ 不同,已複製
+015_d2_jpg.rf.22947c5bea1621ff73bb367bc47a03f9.jpg,test\images\015_d2_jpg.rf.22947c5bea1621ff73bb367bc47a03f9.jpg,015_d2,15,015_d1.jpg,編號,✅,242x806,253x804,⚠️ 不同,已複製
+016_d2_jpg.rf.d69ea271fc8ead7e00a19c4bff62665c.jpg,test\images\016_d2_jpg.rf.d69ea271fc8ead7e00a19c4bff62665c.jpg,016_d2,16,016_d2.jpg,完整檔名,✅,423x1429,440x1427,⚠️ 不同,已複製
+017_d0_jpg.rf.e371f94baddb2eaf7462ec73ce042fb3.jpg,test\images\017_d0_jpg.rf.e371f94baddb2eaf7462ec73ce042fb3.jpg,017_d0,17,017_d0.jpg,完整檔名,✅,677x1880,695x1886,⚠️ 不同,已複製
+018_d1_jpg.rf.4cb760e4db18ad5514645a6d9ee54a47.jpg,test\images\018_d1_jpg.rf.4cb760e4db18ad5514645a6d9ee54a47.jpg,018_d1,18,018_d1.jpg,完整檔名,✅,304x852,319x852,⚠️ 不同,已複製
+019_d1_jpg.rf.b5bbd4289ae38c62eccbabb5ba23cee6.jpg,test\images\019_d1_jpg.rf.b5bbd4289ae38c62eccbabb5ba23cee6.jpg,019_d1,19,019_d1.jpg,完整檔名,✅,316x966,327x966,⚠️ 不同,已複製
+020_d0_jpg.rf.ac00bbc8dce23d8bb488146d95350cfe.jpg,test\images\020_d0_jpg.rf.ac00bbc8dce23d8bb488146d95350cfe.jpg,020_d0,20,020_d0.jpg,完整檔名,✅,178x450,179x452,⚠️ 不同,已複製
+021_d1_jpg.rf.ce2222b68f762d4951ed21a7e32abfa1.jpg,test\images\021_d1_jpg.rf.ce2222b68f762d4951ed21a7e32abfa1.jpg,021_d1,21,021_d1.jpg,完整檔名,✅,296x788,305x793,⚠️ 不同,已複製
+022_d1_jpg.rf.f1be5fe64a13290e324eac2bae09a30c.jpg,test\images\022_d1_jpg.rf.f1be5fe64a13290e324eac2bae09a30c.jpg,022_d1,22,022_d0.jpg,編號,✅,312x868,319x870,⚠️ 不同,已複製
+023_d1_jpg.rf.19149aa200ed2ab6d2f9f95936683869.jpg,test\images\023_d1_jpg.rf.19149aa200ed2ab6d2f9f95936683869.jpg,023_d1,23,023_d0.jpg,編號,✅,344x763,350x766,⚠️ 不同,已複製
+024_d2_jpg.rf.dfde607ee1a1abd88070f4a4e9c873a7.jpg,test\images\024_d2_jpg.rf.dfde607ee1a1abd88070f4a4e9c873a7.jpg,024_d2,24,024_d1.jpg,編號,✅,306x745,324x745,⚠️ 不同,已複製
+026_d1_jpg.rf.cbebc4e773617f19901fea82d27a7481.jpg,test\images\026_d1_jpg.rf.cbebc4e773617f19901fea82d27a7481.jpg,026_d1,26,026_d1.jpg,完整檔名,✅,364x874,382x882,⚠️ 不同,已複製
+027_d0_jpg.rf.172e9a9162be8b33b29886a7a7c2044f.jpg,test\images\027_d0_jpg.rf.172e9a9162be8b33b29886a7a7c2044f.jpg,027_d0,27,027_d0.jpg,完整檔名,✅,313x838,338x843,⚠️ 不同,已複製
+028_d1_jpg.rf.c32bbe4c003dc55f0e7db7b213e120d5.jpg,test\images\028_d1_jpg.rf.c32bbe4c003dc55f0e7db7b213e120d5.jpg,028_d1,28,028_d1.jpg,完整檔名,✅,334x857,349x868,⚠️ 不同,已複製
+029_d1_jpg.rf.60d86604165d1ad5ec3e55f3d4a92ed0.jpg,test\images\029_d1_jpg.rf.60d86604165d1ad5ec3e55f3d4a92ed0.jpg,029_d1,29,029_d0.jpg,編號,✅,178x459,187x464,⚠️ 不同,已複製
+030_d1_jpg.rf.642032a0ccf11c21478fc98e431d62c2.jpg,test\images\030_d1_jpg.rf.642032a0ccf11c21478fc98e431d62c2.jpg,030_d1,30,030_d0.jpg,編號,✅,342x885,349x891,⚠️ 不同,已複製
+031_d1_jpg.rf.0a64e6a881d6244f0916844a19eec968.jpg,test\images\031_d1_jpg.rf.0a64e6a881d6244f0916844a19eec968.jpg,031_d1,31,031_d1.jpg,完整檔名,✅,668x1706,688x1709,⚠️ 不同,已複製
+032_d0_jpg.rf.9285b7976f1da306fcfec57b8ac03392.jpg,test\images\032_d0_jpg.rf.9285b7976f1da306fcfec57b8ac03392.jpg,032_d0,32,032_d0.jpg,完整檔名,✅,660x1675,655x1682,⚠️ 不同,已複製
+034_d1_jpg.rf.c71a61069d50d94065010b64a9ffd1a5.jpg,test\images\034_d1_jpg.rf.c71a61069d50d94065010b64a9ffd1a5.jpg,034_d1,34,034_d1.jpg,完整檔名,✅,540x1744,563x1747,⚠️ 不同,已複製
+036_d0_jpg.rf.cd77e3ba407312ef40811e53f8234dfc.jpg,test\images\036_d0_jpg.rf.cd77e3ba407312ef40811e53f8234dfc.jpg,036_d0,36,036_d0.jpg,完整檔名,✅,264x782,274x785,⚠️ 不同,已複製
+037_d0_jpg.rf.26d3c419d8aa463d4ccb6f397ffd8a0d.jpg,test\images\037_d0_jpg.rf.26d3c419d8aa463d4ccb6f397ffd8a0d.jpg,037_d0,37,037_d0.jpg,完整檔名,✅,312x799,323x797,⚠️ 不同,已複製
+038_d1_jpg.rf.b3c9c20efafeb14a18e816c6ca8d7855.jpg,test\images\038_d1_jpg.rf.b3c9c20efafeb14a18e816c6ca8d7855.jpg,038_d1,38,038_d1.jpg,完整檔名,✅,288x775,288x775,,已複製
+039_d1_jpg.rf.d49148703ce141d56d8246b6549a4760.jpg,test\images\039_d1_jpg.rf.d49148703ce141d56d8246b6549a4760.jpg,039_d1,39,039_d1.jpg,完整檔名,✅,313x933,324x963,⚠️ 不同,已複製
+040_d0_jpg.rf.8f2cbb2d727d030158755add43241d12.jpg,test\images\040_d0_jpg.rf.8f2cbb2d727d030158755add43241d12.jpg,040_d0,40,040_d0.jpg,完整檔名,✅,338x777,344x780,⚠️ 不同,已複製
+041_d1_jpg.rf.cb07a3b2089be3295cec77cb809df396.jpg,test\images\041_d1_jpg.rf.cb07a3b2089be3295cec77cb809df396.jpg,041_d1,41,041_d1.jpg,完整檔名,✅,316x888,322x886,⚠️ 不同,已複製
+042_d2_jpg.rf.b762e168ff32523cefa4b66b23ff4fa2.jpg,test\images\042_d2_jpg.rf.b762e168ff32523cefa4b66b23ff4fa2.jpg,042_d2,42,042_d2.jpg,完整檔名,✅,438x1486,454x1483,⚠️ 不同,已複製
+043_d1_jpg.rf.ff8a6dfd8d13cd19c47af53d9384c375.jpg,test\images\043_d1_jpg.rf.ff8a6dfd8d13cd19c47af53d9384c375.jpg,043_d1,43,043_d1.jpg,完整檔名,✅,306x863,308x861,⚠️ 不同,已複製
+044_d2_jpg.rf.da81051630fbd29d52f53bff91f9d894.jpg,test\images\044_d2_jpg.rf.da81051630fbd29d52f53bff91f9d894.jpg,044_d2,44,044_d2.jpg,完整檔名,✅,122x442,121x435,⚠️ 不同,已複製
+045_d3_jpg.rf.e7b47a708da0d4954eb6d698fb50fbc2.jpg,test\images\045_d3_jpg.rf.e7b47a708da0d4954eb6d698fb50fbc2.jpg,045_d3,45,045_d3.jpg,完整檔名,✅,238x760,245x758,⚠️ 不同,已複製
+046_d1_jpg.rf.ec359b9c3be4b77858006f1894a4fe89.jpg,test\images\046_d1_jpg.rf.ec359b9c3be4b77858006f1894a4fe89.jpg,046_d1,46,046_d1.jpg,完整檔名,✅,260x841,264x839,⚠️ 不同,已複製
+047_d0_jpg.rf.7cdd34b48873ec944be1cf54e2bbe7de.jpg,test\images\047_d0_jpg.rf.7cdd34b48873ec944be1cf54e2bbe7de.jpg,047_d0,47,047_d0.jpg,完整檔名,✅,358x755,364x754,⚠️ 不同,已複製
+048_d0_jpg.rf.b9d97351b8bbb80a941065b51ab298c2.jpg,test\images\048_d0_jpg.rf.b9d97351b8bbb80a941065b51ab298c2.jpg,048_d0,48,048_d0.jpg,完整檔名,✅,759x1798,768x1819,⚠️ 不同,已複製
+049_d0_jpg.rf.a92e6c133f098bc8b880cd0c95917303.jpg,test\images\049_d0_jpg.rf.a92e6c133f098bc8b880cd0c95917303.jpg,049_d0,49,049_d0.jpg,完整檔名,✅,720x1790,737x1791,⚠️ 不同,已複製
+050_d1_jpg.rf.84fe073fb9b1dc338920f1a858bf5e87.jpg,test\images\050_d1_jpg.rf.84fe073fb9b1dc338920f1a858bf5e87.jpg,050_d1,50,050_d1.jpg,完整檔名,✅,627x1797,654x1792,⚠️ 不同,已複製
+051_d0_jpg.rf.37687ccc93b1c959bc854c565f03d537.jpg,test\images\051_d0_jpg.rf.37687ccc93b1c959bc854c565f03d537.jpg,051_d0,51,051_d0.jpg,完整檔名,✅,692x1718,701x1718,⚠️ 不同,已複製
+052_d1_jpg.rf.3b6940e484968d5a668f3c1f9ae214aa.jpg,test\images\052_d1_jpg.rf.3b6940e484968d5a668f3c1f9ae214aa.jpg,052_d1,52,052_d1.jpg,完整檔名,✅,680x1732,711x1732,⚠️ 不同,已複製
+054_d3_jpg.rf.873773ad3ada175d0933d8f47c5af6c8.jpg,test\images\054_d3_jpg.rf.873773ad3ada175d0933d8f47c5af6c8.jpg,054_d3,54,054_d3.jpg,完整檔名,✅,657x1603,655x1597,⚠️ 不同,已複製
+055_d2_jpg.rf.165029284ddb2793ad8deac65e1c3f91.jpg,test\images\055_d2_jpg.rf.165029284ddb2793ad8deac65e1c3f91.jpg,055_d2,55,055_d2.jpg,完整檔名,✅,463x1481,468x1486,⚠️ 不同,已複製
+056_d1_jpg.rf.9429abcc45818b6e31b5dd0c7d043dfd.jpg,test\images\056_d1_jpg.rf.9429abcc45818b6e31b5dd0c7d043dfd.jpg,056_d1,56,056_d1.jpg,完整檔名,✅,434x1536,440x1533,⚠️ 不同,已複製
+057_d2_jpg.rf.cdb9bd6640c5fb65eee49172b52cbf93.jpg,test\images\057_d2_jpg.rf.cdb9bd6640c5fb65eee49172b52cbf93.jpg,057_d2,57,057_d1.jpg,編號,✅,543x1459,563x1456,⚠️ 不同,已複製
+058_d0_jpg.rf.ab8df462eb38a7cfd65cff39b2992cdb.jpg,test\images\058_d0_jpg.rf.ab8df462eb38a7cfd65cff39b2992cdb.jpg,058_d0,58,058_d0.jpg,完整檔名,✅,320x780,326x789,⚠️ 不同,已複製
+059_d1_jpg.rf.3f42e0602c43c121b117dcecca57b59d.jpg,test\images\059_d1_jpg.rf.3f42e0602c43c121b117dcecca57b59d.jpg,059_d1,59,059_d1.jpg,完整檔名,✅,335x864,346x884,⚠️ 不同,已複製
+060_jpg.rf.4a64dc5e1c74ac81bc312481b7e581e5.jpg,test\images\060_jpg.rf.4a64dc5e1c74ac81bc312481b7e581e5.jpg,060,60,060_d0.jpg,編號,✅,268x857,386x804,⚠️ 不同,已複製
+061_d1_jpg.rf.db8df0c1f429b3e2e71267f1fbffc989.jpg,test\images\061_d1_jpg.rf.db8df0c1f429b3e2e71267f1fbffc989.jpg,061_d1,61,061_d0.jpg,編號,✅,410x1379,423x1380,⚠️ 不同,已複製
+062_d0_jpg.rf.420ca201dfb51cbc2be18110aeb5765e.jpg,test\images\062_d0_jpg.rf.420ca201dfb51cbc2be18110aeb5765e.jpg,062_d0,62,062_d0.jpg,完整檔名,✅,309x855,315x866,⚠️ 不同,已複製
+063_d1_jpg.rf.3d9a28c55c36d0806810a87e5ea9470f.jpg,test\images\063_d1_jpg.rf.3d9a28c55c36d0806810a87e5ea9470f.jpg,063_d1,63,063_d1.jpg,完整檔名,✅,343x865,349x893,⚠️ 不同,已複製
+064_d2_jpg.rf.7b174bc08e6f9220d59234147d56740a.jpg,test\images\064_d2_jpg.rf.7b174bc08e6f9220d59234147d56740a.jpg,064_d2,64,064_d2.jpg,完整檔名,✅,361x836,365x836,⚠️ 不同,已複製
+065_d0_jpg.rf.ee2a42597e7bd3f73156286c58ff062a.jpg,test\images\065_d0_jpg.rf.ee2a42597e7bd3f73156286c58ff062a.jpg,065_d0,65,065_d0.jpg,完整檔名,✅,351x869,362x861,⚠️ 不同,已複製
+066_d1_jpg.rf.cca8412d959b332e5836a79cb1f63bb9.jpg,test\images\066_d1_jpg.rf.cca8412d959b332e5836a79cb1f63bb9.jpg,066_d1,66,066_d1.jpg,完整檔名,✅,349x874,347x854,⚠️ 不同,已複製
+067_d0_jpg.rf.5e98d5946a7670ae9374f063be3378c8.jpg,test\images\067_d0_jpg.rf.5e98d5946a7670ae9374f063be3378c8.jpg,067_d0,67,067_d0.jpg,完整檔名,✅,203x546,213x552,⚠️ 不同,已複製
+068_d1_jpg.rf.dccd7a7a1610957846e542d412bd78a8.jpg,test\images\068_d1_jpg.rf.dccd7a7a1610957846e542d412bd78a8.jpg,068_d1,68,068_d1.jpg,完整檔名,✅,286x750,296x752,⚠️ 不同,已複製
+069_d0_jpg.rf.e7743bd9b6bf261cd082bb4e0ea61007.jpg,test\images\069_d0_jpg.rf.e7743bd9b6bf261cd082bb4e0ea61007.jpg,069_d0,69,069_d0.jpg,完整檔名,✅,301x903,310x918,⚠️ 不同,已複製
+070_d1_jpg.rf.dc10b95de92898fa67c004505cf51be2.jpg,test\images\070_d1_jpg.rf.dc10b95de92898fa67c004505cf51be2.jpg,070_d1,70,070_d1.jpg,完整檔名,✅,294x822,298x824,⚠️ 不同,已複製
+071_d2_jpg.rf.0959cd07ae695e4405ee3ab991b172da.jpg,test\images\071_d2_jpg.rf.0959cd07ae695e4405ee3ab991b172da.jpg,071_d2,71,071_d2.jpg,完整檔名,✅,321x1147,327x1155,⚠️ 不同,已複製
+072_d0_jpg.rf.5dff1ff4549f22a5e2781ee2fe43a79f.jpg,test\images\072_d0_jpg.rf.5dff1ff4549f22a5e2781ee2fe43a79f.jpg,072_d0,72,072_d0.jpg,完整檔名,✅,352x818,352x818,,已複製
+073_d1_jpg.rf.5a0e06247405e5934fa201ee7415129b.jpg,test\images\073_d1_jpg.rf.5a0e06247405e5934fa201ee7415129b.jpg,073_d1,73,073_d1.jpg,完整檔名,✅,379x830,379x830,,已複製
+074_d0_jpg.rf.0794263e9ee5e063e015f9f2661e792f.jpg,test\images\074_d0_jpg.rf.0794263e9ee5e063e015f9f2661e792f.jpg,074_d0,74,074_d0.jpg,完整檔名,✅,304x827,304x827,,已複製
+075_d0_jpg.rf.a8450fd8115847b211e56dfb75962abb.jpg,test\images\075_d0_jpg.rf.a8450fd8115847b211e56dfb75962abb.jpg,075_d0,75,075_d0.jpg,完整檔名,✅,337x850,337x850,,已複製
+076_d1_jpg.rf.6a7a537f4809f9fd8917292ecb752f0f.jpg,test\images\076_d1_jpg.rf.6a7a537f4809f9fd8917292ecb752f0f.jpg,076_d1,76,076_d1.jpg,完整檔名,✅,296x752,296x752,,已複製
+077_d0_jpg.rf.1fdf0459867865cf20cb078ff7bfe322.jpg,test\images\077_d0_jpg.rf.1fdf0459867865cf20cb078ff7bfe322.jpg,077_d0,77,077_d0.jpg,完整檔名,✅,331x995,331x995,,已複製
+078_d1_jpg.rf.62a0af2d20fd564c50ebaaa20ea90066.jpg,test\images\078_d1_jpg.rf.62a0af2d20fd564c50ebaaa20ea90066.jpg,078_d1,78,078_d1.jpg,完整檔名,✅,347x972,347x972,,已複製
+079_d2_jpg.rf.142fc4916808ccfadb34d30aaeb1adcd.jpg,test\images\079_d2_jpg.rf.142fc4916808ccfadb34d30aaeb1adcd.jpg,079_d2,79,079_d2.jpg,完整檔名,✅,339x986,339x986,,已複製
+080_d1_jpg.rf.ee87718efb3efb390fc1a52d5a100220.jpg,test\images\080_d1_jpg.rf.ee87718efb3efb390fc1a52d5a100220.jpg,080_d1,80,080_d1.jpg,完整檔名,✅,226x872,226x872,,已複製
+081_d1_jpg.rf.92d575797a9455ba968ce1910c347e3f.jpg,test\images\081_d1_jpg.rf.92d575797a9455ba968ce1910c347e3f.jpg,081_d1,81,081_d1.jpg,完整檔名,✅,291x633,291x633,,已複製

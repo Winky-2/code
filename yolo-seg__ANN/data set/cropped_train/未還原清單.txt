@@ -1,5 +1,0 @@
-train_0031_t1.jpg
-train_0144_t1.jpg
-train_0175_t0.jpg
-train_0175_t1.jpg
-train_0175_t3.jpg
