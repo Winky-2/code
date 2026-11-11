@@ -51,8 +51,8 @@ import pandas as pd
 import yaml
 from ultralytics import YOLO
 # ---------------- 設定區 ----------------
-SEG_DATA_DIR = "padded_train-308"        # 👈 Roboflow Instance Segmentation 匯出資料夾
-WORK_DIR = "yolo11n_seg_run_train-308"      # 訓練用資料/權重輸出的工作資料夾
+SEG_DATA_DIR = "padded_train-308_tophat"        # 👈 Roboflow Instance Segmentation 匯出資料夾
+WORK_DIR = "yolo11n_seg_run_train-308_tophat"      # 訓練用資料/權重輸出的工作資料夾
 
 BASE_MODEL = "yolo11n-seg.pt"                     # 👈 跟 pose 版唯一的模型差異
 EPOCHS = 150
