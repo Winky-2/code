@@ -23,9 +23,9 @@ function C2x_plotSingleModel_v1()
 % ============================================================
 
     %% ---------------- 設定（要跟 C1x 那次一致）----------------
-    METHOD  = 'mask幾何_長邊正規化';
+    METHOD  = 'mask幾何';
     USE_AGE = true;
-    USE_SEX = false;
+    USE_SEX = true;
 
     MODEL   = 'gpr';      % constmean/ratio/linear/robust/ann/gpr/svr/lsboost/rf
 

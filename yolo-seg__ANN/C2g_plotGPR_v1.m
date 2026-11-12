@@ -19,14 +19,14 @@ function C2g_plotGPR_v1()
 % ============================================================
 
     %% ---------------- 設定（要跟 C1_pxToMm_GPR 那次一致）----------------
-    METHOD   = 'mask幾何_長邊正規化';
+    METHOD   = '牙位基準';
     USE_AGE  = true;
     USE_SEX  = false;
     TOL_MM   = 1.0;        % = C1 的 IDEAL_TOLERANCE_MM
     SAVE_PNG = true;
 
     FEAT_TAG = featTag(USE_AGE, USE_SEX);
-    inFile   = sprintf('預測結果與評估指標_kfold_GPR_%s%s.xlsx', METHOD, FEAT_TAG);
+    inFile   = sprintf('預測結果與評估指標_kfold_GPR_CLAHE_%s%s.xlsx', METHOD, FEAT_TAG);
     if ~isfile(inFile)
         error(['找不到 %s\n' ...
                '   請先用同樣的 METHOD / USE_AGE / USE_SEX 跑 C1_pxToMm_GPR。'], inFile);

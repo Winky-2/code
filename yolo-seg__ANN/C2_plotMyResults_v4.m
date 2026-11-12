@@ -9,14 +9,14 @@ function C2_plotMyResults_v5()
 % ============================================================
 
     %% 1. 設定(必須跟 C1 跑的那次一致)
-    METHOD  = 'mask幾何_長邊正規化';   % 'mask幾何' | '冠寬比例尺'
+    METHOD  = '牙位基準';   % 'mask幾何' | '冠寬比例尺'
     USE_AGE = true;
     USE_SEX = false;
     HIDDEN_SIZE =5;
     SHOW_ERROR_BARS = false;
 % _H%s
 %, strrep(mat2str(HIDDEN_SIZE),' ','-')
-    filename = sprintf('預測結果與評估指標_kfold_11n_padded_noCLAHE_reMask_%s%s.xlsx', METHOD, featTag(USE_AGE, USE_SEX));
+    filename = sprintf('預測結果與評估指標_kfold_ANN_CLAHE_%s%s.xlsx', METHOD, featTag(USE_AGE, USE_SEX));
     if ~isfile(filename)
         error(['找不到 %s\n' ...
                '   請先用同樣的 METHOD / USE_AGE / USE_SEX 跑一次 C1_v6。'], filename);
