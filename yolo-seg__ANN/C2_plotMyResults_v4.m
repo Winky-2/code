@@ -10,8 +10,8 @@ function C2_plotMyResults_v5()
 
     %% 1. 設定(必須跟 C1 跑的那次一致)
     METHOD  = '牙位基準';   % 'mask幾何' | '冠寬比例尺'
-    USE_AGE = true;
-    USE_SEX = false;
+    USE_AGE = false;
+    USE_SEX = true;
     HIDDEN_SIZE =5;
     SHOW_ERROR_BARS = false;
 % _H%s
