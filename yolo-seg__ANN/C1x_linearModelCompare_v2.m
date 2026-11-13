@@ -19,7 +19,7 @@ function C1x_modelCompare_v2()
 
     %% ---------------- 輸入設定區 ----------------
     METHOD   = 'mask幾何_長邊正規化';   % 'mask幾何_長邊正規化' | '冠寬比例尺'
-    filename = ['根管填充物像素長度_已配對_11n_tophat_' METHOD '.xlsx'];
+    filename = ['根管填充物像素長度_已配對_11n_' METHOD '.xlsx'];
 
     FOLD_COLUMN = '折數fold';
 

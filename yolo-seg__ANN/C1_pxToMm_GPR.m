@@ -18,8 +18,8 @@ function C1_pixelToMmPredictor_GPR()
 % ============================================================
 
     %% ---------------- 輸入設定區 ----------------
-    METHOD = '牙位基準';   % 'mask幾何_長邊正規化' | '冠寬比例尺' | '牙位基準' | 'mask幾何'
-    filename = ['根管填充物像素長度_已配對_11n_CLAHE_' METHOD '.xlsx'];
+    METHOD = 'mask幾何';   % 'mask幾何_長邊正規化' | '冠寬比例尺' | '牙位基準' | 'mask幾何'
+    filename = ['根管填充物像素長度_已配對_11n_tophat_' METHOD '.xlsx'];
 
     FOLD_COLUMN  = '折數fold';
     SPLIT_COLUMN = '資料夾來源';   % 只在 USE_KFOLD=false 時才用
@@ -301,7 +301,7 @@ function C1_pixelToMmPredictor_GPR()
     end
 
     %% --- 7. 匯出 ---
-    output_filename = sprintf('預測結果與評估指標_kfold_GPR_CLAHE_%s%s.xlsx', METHOD, FEAT_TAG);
+    output_filename = sprintf('預測結果與評估指標_kfold_GPR_tophat_%s%s.xlsx', METHOD, FEAT_TAG);
     if isfile(output_filename), delete(output_filename); end
     writetable(ResultsTable, output_filename, 'Sheet', '所有牙齒預測結果');
     writetable(MetricsTable, output_filename, 'Sheet', '模型評估指標');
