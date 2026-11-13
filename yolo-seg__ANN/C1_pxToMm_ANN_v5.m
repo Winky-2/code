@@ -24,8 +24,8 @@ function C1_pixelToMmPredictor_v6()
     SPLIT_COLUMN = '資料夾來源';   % 只在 USE_KFOLD=false 時才用
 
     %% ---------------- 特徵設定區 ----------------
-    USE_AGE = true;      % 年齡進模型
-    USE_SEX = false;      % 性別進模型(M=1, F=0)
+    USE_AGE = false;      % 年齡進模型
+    USE_SEX = true;      % 性別進模型(M=1, F=0)
     AGE_COLUMN = '年齡';
     SEX_COLUMN = '性別';
 
