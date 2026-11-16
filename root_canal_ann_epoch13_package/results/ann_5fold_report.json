@@ -1,0 +1,356 @@
+{
+  "configuration": {
+    "model_type": "MATLAB fitnet ANN",
+    "hidden_units": 5,
+    "training_function": "trainbr",
+    "optimizer_description": "Bayesian regularization backpropagation",
+    "epochs_maximum": 13,
+    "input_feature": "traced_curve_length_px",
+    "target": "reference_working_length_mm",
+    "fold_standardization": "training-fold mean and standard deviation only",
+    "cross_validation": {
+      "n_folds": 5,
+      "rng_seed": 42
+    },
+    "prediction_post_processing": "none"
+  },
+  "overall_oof": {
+    "fold": 0,
+    "n": 31,
+    "mae_mm": 1.3672923041077232,
+    "rmse_mm": 1.8848477332420657,
+    "r2": 0.64643924170065215,
+    "mean_bias_mm": -0.34396510311060458
+  },
+  "by_fold": [
+    {
+      "fold": 1,
+      "n": 6,
+      "mae_mm": 1.9720735772185758,
+      "rmse_mm": 3.0929245248311732,
+      "r2": 0.39482472279077085,
+      "mean_bias_mm": -1.9720735772185758
+    },
+    {
+      "fold": 2,
+      "n": 7,
+      "mae_mm": 1.0787128596277722,
+      "rmse_mm": 1.2267432874851563,
+      "r2": 0.53876431226830612,
+      "mean_bias_mm": 0.42694167962309948
+    },
+    {
+      "fold": 3,
+      "n": 6,
+      "mae_mm": 1.0141811201589335,
+      "rmse_mm": 1.0913297093846395,
+      "r2": 0.87930747573517176,
+      "mean_bias_mm": -0.18948148571098322
+    },
+    {
+      "fold": 4,
+      "n": 6,
+      "mae_mm": 1.5957284895016037,
+      "rmse_mm": 1.8442094540261549,
+      "r2": 0.55354637603828571,
+      "mean_bias_mm": 0.53591595476498632
+    },
+    {
+      "fold": 5,
+      "n": 6,
+      "mae_mm": 1.2238620481117219,
+      "rmse_mm": 1.5624841162802399,
+      "r2": 0.50999323665420837,
+      "mean_bias_mm": -0.64961255080050029
+    }
+  ],
+  "full_data_fit": {
+    "fold": 0,
+    "n": 31,
+    "mae_mm": 1.1731551138962155,
+    "rmse_mm": 1.4990893418204452,
+    "r2": 0.7763512133835565,
+    "mean_bias_mm": -0.016475818028248747
+  },
+  "oof_predictions": [
+    {
+      "case_id": "271568",
+      "curve_length_px": 395.08,
+      "reference_length_mm": 18,
+      "fold": 2,
+      "oof_prediction_mm": 20.059713768673667,
+      "residual_mm": 2.0597137686736673,
+      "absolute_error_mm": 2.0597137686736673
+    },
+    {
+      "case_id": "2071880",
+      "curve_length_px": 562.52,
+      "reference_length_mm": 27.75,
+      "fold": 1,
+      "oof_prediction_mm": 23.261233891230731,
+      "residual_mm": -4.4887661087692692,
+      "absolute_error_mm": 4.4887661087692692
+    },
+    {
+      "case_id": "2494918",
+      "curve_length_px": 382.05,
+      "reference_length_mm": 19.25,
+      "fold": 3,
+      "oof_prediction_mm": 20.093544067706869,
+      "residual_mm": 0.84354406770686907,
+      "absolute_error_mm": 0.84354406770686907
+    },
+    {
+      "case_id": "2521925",
+      "curve_length_px": 330.15,
+      "reference_length_mm": 18.25,
+      "fold": 3,
+      "oof_prediction_mm": 17.59776640497526,
+      "residual_mm": -0.65223359502473954,
+      "absolute_error_mm": 0.65223359502473954
+    },
+    {
+      "case_id": "2521925",
+      "curve_length_px": 312.57,
+      "reference_length_mm": 18.5,
+      "fold": 2,
+      "oof_prediction_mm": 17.168324344548459,
+      "residual_mm": -1.3316756554515408,
+      "absolute_error_mm": 1.3316756554515408
+    },
+    {
+      "case_id": "2720498",
+      "curve_length_px": 356.97,
+      "reference_length_mm": 19.25,
+      "fold": 1,
+      "oof_prediction_mm": 19.022043018272029,
+      "residual_mm": -0.22795698172797074,
+      "absolute_error_mm": 0.22795698172797074
+    },
+    {
+      "case_id": "2825948",
+      "curve_length_px": 337.09,
+      "reference_length_mm": 18.25,
+      "fold": 1,
+      "oof_prediction_mm": 18.077565202812707,
+      "residual_mm": -0.17243479718729304,
+      "absolute_error_mm": 0.17243479718729304
+    },
+    {
+      "case_id": "3625632",
+      "curve_length_px": 400.77,
+      "reference_length_mm": 21,
+      "fold": 2,
+      "oof_prediction_mm": 20.245579509408088,
+      "residual_mm": -0.75442049059191163,
+      "absolute_error_mm": 0.75442049059191163
+    },
+    {
+      "case_id": "8878829",
+      "curve_length_px": 319.38,
+      "reference_length_mm": 17.5,
+      "fold": 3,
+      "oof_prediction_mm": 17.019933152079854,
+      "residual_mm": -0.48006684792014553,
+      "absolute_error_mm": 0.48006684792014553
+    },
+    {
+      "case_id": "9554401",
+      "curve_length_px": 321.28,
+      "reference_length_mm": 18.25,
+      "fold": 5,
+      "oof_prediction_mm": 18.015150638701961,
+      "residual_mm": -0.23484936129803913,
+      "absolute_error_mm": 0.23484936129803913
+    },
+    {
+      "case_id": "9556286",
+      "curve_length_px": 465.02,
+      "reference_length_mm": 22.5,
+      "fold": 1,
+      "oof_prediction_mm": 22.193809873162216,
+      "residual_mm": -0.30619012683778379,
+      "absolute_error_mm": 0.30619012683778379
+    },
+    {
+      "case_id": "10684060",
+      "curve_length_px": 358.27,
+      "reference_length_mm": 21.5,
+      "fold": 4,
+      "oof_prediction_mm": 18.760422858947877,
+      "residual_mm": -2.7395771410521235,
+      "absolute_error_mm": 2.7395771410521235
+    },
+    {
+      "case_id": "20347127",
+      "curve_length_px": 470.97,
+      "reference_length_mm": 24.5,
+      "fold": 3,
+      "oof_prediction_mm": 23.105883657268762,
+      "residual_mm": -1.3941163427312375,
+      "absolute_error_mm": 1.3941163427312375
+    },
+    {
+      "case_id": "20347127",
+      "curve_length_px": 407.92,
+      "reference_length_mm": 23,
+      "fold": 5,
+      "oof_prediction_mm": 20.066831515901328,
+      "residual_mm": -2.9331684840986725,
+      "absolute_error_mm": 2.9331684840986725
+    },
+    {
+      "case_id": "20540746",
+      "curve_length_px": 325.1,
+      "reference_length_mm": 17,
+      "fold": 2,
+      "oof_prediction_mm": 17.6382324825768,
+      "residual_mm": 0.63823248257680021,
+      "absolute_error_mm": 0.63823248257680021
+    },
+    {
+      "case_id": "20540746",
+      "curve_length_px": 356.71,
+      "reference_length_mm": 19.5,
+      "fold": 5,
+      "oof_prediction_mm": 18.734193161240498,
+      "residual_mm": -0.76580683875950228,
+      "absolute_error_mm": 0.76580683875950228
+    },
+    {
+      "case_id": "20629453",
+      "curve_length_px": 521.66,
+      "reference_length_mm": 29,
+      "fold": 1,
+      "oof_prediction_mm": 22.938542754277321,
+      "residual_mm": -6.0614572457226785,
+      "absolute_error_mm": 6.0614572457226785
+    },
+    {
+      "case_id": "20802319",
+      "curve_length_px": 441.04,
+      "reference_length_mm": 21,
+      "fold": 4,
+      "oof_prediction_mm": 22.111036612626148,
+      "residual_mm": 1.1110366126261475,
+      "absolute_error_mm": 1.1110366126261475
+    },
+    {
+      "case_id": "21036686",
+      "curve_length_px": 502.05,
+      "reference_length_mm": 25.5,
+      "fold": 4,
+      "oof_prediction_mm": 25.060139536842271,
+      "residual_mm": -0.43986046315772853,
+      "absolute_error_mm": 0.43986046315772853
+    },
+    {
+      "case_id": "21052005",
+      "curve_length_px": 338.41,
+      "reference_length_mm": 16.75,
+      "fold": 5,
+      "oof_prediction_mm": 18.344347724026782,
+      "residual_mm": 1.5943477240267825,
+      "absolute_error_mm": 1.5943477240267825
+    },
+    {
+      "case_id": "21052005",
+      "curve_length_px": 363.01,
+      "reference_length_mm": 18.75,
+      "fold": 5,
+      "oof_prediction_mm": 18.878400767906882,
+      "residual_mm": 0.12840076790688215,
+      "absolute_error_mm": 0.12840076790688215
+    },
+    {
+      "case_id": "21411424",
+      "curve_length_px": 428.81,
+      "reference_length_mm": 22.4,
+      "fold": 5,
+      "oof_prediction_mm": 20.713400887419546,
+      "residual_mm": -1.6865991125804527,
+      "absolute_error_mm": 1.6865991125804527
+    },
+    {
+      "case_id": "21411424",
+      "curve_length_px": 475.48,
+      "reference_length_mm": 22.75,
+      "fold": 2,
+      "oof_prediction_mm": 23.722263088518634,
+      "residual_mm": 0.97226308851863408,
+      "absolute_error_mm": 0.97226308851863408
+    },
+    {
+      "case_id": "21691762",
+      "curve_length_px": 372.07,
+      "reference_length_mm": 19.5,
+      "fold": 2,
+      "oof_prediction_mm": 19.3048970160271,
+      "residual_mm": -0.19510298397290171,
+      "absolute_error_mm": 0.19510298397290171
+    },
+    {
+      "case_id": "22735728",
+      "curve_length_px": 520.21,
+      "reference_length_mm": 23.5,
+      "fold": 1,
+      "oof_prediction_mm": 22.924363796933541,
+      "residual_mm": -0.575636203066459,
+      "absolute_error_mm": 0.575636203066459
+    },
+    {
+      "case_id": "22735728",
+      "curve_length_px": 369.55,
+      "reference_length_mm": 17,
+      "fold": 4,
+      "oof_prediction_mm": 19.136208597661387,
+      "residual_mm": 2.1362085976613869,
+      "absolute_error_mm": 2.1362085976613869
+    },
+    {
+      "case_id": "22735728",
+      "curve_length_px": 443.07,
+      "reference_length_mm": 20.25,
+      "fold": 2,
+      "oof_prediction_mm": 21.849581547608949,
+      "residual_mm": 1.599581547608949,
+      "absolute_error_mm": 1.599581547608949
+    },
+    {
+      "case_id": "22735728",
+      "curve_length_px": 440.08,
+      "reference_length_mm": 19.5,
+      "fold": 4,
+      "oof_prediction_mm": 22.062816036964104,
+      "residual_mm": 2.5628160369641044,
+      "absolute_error_mm": 2.5628160369641044
+    },
+    {
+      "case_id": "99114885",
+      "curve_length_px": 352.87,
+      "reference_length_mm": 18,
+      "fold": 4,
+      "oof_prediction_mm": 18.584872085548131,
+      "residual_mm": 0.58487208554813108,
+      "absolute_error_mm": 0.58487208554813108
+    },
+    {
+      "case_id": "99114885",
+      "curve_length_px": 350.38,
+      "reference_length_mm": 17,
+      "fold": 3,
+      "oof_prediction_mm": 18.630554835636982,
+      "residual_mm": 1.6305548356369819,
+      "absolute_error_mm": 1.6305548356369819
+    },
+    {
+      "case_id": "99114885",
+      "curve_length_px": 483.87,
+      "reference_length_mm": 24.5,
+      "fold": 3,
+      "oof_prediction_mm": 23.415428968066372,
+      "residual_mm": -1.0845710319336277,
+      "absolute_error_mm": 1.0845710319336277
+    }
+  ]
+}
