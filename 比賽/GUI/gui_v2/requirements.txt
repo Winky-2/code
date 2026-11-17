@@ -1,0 +1,10 @@
+flask
+ultralytics
+opencv-python
+numpy
+scipy
+pandas
+openpyxl
+
+
+python -m pip install flask scikit-learn joblib
