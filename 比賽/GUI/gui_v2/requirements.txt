@@ -8,3 +8,9 @@ openpyxl
 
 
 python -m pip install flask scikit-learn joblib
+
+GUI展示時可以用test的1、15、20，這幾張誤差比較少，資料如下：
+    檔案, GT, age
+    1, 23, 17
+    15, 19.5, 18
+    20, 22.5, 36

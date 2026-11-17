@@ -90,7 +90,7 @@ label.fld{display:block;font-size:12px;color:var(--muted);margin-bottom:6px}
 .pipe{display:grid;grid-template-columns:repeat(5,1fr);gap:8px}
 .ps{position:relative;padding:12px 12px 10px;border-radius:12px;background:var(--bg);border:1px solid var(--line);transition:.3s}
 .ps .k{font-size:10.5px;color:var(--dim);font-family:var(--mono);letter-spacing:1px}
-.ps .n{font-size:13px;font-weight:600;margin:2px 0 4px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.ps .n{font-size:13px;font-weight:600;margin:2px 0 4px;line-height:1.3;white-space:pre;overflow:hidden;text-overflow:ellipsis}
 .ps .ms{font-size:11.5px;font-family:var(--mono);color:var(--dim);min-height:17px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .ps .bar{position:absolute;left:0;bottom:0;height:2px;width:0;background:var(--accent);border-radius:2px;transition:width .4s}
 .ps.active{border-color:var(--accent);box-shadow:var(--glow)} .ps.active .bar{width:60%;animation:pulse 1s infinite alternate}
@@ -131,7 +131,7 @@ label.fld{display:block;font-size:12px;color:var(--muted);margin-bottom:6px}
   background:linear-gradient(135deg,rgba(40,215,230,.6),transparent 40%,transparent 60%,rgba(91,140,255,.6));
   -webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude}
 .big{display:flex;align-items:baseline;gap:8px;margin:4px 0 2px}
-.big .v{font-size:54px;font-weight:700;font-family:var(--mono);letter-spacing:-1px;
+.big .v{font-size:clamp(38px,3.6vw,54px);font-weight:700;font-family:var(--mono);letter-spacing:-1px;
   background:linear-gradient(180deg,#fff,#9feaf2);-webkit-background-clip:text;background-clip:text;color:transparent}
 .big .u{font-size:18px;color:var(--muted)}
 .pi{font-size:13px;color:var(--muted)} .pi b{color:var(--text);font-family:var(--mono)}
@@ -169,15 +169,44 @@ footer{max-width:1680px;margin:0 auto;padding:14px 24px 22px;font-size:11.5px;co
   .pipe{grid-template-columns:repeat(5,minmax(96px,1fr));overflow-x:auto}
   .stage{height:58vh;min-height:300px} .hist,footer{padding-left:16px;padding-right:16px}
 }
+/* ---------- 列印報告(只在列印時出現) ---------- */
+#report{display:none}
 @media print{
-  body{background:#fff;color:#000} header,.col.left,.hist,.acts,.tabs,.cmp input,.cmp .handle,footer .r{display:none!important}
-  main{display:block;padding:0} .panel{border:1px solid #ccc;background:#fff;break-inside:avoid;margin-bottom:12px}
-  .big .v{color:#000;background:none;-webkit-text-fill-color:#000} .stage{height:420px;background:#000}
+  @page{size:A4;margin:12mm}
+  html,body{background:#fff!important;color:#111}
+  body>*:not(#report){display:none!important}
+  #report{display:block;font-family:var(--sans);font-size:10.5pt;color:#111;line-height:1.45}
+  .rp-head{display:flex;justify-content:space-between;align-items:flex-end;border-bottom:2px solid #0e7c86;padding-bottom:6px}
+  .rp-head h2{font-size:16pt;margin:0} .rp-head .en{font-size:8.5pt;color:#555}
+  .rp-head .meta{text-align:right;font-size:9pt;color:#333}
+  .rp-top{display:grid;grid-template-columns:1.1fr 1fr;gap:14px;margin-top:12px;align-items:stretch}
+  .rp-res{border:1.5px solid #0e7c86;border-radius:8px;padding:10px 14px}
+  .rp-res .lbl{font-size:9pt;color:#555}
+  .rp-res .v{font:700 30pt var(--mono);color:#0b3d42;line-height:1.1}
+  .rp-res .v small{font-size:13pt;color:#444;margin-left:4px}
+  .rp-res .pi{font-size:10pt;margin-top:2px;color:#222} .rp-res .pi b{font-family:var(--mono);color:#0b3d42}
+  .rp-res .note2{font-size:8.5pt;color:#555;margin-top:4px}
+  .rp-dist svg{width:100%;height:auto}
+  table.rp{width:100%;border-collapse:collapse;font-size:9.5pt}
+  table.rp td{padding:3px 6px;border-bottom:1px solid #ddd} table.rp td:last-child{text-align:right;font-family:var(--mono)}
+  .rp-imgs{display:grid;grid-template-columns:1.25fr 1fr 1fr;gap:10px;margin-top:12px}
+  .rp-imgs figure{margin:0;border:1px solid #ccc;border-radius:6px;overflow:hidden;background:#000}
+  .rp-imgs figcaption{background:#f2f4f6;color:#222;font-size:8.5pt;padding:3px 6px}
+  .rp-imgs .frame{position:relative;height:72mm;display:flex;align-items:center;justify-content:center}
+  .rp-imgs .frame img{max-width:100%;max-height:72mm;display:block}
+  .rp-imgs .wrap{position:relative;display:inline-block;max-height:72mm}
+  .rp-imgs .wrap .bx{position:absolute;border:2px solid #ffb428}
+  .rp-sec{margin-top:12px} .rp-sec h3{font-size:10.5pt;margin:0 0 4px;color:#0e7c86}
+  .rp-two{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+  .rp-notes{font-size:9pt;color:#7a4b00} 
+  .rp-foot{margin-top:12px;padding-top:6px;border-top:1px solid #ccc;font-size:8.5pt;color:#555}
 }
 
 [hidden]{display:none!important}
 /* ---------- 選牙 ---------- */
-.pipe{grid-template-columns:repeat(6,1fr)}
+.pipe{grid-template-columns:repeat(6,minmax(0,1fr))}
+.ps{min-width:0}
+@media (max-width:1500px){.ps{padding:10px 8px 9px} .ps .k{letter-spacing:0} .ps .n{font-size:12px} .ps .ms{font-size:10.5px} .pipe{gap:6px}}
 .imgbox{position:absolute}
 .imgbox img{position:absolute;inset:0;width:100%;height:100%;object-fit:fill}
 .dbox{position:absolute;border:1.5px solid rgba(40,215,230,.75);border-radius:6px;cursor:pointer;transition:.15s;background:rgba(40,215,230,.04)}
@@ -237,23 +266,9 @@ footer{max-width:1680px;margin:0 auto;padding:14px 24px 22px;font-size:11.5px;co
       <div class="ptitle"><span class="step-no">3</span>病人資訊</div>
       <label class="fld" for="age">年齡 <span style="color:var(--err)">*</span></label>
       <div class="inp-wrap"><input class="inp" id="age" type="number" min="1" max="110" placeholder="例如 42" required><span>歲</span></div>
-      <div style="height:14px"></div>
-      <label class="fld">牙位（FDI，選填）</label>
-      <div class="chart">
-        <div class="jaw upper" id="upper"></div>
-        <div class="jlab"><span>右</span><span>上顎</span><span>左</span></div>
-        <div class="jaw lower" id="lower"></div>
-        <div class="jlab"><span>右</span><span>下顎</span><span>左</span></div>
-      </div>
-      <div class="selpos" id="selpos">未指定牙位（以寬度法判斷切端方向）</div>
     </div>
 
     <button class="run" id="run" disabled>開始分析</button>
-
-    <div class="panel">
-      <div class="ptitle">模型設定</div>
-      <dl class="cfg" id="cfg"><dt>載入中…</dt><dd></dd></dl>
-    </div>
   </section>
 
   <!-- ========== 中：流程與影像 ========== -->
@@ -322,48 +337,24 @@ footer{max-width:1680px;margin:0 auto;padding:14px 24px 22px;font-size:11.5px;co
   <span class="r">本機執行 · 影像不會上傳到網路</span>
 </footer>
 <div class="toast" id="toast"></div>
+<div id="report"></div>
 
 <script>
 const $ = s => document.querySelector(s);
 const STEPS = [
-  {k:"01", n:"YOLO11 牙齒偵測", t:"detect"},
-  {k:"02", n:"裁切目標牙", t:"crop"},
-  {k:"03", n:"前處理", t:"preprocess"},
-  {k:"04", n:"YOLO11n-seg 分割", t:"segment"},
-  {k:"05", n:"長軸幾何量測", t:"measure"},
-  {k:"06", n:"GPR 長度推估", t:"regress"},
+  {k:"01", n:"YOLO11\n牙齒偵測", t:"detect"},
+  {k:"02", n:"裁切\n目標牙", t:"crop"},
+  {k:"03", n:"Top-hat\n前處理", t:"preprocess"},
+  {k:"04", n:"YOLO11n-seg\n牙齒分割", t:"segment"},
+  {k:"05", n:"長軸\n幾何量測", t:"measure"},
+  {k:"06", n:"GPR\n長度推估", t:"regress"},
 ];
 const LEGENDS = {
   pick: [["#28d7e6","偵測到的牙齒"],["#ffb428","已選目標牙"]],
   seg:  [["#28c8e6","目標牙 mask"],["#ffb428","長軸 A（切端）→ B（根尖）"],["#969696","其他區塊"]],
   cmp:  [],
 };
-const UPPER = [12,11,21,22], LOWER = [42,41,31,32];
 let pos = null, det = null, sel = null, fileName = "", history = [], lastResult = null, status = null, view = "pick";
-
-/* ---------- 牙位圖 ---------- */
-function toothSVG(upper, lateral){
-  const w = lateral ? 22 : 26, h = 44, x = (30 - w) / 2;
-  const crown = `M${x} ${upper ? 26 : 18} Q${x} ${upper ? 42 : 2} 15 ${upper ? 42 : 2} Q${x + w} ${upper ? 42 : 2} ${x + w} ${upper ? 26 : 18}`;
-  const root = upper ? `L${x + w - 4} 6 Q15 0 ${x + 4} 6 Z` : `L${x + w - 4} 38 Q15 46 ${x + 4} 38 Z`;
-  return `<svg width="30" height="${h}" viewBox="0 0 30 ${h}"><path d="${crown} ${root}"/></svg>`;
-}
-function buildChart(){
-  const mk = (arr, upper) => arr.map((t, i) => {
-    const lateral = t % 10 === 2;
-    const html = `<button class="tooth" data-t="${t}" title="牙位 ${t}">${upper ? toothSVG(true, lateral) : ""}<span class="t">${t}</span>${upper ? "" : toothSVG(false, lateral)}</button>`;
-    return (i === 2 ? '<span class="mid"></span>' : "") + html;
-  }).join("");
-  $("#upper").innerHTML = mk(UPPER, true);
-  $("#lower").innerHTML = mk(LOWER, false);
-  document.querySelectorAll(".tooth").forEach(b => b.onclick = () => {
-    const t = +b.dataset.t; pos = pos === t ? null : t;
-    document.querySelectorAll(".tooth").forEach(x => x.classList.toggle("on", +x.dataset.t === pos));
-    const name = {1:"上顎右側",2:"上顎左側",3:"下顎左側",4:"下顎右側"}[Math.floor(pos/10)];
-    const kind = pos % 10 === 1 ? "正中門牙" : "側門牙";
-    $("#selpos").innerHTML = pos ? `已選 <b>${pos}</b>（${name}${kind}）` : "未指定牙位（以寬度法判斷切端方向）";
-  });
-}
 
 /* ---------- 流程步驟 ---------- */
 function buildPipe(){
@@ -401,7 +392,7 @@ async function setFile(f){
   clearInterval(stepTimer); $("#scan").classList.remove("on");
   STEPS.forEach((_, i) => setStep(i, "", "待命"));
   if (!r.ok){ setStep(0, "fail", "✕ 失敗"); $("#pickHint").textContent = r.msg; return toast(r.msg); }
-  setStep(0, r.boxes.length ? "done" : "fail", r.boxes.length ? `✓ ${r.boxes.length} 顆 · ${Math.round(r.ms)} ms` : "✕ 0 顆");
+  setStep(0, r.boxes.length ? "done" : "fail", r.boxes.length ? `✓ ${Math.round(r.ms)} ms` : "✕ 0 顆");
   det = r; $("#imgFull").src = r.image;
   drawBoxes();
   if (!r.boxes.length){ $("#pickHint").textContent = r.msg; return toast(r.msg); }
@@ -460,21 +451,11 @@ async function loadStatus(){
     const chip = (d, c, ok, txt) => { $(d).className = "dot " + (ok ? "ok" : "err"); $(c).textContent = txt; };
     chip("#dDet", "#cDet", status.det.ok, "偵測器 " + (status.det.ok ? "就緒" : "找不到權重"));
     chip("#dSeg", "#cSeg", status.seg.ok, "YOLO11n-seg " + (status.seg.ok ? "就緒" : "找不到權重"));
-    chip("#dGpr", "#cGpr", status.gpr.ok, status.gpr.ok ? `GPR 就緒 · n=${status.gpr.n}` : "GPR 未載入");
+    chip("#dGpr", "#cGpr", status.gpr.ok, status.gpr.ok ? "GPR 就緒" : "GPR 未載入");
     $("#cDev").textContent = status.device;
     $("#ppTag").textContent = status.preprocess;
-    STEPS[2].n = status.preprocess.replace(/ .*/, "") + " 前處理"; buildPipe();
-    const cv = status.gpr.cv || {};
-    const rows = [
-      ["偵測", status.det.path], ["前處理", status.preprocess], ["分割", status.seg.path],
-      ["迴歸", "GPR（" + (status.gpr.method || "") + " + 年齡）"],
-      ["Kernel / Basis", `${status.gpr.kernel || "—"} / ${status.gpr.basis || "—"}`],
-      ["訓練來源", status.gpr.trained_by || "—"],
-      ["臨床校正", `−${status.offset} mm`],
-    ];
-    if (cv.MAE !== undefined) rows.push(["交叉驗證 MAE", cv.MAE.toFixed(3) + " mm"]);
-    if (!status.gpr.ok) rows.push(["⚠️", status.gpr.error]);
-    $("#cfg").innerHTML = rows.map(([a,b]) => `<dt>${a}</dt><dd title="${b}">${b}</dd>`).join("");
+    STEPS[2].n = status.preprocess.replace(/ .*/, "") + "\n前處理"; buildPipe();
+    if (!status.gpr.ok) toast("GPR 模型未載入：" + status.gpr.error);
   }catch(e){ toast("無法連線到後端，請確認 server.py 正在執行"); }
 }
 
@@ -526,10 +507,10 @@ function render(r){
     <dt>偵測信心度</dt><dd>${pct(r.det_conf)}</dd>
     <dt>分割信心度</dt><dd>${pct(r.conf)}</dd>
     <div class="meter"><i id="meter"></i></div>
-    <dt>方向依據</dt><dd>${r.basis}</dd>
     <dt>整張 / 裁切尺寸</dt><dd>${r.size} / ${r.crop_size}</dd>`;
   requestAnimationFrame(() => { const m = $("#meter"); if (m) m.style.width = ((r.conf||0)*100) + "%"; });
-  $("#notes").innerHTML = (r.notes||[]).map(n => `<div class="note">⚠ ${n}</div>`).join("");
+  r.notes = (r.notes||[]).filter(n => !n.startsWith("未指定牙位"));   // 介面已不輸入牙位
+  $("#notes").innerHTML = r.notes.map(n => `<div class="note">⚠ ${n}</div>`).join("");
   const dl = $("#dl"); dl.href = r.overlay; dl.classList.remove("dis");
   dl.download = (r._name || "result").replace(/\.[^.]+$/, "") + `_${r.pred_mm}mm.jpg`;
 }
@@ -588,9 +569,63 @@ function pushHistory(r){
 function toast(msg){ const t = $("#toast"); t.textContent = msg; t.classList.add("on"); clearTimeout(t._h); t._h = setTimeout(() => t.classList.remove("on"), 5000); }
 
 $("#run").onclick = run;
-$("#print").onclick = () => lastResult ? window.print() : toast("請先完成一次分析");
+$("#print").onclick = () => { if (!lastResult) return toast("請先完成一次分析"); buildReport(lastResult); setTimeout(() => window.print(), 300); };
+
+/* ---------- 列印報告 ---------- */
+function buildReport(r){
+  const now = new Date(), pad = n => String(n).padStart(2, "0");
+  const ts = `${now.getFullYear()}-${pad(now.getMonth()+1)}-${pad(now.getDate())} ${pad(now.getHours())}:${pad(now.getMinutes())}`;
+  const d = r._det, b = d.boxes[r._sel].box;
+  const pct = v => v == null ? "—" : (v*100).toFixed(1) + " %";
+  const tm = r.timings || {};
+  const stepRows = STEPS.map(s => `<tr><td>${s.n.replace("\n", " ")}</td><td>${s.t === "detect" ? Math.round(d.ms) : (tm[s.t] ?? "—")} ms</td></tr>`).join("");
+  const dist = $("#dist").innerHTML.replace(/fill="#8a9bb8"/, 'fill="#444"').replace(/#2a3d5e/g, "#999").replace(/#ffd28a/g, "#8a5a00");
+  $("#report").innerHTML = `
+  <div class="rp-head">
+    <div><h2>根管工作長度估測報告</h2><div class="en">Root-Canal Working Length Estimation Report</div></div>
+    <div class="meta">影像：${r._name}<br>年齡：${r._age} 歲　產出時間：${ts}</div>
+  </div>
+  <div class="rp-top">
+    <div class="rp-res">
+      <div class="lbl">估測工作長度（已臨床校正 −${status ? status.offset : 0.5} mm）</div>
+      <div class="v">${r.pred_mm.toFixed(2)}<small>mm</small></div>
+      <div class="pi">95% 預測區間 <b>${r.pi_low.toFixed(2)} – ${r.pi_high.toFixed(2)} mm</b>　（σ = ${r.sd_mm.toFixed(2)} mm）</div>
+      <div class="rp-dist">${dist}</div>
+      <div class="note2">GPR 原始預測 ${r.raw_mm.toFixed(2)} mm；曲線為預測分布，陰影為 95% 預測區間。</div>
+    </div>
+    <div>
+      <table class="rp">
+        <tr><td>AB 長度（像素）</td><td>${r.len_px} px</td></tr>
+        <tr><td>長邊正規化特徵</td><td>${r.feat}</td></tr>
+        <tr><td>偵測信心度</td><td>${pct(r.det_conf)}</td></tr>
+        <tr><td>分割信心度</td><td>${pct(r.conf)}</td></tr>
+        <tr><td>整張影像尺寸</td><td>${r.size}</td></tr>
+        <tr><td>目標牙裁切尺寸</td><td>${r.crop_size}</td></tr>
+      </table>
+      ${(r.notes||[]).length ? `<div class="rp-notes" style="margin-top:8px">${r.notes.map(n => "⚠ " + n).join("<br>")}</div>` : ""}
+    </div>
+  </div>
+  <div class="rp-imgs">
+    <figure><div class="frame"><div class="wrap"><img src="${d.image}" alt="">
+      <div class="bx" style="left:${b[0]*100}%;top:${b[1]*100}%;width:${(b[2]-b[0])*100}%;height:${(b[3]-b[1])*100}%"></div></div></div>
+      <figcaption>① 整張 X 光與目標牙（橘框）</figcaption></figure>
+    <figure><div class="frame"><img src="${r.enhanced}" alt=""></div><figcaption>② ${status ? status.preprocess : "前處理"}</figcaption></figure>
+    <figure><div class="frame"><img src="${r.overlay}" alt=""></div><figcaption>③ 分割與長軸 A（切端）→ B（根尖）</figcaption></figure>
+  </div>
+  <div class="rp-sec rp-two">
+    <div><h3>分析流程</h3><table class="rp">${stepRows}</table></div>
+    <div><h3>方法</h3><table class="rp">
+      <tr><td>牙齒偵測</td><td>YOLO11</td></tr>
+      <tr><td>前處理</td><td>${status ? status.preprocess : "—"}</td></tr>
+      <tr><td>牙齒分割</td><td>YOLO11n-seg</td></tr>
+      <tr><td>長度推估</td><td>GPR（${status && status.gpr.kernel ? status.gpr.kernel : "—"}）</td></tr>
+      <tr><td>輸入特徵</td><td>長邊正規化長度 + 年齡</td></tr>
+    </table></div>
+  </div>
+  <div class="rp-foot">⚠ 本報告由研究原型系統自動產生，估測結果僅供臨床輔助參考，不可取代醫師判斷。</div>`;
+}
 document.addEventListener("keydown", e => { if (e.key === "Enter" && !$("#run").disabled) run(); });
-buildChart(); buildPipe(); showView("pick"); initUpload(); loadStatus(); loadExamples();
+buildPipe(); showView("pick"); initUpload(); loadStatus(); loadExamples();
 </script>
 </body>
 </html>
