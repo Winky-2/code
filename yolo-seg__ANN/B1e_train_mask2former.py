@@ -1,5 +1,5 @@
 """
-B1f_train_mask2former.py
+B1e_train_mask2former.py
 ===============================================================
 分割模型對照 ⑤：Mask2Former（Swin-Tiny，COCO instance 預訓練，Hugging Face transformers）。
 
@@ -44,9 +44,9 @@ import yaml
 
 
 # ==================== 共用設定（五支 B1 各有一份、內容相同；要改請五支一起改） ====================
-SEG_DATA_DIR = "padded_train-308_tophat"            # 👈 與 B1_train_yolo11-seg.py 相同
-DATA_TAG = "train-308_tophat"                       # WORK_DIR 名稱用：{模型}_run_{DATA_TAG}
-YOLO_WORK_DIR = "yolo11n_seg_run_train-308_tophat"  # 👈 B1 的 WORK_DIR（核對切分、SAM 的框來源）
+SEG_DATA_DIR = "padded_train-308"            # 👈 與 B1_train_yolo11-seg.py 相同
+DATA_TAG = "train-308"                       # WORK_DIR 名稱用：{模型}_run_{DATA_TAG}
+YOLO_WORK_DIR = "yolo11n_seg_run_train-308"  # 👈 B1 的 WORK_DIR（核對切分、SAM 的框來源）
 B1_FILE = "B1_train_yolo11-seg.py"                  # 👈 用來做 AST 比對（找不到就略過）
 
 # 以下與 B1 對齊，不要單獨調整
@@ -71,7 +71,7 @@ def work_dir_of(model_tag):
 
 ARCH = "segx_mask2former"
 # ==================== 可手動修改 ====================
-RUN_NOW = False
+RUN_NOW = True
 
 HF_MODEL = "facebook/mask2former-swin-tiny-coco-instance"
 EPOCHS = 150
