@@ -1,0 +1,14 @@
+{
+  "FULL_IMAGE_DIR": "data set/Data_test",
+  "TRAIN_SEEDS": [
+    0
+  ],
+  "METHODS": [
+    "mask幾何_pointrend"
+  ],
+  "NORM": "長邊",
+  "REF": 1200,
+  "INPUTS": {
+    "mask幾何_pointrend|0": "根管填充物像素長度_已配對_mask幾何_pointrend.xlsx"
+  }
+}

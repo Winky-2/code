@@ -1,5 +1,5 @@
 """
-B1p_train_pointrend.py
+B1d_train_pointrend.py
 ===============================================================
 分割模型對照 ④：Mask R-CNN + PointRend（detectron2 官方實作，COCO 預訓練 R50-FPN 3x）。
 
@@ -52,9 +52,9 @@ import yaml
 
 
 # ==================== 共用設定（五支 B1 各有一份、內容相同；要改請五支一起改） ====================
-SEG_DATA_DIR = "padded_train-308_tophat"            # 👈 與 B1_train_yolo11-seg.py 相同
-DATA_TAG = "train-308_tophat"                       # WORK_DIR 名稱用：{模型}_run_{DATA_TAG}
-YOLO_WORK_DIR = "yolo11n_seg_run_train-308_tophat"  # 👈 B1 的 WORK_DIR（核對切分、SAM 的框來源）
+SEG_DATA_DIR = "padded_train-308"            # 👈 與 B1_train_yolo11-seg.py 相同
+DATA_TAG = "train-308"                       # WORK_DIR 名稱用：{模型}_run_{DATA_TAG}
+YOLO_WORK_DIR = "yolo11n_seg_run_train-308"  # 👈 B1 的 WORK_DIR（核對切分、SAM 的框來源）
 B1_FILE = "B1_train_yolo11-seg.py"                  # 👈 用來做 AST 比對（找不到就略過）
 
 # 以下與 B1 對齊，不要單獨調整
@@ -79,12 +79,12 @@ def work_dir_of(model_tag):
 
 ARCH = "segx_d2"
 # ==================== 可手動修改 ====================
-RUN_NOW = False
+RUN_NOW = True                  # False = 只檢查、產出 config.json 與訓練摘要.xlsx
 
 USE_POINTREND = True
 DETECTRON2_ROOT = "detectron2"          # 👈 detectron2 git clone 的路徑
 PRETRAINED = True                       # COCO 預訓練
-EPOCHS = 50                             # 同 B1m
+EPOCHS = 150                             # 同 B1m
 LR0 = 0.005                             # 同 B1m（0.02×4/16 線性縮放）
 LRF = 0.01
 MOMENTUM = 0.9

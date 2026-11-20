@@ -51,9 +51,9 @@ import yaml
 
 
 # ==================== 共用設定（五支 B1 各有一份、內容相同；要改請五支一起改） ====================
-SEG_DATA_DIR = "padded_train-308_tophat"            # 👈 與 B1_train_yolo11-seg.py 相同
-DATA_TAG = "train-308_tophat"                       # WORK_DIR 名稱用：{模型}_run_{DATA_TAG}
-YOLO_WORK_DIR = "yolo11n_seg_run_train-308_tophat"  # 👈 B1 的 WORK_DIR（核對切分、SAM 的框來源）
+SEG_DATA_DIR = "padded_train-308"            # 👈 與 B1_train_yolo11-seg.py 相同
+DATA_TAG = "train-308"                       # WORK_DIR 名稱用：{模型}_run_{DATA_TAG}
+YOLO_WORK_DIR = "yolo11n_seg_run_train-308"  # 👈 B1 的 WORK_DIR（核對切分、SAM 的框來源）
 B1_FILE = "B1_train_yolo11-seg.py"                  # 👈 用來做 AST 比對（找不到就略過）
 
 # 以下與 B1 對齊，不要單獨調整
@@ -77,9 +77,9 @@ def work_dir_of(model_tag):
 
 
 # ==================== 可手動修改 ====================
-RUN_NOW = False
+RUN_NOW = True                 # False = 只檢查設定、切分、標註品質，未訓練
 
-EPOCHS = 250                 # nnU-Net 預設 1000（約數小時～一天）；250 是常見的縮短版
+EPOCHS = 150                 # nnU-Net 預設 1000（約數小時～一天）；250 是常見的縮短版
 BORDER_PX = 3                # 邊界帶寬度（px）；太寬會吃掉細根尖，太窄黏牙分不開
 DATASET_ID = 501
 DATASET_NAME = "ToothSeg"

@@ -1,0 +1,1622 @@
+{
+    "foreground_mean": {
+        "Dice": 0.6300230690668198,
+        "FN": 2996.622950819672,
+        "FP": 2519.44262295082,
+        "IoU": 0.5461649382857029,
+        "TN": 380495.01639344264,
+        "TP": 23588.918032786885,
+        "n_pred": 26108.360655737706,
+        "n_ref": 26585.54098360656
+    },
+    "mean": {
+        "1": {
+            "Dice": 0.9390001682345671,
+            "FN": 3654.032786885246,
+            "FP": 2632.4918032786886,
+            "IoU": 0.8906621452565536,
+            "TN": 357256.7868852459,
+            "TP": 46056.688524590165,
+            "n_pred": 48689.18032786885,
+            "n_ref": 49710.72131147541
+        },
+        "2": {
+            "Dice": 0.3210459698990726,
+            "FN": 2339.2131147540986,
+            "FP": 2406.3934426229507,
+            "IoU": 0.20166773131485216,
+            "TN": 403733.24590163934,
+            "TP": 1121.1475409836066,
+            "n_pred": 3527.5409836065573,
+            "n_ref": 3460.3606557377047
+        }
+    },
+    "metric_per_case": [
+        {
+            "metrics": {
+                "1": {
+                    "Dice": 0.9634805961116575,
+                    "FN": 165,
+                    "FP": 3697,
+                    "IoU": 0.9295345485065776,
+                    "TN": 354793,
+                    "TP": 50945,
+                    "n_pred": 54642,
+                    "n_ref": 51110
+                },
+                "2": {
+                    "Dice": 0.18054133138258963,
+                    "FN": 2729,
+                    "FP": 2872,
+                    "IoU": 0.0992280476037311,
+                    "TN": 403382,
+                    "TP": 617,
+                    "n_pred": 3489,
+                    "n_ref": 3346
+                }
+            },
+            "prediction_file": "C:\\Users\\user\\Desktop\\paper\\code\\yolo-seg__ANN\\nnunet2d_run_train-308\\nnUNet_results\\Dataset501_ToothSeg\\nnUNetTrainer_segx_e150__nnUNetPlans__2d\\fold_0\\validation\\tooth_0247.png",
+            "reference_file": "C:\\Users\\user\\Desktop\\paper\\code\\yolo-seg__ANN\\nnunet2d_run_train-308\\nnUNet_preprocessed\\Dataset501_ToothSeg\\gt_segmentations\\tooth_0247.png"
+        },
+        {
+            "metrics": {
+                "1": {
+                    "Dice": 0.9472898886565309,
+                    "FN": 2514,
+                    "FP": 2149,
+                    "IoU": 0.8998582595996908,
+                    "TN": 363036,
+                    "TP": 41901,
+                    "n_pred": 44050,
+                    "n_ref": 44415
+                },
+                "2": {
+                    "Dice": 0.2111801242236025,
+                    "FN": 2763,
+                    "FP": 2825,
+                    "IoU": 0.11805555555555555,
+                    "TN": 403264,
+                    "TP": 748,
+                    "n_pred": 3573,
+                    "n_ref": 3511
+                }
+            },
+            "prediction_file": "C:\\Users\\user\\Desktop\\paper\\code\\yolo-seg__ANN\\nnunet2d_run_train-308\\nnUNet_results\\Dataset501_ToothSeg\\nnUNetTrainer_segx_e150__nnUNetPlans__2d\\fold_0\\validation\\tooth_0248.png",
+            "reference_file": "C:\\Users\\user\\Desktop\\paper\\code\\yolo-seg__ANN\\nnunet2d_run_train-308\\nnUNet_preprocessed\\Dataset501_ToothSeg\\gt_segmentations\\tooth_0248.png"
+        },
+        {
+            "metrics": {
+                "1": {
+                    "Dice": 0.9114570729477561,
+                    "FN": 6399,
+                    "FP": 187,
+                    "IoU": 0.8373184467937951,
+                    "TN": 369116,
+                    "TP": 33898,
+                    "n_pred": 34085,
+                    "n_ref": 40297
+                },
+                "2": {
+                    "Dice": 0.07102641836292767,
+                    "FN": 3244,
+                    "FP": 3191,
+                    "IoU": 0.03682083520431073,
+                    "TN": 402919,
+                    "TP": 246,
+                    "n_pred": 3437,
+                    "n_ref": 3490
+                }
+            },
+            "prediction_file": "C:\\Users\\user\\Desktop\\paper\\code\\yolo-seg__ANN\\nnunet2d_run_train-308\\nnUNet_results\\Dataset501_ToothSeg\\nnUNetTrainer_segx_e150__nnUNetPlans__2d\\fold_0\\validation\\tooth_0249.png",
+            "reference_file": "C:\\Users\\user\\Desktop\\paper\\code\\yolo-seg__ANN\\nnunet2d_run_train-308\\nnUNet_preprocessed\\Dataset501_ToothSeg\\gt_segmentations\\tooth_0249.png"
+        },
+        {
+            "metrics": {
+                "1": {
+                    "Dice": 0.9569060974060157,
+                    "FN": 4300,
+                    "FP": 448,
+                    "IoU": 0.9173729182256408,
+                    "TN": 352137,
+                    "TP": 52715,
+                    "n_pred": 53163,
+                    "n_ref": 57015
+                },
+                "2": {
+                    "Dice": 0.3228029867892016,
+                    "FN": 2366,
+                    "FP": 2350,
+                    "IoU": 0.19246575342465752,
+                    "TN": 403760,
+                    "TP": 1124,
+                    "n_pred": 3474,
+                    "n_ref": 3490
+                }
+            },
+            "prediction_file": "C:\\Users\\user\\Desktop\\paper\\code\\yolo-seg__ANN\\nnunet2d_run_train-308\\nnUNet_results\\Dataset501_ToothSeg\\nnUNetTrainer_segx_e150__nnUNetPlans__2d\\fold_0\\validation\\tooth_0250.png",
+            "reference_file": "C:\\Users\\user\\Desktop\\paper\\code\\yolo-seg__ANN\\nnunet2d_run_train-308\\nnUNet_preprocessed\\Dataset501_ToothSeg\\gt_segmentations\\tooth_0250.png"
+        },
+        {
+            "metrics": {
+                "1": {
+                    "Dice": 0.9753314149388819,
+                    "FN": 428,
+                    "FP": 1578,
+                    "IoU": 0.9518506072680141,
+                    "TN": 367938,
+                    "TP": 39656,
+                    "n_pred": 41234,
+                    "n_ref": 40084
+                },
+                "2": {
+                    "Dice": 0.433779549985759,
+                    "FN": 1961,
+                    "FP": 2015,
+                    "IoU": 0.2769594471722131,
+                    "TN": 404101,
+                    "TP": 1523,
+                    "n_pred": 3538,
+                    "n_ref": 3484
+                }
+            },
+            "prediction_file": "C:\\Users\\user\\Desktop\\paper\\code\\yolo-seg__ANN\\nnunet2d_run_train-308\\nnUNet_results\\Dataset501_ToothSeg\\nnUNetTrainer_segx_e150__nnUNetPlans__2d\\fold_0\\validation\\tooth_0251.png",
+            "reference_file": "C:\\Users\\user\\Desktop\\paper\\code\\yolo-seg__ANN\\nnunet2d_run_train-308\\nnUNet_preprocessed\\Dataset501_ToothSeg\\gt_segmentations\\tooth_0251.png"
+        },
+        {
+            "metrics": {
+                "1": {
+                    "Dice": 0.9496759570775932,
+                    "FN": 4607,
+                    "FP": 1077,
+                    "IoU": 0.9041742531526064,
+                    "TN": 350284,
+                    "TP": 53632,
+                    "n_pred": 54709,
+                    "n_ref": 58239
+                },
+                "2": {
+                    "Dice": 0.3290770971391628,
+                    "FN": 2342,
+                    "FP": 1809,
+                    "IoU": 0.19694331592184175,
+                    "TN": 404431,
+                    "TP": 1018,
+                    "n_pred": 2827,
+                    "n_ref": 3360
+                }
+            },
+            "prediction_file": "C:\\Users\\user\\Desktop\\paper\\code\\yolo-seg__ANN\\nnunet2d_run_train-308\\nnUNet_results\\Dataset501_ToothSeg\\nnUNetTrainer_segx_e150__nnUNetPlans__2d\\fold_0\\validation\\tooth_0252.png",
+            "reference_file": "C:\\Users\\user\\Desktop\\paper\\code\\yolo-seg__ANN\\nnunet2d_run_train-308\\nnUNet_preprocessed\\Dataset501_ToothSeg\\gt_segmentations\\tooth_0252.png"
+        },
+        {
+            "metrics": {
+                "1": {
+                    "Dice": 0.9599149417986496,
+                    "FN": 2101,
+                    "FP": 802,
+                    "IoU": 0.922919653762413,
+                    "TN": 371938,
+                    "TP": 34759,
+                    "n_pred": 35561,
+                    "n_ref": 36860
+                },
+                "2": {
+                    "Dice": 0.3882284720208756,
+                    "FN": 2009,
+                    "FP": 2211,
+                    "IoU": 0.2408706601906818,
+                    "TN": 404041,
+                    "TP": 1339,
+                    "n_pred": 3550,
+                    "n_ref": 3348
+                }
+            },
+            "prediction_file": "C:\\Users\\user\\Desktop\\paper\\code\\yolo-seg__ANN\\nnunet2d_run_train-308\\nnUNet_results\\Dataset501_ToothSeg\\nnUNetTrainer_segx_e150__nnUNetPlans__2d\\fold_0\\validation\\tooth_0253.png",
+            "reference_file": "C:\\Users\\user\\Desktop\\paper\\code\\yolo-seg__ANN\\nnunet2d_run_train-308\\nnUNet_preprocessed\\Dataset501_ToothSeg\\gt_segmentations\\tooth_0253.png"
+        },
+        {
+            "metrics": {
+                "1": {
+                    "Dice": 0.9525621914216541,
+                    "FN": 407,
+                    "FP": 4080,
+                    "IoU": 0.909421240688778,
+                    "TN": 360063,
+                    "TP": 45050,
+                    "n_pred": 49130,
+                    "n_ref": 45457
+                },
+                "2": {
+                    "Dice": 0.3492680011951001,
+                    "FN": 2153,
+                    "FP": 2203,
+                    "IoU": 0.2115837104072398,
+                    "TN": 404075,
+                    "TP": 1169,
+                    "n_pred": 3372,
+                    "n_ref": 3322
+                }
+            },
+            "prediction_file": "C:\\Users\\user\\Desktop\\paper\\code\\yolo-seg__ANN\\nnunet2d_run_train-308\\nnUNet_results\\Dataset501_ToothSeg\\nnUNetTrainer_segx_e150__nnUNetPlans__2d\\fold_0\\validation\\tooth_0254.png",
+            "reference_file": "C:\\Users\\user\\Desktop\\paper\\code\\yolo-seg__ANN\\nnunet2d_run_train-308\\nnUNet_preprocessed\\Dataset501_ToothSeg\\gt_segmentations\\tooth_0254.png"
+        },
+        {
+            "metrics": {
+                "1": {
+                    "Dice": 0.9774599298408823,
+                    "FN": 446,
+                    "FP": 1880,
+                    "IoU": 0.9559135708870357,
+                    "TN": 356840,
+                    "TP": 50434,
+                    "n_pred": 52314,
+                    "n_ref": 50880
+                },
+                "2": {
+                    "Dice": 0.46053544180885003,
+                    "FN": 1895,
+                    "FP": 1994,
+                    "IoU": 0.2991530005406379,
+                    "TN": 404051,
+                    "TP": 1660,
+                    "n_pred": 3654,
+                    "n_ref": 3555
+                }
+            },
+            "prediction_file": "C:\\Users\\user\\Desktop\\paper\\code\\yolo-seg__ANN\\nnunet2d_run_train-308\\nnUNet_results\\Dataset501_ToothSeg\\nnUNetTrainer_segx_e150__nnUNetPlans__2d\\fold_0\\validation\\tooth_0255.png",
+            "reference_file": "C:\\Users\\user\\Desktop\\paper\\code\\yolo-seg__ANN\\nnunet2d_run_train-308\\nnUNet_preprocessed\\Dataset501_ToothSeg\\gt_segmentations\\tooth_0255.png"
+        },
+        {
+            "metrics": {
+                "1": {
+                    "Dice": 0.7308393062099189,
+                    "FN": 33381,
+                    "FP": 154,
+                    "IoU": 0.575844579639022,
+                    "TN": 330537,
+                    "TP": 45528,
+                    "n_pred": 45682,
+                    "n_ref": 78909
+                },
+                "2": {
+                    "Dice": 0.1787632557498967,
+                    "FN": 3253,
+                    "FP": 2710,
+                    "IoU": 0.09815486993345432,
+                    "TN": 402988,
+                    "TP": 649,
+                    "n_pred": 3359,
+                    "n_ref": 3902
+                }
+            },
+            "prediction_file": "C:\\Users\\user\\Desktop\\paper\\code\\yolo-seg__ANN\\nnunet2d_run_train-308\\nnUNet_results\\Dataset501_ToothSeg\\nnUNetTrainer_segx_e150__nnUNetPlans__2d\\fold_0\\validation\\tooth_0256.png",
+            "reference_file": "C:\\Users\\user\\Desktop\\paper\\code\\yolo-seg__ANN\\nnunet2d_run_train-308\\nnUNet_preprocessed\\Dataset501_ToothSeg\\gt_segmentations\\tooth_0256.png"
+        },
+        {
+            "metrics": {
+                "1": {
+                    "Dice": 0.9759814336055153,
+                    "FN": 1637,
+                    "FP": 1178,
+                    "IoU": 0.953089588054926,
+                    "TN": 349592,
+                    "TP": 57193,
+                    "n_pred": 58371,
+                    "n_ref": 58830
+                },
+                "2": {
+                    "Dice": 0.39557522123893807,
+                    "FN": 2022,
+                    "FP": 2076,
+                    "IoU": 0.2465526751241037,
+                    "TN": 404161,
+                    "TP": 1341,
+                    "n_pred": 3417,
+                    "n_ref": 3363
+                }
+            },
+            "prediction_file": "C:\\Users\\user\\Desktop\\paper\\code\\yolo-seg__ANN\\nnunet2d_run_train-308\\nnUNet_results\\Dataset501_ToothSeg\\nnUNetTrainer_segx_e150__nnUNetPlans__2d\\fold_0\\validation\\tooth_0257.png",
+            "reference_file": "C:\\Users\\user\\Desktop\\paper\\code\\yolo-seg__ANN\\nnunet2d_run_train-308\\nnUNet_preprocessed\\Dataset501_ToothSeg\\gt_segmentations\\tooth_0257.png"
+        },
+        {
+            "metrics": {
+                "1": {
+                    "Dice": 0.9825322871928733,
+                    "FN": 352,
+                    "FP": 1950,
+                    "IoU": 0.9656643398365252,
+                    "TN": 342556,
+                    "TP": 64742,
+                    "n_pred": 66692,
+                    "n_ref": 65094
+                },
+                "2": {
+                    "Dice": 0.49190337138306345,
+                    "FN": 1864,
+                    "FP": 1964,
+                    "IoU": 0.32617496919556416,
+                    "TN": 403919,
+                    "TP": 1853,
+                    "n_pred": 3817,
+                    "n_ref": 3717
+                }
+            },
+            "prediction_file": "C:\\Users\\user\\Desktop\\paper\\code\\yolo-seg__ANN\\nnunet2d_run_train-308\\nnUNet_results\\Dataset501_ToothSeg\\nnUNetTrainer_segx_e150__nnUNetPlans__2d\\fold_0\\validation\\tooth_0258.png",
+            "reference_file": "C:\\Users\\user\\Desktop\\paper\\code\\yolo-seg__ANN\\nnunet2d_run_train-308\\nnUNet_preprocessed\\Dataset501_ToothSeg\\gt_segmentations\\tooth_0258.png"
+        },
+        {
+            "metrics": {
+                "1": {
+                    "Dice": 0.9863510117709298,
+                    "FN": 295,
+                    "FP": 737,
+                    "IoU": 0.9730695963048981,
+                    "TN": 371279,
+                    "TP": 37289,
+                    "n_pred": 38026,
+                    "n_ref": 37584
+                },
+                "2": {
+                    "Dice": 0.6879526977087953,
+                    "FN": 1021,
+                    "FP": 1090,
+                    "IoU": 0.5243352861649392,
+                    "TN": 405162,
+                    "TP": 2327,
+                    "n_pred": 3417,
+                    "n_ref": 3348
+                }
+            },
+            "prediction_file": "C:\\Users\\user\\Desktop\\paper\\code\\yolo-seg__ANN\\nnunet2d_run_train-308\\nnUNet_results\\Dataset501_ToothSeg\\nnUNetTrainer_segx_e150__nnUNetPlans__2d\\fold_0\\validation\\tooth_0259.png",
+            "reference_file": "C:\\Users\\user\\Desktop\\paper\\code\\yolo-seg__ANN\\nnunet2d_run_train-308\\nnUNet_preprocessed\\Dataset501_ToothSeg\\gt_segmentations\\tooth_0259.png"
+        },
+        {
+            "metrics": {
+                "1": {
+                    "Dice": 0.9772498857925994,
+                    "FN": 670,
+                    "FP": 1571,
+                    "IoU": 0.955511881365017,
+                    "TN": 359227,
+                    "TP": 48132,
+                    "n_pred": 49703,
+                    "n_ref": 48802
+                },
+                "2": {
+                    "Dice": 0.4774774774774775,
+                    "FN": 1798,
+                    "FP": 1914,
+                    "IoU": 0.3136094674556213,
+                    "TN": 404192,
+                    "TP": 1696,
+                    "n_pred": 3610,
+                    "n_ref": 3494
+                }
+            },
+            "prediction_file": "C:\\Users\\user\\Desktop\\paper\\code\\yolo-seg__ANN\\nnunet2d_run_train-308\\nnUNet_results\\Dataset501_ToothSeg\\nnUNetTrainer_segx_e150__nnUNetPlans__2d\\fold_0\\validation\\tooth_0260.png",
+            "reference_file": "C:\\Users\\user\\Desktop\\paper\\code\\yolo-seg__ANN\\nnunet2d_run_train-308\\nnUNet_preprocessed\\Dataset501_ToothSeg\\gt_segmentations\\tooth_0260.png"
+        },
+        {
+            "metrics": {
+                "1": {
+                    "Dice": 0.9632498053146435,
+                    "FN": 751,
+                    "FP": 2694,
+                    "IoU": 0.9291050151256354,
+                    "TN": 361007,
+                    "TP": 45148,
+                    "n_pred": 47842,
+                    "n_ref": 45899
+                },
+                "2": {
+                    "Dice": 0.3290481005344504,
+                    "FN": 2320,
+                    "FP": 2325,
+                    "IoU": 0.1969225449515906,
+                    "TN": 403816,
+                    "TP": 1139,
+                    "n_pred": 3464,
+                    "n_ref": 3459
+                }
+            },
+            "prediction_file": "C:\\Users\\user\\Desktop\\paper\\code\\yolo-seg__ANN\\nnunet2d_run_train-308\\nnUNet_results\\Dataset501_ToothSeg\\nnUNetTrainer_segx_e150__nnUNetPlans__2d\\fold_0\\validation\\tooth_0261.png",
+            "reference_file": "C:\\Users\\user\\Desktop\\paper\\code\\yolo-seg__ANN\\nnunet2d_run_train-308\\nnUNet_preprocessed\\Dataset501_ToothSeg\\gt_segmentations\\tooth_0261.png"
+        },
+        {
+            "metrics": {
+                "1": {
+                    "Dice": 0.9725524615016357,
+                    "FN": 1736,
+                    "FP": 1016,
+                    "IoU": 0.9465714063834744,
+                    "TN": 358092,
+                    "TP": 48756,
+                    "n_pred": 49772,
+                    "n_ref": 50492
+                },
+                "2": {
+                    "Dice": 0.4879009566685425,
+                    "FN": 1779,
+                    "FP": 1861,
+                    "IoU": 0.32266468180126534,
+                    "TN": 404226,
+                    "TP": 1734,
+                    "n_pred": 3595,
+                    "n_ref": 3513
+                }
+            },
+            "prediction_file": "C:\\Users\\user\\Desktop\\paper\\code\\yolo-seg__ANN\\nnunet2d_run_train-308\\nnUNet_results\\Dataset501_ToothSeg\\nnUNetTrainer_segx_e150__nnUNetPlans__2d\\fold_0\\validation\\tooth_0262.png",
+            "reference_file": "C:\\Users\\user\\Desktop\\paper\\code\\yolo-seg__ANN\\nnunet2d_run_train-308\\nnUNet_preprocessed\\Dataset501_ToothSeg\\gt_segmentations\\tooth_0262.png"
+        },
+        {
+            "metrics": {
+                "1": {
+                    "Dice": 0.9672906196921676,
+                    "FN": 2750,
+                    "FP": 986,
+                    "IoU": 0.9366532716143582,
+                    "TN": 350623,
+                    "TP": 55241,
+                    "n_pred": 56227,
+                    "n_ref": 57991
+                },
+                "2": {
+                    "Dice": 0.3362252880102404,
+                    "FN": 2280,
+                    "FP": 2387,
+                    "IoU": 0.20208582663703198,
+                    "TN": 403751,
+                    "TP": 1182,
+                    "n_pred": 3569,
+                    "n_ref": 3462
+                }
+            },
+            "prediction_file": "C:\\Users\\user\\Desktop\\paper\\code\\yolo-seg__ANN\\nnunet2d_run_train-308\\nnUNet_results\\Dataset501_ToothSeg\\nnUNetTrainer_segx_e150__nnUNetPlans__2d\\fold_0\\validation\\tooth_0263.png",
+            "reference_file": "C:\\Users\\user\\Desktop\\paper\\code\\yolo-seg__ANN\\nnunet2d_run_train-308\\nnUNet_preprocessed\\Dataset501_ToothSeg\\gt_segmentations\\tooth_0263.png"
+        },
+        {
+            "metrics": {
+                "1": {
+                    "Dice": 0.9657534246575342,
+                    "FN": 179,
+                    "FP": 3241,
+                    "IoU": 0.9337748344370861,
+                    "TN": 357958,
+                    "TP": 48222,
+                    "n_pred": 51463,
+                    "n_ref": 48401
+                },
+                "2": {
+                    "Dice": 0.24643434789001617,
+                    "FN": 2584,
+                    "FP": 2541,
+                    "IoU": 0.1405332886131142,
+                    "TN": 403637,
+                    "TP": 838,
+                    "n_pred": 3379,
+                    "n_ref": 3422
+                }
+            },
+            "prediction_file": "C:\\Users\\user\\Desktop\\paper\\code\\yolo-seg__ANN\\nnunet2d_run_train-308\\nnUNet_results\\Dataset501_ToothSeg\\nnUNetTrainer_segx_e150__nnUNetPlans__2d\\fold_0\\validation\\tooth_0264.png",
+            "reference_file": "C:\\Users\\user\\Desktop\\paper\\code\\yolo-seg__ANN\\nnunet2d_run_train-308\\nnUNet_preprocessed\\Dataset501_ToothSeg\\gt_segmentations\\tooth_0264.png"
+        },
+        {
+            "metrics": {
+                "1": {
+                    "Dice": 0.9046387126067812,
+                    "FN": 0,
+                    "FP": 9031,
+                    "IoU": 0.8258815817379066,
+                    "TN": 357733,
+                    "TP": 42836,
+                    "n_pred": 51867,
+                    "n_ref": 42836
+                },
+                "2": {
+                    "Dice": 0.031054131054131053,
+                    "FN": 3088,
+                    "FP": 3714,
+                    "IoU": 0.015771957748516856,
+                    "TN": 402689,
+                    "TP": 109,
+                    "n_pred": 3823,
+                    "n_ref": 3197
+                }
+            },
+            "prediction_file": "C:\\Users\\user\\Desktop\\paper\\code\\yolo-seg__ANN\\nnunet2d_run_train-308\\nnUNet_results\\Dataset501_ToothSeg\\nnUNetTrainer_segx_e150__nnUNetPlans__2d\\fold_0\\validation\\tooth_0265.png",
+            "reference_file": "C:\\Users\\user\\Desktop\\paper\\code\\yolo-seg__ANN\\nnunet2d_run_train-308\\nnUNet_preprocessed\\Dataset501_ToothSeg\\gt_segmentations\\tooth_0265.png"
+        },
+        {
+            "metrics": {
+                "1": {
+                    "Dice": 0.9648746561981268,
+                    "FN": 771,
+                    "FP": 2128,
+                    "IoU": 0.9321331585354434,
+                    "TN": 366884,
+                    "TP": 39817,
+                    "n_pred": 41945,
+                    "n_ref": 40588
+                },
+                "2": {
+                    "Dice": 0.334755677907777,
+                    "FN": 2401,
+                    "FP": 2432,
+                    "IoU": 0.20102496280376922,
+                    "TN": 403551,
+                    "TP": 1216,
+                    "n_pred": 3648,
+                    "n_ref": 3617
+                }
+            },
+            "prediction_file": "C:\\Users\\user\\Desktop\\paper\\code\\yolo-seg__ANN\\nnunet2d_run_train-308\\nnUNet_results\\Dataset501_ToothSeg\\nnUNetTrainer_segx_e150__nnUNetPlans__2d\\fold_0\\validation\\tooth_0266.png",
+            "reference_file": "C:\\Users\\user\\Desktop\\paper\\code\\yolo-seg__ANN\\nnunet2d_run_train-308\\nnUNet_preprocessed\\Dataset501_ToothSeg\\gt_segmentations\\tooth_0266.png"
+        },
+        {
+            "metrics": {
+                "1": {
+                    "Dice": 0.9737801471493367,
+                    "FN": 652,
+                    "FP": 2117,
+                    "IoU": 0.9489001254890381,
+                    "TN": 355412,
+                    "TP": 51419,
+                    "n_pred": 53536,
+                    "n_ref": 52071
+                },
+                "2": {
+                    "Dice": 0.40553381777529346,
+                    "FN": 2107,
+                    "FP": 2147,
+                    "IoU": 0.2543382997370727,
+                    "TN": 403895,
+                    "TP": 1451,
+                    "n_pred": 3598,
+                    "n_ref": 3558
+                }
+            },
+            "prediction_file": "C:\\Users\\user\\Desktop\\paper\\code\\yolo-seg__ANN\\nnunet2d_run_train-308\\nnUNet_results\\Dataset501_ToothSeg\\nnUNetTrainer_segx_e150__nnUNetPlans__2d\\fold_0\\validation\\tooth_0267.png",
+            "reference_file": "C:\\Users\\user\\Desktop\\paper\\code\\yolo-seg__ANN\\nnunet2d_run_train-308\\nnUNet_preprocessed\\Dataset501_ToothSeg\\gt_segmentations\\tooth_0267.png"
+        },
+        {
+            "metrics": {
+                "1": {
+                    "Dice": 0.9575961868773617,
+                    "FN": 960,
+                    "FP": 2990,
+                    "IoU": 0.918642252476777,
+                    "TN": 361049,
+                    "TP": 44601,
+                    "n_pred": 47591,
+                    "n_ref": 45561
+                },
+                "2": {
+                    "Dice": 0.2699490662139219,
+                    "FN": 2503,
+                    "FP": 2657,
+                    "IoU": 0.1560353287536801,
+                    "TN": 403486,
+                    "TP": 954,
+                    "n_pred": 3611,
+                    "n_ref": 3457
+                }
+            },
+            "prediction_file": "C:\\Users\\user\\Desktop\\paper\\code\\yolo-seg__ANN\\nnunet2d_run_train-308\\nnUNet_results\\Dataset501_ToothSeg\\nnUNetTrainer_segx_e150__nnUNetPlans__2d\\fold_0\\validation\\tooth_0268.png",
+            "reference_file": "C:\\Users\\user\\Desktop\\paper\\code\\yolo-seg__ANN\\nnunet2d_run_train-308\\nnUNet_preprocessed\\Dataset501_ToothSeg\\gt_segmentations\\tooth_0268.png"
+        },
+        {
+            "metrics": {
+                "1": {
+                    "Dice": 0.90126523625037,
+                    "FN": 0,
+                    "FP": 7671,
+                    "IoU": 0.8202755259828499,
+                    "TN": 366918,
+                    "TP": 35011,
+                    "n_pred": 42682,
+                    "n_ref": 35011
+                },
+                "2": {
+                    "Dice": 0.0009178522257916476,
+                    "FN": 3088,
+                    "FP": 3443,
+                    "IoU": 0.0004591368227731864,
+                    "TN": 403066,
+                    "TP": 3,
+                    "n_pred": 3446,
+                    "n_ref": 3091
+                }
+            },
+            "prediction_file": "C:\\Users\\user\\Desktop\\paper\\code\\yolo-seg__ANN\\nnunet2d_run_train-308\\nnUNet_results\\Dataset501_ToothSeg\\nnUNetTrainer_segx_e150__nnUNetPlans__2d\\fold_0\\validation\\tooth_0269.png",
+            "reference_file": "C:\\Users\\user\\Desktop\\paper\\code\\yolo-seg__ANN\\nnunet2d_run_train-308\\nnUNet_preprocessed\\Dataset501_ToothSeg\\gt_segmentations\\tooth_0269.png"
+        },
+        {
+            "metrics": {
+                "1": {
+                    "Dice": 0.9022856517935258,
+                    "FN": 41,
+                    "FP": 10681,
+                    "IoU": 0.8219676214196762,
+                    "TN": 349375,
+                    "TP": 49503,
+                    "n_pred": 60184,
+                    "n_ref": 49544
+                },
+                "2": {
+                    "Dice": 0.08700799052974252,
+                    "FN": 2771,
+                    "FP": 3399,
+                    "IoU": 0.04548267326732673,
+                    "TN": 403136,
+                    "TP": 294,
+                    "n_pred": 3693,
+                    "n_ref": 3065
+                }
+            },
+            "prediction_file": "C:\\Users\\user\\Desktop\\paper\\code\\yolo-seg__ANN\\nnunet2d_run_train-308\\nnUNet_results\\Dataset501_ToothSeg\\nnUNetTrainer_segx_e150__nnUNetPlans__2d\\fold_0\\validation\\tooth_0270.png",
+            "reference_file": "C:\\Users\\user\\Desktop\\paper\\code\\yolo-seg__ANN\\nnunet2d_run_train-308\\nnUNet_preprocessed\\Dataset501_ToothSeg\\gt_segmentations\\tooth_0270.png"
+        },
+        {
+            "metrics": {
+                "1": {
+                    "Dice": 0.9522416346958866,
+                    "FN": 2942,
+                    "FP": 2249,
+                    "IoU": 0.9088370622738927,
+                    "TN": 352658,
+                    "TP": 51751,
+                    "n_pred": 54000,
+                    "n_ref": 54693
+                },
+                "2": {
+                    "Dice": 0.20771179285111174,
+                    "FN": 2729,
+                    "FP": 2901,
+                    "IoU": 0.11589195979899497,
+                    "TN": 403232,
+                    "TP": 738,
+                    "n_pred": 3639,
+                    "n_ref": 3467
+                }
+            },
+            "prediction_file": "C:\\Users\\user\\Desktop\\paper\\code\\yolo-seg__ANN\\nnunet2d_run_train-308\\nnUNet_results\\Dataset501_ToothSeg\\nnUNetTrainer_segx_e150__nnUNetPlans__2d\\fold_0\\validation\\tooth_0271.png",
+            "reference_file": "C:\\Users\\user\\Desktop\\paper\\code\\yolo-seg__ANN\\nnunet2d_run_train-308\\nnUNet_preprocessed\\Dataset501_ToothSeg\\gt_segmentations\\tooth_0271.png"
+        },
+        {
+            "metrics": {
+                "1": {
+                    "Dice": 0.9442089098216713,
+                    "FN": 1497,
+                    "FP": 6096,
+                    "IoU": 0.8943141485141625,
+                    "TN": 337755,
+                    "TP": 64252,
+                    "n_pred": 70348,
+                    "n_ref": 65749
+                },
+                "2": {
+                    "Dice": 0.13084610259826782,
+                    "FN": 3098,
+                    "FP": 3425,
+                    "IoU": 0.07000285143997718,
+                    "TN": 402586,
+                    "TP": 491,
+                    "n_pred": 3916,
+                    "n_ref": 3589
+                }
+            },
+            "prediction_file": "C:\\Users\\user\\Desktop\\paper\\code\\yolo-seg__ANN\\nnunet2d_run_train-308\\nnUNet_results\\Dataset501_ToothSeg\\nnUNetTrainer_segx_e150__nnUNetPlans__2d\\fold_0\\validation\\tooth_0272.png",
+            "reference_file": "C:\\Users\\user\\Desktop\\paper\\code\\yolo-seg__ANN\\nnunet2d_run_train-308\\nnUNet_preprocessed\\Dataset501_ToothSeg\\gt_segmentations\\tooth_0272.png"
+        },
+        {
+            "metrics": {
+                "1": {
+                    "Dice": 0.9450810652189862,
+                    "FN": 1009,
+                    "FP": 6477,
+                    "IoU": 0.8958802748337923,
+                    "TN": 337702,
+                    "TP": 64412,
+                    "n_pred": 70889,
+                    "n_ref": 65421
+                },
+                "2": {
+                    "Dice": 0.3111414900888585,
+                    "FN": 2529,
+                    "FP": 2510,
+                    "IoU": 0.1842318277480978,
+                    "TN": 403423,
+                    "TP": 1138,
+                    "n_pred": 3648,
+                    "n_ref": 3667
+                }
+            },
+            "prediction_file": "C:\\Users\\user\\Desktop\\paper\\code\\yolo-seg__ANN\\nnunet2d_run_train-308\\nnUNet_results\\Dataset501_ToothSeg\\nnUNetTrainer_segx_e150__nnUNetPlans__2d\\fold_0\\validation\\tooth_0273.png",
+            "reference_file": "C:\\Users\\user\\Desktop\\paper\\code\\yolo-seg__ANN\\nnunet2d_run_train-308\\nnUNet_preprocessed\\Dataset501_ToothSeg\\gt_segmentations\\tooth_0273.png"
+        },
+        {
+            "metrics": {
+                "1": {
+                    "Dice": 0.9507318000380156,
+                    "FN": 3636,
+                    "FP": 1548,
+                    "IoU": 0.9060903590449622,
+                    "TN": 354398,
+                    "TP": 50018,
+                    "n_pred": 51566,
+                    "n_ref": 53654
+                },
+                "2": {
+                    "Dice": 0.29867288901852124,
+                    "FN": 2429,
+                    "FP": 2380,
+                    "IoU": 0.17555288873649924,
+                    "TN": 403767,
+                    "TP": 1024,
+                    "n_pred": 3404,
+                    "n_ref": 3453
+                }
+            },
+            "prediction_file": "C:\\Users\\user\\Desktop\\paper\\code\\yolo-seg__ANN\\nnunet2d_run_train-308\\nnUNet_results\\Dataset501_ToothSeg\\nnUNetTrainer_segx_e150__nnUNetPlans__2d\\fold_0\\validation\\tooth_0274.png",
+            "reference_file": "C:\\Users\\user\\Desktop\\paper\\code\\yolo-seg__ANN\\nnunet2d_run_train-308\\nnUNet_preprocessed\\Dataset501_ToothSeg\\gt_segmentations\\tooth_0274.png"
+        },
+        {
+            "metrics": {
+                "1": {
+                    "Dice": 0.6802796666985921,
+                    "FN": 32964,
+                    "FP": 418,
+                    "IoU": 0.5154725963771482,
+                    "TN": 340704,
+                    "TP": 35514,
+                    "n_pred": 35932,
+                    "n_ref": 68478
+                },
+                "2": {
+                    "Dice": 0.0225752508361204,
+                    "FN": 3715,
+                    "FP": 3299,
+                    "IoU": 0.011416490486257928,
+                    "TN": 402505,
+                    "TP": 81,
+                    "n_pred": 3380,
+                    "n_ref": 3796
+                }
+            },
+            "prediction_file": "C:\\Users\\user\\Desktop\\paper\\code\\yolo-seg__ANN\\nnunet2d_run_train-308\\nnUNet_results\\Dataset501_ToothSeg\\nnUNetTrainer_segx_e150__nnUNetPlans__2d\\fold_0\\validation\\tooth_0275.png",
+            "reference_file": "C:\\Users\\user\\Desktop\\paper\\code\\yolo-seg__ANN\\nnunet2d_run_train-308\\nnUNet_preprocessed\\Dataset501_ToothSeg\\gt_segmentations\\tooth_0275.png"
+        },
+        {
+            "metrics": {
+                "1": {
+                    "Dice": 0.9224780802348593,
+                    "FN": 5848,
+                    "FP": 67,
+                    "IoU": 0.8561107327040965,
+                    "TN": 368492,
+                    "TP": 35193,
+                    "n_pred": 35260,
+                    "n_ref": 41041
+                },
+                "2": {
+                    "Dice": 0.10718992531849465,
+                    "FN": 3035,
+                    "FP": 3062,
+                    "IoU": 0.05663004796534117,
+                    "TN": 403137,
+                    "TP": 366,
+                    "n_pred": 3428,
+                    "n_ref": 3401
+                }
+            },
+            "prediction_file": "C:\\Users\\user\\Desktop\\paper\\code\\yolo-seg__ANN\\nnunet2d_run_train-308\\nnUNet_results\\Dataset501_ToothSeg\\nnUNetTrainer_segx_e150__nnUNetPlans__2d\\fold_0\\validation\\tooth_0276.png",
+            "reference_file": "C:\\Users\\user\\Desktop\\paper\\code\\yolo-seg__ANN\\nnunet2d_run_train-308\\nnUNet_preprocessed\\Dataset501_ToothSeg\\gt_segmentations\\tooth_0276.png"
+        },
+        {
+            "metrics": {
+                "1": {
+                    "Dice": 0.9689685870532876,
+                    "FN": 2338,
+                    "FP": 590,
+                    "IoU": 0.9398051066979154,
+                    "TN": 360958,
+                    "TP": 45714,
+                    "n_pred": 46304,
+                    "n_ref": 48052
+                },
+                "2": {
+                    "Dice": 0.4598774438284214,
+                    "FN": 1937,
+                    "FP": 1765,
+                    "IoU": 0.2985979537703676,
+                    "TN": 404322,
+                    "TP": 1576,
+                    "n_pred": 3341,
+                    "n_ref": 3513
+                }
+            },
+            "prediction_file": "C:\\Users\\user\\Desktop\\paper\\code\\yolo-seg__ANN\\nnunet2d_run_train-308\\nnUNet_results\\Dataset501_ToothSeg\\nnUNetTrainer_segx_e150__nnUNetPlans__2d\\fold_0\\validation\\tooth_0277.png",
+            "reference_file": "C:\\Users\\user\\Desktop\\paper\\code\\yolo-seg__ANN\\nnunet2d_run_train-308\\nnUNet_preprocessed\\Dataset501_ToothSeg\\gt_segmentations\\tooth_0277.png"
+        },
+        {
+            "metrics": {
+                "1": {
+                    "Dice": 0.9580620545209527,
+                    "FN": 4951,
+                    "FP": 215,
+                    "IoU": 0.9195001090784429,
+                    "TN": 345426,
+                    "TP": 59008,
+                    "n_pred": 59223,
+                    "n_ref": 63959
+                },
+                "2": {
+                    "Dice": 0.2929470691755787,
+                    "FN": 2578,
+                    "FP": 2645,
+                    "IoU": 0.17160983346550357,
+                    "TN": 403295,
+                    "TP": 1082,
+                    "n_pred": 3727,
+                    "n_ref": 3660
+                }
+            },
+            "prediction_file": "C:\\Users\\user\\Desktop\\paper\\code\\yolo-seg__ANN\\nnunet2d_run_train-308\\nnUNet_results\\Dataset501_ToothSeg\\nnUNetTrainer_segx_e150__nnUNetPlans__2d\\fold_0\\validation\\tooth_0278.png",
+            "reference_file": "C:\\Users\\user\\Desktop\\paper\\code\\yolo-seg__ANN\\nnunet2d_run_train-308\\nnUNet_preprocessed\\Dataset501_ToothSeg\\gt_segmentations\\tooth_0278.png"
+        },
+        {
+            "metrics": {
+                "1": {
+                    "Dice": 0.9720202064190219,
+                    "FN": 1451,
+                    "FP": 1119,
+                    "IoU": 0.9455635339221792,
+                    "TN": 362389,
+                    "TP": 44641,
+                    "n_pred": 45760,
+                    "n_ref": 46092
+                },
+                "2": {
+                    "Dice": 0.37711617046117923,
+                    "FN": 2076,
+                    "FP": 2192,
+                    "IoU": 0.23237410071942446,
+                    "TN": 404040,
+                    "TP": 1292,
+                    "n_pred": 3484,
+                    "n_ref": 3368
+                }
+            },
+            "prediction_file": "C:\\Users\\user\\Desktop\\paper\\code\\yolo-seg__ANN\\nnunet2d_run_train-308\\nnUNet_results\\Dataset501_ToothSeg\\nnUNetTrainer_segx_e150__nnUNetPlans__2d\\fold_0\\validation\\tooth_0279.png",
+            "reference_file": "C:\\Users\\user\\Desktop\\paper\\code\\yolo-seg__ANN\\nnunet2d_run_train-308\\nnUNet_preprocessed\\Dataset501_ToothSeg\\gt_segmentations\\tooth_0279.png"
+        },
+        {
+            "metrics": {
+                "1": {
+                    "Dice": 0.9676286118928066,
+                    "FN": 1494,
+                    "FP": 2026,
+                    "IoU": 0.9372873202800691,
+                    "TN": 353471,
+                    "TP": 52609,
+                    "n_pred": 54635,
+                    "n_ref": 54103
+                },
+                "2": {
+                    "Dice": 0.3312157089228992,
+                    "FN": 2260,
+                    "FP": 2372,
+                    "IoU": 0.19847724519813117,
+                    "TN": 403821,
+                    "TP": 1147,
+                    "n_pred": 3519,
+                    "n_ref": 3407
+                }
+            },
+            "prediction_file": "C:\\Users\\user\\Desktop\\paper\\code\\yolo-seg__ANN\\nnunet2d_run_train-308\\nnUNet_results\\Dataset501_ToothSeg\\nnUNetTrainer_segx_e150__nnUNetPlans__2d\\fold_0\\validation\\tooth_0280.png",
+            "reference_file": "C:\\Users\\user\\Desktop\\paper\\code\\yolo-seg__ANN\\nnunet2d_run_train-308\\nnUNet_preprocessed\\Dataset501_ToothSeg\\gt_segmentations\\tooth_0280.png"
+        },
+        {
+            "metrics": {
+                "1": {
+                    "Dice": 0.9372127578700025,
+                    "FN": 7001,
+                    "FP": 267,
+                    "IoU": 0.8818441930029913,
+                    "TN": 348088,
+                    "TP": 54244,
+                    "n_pred": 54511,
+                    "n_ref": 61245
+                },
+                "2": {
+                    "Dice": 0.2766402005850397,
+                    "FN": 2585,
+                    "FP": 2608,
+                    "IoU": 0.16052376333656643,
+                    "TN": 403414,
+                    "TP": 993,
+                    "n_pred": 3601,
+                    "n_ref": 3578
+                }
+            },
+            "prediction_file": "C:\\Users\\user\\Desktop\\paper\\code\\yolo-seg__ANN\\nnunet2d_run_train-308\\nnUNet_results\\Dataset501_ToothSeg\\nnUNetTrainer_segx_e150__nnUNetPlans__2d\\fold_0\\validation\\tooth_0281.png",
+            "reference_file": "C:\\Users\\user\\Desktop\\paper\\code\\yolo-seg__ANN\\nnunet2d_run_train-308\\nnUNet_preprocessed\\Dataset501_ToothSeg\\gt_segmentations\\tooth_0281.png"
+        },
+        {
+            "metrics": {
+                "1": {
+                    "Dice": 0.9767549648855884,
+                    "FN": 1120,
+                    "FP": 1187,
+                    "IoU": 0.9545660436811942,
+                    "TN": 358823,
+                    "TP": 48470,
+                    "n_pred": 49657,
+                    "n_ref": 49590
+                },
+                "2": {
+                    "Dice": 0.43442506734722813,
+                    "FN": 1942,
+                    "FP": 2047,
+                    "IoU": 0.27748596268791886,
+                    "TN": 404079,
+                    "TP": 1532,
+                    "n_pred": 3579,
+                    "n_ref": 3474
+                }
+            },
+            "prediction_file": "C:\\Users\\user\\Desktop\\paper\\code\\yolo-seg__ANN\\nnunet2d_run_train-308\\nnUNet_results\\Dataset501_ToothSeg\\nnUNetTrainer_segx_e150__nnUNetPlans__2d\\fold_0\\validation\\tooth_0282.png",
+            "reference_file": "C:\\Users\\user\\Desktop\\paper\\code\\yolo-seg__ANN\\nnunet2d_run_train-308\\nnUNet_preprocessed\\Dataset501_ToothSeg\\gt_segmentations\\tooth_0282.png"
+        },
+        {
+            "metrics": {
+                "1": {
+                    "Dice": 0.9186041014683218,
+                    "FN": 8479,
+                    "FP": 130,
+                    "IoU": 0.8494614254738756,
+                    "TN": 352412,
+                    "TP": 48579,
+                    "n_pred": 48709,
+                    "n_ref": 57058
+                },
+                "2": {
+                    "Dice": 0.30789865871833083,
+                    "FN": 2459,
+                    "FP": 2185,
+                    "IoU": 0.1819623040338207,
+                    "TN": 403923,
+                    "TP": 1033,
+                    "n_pred": 3218,
+                    "n_ref": 3492
+                }
+            },
+            "prediction_file": "C:\\Users\\user\\Desktop\\paper\\code\\yolo-seg__ANN\\nnunet2d_run_train-308\\nnUNet_results\\Dataset501_ToothSeg\\nnUNetTrainer_segx_e150__nnUNetPlans__2d\\fold_0\\validation\\tooth_0283.png",
+            "reference_file": "C:\\Users\\user\\Desktop\\paper\\code\\yolo-seg__ANN\\nnunet2d_run_train-308\\nnUNet_preprocessed\\Dataset501_ToothSeg\\gt_segmentations\\tooth_0283.png"
+        },
+        {
+            "metrics": {
+                "1": {
+                    "Dice": 0.9767893471425929,
+                    "FN": 509,
+                    "FP": 2001,
+                    "IoU": 0.954631721644826,
+                    "TN": 354275,
+                    "TP": 52815,
+                    "n_pred": 54816,
+                    "n_ref": 53324
+                },
+                "2": {
+                    "Dice": 0.41495063469675597,
+                    "FN": 2045,
+                    "FP": 2103,
+                    "IoU": 0.2617903541555437,
+                    "TN": 403981,
+                    "TP": 1471,
+                    "n_pred": 3574,
+                    "n_ref": 3516
+                }
+            },
+            "prediction_file": "C:\\Users\\user\\Desktop\\paper\\code\\yolo-seg__ANN\\nnunet2d_run_train-308\\nnUNet_results\\Dataset501_ToothSeg\\nnUNetTrainer_segx_e150__nnUNetPlans__2d\\fold_0\\validation\\tooth_0284.png",
+            "reference_file": "C:\\Users\\user\\Desktop\\paper\\code\\yolo-seg__ANN\\nnunet2d_run_train-308\\nnUNet_preprocessed\\Dataset501_ToothSeg\\gt_segmentations\\tooth_0284.png"
+        },
+        {
+            "metrics": {
+                "1": {
+                    "Dice": 0.9633526606819047,
+                    "FN": 2377,
+                    "FP": 897,
+                    "IoU": 0.929296419470479,
+                    "TN": 363294,
+                    "TP": 43032,
+                    "n_pred": 43929,
+                    "n_ref": 45409
+                },
+                "2": {
+                    "Dice": 0.358664363845711,
+                    "FN": 2200,
+                    "FP": 2256,
+                    "IoU": 0.21851981760785688,
+                    "TN": 403898,
+                    "TP": 1246,
+                    "n_pred": 3502,
+                    "n_ref": 3446
+                }
+            },
+            "prediction_file": "C:\\Users\\user\\Desktop\\paper\\code\\yolo-seg__ANN\\nnunet2d_run_train-308\\nnUNet_results\\Dataset501_ToothSeg\\nnUNetTrainer_segx_e150__nnUNetPlans__2d\\fold_0\\validation\\tooth_0285.png",
+            "reference_file": "C:\\Users\\user\\Desktop\\paper\\code\\yolo-seg__ANN\\nnunet2d_run_train-308\\nnUNet_preprocessed\\Dataset501_ToothSeg\\gt_segmentations\\tooth_0285.png"
+        },
+        {
+            "metrics": {
+                "1": {
+                    "Dice": 0.9782070882557331,
+                    "FN": 631,
+                    "FP": 937,
+                    "IoU": 0.9573437797546179,
+                    "TN": 372841,
+                    "TP": 35191,
+                    "n_pred": 36128,
+                    "n_ref": 35822
+                },
+                "2": {
+                    "Dice": 0.5756184268997185,
+                    "FN": 1425,
+                    "FP": 1440,
+                    "IoU": 0.40411813643926786,
+                    "TN": 404792,
+                    "TP": 1943,
+                    "n_pred": 3383,
+                    "n_ref": 3368
+                }
+            },
+            "prediction_file": "C:\\Users\\user\\Desktop\\paper\\code\\yolo-seg__ANN\\nnunet2d_run_train-308\\nnUNet_results\\Dataset501_ToothSeg\\nnUNetTrainer_segx_e150__nnUNetPlans__2d\\fold_0\\validation\\tooth_0286.png",
+            "reference_file": "C:\\Users\\user\\Desktop\\paper\\code\\yolo-seg__ANN\\nnunet2d_run_train-308\\nnUNet_preprocessed\\Dataset501_ToothSeg\\gt_segmentations\\tooth_0286.png"
+        },
+        {
+            "metrics": {
+                "1": {
+                    "Dice": 0.9761014962421568,
+                    "FN": 1340,
+                    "FP": 393,
+                    "IoU": 0.9533186079086305,
+                    "TN": 372476,
+                    "TP": 35391,
+                    "n_pred": 35784,
+                    "n_ref": 36731
+                },
+                "2": {
+                    "Dice": 0.5844762182667056,
+                    "FN": 1485,
+                    "FP": 1363,
+                    "IoU": 0.4129045557616986,
+                    "TN": 404749,
+                    "TP": 2003,
+                    "n_pred": 3366,
+                    "n_ref": 3488
+                }
+            },
+            "prediction_file": "C:\\Users\\user\\Desktop\\paper\\code\\yolo-seg__ANN\\nnunet2d_run_train-308\\nnUNet_results\\Dataset501_ToothSeg\\nnUNetTrainer_segx_e150__nnUNetPlans__2d\\fold_0\\validation\\tooth_0287.png",
+            "reference_file": "C:\\Users\\user\\Desktop\\paper\\code\\yolo-seg__ANN\\nnunet2d_run_train-308\\nnUNet_preprocessed\\Dataset501_ToothSeg\\gt_segmentations\\tooth_0287.png"
+        },
+        {
+            "metrics": {
+                "1": {
+                    "Dice": 0.9813366587757862,
+                    "FN": 1109,
+                    "FP": 657,
+                    "IoU": 0.9633571947297438,
+                    "TN": 361405,
+                    "TP": 46429,
+                    "n_pred": 47086,
+                    "n_ref": 47538
+                },
+                "2": {
+                    "Dice": 0.5686664771111744,
+                    "FN": 1527,
+                    "FP": 1507,
+                    "IoU": 0.3972983710766786,
+                    "TN": 404566,
+                    "TP": 2000,
+                    "n_pred": 3507,
+                    "n_ref": 3527
+                }
+            },
+            "prediction_file": "C:\\Users\\user\\Desktop\\paper\\code\\yolo-seg__ANN\\nnunet2d_run_train-308\\nnUNet_results\\Dataset501_ToothSeg\\nnUNetTrainer_segx_e150__nnUNetPlans__2d\\fold_0\\validation\\tooth_0288.png",
+            "reference_file": "C:\\Users\\user\\Desktop\\paper\\code\\yolo-seg__ANN\\nnunet2d_run_train-308\\nnUNet_preprocessed\\Dataset501_ToothSeg\\gt_segmentations\\tooth_0288.png"
+        },
+        {
+            "metrics": {
+                "1": {
+                    "Dice": 0.9624136287824636,
+                    "FN": 979,
+                    "FP": 1545,
+                    "IoU": 0.9275503760261783,
+                    "TN": 374762,
+                    "TP": 32314,
+                    "n_pred": 33859,
+                    "n_ref": 33293
+                },
+                "2": {
+                    "Dice": 0.40077704722056184,
+                    "FN": 2022,
+                    "FP": 1988,
+                    "IoU": 0.2506073631096991,
+                    "TN": 404249,
+                    "TP": 1341,
+                    "n_pred": 3329,
+                    "n_ref": 3363
+                }
+            },
+            "prediction_file": "C:\\Users\\user\\Desktop\\paper\\code\\yolo-seg__ANN\\nnunet2d_run_train-308\\nnUNet_results\\Dataset501_ToothSeg\\nnUNetTrainer_segx_e150__nnUNetPlans__2d\\fold_0\\validation\\tooth_0289.png",
+            "reference_file": "C:\\Users\\user\\Desktop\\paper\\code\\yolo-seg__ANN\\nnunet2d_run_train-308\\nnUNet_preprocessed\\Dataset501_ToothSeg\\gt_segmentations\\tooth_0289.png"
+        },
+        {
+            "metrics": {
+                "1": {
+                    "Dice": 0.9758938973026257,
+                    "FN": 1746,
+                    "FP": 406,
+                    "IoU": 0.9529226461323066,
+                    "TN": 363888,
+                    "TP": 43560,
+                    "n_pred": 43966,
+                    "n_ref": 45306
+                },
+                "2": {
+                    "Dice": 0.5944720056697378,
+                    "FN": 1468,
+                    "FP": 1393,
+                    "IoU": 0.42295280354981846,
+                    "TN": 404642,
+                    "TP": 2097,
+                    "n_pred": 3490,
+                    "n_ref": 3565
+                }
+            },
+            "prediction_file": "C:\\Users\\user\\Desktop\\paper\\code\\yolo-seg__ANN\\nnunet2d_run_train-308\\nnUNet_results\\Dataset501_ToothSeg\\nnUNetTrainer_segx_e150__nnUNetPlans__2d\\fold_0\\validation\\tooth_0290.png",
+            "reference_file": "C:\\Users\\user\\Desktop\\paper\\code\\yolo-seg__ANN\\nnunet2d_run_train-308\\nnUNet_preprocessed\\Dataset501_ToothSeg\\gt_segmentations\\tooth_0290.png"
+        },
+        {
+            "metrics": {
+                "1": {
+                    "Dice": 0.9582976461206769,
+                    "FN": 298,
+                    "FP": 2526,
+                    "IoU": 0.9199342235831136,
+                    "TN": 374329,
+                    "TP": 32447,
+                    "n_pred": 34973,
+                    "n_ref": 32745
+                },
+                "2": {
+                    "Dice": 0.3719153936545241,
+                    "FN": 2088,
+                    "FP": 2188,
+                    "IoU": 0.2284373872248286,
+                    "TN": 404058,
+                    "TP": 1266,
+                    "n_pred": 3454,
+                    "n_ref": 3354
+                }
+            },
+            "prediction_file": "C:\\Users\\user\\Desktop\\paper\\code\\yolo-seg__ANN\\nnunet2d_run_train-308\\nnUNet_results\\Dataset501_ToothSeg\\nnUNetTrainer_segx_e150__nnUNetPlans__2d\\fold_0\\validation\\tooth_0291.png",
+            "reference_file": "C:\\Users\\user\\Desktop\\paper\\code\\yolo-seg__ANN\\nnunet2d_run_train-308\\nnUNet_preprocessed\\Dataset501_ToothSeg\\gt_segmentations\\tooth_0291.png"
+        },
+        {
+            "metrics": {
+                "1": {
+                    "Dice": 0.7499504828908484,
+                    "FN": 30447,
+                    "FP": 1114,
+                    "IoU": 0.5999366206109773,
+                    "TN": 330710,
+                    "TP": 47329,
+                    "n_pred": 48443,
+                    "n_ref": 77776
+                },
+                "2": {
+                    "Dice": 0.07535103572918114,
+                    "FN": 3393,
+                    "FP": 3258,
+                    "IoU": 0.03915053452759318,
+                    "TN": 402678,
+                    "TP": 271,
+                    "n_pred": 3529,
+                    "n_ref": 3664
+                }
+            },
+            "prediction_file": "C:\\Users\\user\\Desktop\\paper\\code\\yolo-seg__ANN\\nnunet2d_run_train-308\\nnUNet_results\\Dataset501_ToothSeg\\nnUNetTrainer_segx_e150__nnUNetPlans__2d\\fold_0\\validation\\tooth_0292.png",
+            "reference_file": "C:\\Users\\user\\Desktop\\paper\\code\\yolo-seg__ANN\\nnunet2d_run_train-308\\nnUNet_preprocessed\\Dataset501_ToothSeg\\gt_segmentations\\tooth_0292.png"
+        },
+        {
+            "metrics": {
+                "1": {
+                    "Dice": 0.9637362121567707,
+                    "FN": 1397,
+                    "FP": 2466,
+                    "IoU": 0.930010508388593,
+                    "TN": 354406,
+                    "TP": 51331,
+                    "n_pred": 53797,
+                    "n_ref": 52728
+                },
+                "2": {
+                    "Dice": 0.3719905586152636,
+                    "FN": 2192,
+                    "FP": 1799,
+                    "IoU": 0.2284941040015465,
+                    "TN": 404427,
+                    "TP": 1182,
+                    "n_pred": 2981,
+                    "n_ref": 3374
+                }
+            },
+            "prediction_file": "C:\\Users\\user\\Desktop\\paper\\code\\yolo-seg__ANN\\nnunet2d_run_train-308\\nnUNet_results\\Dataset501_ToothSeg\\nnUNetTrainer_segx_e150__nnUNetPlans__2d\\fold_0\\validation\\tooth_0293.png",
+            "reference_file": "C:\\Users\\user\\Desktop\\paper\\code\\yolo-seg__ANN\\nnunet2d_run_train-308\\nnUNet_preprocessed\\Dataset501_ToothSeg\\gt_segmentations\\tooth_0293.png"
+        },
+        {
+            "metrics": {
+                "1": {
+                    "Dice": 0.9727161182375906,
+                    "FN": 324,
+                    "FP": 2122,
+                    "IoU": 0.9468815149409312,
+                    "TN": 363552,
+                    "TP": 43602,
+                    "n_pred": 45724,
+                    "n_ref": 43926
+                },
+                "2": {
+                    "Dice": 0.38267670915411356,
+                    "FN": 2088,
+                    "FP": 2174,
+                    "IoU": 0.2366111409636396,
+                    "TN": 404017,
+                    "TP": 1321,
+                    "n_pred": 3495,
+                    "n_ref": 3409
+                }
+            },
+            "prediction_file": "C:\\Users\\user\\Desktop\\paper\\code\\yolo-seg__ANN\\nnunet2d_run_train-308\\nnUNet_results\\Dataset501_ToothSeg\\nnUNetTrainer_segx_e150__nnUNetPlans__2d\\fold_0\\validation\\tooth_0294.png",
+            "reference_file": "C:\\Users\\user\\Desktop\\paper\\code\\yolo-seg__ANN\\nnunet2d_run_train-308\\nnUNet_preprocessed\\Dataset501_ToothSeg\\gt_segmentations\\tooth_0294.png"
+        },
+        {
+            "metrics": {
+                "1": {
+                    "Dice": 0.9531738480358842,
+                    "FN": 1962,
+                    "FP": 2172,
+                    "IoU": 0.9105369083944687,
+                    "TN": 363391,
+                    "TP": 42075,
+                    "n_pred": 44247,
+                    "n_ref": 44037
+                },
+                "2": {
+                    "Dice": 0.20678791350422454,
+                    "FN": 2769,
+                    "FP": 2770,
+                    "IoU": 0.11531704200606932,
+                    "TN": 403339,
+                    "TP": 722,
+                    "n_pred": 3492,
+                    "n_ref": 3491
+                }
+            },
+            "prediction_file": "C:\\Users\\user\\Desktop\\paper\\code\\yolo-seg__ANN\\nnunet2d_run_train-308\\nnUNet_results\\Dataset501_ToothSeg\\nnUNetTrainer_segx_e150__nnUNetPlans__2d\\fold_0\\validation\\tooth_0295.png",
+            "reference_file": "C:\\Users\\user\\Desktop\\paper\\code\\yolo-seg__ANN\\nnunet2d_run_train-308\\nnUNet_preprocessed\\Dataset501_ToothSeg\\gt_segmentations\\tooth_0295.png"
+        },
+        {
+            "metrics": {
+                "1": {
+                    "Dice": 0.9449932696037051,
+                    "FN": 4956,
+                    "FP": 2277,
+                    "IoU": 0.8957225033519312,
+                    "TN": 340237,
+                    "TP": 62130,
+                    "n_pred": 64407,
+                    "n_ref": 67086
+                },
+                "2": {
+                    "Dice": 0.2567807005588115,
+                    "FN": 2623,
+                    "FP": 2830,
+                    "IoU": 0.14730258014073494,
+                    "TN": 403205,
+                    "TP": 942,
+                    "n_pred": 3772,
+                    "n_ref": 3565
+                }
+            },
+            "prediction_file": "C:\\Users\\user\\Desktop\\paper\\code\\yolo-seg__ANN\\nnunet2d_run_train-308\\nnUNet_results\\Dataset501_ToothSeg\\nnUNetTrainer_segx_e150__nnUNetPlans__2d\\fold_0\\validation\\tooth_0296.png",
+            "reference_file": "C:\\Users\\user\\Desktop\\paper\\code\\yolo-seg__ANN\\nnunet2d_run_train-308\\nnUNet_preprocessed\\Dataset501_ToothSeg\\gt_segmentations\\tooth_0296.png"
+        },
+        {
+            "metrics": {
+                "1": {
+                    "Dice": 0.8540705248515092,
+                    "FN": 3425,
+                    "FP": 16402,
+                    "IoU": 0.7453081043585494,
+                    "TN": 331753,
+                    "TP": 58020,
+                    "n_pred": 74422,
+                    "n_ref": 61445
+                },
+                "2": {
+                    "Dice": 0.30187345351714384,
+                    "FN": 2449,
+                    "FP": 3476,
+                    "IoU": 0.1777685262281432,
+                    "TN": 402394,
+                    "TP": 1281,
+                    "n_pred": 4757,
+                    "n_ref": 3730
+                }
+            },
+            "prediction_file": "C:\\Users\\user\\Desktop\\paper\\code\\yolo-seg__ANN\\nnunet2d_run_train-308\\nnUNet_results\\Dataset501_ToothSeg\\nnUNetTrainer_segx_e150__nnUNetPlans__2d\\fold_0\\validation\\tooth_0297.png",
+            "reference_file": "C:\\Users\\user\\Desktop\\paper\\code\\yolo-seg__ANN\\nnunet2d_run_train-308\\nnUNet_preprocessed\\Dataset501_ToothSeg\\gt_segmentations\\tooth_0297.png"
+        },
+        {
+            "metrics": {
+                "1": {
+                    "Dice": 0.7966380516582838,
+                    "FN": 21417,
+                    "FP": 93,
+                    "IoU": 0.662010339246712,
+                    "TN": 345959,
+                    "TP": 42131,
+                    "n_pred": 42224,
+                    "n_ref": 63548
+                },
+                "2": {
+                    "Dice": 0.13933967543368775,
+                    "FN": 3221,
+                    "FP": 2931,
+                    "IoU": 0.07488721804511278,
+                    "TN": 402950,
+                    "TP": 498,
+                    "n_pred": 3429,
+                    "n_ref": 3719
+                }
+            },
+            "prediction_file": "C:\\Users\\user\\Desktop\\paper\\code\\yolo-seg__ANN\\nnunet2d_run_train-308\\nnUNet_results\\Dataset501_ToothSeg\\nnUNetTrainer_segx_e150__nnUNetPlans__2d\\fold_0\\validation\\tooth_0298.png",
+            "reference_file": "C:\\Users\\user\\Desktop\\paper\\code\\yolo-seg__ANN\\nnunet2d_run_train-308\\nnUNet_preprocessed\\Dataset501_ToothSeg\\gt_segmentations\\tooth_0298.png"
+        },
+        {
+            "metrics": {
+                "1": {
+                    "Dice": 0.9777477394447687,
+                    "FN": 968,
+                    "FP": 1205,
+                    "IoU": 0.9564642477911566,
+                    "TN": 359687,
+                    "TP": 47740,
+                    "n_pred": 48945,
+                    "n_ref": 48708
+                },
+                "2": {
+                    "Dice": 0.4467062482329658,
+                    "FN": 1934,
+                    "FP": 1980,
+                    "IoU": 0.2875864579541318,
+                    "TN": 404106,
+                    "TP": 1580,
+                    "n_pred": 3560,
+                    "n_ref": 3514
+                }
+            },
+            "prediction_file": "C:\\Users\\user\\Desktop\\paper\\code\\yolo-seg__ANN\\nnunet2d_run_train-308\\nnUNet_results\\Dataset501_ToothSeg\\nnUNetTrainer_segx_e150__nnUNetPlans__2d\\fold_0\\validation\\tooth_0299.png",
+            "reference_file": "C:\\Users\\user\\Desktop\\paper\\code\\yolo-seg__ANN\\nnunet2d_run_train-308\\nnUNet_preprocessed\\Dataset501_ToothSeg\\gt_segmentations\\tooth_0299.png"
+        },
+        {
+            "metrics": {
+                "1": {
+                    "Dice": 0.8280842406357328,
+                    "FN": 0,
+                    "FP": 17069,
+                    "IoU": 0.7066073086046272,
+                    "TN": 351422,
+                    "TP": 41109,
+                    "n_pred": 58178,
+                    "n_ref": 41109
+                },
+                "2": {
+                    "Dice": 0.0,
+                    "FN": 3143,
+                    "FP": 3621,
+                    "IoU": 0.0,
+                    "TN": 402836,
+                    "TP": 0,
+                    "n_pred": 3621,
+                    "n_ref": 3143
+                }
+            },
+            "prediction_file": "C:\\Users\\user\\Desktop\\paper\\code\\yolo-seg__ANN\\nnunet2d_run_train-308\\nnUNet_results\\Dataset501_ToothSeg\\nnUNetTrainer_segx_e150__nnUNetPlans__2d\\fold_0\\validation\\tooth_0300.png",
+            "reference_file": "C:\\Users\\user\\Desktop\\paper\\code\\yolo-seg__ANN\\nnunet2d_run_train-308\\nnUNet_preprocessed\\Dataset501_ToothSeg\\gt_segmentations\\tooth_0300.png"
+        },
+        {
+            "metrics": {
+                "1": {
+                    "Dice": 0.8763781312074229,
+                    "FN": 9,
+                    "FP": 9264,
+                    "IoU": 0.7799582364387072,
+                    "TN": 367458,
+                    "TP": 32869,
+                    "n_pred": 42133,
+                    "n_ref": 32878
+                },
+                "2": {
+                    "Dice": 0.18553968487704314,
+                    "FN": 2512,
+                    "FP": 3019,
+                    "IoU": 0.10225612725206946,
+                    "TN": 403439,
+                    "TP": 630,
+                    "n_pred": 3649,
+                    "n_ref": 3142
+                }
+            },
+            "prediction_file": "C:\\Users\\user\\Desktop\\paper\\code\\yolo-seg__ANN\\nnunet2d_run_train-308\\nnUNet_results\\Dataset501_ToothSeg\\nnUNetTrainer_segx_e150__nnUNetPlans__2d\\fold_0\\validation\\tooth_0301.png",
+            "reference_file": "C:\\Users\\user\\Desktop\\paper\\code\\yolo-seg__ANN\\nnunet2d_run_train-308\\nnUNet_preprocessed\\Dataset501_ToothSeg\\gt_segmentations\\tooth_0301.png"
+        },
+        {
+            "metrics": {
+                "1": {
+                    "Dice": 0.9560622717117628,
+                    "FN": 1696,
+                    "FP": 3260,
+                    "IoU": 0.9158230858074597,
+                    "TN": 350724,
+                    "TP": 53920,
+                    "n_pred": 57180,
+                    "n_ref": 55616
+                },
+                "2": {
+                    "Dice": 0.35033769219715477,
+                    "FN": 2097,
+                    "FP": 2424,
+                    "IoU": 0.21236933797909407,
+                    "TN": 403860,
+                    "TP": 1219,
+                    "n_pred": 3643,
+                    "n_ref": 3316
+                }
+            },
+            "prediction_file": "C:\\Users\\user\\Desktop\\paper\\code\\yolo-seg__ANN\\nnunet2d_run_train-308\\nnUNet_results\\Dataset501_ToothSeg\\nnUNetTrainer_segx_e150__nnUNetPlans__2d\\fold_0\\validation\\tooth_0302.png",
+            "reference_file": "C:\\Users\\user\\Desktop\\paper\\code\\yolo-seg__ANN\\nnunet2d_run_train-308\\nnUNet_preprocessed\\Dataset501_ToothSeg\\gt_segmentations\\tooth_0302.png"
+        },
+        {
+            "metrics": {
+                "1": {
+                    "Dice": 0.9289514374819824,
+                    "FN": 4849,
+                    "FP": 573,
+                    "IoU": 0.8673289615346971,
+                    "TN": 368732,
+                    "TP": 35446,
+                    "n_pred": 36019,
+                    "n_ref": 40295
+                },
+                "2": {
+                    "Dice": 0.18269936848289028,
+                    "FN": 2696,
+                    "FP": 2869,
+                    "IoU": 0.10053337643445935,
+                    "TN": 403413,
+                    "TP": 622,
+                    "n_pred": 3491,
+                    "n_ref": 3318
+                }
+            },
+            "prediction_file": "C:\\Users\\user\\Desktop\\paper\\code\\yolo-seg__ANN\\nnunet2d_run_train-308\\nnUNet_results\\Dataset501_ToothSeg\\nnUNetTrainer_segx_e150__nnUNetPlans__2d\\fold_0\\validation\\tooth_0303.png",
+            "reference_file": "C:\\Users\\user\\Desktop\\paper\\code\\yolo-seg__ANN\\nnunet2d_run_train-308\\nnUNet_preprocessed\\Dataset501_ToothSeg\\gt_segmentations\\tooth_0303.png"
+        },
+        {
+            "metrics": {
+                "1": {
+                    "Dice": 0.9789852406067296,
+                    "FN": 389,
+                    "FP": 1667,
+                    "IoU": 0.9588355423857766,
+                    "TN": 359654,
+                    "TP": 47890,
+                    "n_pred": 49557,
+                    "n_ref": 48279
+                },
+                "2": {
+                    "Dice": 0.4741427768409219,
+                    "FN": 1869,
+                    "FP": 1873,
+                    "IoU": 0.3107386258979554,
+                    "TN": 404171,
+                    "TP": 1687,
+                    "n_pred": 3560,
+                    "n_ref": 3556
+                }
+            },
+            "prediction_file": "C:\\Users\\user\\Desktop\\paper\\code\\yolo-seg__ANN\\nnunet2d_run_train-308\\nnUNet_results\\Dataset501_ToothSeg\\nnUNetTrainer_segx_e150__nnUNetPlans__2d\\fold_0\\validation\\tooth_0304.png",
+            "reference_file": "C:\\Users\\user\\Desktop\\paper\\code\\yolo-seg__ANN\\nnunet2d_run_train-308\\nnUNet_preprocessed\\Dataset501_ToothSeg\\gt_segmentations\\tooth_0304.png"
+        },
+        {
+            "metrics": {
+                "1": {
+                    "Dice": 0.977103681939702,
+                    "FN": 452,
+                    "FP": 1278,
+                    "IoU": 0.9552323776006625,
+                    "TN": 370956,
+                    "TP": 36914,
+                    "n_pred": 38192,
+                    "n_ref": 37366
+                },
+                "2": {
+                    "Dice": 0.5124820659971305,
+                    "FN": 1668,
+                    "FP": 1730,
+                    "IoU": 0.3445216049382716,
+                    "TN": 404416,
+                    "TP": 1786,
+                    "n_pred": 3516,
+                    "n_ref": 3454
+                }
+            },
+            "prediction_file": "C:\\Users\\user\\Desktop\\paper\\code\\yolo-seg__ANN\\nnunet2d_run_train-308\\nnUNet_results\\Dataset501_ToothSeg\\nnUNetTrainer_segx_e150__nnUNetPlans__2d\\fold_0\\validation\\tooth_0305.png",
+            "reference_file": "C:\\Users\\user\\Desktop\\paper\\code\\yolo-seg__ANN\\nnunet2d_run_train-308\\nnUNet_preprocessed\\Dataset501_ToothSeg\\gt_segmentations\\tooth_0305.png"
+        },
+        {
+            "metrics": {
+                "1": {
+                    "Dice": 0.9634028973761524,
+                    "FN": 987,
+                    "FP": 1903,
+                    "IoU": 0.9293899191282464,
+                    "TN": 368671,
+                    "TP": 38039,
+                    "n_pred": 39942,
+                    "n_ref": 39026
+                },
+                "2": {
+                    "Dice": 0.30387551379917793,
+                    "FN": 2329,
+                    "FP": 2413,
+                    "IoU": 0.17915873290635279,
+                    "TN": 403823,
+                    "TP": 1035,
+                    "n_pred": 3448,
+                    "n_ref": 3364
+                }
+            },
+            "prediction_file": "C:\\Users\\user\\Desktop\\paper\\code\\yolo-seg__ANN\\nnunet2d_run_train-308\\nnUNet_results\\Dataset501_ToothSeg\\nnUNetTrainer_segx_e150__nnUNetPlans__2d\\fold_0\\validation\\tooth_0306.png",
+            "reference_file": "C:\\Users\\user\\Desktop\\paper\\code\\yolo-seg__ANN\\nnunet2d_run_train-308\\nnUNet_preprocessed\\Dataset501_ToothSeg\\gt_segmentations\\tooth_0306.png"
+        },
+        {
+            "metrics": {
+                "1": {
+                    "Dice": 0.9700323335348703,
+                    "FN": 357,
+                    "FP": 1923,
+                    "IoU": 0.9418085296444705,
+                    "TN": 370419,
+                    "TP": 36901,
+                    "n_pred": 38824,
+                    "n_ref": 37258
+                },
+                "2": {
+                    "Dice": 0.4584837545126354,
+                    "FN": 1736,
+                    "FP": 1864,
+                    "IoU": 0.297423887587822,
+                    "TN": 404476,
+                    "TP": 1524,
+                    "n_pred": 3388,
+                    "n_ref": 3260
+                }
+            },
+            "prediction_file": "C:\\Users\\user\\Desktop\\paper\\code\\yolo-seg__ANN\\nnunet2d_run_train-308\\nnUNet_results\\Dataset501_ToothSeg\\nnUNetTrainer_segx_e150__nnUNetPlans__2d\\fold_0\\validation\\tooth_0307.png",
+            "reference_file": "C:\\Users\\user\\Desktop\\paper\\code\\yolo-seg__ANN\\nnunet2d_run_train-308\\nnUNet_preprocessed\\Dataset501_ToothSeg\\gt_segmentations\\tooth_0307.png"
+        }
+    ]
+}
