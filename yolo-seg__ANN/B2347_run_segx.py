@@ -34,13 +34,13 @@ from pathlib import Path
 # ==================== 可手動修改 ====================
 RUN_NOW = True
 
-METHOD = "mask2former_swint"          # 👈 nnunet2d | medsam | sam2 | pointrend_r50fpn | d2maskrcnn_r50fpn | mask2former_swint
-DATA_TAG = "train-308"  # 👈 與各 B1 共用設定區的 DATA_TAG 相同
+METHOD = "nnunet2d"          # 👈 nnunet2d | medsam | sam2 | pointrend_r50fpn  | mask2former_swint
+DATA_TAG = "train-308_tophat"  # 👈 與各 B1 共用設定區的 DATA_TAG 相同
 RUN_B2, RUN_B34, RUN_B7 = True, True, True
 
 # test 影像：B2 與 B3 一定要同一組，而且要跟 YOLO 跑 B2/B3 時一樣（None = 沿用 B2/B3 檔裡的設定）
-TEST_IMAGE_DIR = "padded_test-77/images"      # 👈 改成你 YOLO 那次 B3 的 IMAGE_DIR
-TEST_LABEL_DIR = "padded_test-77/labels"      # 👈 改成你 YOLO 那次 B3 的 GT_LABEL_DIR
+TEST_IMAGE_DIR = "padded_test-77_tophat/images"      # 👈 改成你 YOLO 那次 B3 的 IMAGE_DIR
+TEST_LABEL_DIR = "padded_test-77_tophat/labels"      # 👈 改成你 YOLO 那次 B3 的 GT_LABEL_DIR
 # ===================================================
 
 # ⚠️ 根目錄的 B2_seg_inference_v4.py 是「單一權重版」（SEG_WEIGHTS，沒有 WEIGHTS_TMPL）：

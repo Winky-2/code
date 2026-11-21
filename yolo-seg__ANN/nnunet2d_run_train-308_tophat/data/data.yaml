@@ -1,0 +1,6 @@
+names:
+- tooth
+nc: 1
+path: C:\Users\user\Desktop\paper\code\yolo-seg__ANN\nnunet2d_run_train-308_tophat\data
+train: train/images
+val: val/images
