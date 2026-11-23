@@ -1,0 +1,12 @@
+{
+    "channel_names": {
+        "0": "xray"
+    },
+    "labels": {
+        "background": 0,
+        "tooth": 1,
+        "border": 2
+    },
+    "numTraining": 308,
+    "file_ending": ".png"
+}

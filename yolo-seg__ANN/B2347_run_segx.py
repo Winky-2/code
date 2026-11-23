@@ -34,7 +34,7 @@ from pathlib import Path
 # ==================== 可手動修改 ====================
 RUN_NOW = True
 
-METHOD = "mask2former_swint"          # 👈 nnunet2d | medsam | sam2 | pointrend_r50fpn | d2maskrcnn_r50fpn | mask2former_swint
+METHOD = "mask2former_swint"          # 👈 nnunet2d | medsam | sam2 | pointrend_r50fpn  | mask2former_swint
 DATA_TAG = "train-308"  # 👈 與各 B1 共用設定區的 DATA_TAG 相同
 RUN_B2, RUN_B34, RUN_B7 = True, True, True
 
