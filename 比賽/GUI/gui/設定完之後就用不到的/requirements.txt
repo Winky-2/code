@@ -1,6 +1,0 @@
-gradio>=4.44
-ultralytics
-opencv-python
-numpy
-pandas
-openpyxl
