@@ -49,7 +49,7 @@ HERE = Path(__file__).resolve().parent
 os.chdir(HERE)
 
 R = None
-for _name in ("B234x_run_segx", "B2347_run_segx"):
+for _name in ("B2347_run_segx"):
     try:
         R = importlib.import_module(_name)
         break
